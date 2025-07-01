@@ -11,6 +11,7 @@
     "dev-team": "powershell -ExecutionPolicy Bypass -File team-setup/scripts/dev-team.ps1",
     "setup-team": "powershell -ExecutionPolicy Bypass -File team-setup/scripts/setup-team.ps1",
     "verify-sync": "powershell -ExecutionPolicy Bypass -File team-setup/scripts/verify-and-sync.ps1",
+    "check-project": "powershell -ExecutionPolicy Bypass -File team-setup/scripts/check-project.ps1",
     "build": "cd frontend && npm run build",
     "test": "echo \"No tests specified\" && exit 0",
     "git-status": "git status",
