@@ -1,0 +1,30 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+
+body {
+  font-family: 'Montserrat', Arial, sans-serif;
+  margin: 0;
+  background: linear-gradient(135deg, #e0ffe0 0%, #fffbe0 100%);
+}
+
+.app-bg {
+  background: url('https://www.transparenttextures.com/patterns/flowers.png'), linear-gradient(135deg, #e0ffe0 0%, #fffbe0 100%);
+  background-repeat: repeat;
+}
+
+.floral-border:before, .floral-border:after {
+  content: '';
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  background: url('https://img.icons8.com/color/96/000000/flower.png') no-repeat center center;
+  background-size: contain;
+  z-index: 1;
+}
+.floral-border:before {
+  top: -40px;
+  left: -40px;
+}
+.floral-border:after {
+  bottom: -40px;
+  right: -40px;
+} 

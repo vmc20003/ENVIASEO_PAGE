@@ -1,0 +1,32 @@
+{
+  "name": "sistema-gestion-asistencia",
+  "version": "1.0.0",
+  "description": "Sistema de Gestión de Asistencia para envíaseo E.S.P.",
+  "main": "index.js",
+  "scripts": {
+    "install-all": "npm install && cd backend && npm install && cd ../frontend && npm install",
+    "start-backend": "cd backend && npm start",
+    "start-frontend": "cd frontend && npm start",
+    "dev": "concurrently \"npm run start-backend\" \"npm run start-frontend\"",
+    "dev-team": "powershell -ExecutionPolicy Bypass -File team-setup/scripts/dev-team.ps1",
+    "setup-team": "powershell -ExecutionPolicy Bypass -File team-setup/scripts/setup-team.ps1",
+    "build": "cd frontend && npm run build",
+    "test": "echo \"No tests specified\" && exit 0",
+    "git-status": "git status",
+    "git-log": "git log --oneline -10",
+    "git-pull": "git pull origin main",
+    "git-push": "git push origin main"
+  },
+  "keywords": [
+    "asistencia",
+    "horas-extras",
+    "excel",
+    "react",
+    "nodejs"
+  ],
+  "author": "envíaseo E.S.P.",
+  "license": "MIT",
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}
