@@ -50,7 +50,7 @@ $gitEmail = git config user.email
 $remoteUrl = git config --get remote.origin.url
 
 if ($gitUser -and $gitEmail) {
-    Write-Host "✅ Git configurado: $gitUser <$gitEmail>" -ForegroundColor Green
+    Write-Host "✅ Git configurado: $gitUser - $gitEmail" -ForegroundColor Green
 } else {
     Write-Host "⚠️  Git no está configurado" -ForegroundColor Yellow
     Write-Host "   Ejecuta: git config --global user.name 'Tu Nombre'" -ForegroundColor Cyan
@@ -121,7 +121,7 @@ foreach ($folder in $requiredFolders) {
         Write-Host "📁 Creando carpeta: $folder" -ForegroundColor Cyan
         New-Item -ItemType Directory -Path $folder -Force | Out-Null
     } else {
-        Write-Host "✅ Carpeta $folder: OK" -ForegroundColor Green
+        Write-Host "✅ Carpeta $folder - OK" -ForegroundColor Green
     }
 }
 
@@ -130,14 +130,14 @@ if (-not (Test-Path ".gitignore")) {
     Write-Host "📄 Copiando .gitignore..." -ForegroundColor Cyan
     Copy-Item "team-setup/config/.gitignore" ".gitignore" -Force
 } else {
-    Write-Host "✅ .gitignore: OK" -ForegroundColor Green
+    Write-Host "✅ .gitignore - OK" -ForegroundColor Green
 }
 
 if (-not (Test-Path ".env")) {
     Write-Host "📄 Copiando .env..." -ForegroundColor Cyan
     Copy-Item "team-setup/config/env.example" ".env" -Force
 } else {
-    Write-Host "✅ .env: OK" -ForegroundColor Green
+    Write-Host "✅ .env - OK" -ForegroundColor Green
 }
 
 if (-not (Test-Path ".vscode")) {
@@ -146,7 +146,7 @@ if (-not (Test-Path ".vscode")) {
     Copy-Item "team-setup/config/.vscode/settings.json" ".vscode/settings.json" -Force
     Copy-Item "team-setup/config/.vscode/extensions.json" ".vscode/extensions.json" -Force
 } else {
-    Write-Host "✅ Configuración de VS Code: OK" -ForegroundColor Green
+    Write-Host "✅ Configuración de VS Code - OK" -ForegroundColor Green
 }
 
 Write-Host "`n🔄 Sincronizando con GitHub..." -ForegroundColor Yellow
@@ -188,9 +188,9 @@ $mainFiles = @(
 
 foreach ($file in $mainFiles) {
     if (Test-Path $file) {
-        Write-Host "✅ $file: OK" -ForegroundColor Green
+        Write-Host "✅ $file - OK" -ForegroundColor Green
     } else {
-        Write-Host "❌ $file: FALTANTE" -ForegroundColor Red
+        Write-Host "❌ $file - FALTANTE" -ForegroundColor Red
     }
 }
 
