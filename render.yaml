@@ -15,6 +15,24 @@ services:
     healthCheckTimeout: 180
     autoDeploy: true
 
+  # Backend de Alumbrado Público
+  - type: web
+    name: alumbrado-backend
+    env: node
+    plan: free
+    buildCommand: cd backend && npm install
+    startCommand: cd backend && npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 10000
+      - key: CORS_ORIGIN
+        value: https://alcaldia-frontend.onrender.com
+    healthCheckPath: /health
+    healthCheckTimeout: 180
+    autoDeploy: true
+
   # Frontend de la Alcaldía
   - type: web
     name: alcaldia-frontend

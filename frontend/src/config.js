@@ -1,10 +1,12 @@
 // Configuración del API
 const config = {
   development: {
-    apiUrl: 'http://localhost:4001'
+    alcaldiaApiUrl: 'http://localhost:4001',
+    alumbradoApiUrl: 'http://localhost:4000'
   },
   production: {
-    apiUrl: 'https://pagina-valeria-enviaseo.onrender.com'
+    alcaldiaApiUrl: 'https://pagina-valeria-enviaseo.onrender.com',
+    alumbradoApiUrl: 'https://alumbrado-backend.onrender.com'
   }
 };
 
@@ -12,4 +14,5 @@ const config = {
 const environment = process.env.NODE_ENV || 'development';
 const currentConfig = config[environment];
 
-export const API_BASE_URL = currentConfig.apiUrl;
+export const API_BASE_URL = currentConfig.alcaldiaApiUrl;
+export const ALUMBRADO_API_BASE_URL = currentConfig.alumbradoApiUrl;

@@ -3,6 +3,7 @@ import "./MainApp.css";
 import * as XLSX from "xlsx";
 import ExcelJS from "exceljs";
 import { saveAs } from "file-saver";
+import { ALUMBRADO_API_BASE_URL } from "../../config.js";
 
 const PAGE_SIZE = 10;
 
@@ -36,7 +37,7 @@ function MainApp({ onBack }) {
       const formData = new FormData();
       formData.append("file", file);
 
-      const response = await fetch("http://localhost:4000/upload", {
+      const response = await fetch(`${ALUMBRADO_API_BASE_URL}/upload`, {
         method: "POST",
         body: formData,
       });
@@ -62,7 +63,7 @@ function MainApp({ onBack }) {
 
   const fetchFiles = async () => {
     try {
-      const response = await fetch("http://localhost:4000/files");
+      const response = await fetch(`${ALUMBRADO_API_BASE_URL}/files`);
       const data = await response.json();
       setFiles(data);
     } catch (error) {
@@ -72,7 +73,7 @@ function MainApp({ onBack }) {
 
   const fetchStats = async () => {
     try {
-      const response = await fetch("http://localhost:4000/stats");
+      const response = await fetch(`${ALUMBRADO_API_BASE_URL}/stats`);
       const data = await response.json();
       setStats(data);
     } catch (error) {
@@ -90,7 +91,7 @@ function MainApp({ onBack }) {
     }
 
     try {
-      const response = await fetch("http://localhost:4000/clear", {
+      const response = await fetch(`${ALUMBRADO_API_BASE_URL}/clear`, {
         method: "DELETE",
       });
 
@@ -111,7 +112,7 @@ function MainApp({ onBack }) {
     setSearching(true);
     setMessage("Refrescando datos...");
     try {
-      const response = await fetch("http://localhost:4000/all-records");
+      const response = await fetch(`${ALUMBRADO_API_BASE_URL}/all-records`);
       const data = await response.json();
       setResultados(data);
       setMessage(`Analizando ${data.length} registros...`);
@@ -135,7 +136,7 @@ function MainApp({ onBack }) {
         setSearching(true);
         setMessage("Buscando...");
         try {
-          const res = await fetch(`http://localhost:4000/buscar/${cedula}`);
+          const res = await fetch(`${ALUMBRADO_API_BASE_URL}/buscar/${cedula}`);
           const data = await res.json();
           setResultados(data);
           setMessage(
@@ -153,7 +154,7 @@ function MainApp({ onBack }) {
         setSearching(true);
         setMessage("Buscando en todos los registros...");
         try {
-          const res = await fetch(`http://localhost:4000/all-records`);
+          const res = await fetch(`${ALUMBRADO_API_BASE_URL}/all-records`);
           const data = await res.json();
           setResultados(data);
           setMessage(`Analizando ${data.length} registros...`);
@@ -956,7 +957,7 @@ function MainApp({ onBack }) {
                               className="btn-file-action"
                               onClick={() =>
                                 window.open(
-                                  `http://localhost:4000/files/${file.name}`,
+                                  `${ALUMBRADO_API_BASE_URL}/files/${file.name}`,
                                   "_blank"
                                 )
                               }
@@ -974,7 +975,7 @@ function MainApp({ onBack }) {
                                 ) {
                                   try {
                                     const response = await fetch(
-                                      `http://localhost:4000/files/${file.name}`,
+                                      `${ALUMBRADO_API_BASE_URL}/files/${file.name}`,
                                       { method: "DELETE" }
                                     );
                                     if (response.ok) {
