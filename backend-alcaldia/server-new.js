@@ -374,6 +374,23 @@ app.post("/reprocess/:filename", (req, res) => {
 // Servir archivos estáticos
 app.use("/files", express.static(path.join(__dirname, "uploads_excel")));
 
+// Ruta raíz
+app.get("/", (req, res) => {
+  res.json({
+    message: "Sistema de Asistencia Alcaldía de Envigado - API Backend",
+    status: "OK",
+    timestamp: new Date().toISOString(),
+    endpoints: {
+      health: "/health",
+      upload: "/upload",
+      records: "/all-records",
+      stats: "/stats",
+      files: "/files",
+      accessPoints: "/access-points"
+    }
+  });
+});
+
 // Health check
 app.get("/health", (req, res) => {
   res.json({
@@ -388,6 +405,6 @@ app.get("/health", (req, res) => {
 app.listen(PORT, () => {
   console.log(`🚀 Servidor de Alcaldía ejecutándose en puerto ${PORT}`);
   console.log(`📁 Carpeta de uploads: uploads_excel`);
-  console.log(`🌐 CORS origin: http://localhost:3000`);
+  console.log(`🌐 CORS origin: ${config.corsOrigin}`);
   console.log(`📊 Registros en memoria: ${processedRecords.length}`);
 });
