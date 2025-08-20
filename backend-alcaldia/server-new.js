@@ -376,35 +376,68 @@ app.use("/files", express.static(path.join(__dirname, "uploads_excel")));
 
 // Ruta raíz
 app.get("/", (req, res) => {
-  res.json({
-    message: "Sistema de Asistencia Alcaldía de Envigado - API Backend",
-    status: "OK",
-    timestamp: new Date().toISOString(),
-    endpoints: {
-      health: "/health",
-      upload: "/upload",
-      records: "/all-records",
-      stats: "/stats",
-      files: "/files",
-      accessPoints: "/access-points"
-    }
-  });
+  try {
+    res.json({
+      message: "Sistema de Asistencia Alcaldía de Envigado - API Backend",
+      status: "OK",
+      timestamp: new Date().toISOString(),
+      environment: process.env.NODE_ENV || 'development',
+      port: process.env.PORT || PORT,
+      endpoints: {
+        health: "/health",
+        upload: "/upload",
+        records: "/all-records",
+        stats: "/stats",
+        files: "/files",
+        accessPoints: "/access-points"
+      }
+    });
+  } catch (error) {
+    console.error("❌ Error en ruta raíz:", error);
+    res.status(500).json({
+      status: "ERROR",
+      error: error.message,
+      timestamp: new Date().toISOString()
+    });
+  }
 });
 
 // Health check
 app.get("/health", (req, res) => {
-  res.json({
-    status: "OK",
-    timestamp: new Date().toISOString(),
-    records: processedRecords.length,
-    files: uploadedFiles.length,
+  try {
+    res.status(200).json({
+      status: "OK",
+      timestamp: new Date().toISOString(),
+      records: processedRecords.length,
+      files: uploadedFiles.length,
+      environment: process.env.NODE_ENV || 'development',
+      port: process.env.PORT || PORT
+    });
+  } catch (error) {
+    console.error("❌ Error en health check:", error);
+    res.status(500).json({
+      status: "ERROR",
+      error: error.message,
+      timestamp: new Date().toISOString()
+    });
+  }
+});
+
+// Endpoint de prueba simple
+app.get("/test", (req, res) => {
+  res.status(200).json({
+    message: "Backend funcionando correctamente",
+    timestamp: new Date().toISOString()
   });
 });
 
 // Iniciar servidor
-app.listen(PORT, () => {
-  console.log(`🚀 Servidor de Alcaldía ejecutándose en puerto ${PORT}`);
+const serverPort = process.env.PORT || PORT;
+app.listen(serverPort, '0.0.0.0', () => {
+  console.log(`🚀 Servidor de Alcaldía ejecutándose en puerto ${serverPort}`);
   console.log(`📁 Carpeta de uploads: uploads_excel`);
   console.log(`🌐 CORS origin: ${config.corsOrigin}`);
   console.log(`📊 Registros en memoria: ${processedRecords.length}`);
+  console.log(`🔧 NODE_ENV: ${process.env.NODE_ENV}`);
+  console.log(`🌍 FRONTEND_URL: ${process.env.FRONTEND_URL}`);
 });

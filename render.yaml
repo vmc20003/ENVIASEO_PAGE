@@ -5,13 +5,15 @@ services:
     env: node
     plan: free
     buildCommand: cd backend-alcaldia && npm install
-    startCommand: cd backend-alcaldia && npm start
+    startCommand: cd backend-alcaldia && node render-start.js
     envVars:
       - key: NODE_ENV
         value: production
       - key: FRONTEND_URL
         value: https://alcaldia-frontend.onrender.com
     healthCheckPath: /health
+    healthCheckTimeout: 180
+    autoDeploy: true
 
   # Frontend de la Alcaldía
   - type: web
