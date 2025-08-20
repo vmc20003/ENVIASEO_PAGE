@@ -20,7 +20,7 @@ const config = {
 const environment = process.env.NODE_ENV || 'development';
 const currentConfig = config[environment];
 
-module.exports = currentConfig;
+export default currentConfig;
 
 export const excelConfig = {
   // Configuraciones para el procesamiento de Excel de Alcaldía de Envigado
