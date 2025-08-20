@@ -287,6 +287,26 @@ app.delete("/horarios", (req, res) => {
   }
 });
 
+// Endpoint raíz
+app.get("/", (req, res) => {
+  res.json({
+    message: "Sistema de Alumbrado Público - API Backend",
+    status: "OK",
+    timestamp: new Date().toISOString(),
+    version: "1.0.0",
+    environment: process.env.NODE_ENV || 'development',
+    port: process.env.PORT || config.PORT,
+    endpoints: {
+      health: "/health",
+      upload: "/upload",
+      files: "/files",
+      stats: "/stats",
+      search: "/buscar/:cedula",
+      allRecords: "/all-records"
+    }
+  });
+});
+
 // Endpoint de salud del servidor
 app.get("/health", (req, res) => {
   res.json({
@@ -307,13 +327,15 @@ app.use((error, req, res, next) => {
   res.status(500).json({ error: "Error interno del servidor" });
 });
 
-app.listen(config.PORT, () => {
+const serverPort = process.env.PORT || config.PORT;
+app.listen(serverPort, '0.0.0.0', () => {
   console.log(
-    `🚀 Servidor backend corriendo en http://localhost:${config.PORT}`
+    `🚀 Servidor backend corriendo en puerto ${serverPort}`
   );
   console.log(`📁 Carpeta de uploads: ${config.UPLOAD_FOLDER}`);
   console.log(
     `💾 Base de datos: ${path.join(config.UPLOAD_FOLDER, config.DATABASE_FILE)}`
   );
   console.log(`🌐 CORS origin: ${config.CORS_ORIGIN}`);
+  console.log(`🔧 NODE_ENV: ${process.env.NODE_ENV}`);
 });
