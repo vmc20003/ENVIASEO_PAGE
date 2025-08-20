@@ -2,7 +2,7 @@ export const config = {
   PORT: process.env.PORT || 4000,
   UPLOAD_FOLDER: "uploads_excel",
   DATABASE_FILE: "database.json",
-  CORS_ORIGIN: process.env.CORS_ORIGIN || "http://localhost:3000",
+  CORS_ORIGIN: process.env.CORS_ORIGIN || "https://alcaldia-frontend.onrender.com",
   MAX_FILE_SIZE: 10 * 1024 * 1024, // 10MB
   ALLOWED_FILE_TYPES: [".xlsx", ".xls"],
   PAGE_SIZE: 10,
