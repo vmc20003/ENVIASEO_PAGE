@@ -1,6 +1,6 @@
 Write-Host "=== VERIFICANDO BACKEND DE ALUMBRADO ===" -ForegroundColor Green
 
-$alumbradoBackendUrl = "https://alumbrado-backend.onrender.com"
+$alumbradoBackendUrl = "https://backend-alumbrado.onrender.com"
 
 Write-Host "`nProbando: $alumbradoBackendUrl" -ForegroundColor Yellow
 

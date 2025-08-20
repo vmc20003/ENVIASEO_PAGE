@@ -6,7 +6,7 @@ const config = {
   },
   production: {
     alcaldiaApiUrl: 'https://pagina-valeria-enviaseo.onrender.com',
-    alumbradoApiUrl: 'https://alumbrado-backend.onrender.com'
+    alumbradoApiUrl: 'https://backend-alumbrado.onrender.com'
   }
 };
 
