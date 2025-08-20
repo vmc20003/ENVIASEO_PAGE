@@ -15,5 +15,5 @@ const environment = process.env.NODE_ENV || 'development';
 const currentConfig = config[environment];
 
 export const API_BASE_URL = currentConfig.alcaldiaApiUrl;
-// Temporalmente usar el mismo backend para ambos servicios hasta que alumbrado-backend esté listo
-export const ALUMBRADO_API_BASE_URL = currentConfig.alcaldiaApiUrl;
+// Usar el backend separado de Alumbrado
+export const ALUMBRADO_API_BASE_URL = currentConfig.alumbradoApiUrl;
