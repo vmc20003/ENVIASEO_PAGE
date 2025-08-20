@@ -1,217 +1,250 @@
-# Sistema de Gestión de Asistencia - envíaseo E.S.P.
+# Sistema de Gestión de Asistencia - App_Test
 
-Este proyecto permite subir archivos Excel con datos de asistencia y buscar empleados por número de cédula para calcular horas extras.
+Sistema completo para procesar archivos de Excel con datos de asistencia y buscar información por cédula.
 
-## Requisitos Previos
+## 🚀 Características
 
-### 1. Node.js
-Descarga e instala Node.js desde: https://nodejs.org/
-- Versión recomendada: 18.x o superior
-- Para verificar la instalación: `node --version`
+- **Procesamiento de Excel**: Soporte para archivos .xlsx y .xls
+- **Búsqueda por Cédula**: Búsqueda en tiempo real con debounce
+- **Base de Datos Persistente**: Almacenamiento en JSON con deduplicación
+- **Gestión de Archivos**: Subir, descargar, procesar y eliminar archivos
+- **Estadísticas**: Contador de registros totales y personas únicas
+- **Interfaz Moderna**: UI responsive con Bootstrap y diseño atractivo
+- **Manejo de Errores**: Validación robusta y mensajes informativos
 
-### 2. npm (viene con Node.js)
-Para verificar: `npm --version`
-
-## Instalación y Configuración
-
-### Paso 1: Clonar/Descargar el proyecto
-Asegúrate de tener todos los archivos del proyecto en tu máquina.
-
-### Paso 2: Instalar dependencias del Backend
-```bash
-cd backend
-npm install
-```
-
-### Paso 3: Instalar dependencias del Frontend
-```bash
-cd frontend
-npm install
-```
-
-## Ejecución del Proyecto
-
-### Opción 1: Ejecutar Backend y Frontend por separado
-
-**Terminal 1 - Backend:**
-```bash
-cd backend
-npm start
-```
-El servidor backend se ejecutará en: http://localhost:4000
-
-**Terminal 2 - Frontend:**
-```bash
-cd frontend
-npm start
-```
-La aplicación React se ejecutará en: http://localhost:3000
-
-### Opción 2: Scripts automatizados (Windows PowerShell)
-
-Crea un archivo `start-project.ps1` en la raíz del proyecto:
-
-```powershell
-# Script para iniciar el proyecto completo
-Write-Host "Iniciando Sistema de Gestión de Asistencia..." -ForegroundColor Green
-
-# Iniciar Backend
-Write-Host "Iniciando Backend..." -ForegroundColor Yellow
-Start-Process powershell -ArgumentList "-NoExit", "-Command", "cd backend; npm start"
-
-# Esperar 3 segundos
-Start-Sleep -Seconds 3
-
-# Iniciar Frontend
-Write-Host "Iniciando Frontend..." -ForegroundColor Yellow
-Start-Process powershell -ArgumentList "-NoExit", "-Command", "cd frontend; npm start"
-
-Write-Host "Proyecto iniciado correctamente!" -ForegroundColor Green
-Write-Host "Backend: http://localhost:4000" -ForegroundColor Cyan
-Write-Host "Frontend: http://localhost:3000" -ForegroundColor Cyan
-```
-
-Ejecuta el script:
-```powershell
-.\start-project.ps1
-```
-
-## Uso de la Aplicación
-
-1. **Abrir el navegador** en http://localhost:3000
-2. **Subir archivo Excel** con datos de asistencia
-3. **Buscar empleado** ingresando los dígitos de la cédula
-4. **Ver resultados** de horas extras por fecha
-
-## Estructura del Proyecto
+## 📁 Estructura del Proyecto
 
 ```
 App_Test/
 ├── backend/
-│   ├── package.json
-│   ├── server.js
-│   └── uploads_excel/     # Carpeta donde se guardan los archivos
+│   ├── config.js                 # Configuraciones centralizadas
+│   ├── server.js                 # Servidor principal
+│   ├── utils/
+│   │   ├── database.js           # Manejo de base de datos JSON
+│   │   └── excelProcessor.js     # Procesamiento de archivos Excel
+│   ├── uploads_excel/            # Carpeta de archivos subidos
+│   └── package.json
 ├── frontend/
-│   ├── package.json
-│   ├── public/
-│   │   ├── index.html
-│   │   └── logo_enviaseo.png
-│   └── src/
-│       ├── App.jsx
-│       ├── index.js
-│       └── styles.css
+│   ├── src/
+│   │   ├── App.jsx               # Componente principal
+│   │   ├── index.js
+│   │   └── styles.css
+│   └── package.json
 └── README.md
 ```
 
-## Funcionalidades
+## 🛠️ Tecnologías Utilizadas
 
-- ✅ Subir archivos Excel (.xlsx, .xls)
-- ✅ Procesar datos de asistencia automáticamente
-- ✅ Búsqueda en tiempo real por cédula
-- ✅ Cálculo de horas extras
-- ✅ Gestión de archivos subidos
-- ✅ Interfaz responsiva y moderna
+### Backend
 
-## Solución de Problemas
+- **Node.js** con **Express.js**
+- **Multer** para manejo de archivos
+- **XLSX** para procesamiento de Excel
+- **CORS** para comunicación con frontend
+- **ES6 Modules** para organización del código
 
-### Error: "Port 3000 is already in use"
+### Frontend
+
+- **React.js** con hooks
+- **Bootstrap 5** para estilos
+- **Fetch API** para comunicación con backend
+
+## 🚀 Instalación y Configuración
+
+### Prerrequisitos
+
+- Node.js (versión 14 o superior)
+- npm o yarn
+
+### 1. Clonar el repositorio
+
 ```bash
-# Encontrar proceso usando el puerto
-netstat -ano | findstr :3000
-# Terminar proceso (reemplazar PID con el número encontrado)
-taskkill /PID <PID> /F
+git clone <url-del-repositorio>
+cd App_Test
 ```
 
-### Error: "Port 4000 is already in use"
-```bash
-# Encontrar proceso usando el puerto
-netstat -ano | findstr :4000
-# Terminar proceso (reemplazar PID con el número encontrado)
-taskkill /PID <PID> /F
-```
+### 2. Instalar dependencias del backend
 
-### Error: "Module not found"
 ```bash
-# Reinstalar dependencias
 cd backend
-rm -rf node_modules package-lock.json
 npm install
+```
 
+### 3. Instalar dependencias del frontend
+
+```bash
 cd ../frontend
-rm -rf node_modules package-lock.json
 npm install
 ```
 
-## Tecnologías Utilizadas
+### 4. Configurar variables de entorno (opcional)
 
-- **Backend**: Node.js, Express.js, Multer, XLSX
-- **Frontend**: React.js, Bootstrap
-- **Base de datos**: Archivos temporales en memoria
+Crear archivo `.env` en la carpeta `backend`:
 
-## 🚀 Trabajo en Equipo
+```env
+PORT=4000
+CORS_ORIGIN=http://localhost:3000
+```
 
-Para trabajar en conjunto con otra persona, sigue estos pasos:
+## 🏃‍♂️ Ejecución
 
-### Configuración Inicial para Nuevos Miembros
+### Opción 1: Ejecutar manualmente
 
-1. **Ejecutar el script de configuración:**
+#### Backend
+
+```bash
+cd backend
+npm start
+```
+
+#### Frontend
+
+```bash
+cd frontend
+npm start
+```
+
+### Opción 2: Usar scripts de PowerShell (Windows)
+
 ```powershell
-npm run setup-team
-```
-
-2. **Revisar la guía de contribución:**
-```bash
-# Leer el archivo team-setup/docs/CONTRIBUTING.md
-```
-
-### Flujo de Trabajo
-
-1. **Antes de empezar:**
-```bash
-git checkout main
-git pull origin main
-git checkout -b feature/nombre-de-la-funcionalidad
-```
-
-2. **Durante el desarrollo:**
-```bash
-git add .
-git commit -m "feat: descripción de los cambios"
-git push origin feature/nombre-de-la-funcionalidad
-```
-
-3. **Al terminar:**
-- Crear Pull Request en GitHub/GitLab
-- Solicitar review
-- Hacer merge una vez aprobado
-
-### Herramientas Recomendadas
-
-- **VS Code** con extensiones: GitLens, Prettier, ESLint, Live Share
-- **GitHub Desktop** (alternativa gráfica)
-- **Slack/Discord** para comunicación
-
-### Comandos Útiles
-
-```bash
-# Ver estado del repositorio
-git status
-
-# Ver historial de commits
-git log --oneline
-
-# Cambiar de rama
-git checkout nombre-rama
+# Verificar configuración
+.\check-setup.ps1
 
 # Iniciar proyecto completo
-npm run dev
-
-# Iniciar en modo equipo
-npm run dev-team
+.\start-project.ps1
 ```
 
-Para más detalles, consulta el archivo `team-setup/docs/CONTRIBUTING.md`.
+## 📊 Funcionalidades
 
-## Soporte
+### 1. Subir Archivos Excel
 
-Para cualquier problema o consulta, revisa los logs en las terminales donde ejecutas los servicios.
+- Soporte para archivos .xlsx y .xls
+- Validación de tamaño (máximo 10MB)
+- Procesamiento automático de encabezados
+- Detección inteligente de formatos CSV disfrazados de Excel
+
+### 2. Búsqueda por Cédula
+
+- Búsqueda en tiempo real
+- Debounce de 300ms para optimizar rendimiento
+- Resultados paginados (10 por página)
+- Filtrado por cédula completa o parcial
+
+### 3. Gestión de Archivos
+
+- Lista de archivos subidos con fechas
+- Descarga de archivos originales
+- Reprocesamiento de archivos existentes
+- Eliminación segura de archivos
+
+### 4. Base de Datos
+
+- Almacenamiento persistente en JSON
+- Deduplicación automática por cédula y tiempo
+- Estadísticas en tiempo real
+- Función de limpieza de base de datos
+
+## 🔧 Configuración Avanzada
+
+### Backend (`backend/config.js`)
+
+```javascript
+export const config = {
+  PORT: 4000,
+  UPLOAD_FOLDER: "uploads_excel",
+  DATABASE_FILE: "database.json",
+  MAX_FILE_SIZE: 10 * 1024 * 1024, // 10MB
+  ALLOWED_FILE_TYPES: [".xlsx", ".xls"],
+};
+```
+
+### Procesamiento de Excel (`backend/utils/excelProcessor.js`)
+
+- Configuración de términos de búsqueda para encabezados
+- Soporte para múltiples idiomas (español/inglés)
+- Logs de depuración configurables
+
+## 📡 API Endpoints
+
+### Archivos
+
+- `POST /upload` - Subir archivo Excel
+- `GET /files` - Listar archivos subidos
+- `GET /files/:filename` - Descargar archivo
+- `DELETE /files/:filename` - Eliminar archivo
+- `POST /process/:filename` - Reprocesar archivo
+
+### Búsqueda y Datos
+
+- `GET /buscar/:cedula` - Buscar por cédula
+- `GET /stats` - Obtener estadísticas
+- `DELETE /clear-db` - Limpiar base de datos
+
+### Sistema
+
+- `GET /health` - Estado del servidor
+
+## 🔍 Procesamiento de Excel
+
+El sistema puede manejar diferentes formatos de archivos Excel:
+
+1. **Excel Estándar**: Archivos con encabezados en la primera fila
+2. **CSV en Excel**: Archivos CSV guardados como Excel
+3. **Múltiples Formatos**: Detección automática del formato
+
+### Encabezados Soportados
+
+- **Nombre**: First Name, FirstName, firstname, Nombre, nombre
+- **Apellido**: Last Name, LastName, lastname, Apellido, apellido
+- **Cédula**: Person No., PersonNo, personno, Card No., Cedula, cedula
+- **Hora**: Time, time, Hora, hora
+- **Punto de Acceso**: Access Point, AccessPoint, accesspoint, Punto Acceso
+- **Tipo de Asistencia**: Attendance Type, AttendanceType, Event Type, Tipo Asistencia
+
+## 🐛 Solución de Problemas
+
+### Error: "No se reconoce la información"
+
+1. Verificar que el archivo Excel tenga encabezados válidos
+2. Revisar los logs del backend para ver qué encabezados se detectan
+3. Asegurar que la cédula esté en una columna reconocible
+
+### Error: "Archivo demasiado grande"
+
+- El límite por defecto es 10MB
+- Modificar `MAX_FILE_SIZE` en `config.js` si es necesario
+
+### Error: "Tipo de archivo no permitido"
+
+- Solo se permiten archivos .xlsx y .xls
+- Verificar la extensión del archivo
+
+## 🔄 Mejoras Recientes
+
+### v2.0.0 - Reestructuración Completa
+
+- ✅ Código modular y mantenible
+- ✅ Manejo robusto de errores
+- ✅ Configuración centralizada
+- ✅ Mejor procesamiento de Excel
+- ✅ Interfaz mejorada con loading states
+- ✅ Estadísticas en tiempo real
+- ✅ Validación de archivos
+- ✅ Logs detallados para depuración
+
+## 📝 Licencia
+
+Este proyecto es de uso interno para gestión de asistencia.
+
+## 🤝 Contribución
+
+Para contribuir al proyecto:
+
+1. Crear una rama para tu feature
+2. Implementar los cambios
+3. Probar exhaustivamente
+4. Crear un Pull Request
+
+---
+
+**Desarrollado con ❤️ para gestión eficiente de asistencia**

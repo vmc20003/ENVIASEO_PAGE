@@ -1,0 +1,25 @@
+services:
+  # Backend de la Alcaldía
+  - type: web
+    name: alcaldia-backend
+    env: node
+    plan: free
+    buildCommand: cd backend-alcaldia && npm install
+    startCommand: cd backend-alcaldia && npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: FRONTEND_URL
+        value: https://alcaldia-frontend.onrender.com
+    healthCheckPath: /health
+
+  # Frontend de la Alcaldía
+  - type: web
+    name: alcaldia-frontend
+    env: static
+    plan: free
+    buildCommand: cd frontend && npm install && npm run build
+    staticPublishPath: frontend/dist
+    envVars:
+      - key: REACT_APP_API_URL
+        value: https://alcaldia-backend.onrender.com

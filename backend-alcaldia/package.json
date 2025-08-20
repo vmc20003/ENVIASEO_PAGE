@@ -1,5 +1,5 @@
 {
-  "name": "backend",
+  "name": "backend-alcaldia",
   "version": "2.0.0",
   "main": "server.js",
   "type": "module",
@@ -7,7 +7,7 @@
     "start": "node server.js",
     "dev": "node --watch server.js",
     "test": "node test-backend.js",
-    "test:health": "curl http://localhost:4000/health"
+    "test:health": "curl http://localhost:4001/health"
   },
   "dependencies": {
     "cors": "^2.8.5",
@@ -23,8 +23,9 @@
     "attendance",
     "api",
     "nodejs",
-    "express"
+    "express",
+    "alcaldia"
   ],
   "author": "App_Test Team",
-  "description": "Backend para sistema de gestión de asistencia con procesamiento de Excel"
+  "description": "Backend para sistema de gestión de asistencia de Alcaldía de Envigado"
 }
