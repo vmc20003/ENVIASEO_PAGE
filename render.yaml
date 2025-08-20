@@ -24,4 +24,4 @@ services:
     staticPublishPath: frontend/dist
     envVars:
       - key: REACT_APP_API_URL
-        value: https://alcaldia-backend.onrender.com
+        value: https://pagina-valeria-enviaseo.onrender.com

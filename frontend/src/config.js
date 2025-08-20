@@ -4,7 +4,7 @@ const config = {
     apiUrl: 'http://localhost:4001'
   },
   production: {
-    apiUrl: 'https://alcaldia-backend.onrender.com'
+    apiUrl: 'https://pagina-valeria-enviaseo.onrender.com'
   }
 };
 
