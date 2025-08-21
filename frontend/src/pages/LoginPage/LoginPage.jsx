@@ -83,7 +83,7 @@ function LoginPage({ onLogin }) {
                 />
               </div>
               <div className="logo-text">
-                <h1>Sistema de Gestión</h1>
+                <h1>Control de Acceso</h1>
                 <p>Inicia sesión para continuar</p>
               </div>
             </div>
@@ -146,24 +146,6 @@ function LoginPage({ onLogin }) {
               )}
             </button>
           </form>
-
-          {/* Credenciales de prueba */}
-          <div className="demo-credentials">
-            <div className="demo-header">
-              <i className="bi bi-info-circle"></i>
-              <span>Credenciales de Prueba</span>
-            </div>
-            <div className="demo-content">
-              <div className="credential-item">
-                <span className="label">Usuario:</span>
-                <span className="value">admin</span>
-              </div>
-              <div className="credential-item">
-                <span className="label">Contraseña:</span>
-                <span className="value">admin</span>
-              </div>
-            </div>
-          </div>
         </div>
       </div>
 

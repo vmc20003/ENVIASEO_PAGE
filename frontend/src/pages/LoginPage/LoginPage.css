@@ -181,8 +181,12 @@
 .logo-text h1 {
   font-size: 1.75rem;
   font-weight: 700;
-  color: var(--text-primary);
   margin-bottom: 0.5rem;
+  background: linear-gradient(135deg, #4CAF50 0%, #FF9800 50%, #9E9E9E 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-fill-color: transparent;
 }
 
 .logo-text p {
@@ -354,61 +358,7 @@
   font-size: 1rem;
 }
 
-/* Credenciales de demo */
-.demo-credentials {
-  background: #e3f2fd;
-  border: 1px solid #bbdefb;
-  border-radius: 12px;
-  padding: 1.5rem;
-}
 
-.demo-header {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  margin-bottom: 1rem;
-  color: #1976d2;
-  font-weight: 600;
-  font-size: 0.9rem;
-}
-
-.demo-header i {
-  font-size: 1rem;
-}
-
-.demo-content {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-}
-
-.credential-item {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0.5rem 0;
-  border-bottom: 1px solid #bbdefb;
-}
-
-.credential-item:last-child {
-  border-bottom: none;
-}
-
-.credential-item .label {
-  color: #1976d2;
-  font-weight: 500;
-  font-size: 0.9rem;
-}
-
-.credential-item .value {
-  background: #1976d2;
-  color: white;
-  padding: 0.25rem 0.75rem;
-  border-radius: 6px;
-  font-family: "Courier New", monospace;
-  font-size: 0.85rem;
-  font-weight: 600;
-}
 
 /* Footer */
 .login-footer {
@@ -476,6 +426,11 @@
 
   .logo-text h1 {
     font-size: 1.5rem;
+    background: linear-gradient(135deg, #4CAF50 0%, #FF9800 50%, #9E9E9E 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-fill-color: transparent;
   }
 
   .footer-content {
@@ -508,15 +463,5 @@
 
   .login-button {
     padding: 0.875rem;
-  }
-
-  .demo-credentials {
-    padding: 1rem;
-  }
-
-  .credential-item {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0.25rem;
   }
 }
