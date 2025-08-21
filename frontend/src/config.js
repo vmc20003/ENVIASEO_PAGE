@@ -5,8 +5,8 @@ const config = {
     alumbradoApiUrl: 'http://localhost:4000'
   },
   production: {
-    alcaldiaApiUrl: 'https://pagina-valeria-enviaseo.onrender.com',
-    alumbradoApiUrl: 'https://backend-alumbrado.onrender.com'
+    alcaldiaApiUrl: 'https://alcaldia-backend.onrender.com',
+    alumbradoApiUrl: 'https://alumbrado-backend.onrender.com'
   }
 };
 
