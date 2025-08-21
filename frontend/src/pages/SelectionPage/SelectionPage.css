@@ -244,6 +244,11 @@
   letter-spacing: 0.5px;
 }
 
+/* Color naranja específico para ALUMBRADO PÚBLICO */
+.alumbrado-card .card-title h4 {
+  color: #ff9800 !important;
+}
+
 .card-content {
   margin-bottom: 1.5rem;
 }

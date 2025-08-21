@@ -73,7 +73,7 @@ function SelectionPage({ onSelectOption, onLogout }) {
             {options.map((option) => (
               <div
                 key={option.id}
-                className="option-card"
+                className={`option-card ${option.id === "attendance" ? "alumbrado-card" : ""}`}
                 onClick={() => onSelectOption(option.id)}
                 style={{ "--card-gradient": option.gradient }}
               >
