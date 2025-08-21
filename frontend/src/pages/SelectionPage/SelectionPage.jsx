@@ -64,8 +64,8 @@ function SelectionPage({ onSelectOption, onLogout }) {
         <div className="main-card">
           {/* Título principal */}
           <div className="title-section">
-            <h1>Panel de Control</h1>
-            <h2>Selecciona el sistema que deseas gestionar</h2>
+            <h1>Panel de Acceso</h1>
+            <h2>Selecciona tu acceso que necesitas</h2>
           </div>
 
           {/* Grid de opciones */}
