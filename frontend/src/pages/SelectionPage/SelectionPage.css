@@ -249,6 +249,11 @@
   color: #ff9800 !important;
 }
 
+/* Color verde específico para ALCALDÍA DE ENVIGADO */
+.alcaldia-card .card-title h4 {
+  color: #2e7d32 !important;
+}
+
 .card-content {
   margin-bottom: 1.5rem;
 }
