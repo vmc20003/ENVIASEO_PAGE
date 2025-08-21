@@ -86,7 +86,7 @@ function SelectionPage({ onSelectOption, onLogout }) {
                   </div>
                   <div className="card-title">
                     <h3>{option.title}</h3>
-                    <h4 style={{ color: option.id === "attendance" ? "#ff9800" : "inherit" }}>{option.subtitle}</h4>
+                    <h4>{option.subtitle}</h4>
                   </div>
                 </div>
                 <div className="card-content">
