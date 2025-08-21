@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./LoginPage.css";
+import logoImage from "../../assets/logo_sistema.jpg";
 
 function LoginPage({ onLogin }) {
   const [username, setUsername] = useState("");
@@ -56,7 +57,7 @@ function LoginPage({ onLogin }) {
             <div className="logo-section">
               <div className="logo-icon">
                 <img
-                  src="/logo_sistema.jpg"
+                  src={logoImage}
                   alt="Logo Sistema de Gestión"
                   className="logo-image"
                 />
