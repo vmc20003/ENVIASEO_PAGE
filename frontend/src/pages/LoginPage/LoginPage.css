@@ -1,5 +1,10 @@
 /* LoginPage.css */
 
+/* Override del fondo del body para la página de login */
+body {
+  background: linear-gradient(135deg, #f0f8f0 0%, #e8f5e8 50%, #d4edda 100%) !important;
+}
+
 /* Variables de color */
 :root {
   --primary-color: #667eea;
@@ -26,12 +31,52 @@
 
 .login-container {
   min-height: 100vh;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #f0f8f0 0%, #e8f5e8 50%, #d4edda 100%) !important;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   position: relative;
   overflow: hidden;
   display: flex;
   flex-direction: column;
+}
+
+/* Formas geométricas de fondo */
+.login-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    /* Hexágono grande en la esquina superior izquierda */
+    radial-gradient(circle at 10% 10%, rgba(76, 175, 80, 0.3) 0%, transparent 50%),
+    /* Trapecio en la esquina inferior izquierda */
+    linear-gradient(45deg, transparent 30%, rgba(76, 175, 80, 0.2) 30%, rgba(76, 175, 80, 0.2) 70%, transparent 70%),
+    /* Trapecio pequeño en la esquina superior derecha */
+    linear-gradient(-45deg, transparent 60%, rgba(76, 175, 80, 0.15) 60%, rgba(76, 175, 80, 0.15) 80%, transparent 80%),
+    /* Trapecio grande en la esquina inferior derecha */
+    linear-gradient(135deg, transparent 20%, rgba(76, 175, 80, 0.25) 20%, rgba(76, 175, 80, 0.25) 60%, transparent 60%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Contornos blancos de formas geométricas */
+.login-container::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    /* Contorno de hexágono en la esquina superior izquierda */
+    radial-gradient(circle at 10% 10%, transparent 45%, rgba(255, 255, 255, 0.1) 45%, rgba(255, 255, 255, 0.1) 47%, transparent 47%),
+    /* Contorno de trapecio en la esquina superior derecha */
+    linear-gradient(-45deg, transparent 58%, rgba(255, 255, 255, 0.08) 58%, rgba(255, 255, 255, 0.08) 62%, transparent 62%),
+    /* Contorno de trapecio en la esquina inferior derecha */
+    linear-gradient(135deg, transparent 18%, rgba(255, 255, 255, 0.08) 18%, rgba(255, 255, 255, 0.08) 22%, transparent 22%);
+  pointer-events: none;
+  z-index: 1;
 }
 
 /* Efectos de fondo */
@@ -53,7 +98,7 @@
 
 .shape {
   position: absolute;
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(76, 175, 80, 0.1);
   border-radius: 50%;
   animation: float-shape var(--duration) ease-in-out infinite;
   animation-delay: var(--delay);
@@ -100,11 +145,11 @@
   0%,
   100% {
     transform: translateY(0px) rotate(0deg);
-    opacity: 0.3;
+    opacity: 0.05;
   }
   50% {
-    transform: translateY(-20px) rotate(180deg);
-    opacity: 0.7;
+    transform: translateY(-15px) rotate(180deg);
+    opacity: 0.15;
   }
 }
 
@@ -412,9 +457,9 @@
 
 /* Footer */
 .login-footer {
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(76, 175, 80, 0.2);
   backdrop-filter: blur(10px);
-  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  border-top: 1px solid rgba(76, 175, 80, 0.3);
   padding: 1.5rem 0;
   position: relative;
   z-index: 2;
@@ -425,7 +470,7 @@
   margin: 0 auto;
   padding: 0 2rem;
   text-align: center;
-  color: white;
+  color: #2e7d32;
 }
 
 .footer-content p {

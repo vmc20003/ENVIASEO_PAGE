@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./LoginPage.css";
 import logoImage from "../../assets/logo_sistema.jpg";
 
@@ -7,6 +7,16 @@ function LoginPage({ onLogin }) {
   const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
+
+  // Cambiar el fondo del body cuando se monta el componente
+  useEffect(() => {
+    document.body.style.background = 'linear-gradient(135deg, #f0f8f0 0%, #e8f5e8 50%, #d4edda 100%)';
+    
+    // Limpiar cuando se desmonte el componente
+    return () => {
+      document.body.style.background = '';
+    };
+  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -31,7 +41,17 @@ function LoginPage({ onLogin }) {
   };
 
   return (
-    <div className="login-container">
+    <div 
+      className="login-container"
+      style={{
+        background: 'linear-gradient(135deg, #f0f8f0 0%, #e8f5e8 50%, #d4edda 100%)',
+        minHeight: '100vh',
+        position: 'relative',
+        overflow: 'hidden',
+        display: 'flex',
+        flexDirection: 'column'
+      }}
+    >
       {/* Efectos de fondo */}
       <div className="background-effects">
         <div className="floating-shapes">
