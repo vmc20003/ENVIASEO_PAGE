@@ -5,7 +5,7 @@ services:
     env: node
     plan: free
     buildCommand: cd backend-alcaldia && npm install
-    startCommand: cd backend-alcaldia && node render-start.js
+    startCommand: cd backend-alcaldia && npm start
     envVars:
       - key: NODE_ENV
         value: production
