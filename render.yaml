@@ -36,10 +36,12 @@ services:
   # Frontend de la Alcaldía
   - type: web
     name: alcaldia-frontend
-    env: static
+    env: node
     plan: free
     buildCommand: cd frontend && npm install && npm run build
-    staticPublishPath: frontend/build
+    startCommand: cd frontend && npx serve -s build -l 3000
     envVars:
       - key: REACT_APP_API_URL
         value: https://pagina-valeria-enviaseo.onrender.com
+      - key: PORT
+        value: 3000
