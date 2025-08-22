@@ -41,7 +41,7 @@ app.get("/test", (req, res) => {
 
 // Iniciar servidor
 const PORT = process.env.PORT || 4000;
-const HOST = process.env.HOST || '0.0.0.0';
+const HOST = process.env.HOST || 'localhost'; // Cambiar a localhost para pruebas locales
 
 app.listen(PORT, HOST, () => {
   console.log(`🚀 Servidor de prueba Render ejecutándose en ${HOST}:${PORT}`);
