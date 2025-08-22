@@ -1,21 +1,31 @@
 services:
-  # Backend Principal Unificado (para ambos sistemas)
+  # Backend de Alumbrado Público (principal)
   - type: web
-    name: backend-unificado
+    name: alumbrado-backend
     env: node
     plan: free
     buildCommand: cd backend && npm install
-    startCommand: cd backend && node windows-server.js
+    startCommand: cd backend && node server.js
     envVars:
       - key: NODE_ENV
         value: production
-      - key: HOST
-        value: 0.0.0.0
       - key: CORS_ORIGIN
         value: https://alcaldia-frontend.onrender.com
     healthCheckPath: /health
-    healthCheckTimeout: 180
-    autoDeploy: true
+
+  # Backend de la Alcaldía
+  - type: web
+    name: alcaldia-backend
+    env: node
+    plan: free
+    buildCommand: cd backend-alcaldia && npm install
+    startCommand: cd backend-alcaldia && node server.js
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: CORS_ORIGIN
+        value: https://alcaldia-frontend.onrender.com
+    healthCheckPath: /health
 
   # Frontend de la Alcaldía
   - type: web
