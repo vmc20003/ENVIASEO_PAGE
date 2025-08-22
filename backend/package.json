@@ -1,5 +1,5 @@
 {
-  "name": "backend-unificado",
+  "name": "alumbrado-backend",
   "version": "3.0.0",
   "main": "server.js",
   "type": "module",

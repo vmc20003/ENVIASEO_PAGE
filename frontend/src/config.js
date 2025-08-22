@@ -1,10 +1,12 @@
-// Configuración del API - Backend de Alumbrado
+// Configuración del API - Backend de Alcaldía (principal)
 const config = {
   development: {
-    apiUrl: 'http://localhost:4000'
+    alcaldiaApiUrl: 'http://localhost:4001',
+    alumbradoApiUrl: 'http://localhost:4000'
   },
   production: {
-    apiUrl: 'https://alumbrado-backend.onrender.com' // Backend de alumbrado funcional
+    alcaldiaApiUrl: 'https://alcaldia-backend.onrender.com',
+    alumbradoApiUrl: 'https://alumbrado-backend.onrender.com'
   }
 };
 
@@ -12,8 +14,7 @@ const config = {
 const environment = process.env.NODE_ENV || 'development';
 const currentConfig = config[environment];
 
-// API unificada para ambos sistemas
-export const API_BASE_URL = currentConfig.apiUrl;
-
-// Mantener compatibilidad con nombres anteriores
-export const ALUMBRADO_API_BASE_URL = currentConfig.apiUrl;
+// API principal para Alcaldía (como está en render.yaml)
+export const API_BASE_URL = currentConfig.alcaldiaApiUrl;
+// API para Alumbrado Público
+export const ALUMBRADO_API_BASE_URL = currentConfig.alumbradoApiUrl;
