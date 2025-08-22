@@ -272,6 +272,51 @@ app.get("/files/stats", (req, res) => {
   }
 });
 
+// Health check endpoint para Render
+app.get("/health", (req, res) => {
+  try {
+    const fileStats = fileManager.getStats();
+    const dbStats = getStats();
+    
+    res.status(200).json({
+      status: "OK",
+      timestamp: new Date().toISOString(),
+      service: "Backend Principal - Sistema de Gestión de Archivos",
+      version: "2.0.0",
+      files: fileStats,
+      database: dbStats,
+      environment: process.env.NODE_ENV || 'development',
+      port: process.env.PORT || 4000
+    });
+  } catch (error) {
+    console.error("Error in health check:", error);
+    res.status(500).json({
+      status: "ERROR",
+      error: error.message,
+      timestamp: new Date().toISOString()
+    });
+  }
+});
+
+// Ruta raíz con información del servicio
+app.get("/", (req, res) => {
+  res.json({
+    message: "Backend Principal - Sistema de Gestión de Archivos Excel",
+    status: "OK",
+    timestamp: new Date().toISOString(),
+    version: "2.0.0",
+    endpoints: {
+      health: "/health",
+      upload: "/upload",
+      files: "/files",
+      stats: "/files/stats",
+      search: "/buscar/:query",
+      clear: "/clear-files",
+      clearAll: "/clear-all"
+    }
+  });
+});
+
 // Endpoint para reprocesar un archivo existente
 app.post("/files/:id/reprocess", (req, res) => {
   try {
