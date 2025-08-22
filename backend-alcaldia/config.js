@@ -9,7 +9,7 @@ const config = {
   },
   production: {
     port: process.env.PORT || 4001,
-    corsOrigin: process.env.FRONTEND_URL || "https://tu-app-frontend.onrender.com",
+    corsOrigin: process.env.FRONTEND_URL || "https://alcaldia-frontend.onrender.com",
     database: {
       type: "memory" // Por ahora mantenemos en memoria, después podemos migrar a PostgreSQL
     }

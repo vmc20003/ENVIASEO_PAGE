@@ -5,8 +5,8 @@ const config = {
     alumbradoApiUrl: 'http://localhost:4000'
   },
   production: {
-    alcaldiaApiUrl: 'https://alumbrado-backend.onrender.com', // Usar el backend principal que funciona
-    alumbradoApiUrl: 'https://alumbrado-backend.onrender.com'
+    alcaldiaApiUrl: 'https://alcaldia-backend.onrender.com', // Backend de la ALCALDÍA
+    alumbradoApiUrl: 'https://alumbrado-backend.onrender.com' // Backend de ALUMBRADO (separado)
   }
 };
 
