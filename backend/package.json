@@ -1,6 +1,6 @@
 {
-  "name": "backend",
-  "version": "2.0.0",
+  "name": "backend-unificado",
+  "version": "3.0.0",
   "main": "server.js",
   "type": "module",
   "scripts": {
@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "cors": "^2.8.5",
-    "express": "^4.18.2",
+    "express": "^4.21.2",
     "multer": "^1.4.5-lts.1",
     "xlsx": "^0.18.5"
   },
@@ -23,8 +23,11 @@
     "attendance",
     "api",
     "nodejs",
-    "express"
+    "express",
+    "alcaldia",
+    "alumbrado",
+    "unificado"
   ],
   "author": "App_Test Team",
-  "description": "Backend para sistema de gestión de asistencia con procesamiento de Excel"
+  "description": "Backend unificado para sistema de gestión de asistencia de Alcaldía y Alumbrado Público con procesamiento de Excel"
 }
