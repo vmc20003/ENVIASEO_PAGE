@@ -9,6 +9,8 @@ services:
     envVars:
       - key: NODE_ENV
         value: production
+      - key: PORT
+        value: 4001
       - key: FRONTEND_URL
         value: https://alcaldia-frontend.onrender.com
     healthCheckPath: /health
@@ -26,7 +28,7 @@ services:
       - key: NODE_ENV
         value: production
       - key: PORT
-        value: 10000
+        value: 4000
       - key: CORS_ORIGIN
         value: https://alcaldia-frontend.onrender.com
     healthCheckPath: /health
@@ -39,9 +41,11 @@ services:
     env: node
     plan: free
     buildCommand: cd frontend && npm install && npm run build
-    startCommand: cd frontend && npx serve -s build -l 3000
+    startCommand: cd frontend && npm start
     envVars:
+      - key: NODE_ENV
+        value: production
       - key: REACT_APP_API_URL
-        value: https://pagina-valeria-enviaseo.onrender.com
+        value: https://alcaldia-backend.onrender.com
       - key: PORT
         value: 3000
