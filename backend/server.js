@@ -337,8 +337,8 @@ app.get("/", (req, res) => {
 
 // Iniciar servidor
 const PORT = process.env.PORT || config.PORT;
-app.listen(PORT, '0.0.0.0', () => {
-  console.log(`🚀 Backend Unificado ejecutándose en puerto ${PORT}`);
+app.listen(PORT, 'localhost', () => {
+  console.log(`🚀 Backend Unificado ejecutándose en http://localhost:${PORT}`);
   console.log(`📁 Carpeta de uploads: ${config.UPLOAD_FOLDER}`);
   console.log(`🌐 CORS origin: ${config.CORS_ORIGIN}`);
   console.log(`🔧 NODE_ENV: ${process.env.NODE_ENV}`);

@@ -1,10 +1,10 @@
-// Configuración del API - Backend Unificado
+// Configuración del API - Backend Principal (temporalmente)
 const config = {
   development: {
     apiUrl: 'http://localhost:4000'
   },
   production: {
-    apiUrl: 'https://backend-unificado.onrender.com'
+    apiUrl: 'https://alumbrado-backend.onrender.com' // Volver al backend que funciona
   }
 };
 
