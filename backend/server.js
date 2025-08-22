@@ -19,6 +19,7 @@ import {
   addOrUpdateHorario,
   deleteHorario,
 } from "./utils/horarios.js";
+import { fileManager } from "./utils/fileManager.js";
 
 const app = express();
 
@@ -34,6 +35,9 @@ app.use(express.json());
 if (!fs.existsSync(config.UPLOAD_FOLDER)) {
   fs.mkdirSync(config.UPLOAD_FOLDER, { recursive: true });
 }
+
+// Sincronizar archivos existentes al iniciar
+fileManager.syncWithFileSystem();
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => cb(null, config.UPLOAD_FOLDER),
@@ -94,10 +98,21 @@ app.post("/upload", upload.single("file"), async (req, res) => {
     const merged = mergeRows(db, processed);
     saveDB(merged);
 
+    // Agregar archivo al FileManager para persistencia
+    const fileInfo = {
+      filename: req.file.filename,
+      originalname: req.file.originalname,
+      size: req.file.size,
+      path: req.file.path
+    };
+    const savedFile = fileManager.addFile(fileInfo);
+
     res.json({
       message: "Archivo subido y procesado correctamente.",
       recordsProcessed: processed.length,
       totalRecords: merged.length,
+      fileId: savedFile.id,
+      filename: savedFile.filename
     });
   } catch (error) {
     console.error("Error processing upload:", error);
@@ -117,32 +132,13 @@ app.get("/buscar/:query", (req, res) => {
 
 // Endpoint para listar archivos subidos
 app.get("/files", (req, res) => {
-  fs.readdir(config.UPLOAD_FOLDER, (err, files) => {
-    if (err) {
-      return res
-        .status(500)
-        .json({ error: "No se pudieron listar los archivos." });
-    }
-
-    // Filtrar solo archivos Excel y excluir la base de datos
-    const excelFiles = files.filter((file) => {
-      const ext = path.extname(file).toLowerCase();
-      return (
-        config.ALLOWED_FILE_TYPES.includes(ext) && file !== config.DATABASE_FILE
-      );
-    });
-
-    // Devolver nombre y fecha de modificación
-    const fileList = excelFiles.map((name) => {
-      const stats = fs.statSync(path.join(config.UPLOAD_FOLDER, name));
-      return {
-        name,
-        mtime: stats.mtime,
-        size: stats.size,
-      };
-    });
-    res.json(fileList);
-  });
+  try {
+    const files = fileManager.getAllFiles();
+    res.json(files);
+  } catch (error) {
+    console.error("Error listing files:", error);
+    res.status(500).json({ error: "No se pudieron listar los archivos." });
+  }
 });
 
 // Endpoint para descargar archivo
@@ -154,19 +150,166 @@ app.get("/files/:filename", (req, res) => {
   res.download(filePath);
 });
 
-// Endpoint para eliminar archivo
-app.delete("/files/:filename", (req, res) => {
-  const filePath = path.join(config.UPLOAD_FOLDER, req.params.filename);
-  if (!fs.existsSync(filePath)) {
-    return res.status(404).json({ error: "Archivo no encontrado" });
-  }
-
+// Endpoint para eliminar archivo por ID
+app.delete("/files/:id", (req, res) => {
   try {
-    fs.unlinkSync(filePath);
-    res.json({ message: "Archivo eliminado correctamente." });
+    const fileId = req.params.id;
+    const success = fileManager.removeFile(fileId);
+    
+    if (success) {
+      res.json({ message: "Archivo eliminado correctamente." });
+    } else {
+      res.status(404).json({ error: "Archivo no encontrado" });
+    }
   } catch (error) {
     console.error("Error deleting file:", error);
     res.status(500).json({ error: "Error eliminando el archivo" });
+  }
+});
+
+// Endpoint para eliminar archivo por nombre (mantener compatibilidad)
+app.delete("/files/name/:filename", (req, res) => {
+  try {
+    const filename = req.params.filename;
+    const file = fileManager.getFileByFilename(filename);
+    
+    if (file) {
+      const success = fileManager.removeFile(file.id);
+      if (success) {
+        res.json({ message: "Archivo eliminado correctamente." });
+      } else {
+        res.status(500).json({ error: "Error eliminando el archivo" });
+      }
+    } else {
+      res.status(404).json({ error: "Archivo no encontrado" });
+    }
+  } catch (error) {
+    console.error("Error deleting file:", error);
+    res.status(500).json({ error: "Error eliminando el archivo" });
+  }
+});
+
+// Endpoint para limpiar todos los archivos y la base de datos
+app.delete("/clear-all", (req, res) => {
+  try {
+    // Limpiar base de datos
+    clearDatabase();
+    
+    // Limpiar todos los archivos
+    const files = fileManager.getAllFiles();
+    let deletedCount = 0;
+    
+    files.forEach(file => {
+      try {
+        if (fs.existsSync(file.path)) {
+          fs.unlinkSync(file.path);
+          deletedCount++;
+        }
+      } catch (error) {
+        console.error(`Error eliminando archivo: ${file.path}`, error);
+      }
+    });
+    
+    // Limpiar metadatos
+    fileManager.clearAllFiles();
+    
+    res.json({ 
+      message: "Sistema limpiado completamente",
+      filesDeleted: deletedCount,
+      databaseCleared: true
+    });
+  } catch (error) {
+    console.error("Error clearing all:", error);
+    res.status(500).json({ error: "Error limpiando el sistema" });
+  }
+});
+
+// Endpoint para limpiar solo archivos (mantener base de datos)
+app.delete("/clear-files", (req, res) => {
+  try {
+    const files = fileManager.getAllFiles();
+    let deletedCount = 0;
+    
+    files.forEach(file => {
+      try {
+        if (fs.existsSync(file.path)) {
+          fs.unlinkSync(file.path);
+          deletedCount++;
+        }
+      } catch (error) {
+        console.error(`Error eliminando archivo: ${file.path}`, error);
+      }
+    });
+    
+    // Limpiar metadatos
+    fileManager.clearAllFiles();
+    
+    res.json({ 
+      message: "Archivos eliminados correctamente",
+      filesDeleted: deletedCount,
+      databaseCleared: false
+    });
+  } catch (error) {
+    console.error("Error clearing files:", error);
+    res.status(500).json({ error: "Error eliminando archivos" });
+  }
+});
+
+// Endpoint para obtener estadísticas de archivos
+app.get("/files/stats", (req, res) => {
+  try {
+    const fileStats = fileManager.getStats();
+    const dbStats = getStats();
+    
+    res.json({
+      files: fileStats,
+      database: dbStats,
+      timestamp: new Date().toISOString()
+    });
+  } catch (error) {
+    console.error("Error getting file stats:", error);
+    res.status(500).json({ error: "Error obteniendo estadísticas" });
+  }
+});
+
+// Endpoint para reprocesar un archivo existente
+app.post("/files/:id/reprocess", (req, res) => {
+  try {
+    const fileId = req.params.id;
+    const file = fileManager.getFileById(fileId);
+    
+    if (!file) {
+      return res.status(404).json({ error: "Archivo no encontrado" });
+    }
+
+    if (!fs.existsSync(file.path)) {
+      return res.status(404).json({ error: "El archivo físico no existe" });
+    }
+
+    // Procesar el archivo
+    const workbook = xlsx.readFile(file.path);
+    const sheetName = workbook.SheetNames[0];
+    const sheet = workbook.Sheets[sheetName];
+
+    const processed = processExcelData(sheet);
+
+    // Cargar y unir con la base de datos
+    const db = loadDB();
+    const merged = mergeRows(db, processed);
+    saveDB(merged);
+
+    // Marcar como procesado
+    fileManager.markAsProcessed(file.filename);
+
+    res.json({
+      message: "Archivo reprocesado correctamente",
+      filename: file.filename,
+      recordsProcessed: processed.length,
+      totalRecords: merged.length
+    });
+  } catch (error) {
+    console.error("Error reprocessing file:", error);
+    res.status(500).json({ error: "Error reprocesando el archivo" });
   }
 });
 
