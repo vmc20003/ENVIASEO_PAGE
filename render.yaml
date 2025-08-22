@@ -1,23 +1,7 @@
 services:
-  # Backend de la Alcaldía
+  # Backend Principal Unificado (para ambos sistemas)
   - type: web
-    name: alcaldia-backend
-    env: node
-    plan: free
-    buildCommand: cd backend-alcaldia && npm install
-    startCommand: cd backend-alcaldia && npm start
-    envVars:
-      - key: NODE_ENV
-        value: production
-      - key: FRONTEND_URL
-        value: https://alcaldia-frontend.onrender.com
-    healthCheckPath: /health
-    healthCheckTimeout: 180
-    autoDeploy: true
-
-  # Backend de Alumbrado Público
-  - type: web
-    name: alumbrado-backend
+    name: backend-unificado
     env: node
     plan: free
     buildCommand: cd backend && npm install
@@ -39,7 +23,5 @@ services:
     buildCommand: cd frontend && npm install && npm run build
     startCommand: cd frontend && npx serve -s build -l 3000
     envVars:
-      - key: REACT_APP_API_URL
-        value: https://pagina-valeria-enviaseo.onrender.com
       - key: PORT
         value: 3000
