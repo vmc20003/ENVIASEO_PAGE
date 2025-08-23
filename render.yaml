@@ -34,16 +34,12 @@ services:
     autoDeploy: true
 
   # Frontend unificado (puerto 3000)
-  - type: web
+  - type: static
     name: alcaldia-frontend
-    env: node
-    plan: free
     buildCommand: cd frontend && npm install && npm run build
-    startCommand: cd frontend && npm start
+    staticPublishPath: frontend/build
     envVars:
       - key: NODE_ENV
         value: production
       - key: REACT_APP_API_URL
         value: https://alcaldia-backend.onrender.com
-      - key: PORT
-        value: 3000

@@ -2,7 +2,7 @@
   "name": "frontend",
   "version": "1.0.0",
   "private": true,
-  "homepage": ".",
+  "homepage": "https://alcaldia-frontend.onrender.com",
   "dependencies": {
     "exceljs": "^4.4.0",
     "file-saver": "^2.0.5",
