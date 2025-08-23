@@ -1,5 +1,5 @@
 services:
-  # Backend de la Alcaldía
+  # Backend de la Alcaldía (puerto 4001)
   - type: web
     name: alcaldia-backend
     env: node
@@ -16,7 +16,7 @@ services:
     healthCheckPath: /health
     autoDeploy: true
 
-  # Backend de Alumbrado Público
+  # Backend de Alumbrado Público (puerto 4000)
   - type: web
     name: alumbrado-backend
     env: node
@@ -33,7 +33,7 @@ services:
     healthCheckPath: /health
     autoDeploy: true
 
-  # Frontend de la Alcaldía
+  # Frontend unificado (puerto 3000)
   - type: web
     name: alcaldia-frontend
     env: node
