@@ -2,7 +2,8 @@ const config = {
   PORT: process.env.PORT || 4001,
   UPLOAD_FOLDER: "uploads_excel",
   DATABASE_FILE: "database.json",
-  CORS_ORIGIN: process.env.CORS_ORIGIN || ["https://alcaldia-frontend.onrender.com", "http://localhost:3000"],
+  // Permitir cualquier origen por defecto para portabilidad en red local
+  CORS_ORIGIN: process.env.CORS_ORIGIN || "*",
   MAX_FILE_SIZE: 10 * 1024 * 1024,
   ALLOWED_FILE_TYPES: [".xlsx", ".xls"],
   PAGE_SIZE: 10,

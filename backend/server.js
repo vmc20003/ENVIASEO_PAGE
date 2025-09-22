@@ -23,9 +23,10 @@ import { fileManager } from "./utils/fileManager.js";
 
 const app = express();
 
+// CORS: reflejar el origen para permitir credenciales desde cualquier host
 app.use(
   cors({
-    origin: config.CORS_ORIGIN,
+    origin: (origin, callback) => callback(null, true),
     credentials: true,
   })
 );
@@ -352,7 +353,7 @@ app.get("/", (req, res) => {
 
 // Iniciar servidor
 const PORT = process.env.PORT || config.PORT;
-app.listen(PORT, () => {
+app.listen(PORT, '0.0.0.0', () => {
   console.log(`🚀 Servidor ejecutándose en puerto ${PORT}`);
   console.log(`📁 Carpeta de uploads: ${config.UPLOAD_FOLDER}`);
   console.log(`📊 Archivos cargados: ${fileManager.getAllFiles().length}`);

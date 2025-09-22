@@ -17,9 +17,10 @@ import config from './config.js';
 const PORT = config.port;
 
 // Middleware
+// CORS: reflejar el origen para permitir credenciales desde cualquier host
 app.use(
   cors({
-    origin: config.corsOrigin,
+    origin: (origin, callback) => callback(null, true),
     credentials: true,
   })
 );
