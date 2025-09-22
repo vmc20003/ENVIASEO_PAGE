@@ -1,8 +1,16 @@
 // Configuración de APIs para diferentes funcionalidades
+// Detect host for portability across PCs and networks
+const HOSTNAME = typeof window !== 'undefined' ? window.location.hostname : 'localhost';
+const DEFAULTS = {
+  ALUMBRADO: `http://${HOSTNAME}:4000`,
+  ALCALDIA: `http://${HOSTNAME}:4002`,
+  ENVIASEO: `http://${HOSTNAME}:4001`
+};
+
 export const API_CONFIG = {
   // Backend principal (Alumbrado Público)
   ALUMBRADO: {
-    BASE_URL: process.env.REACT_APP_ALUMBRADO_API_URL || 'http://localhost:4000',
+    BASE_URL: process.env.REACT_APP_ALUMBRADO_API_URL || DEFAULTS.ALUMBRADO,
     ENDPOINTS: {
       UPLOAD: '/api/upload',
       DATA: '/api/data',
@@ -12,7 +20,7 @@ export const API_CONFIG = {
   
   // Backend de Alcaldía de Envigado
   ALCALDIA: {
-    BASE_URL: process.env.REACT_APP_ALCALDIA_API_URL || 'http://localhost:4002',
+    BASE_URL: process.env.REACT_APP_ALCALDIA_API_URL || DEFAULTS.ALCALDIA,
     ENDPOINTS: {
       UPLOAD: '/api/upload',
       DATA: '/api/data',
@@ -22,7 +30,7 @@ export const API_CONFIG = {
   
   // Backend de Enviaseo Control de Acceso
   ENVIASEO_CONTROL_ACCESO: {
-    BASE_URL: process.env.REACT_APP_ENVIASEO_API_URL || 'http://localhost:4001',
+    BASE_URL: process.env.REACT_APP_ENVIASEO_API_URL || DEFAULTS.ENVIASEO,
     ENDPOINTS: {
       UPLOAD: '/api/upload',
       DATA: '/api/data',

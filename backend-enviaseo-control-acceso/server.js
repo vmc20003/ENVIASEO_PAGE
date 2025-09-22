@@ -29,8 +29,9 @@ function cleanDatabaseOnStartup() {
 cleanDatabaseOnStartup();
 
 // Middleware
+// CORS: reflejar el origen para permitir credenciales desde cualquier host
 app.use(cors({
-  origin: config.CORS_ORIGIN,
+  origin: (origin, callback) => callback(null, true),
   credentials: true
 }));
 app.use(express.json({ limit: '50mb' }));
@@ -265,10 +266,10 @@ app.use((error, req, res, next) => {
 
 // Iniciar servidor
 const PORT = config.PORT;
-app.listen(PORT, () => {
+app.listen(PORT, '0.0.0.0', () => {
   console.log(`🚀 Servidor Enviaseo Control de Acceso ejecutándose en puerto ${PORT}`);
   console.log(`📁 Carpeta de uploads: ${path.join(__dirname, config.UPLOAD_FOLDER)}`);
-  console.log(`🌐 CORS habilitado para: ${config.CORS_ORIGIN.join(', ')}`);
+  console.log(`🌐 CORS habilitado para cualquier origen`);
 });
 
 module.exports = app;

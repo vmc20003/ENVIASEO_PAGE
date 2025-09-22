@@ -2,14 +2,15 @@
 const config = {
   development: {
     port: 4002,
-    corsOrigin: "http://localhost:3000",
+    // Permitir cualquier origen por defecto para portabilidad en red local
+    corsOrigin: process.env.FRONTEND_URL || "*",
     database: {
       type: "memory" // Base de datos en memoria para desarrollo
     }
   },
   production: {
     port: process.env.PORT || 4002,
-    corsOrigin: process.env.FRONTEND_URL || "https://alcaldia-frontend.onrender.com",
+    corsOrigin: process.env.FRONTEND_URL || "*",
     database: {
       type: "memory" // Por ahora mantenemos en memoria, después podemos migrar a PostgreSQL
     }
