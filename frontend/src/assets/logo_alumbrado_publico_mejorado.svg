@@ -1,0 +1,44 @@
+<svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <!-- Logo de Alumbrado Público con texto estilo luces navideñas - mejorado -->
+  <defs>
+    <style>
+      .circle-outline { fill: none; stroke: #059669; stroke-width: 4; }
+      .text-letter { font-family: 'Arial', sans-serif; font-weight: bold; text-anchor: middle; }
+      .red { fill: #dc2626; }
+      .green { fill: #059669; }
+      .blue { fill: #2563eb; }
+      .yellow { fill: #fbbf24; }
+      .purple { fill: #7c3aed; }
+      .orange { fill: #f97316; }
+      .pink { fill: #ec4899; }
+    </style>
+  </defs>
+  
+  <!-- Círculo exterior -->
+  <circle class="circle-outline" cx="100" cy="100" r="90"/>
+  
+  <!-- Fondo blanco -->
+  <circle cx="100" cy="100" r="85" fill="#ffffff"/>
+  
+  <!-- Texto "ALUMBRADO" con colores navideños - centrado y bien espaciado -->
+  <text class="text-letter red" x="50" y="110" font-size="18" font-weight="bold">A</text>
+  <text class="text-letter green" x="65" y="110" font-size="18" font-weight="bold">L</text>
+  <text class="text-letter blue" x="80" y="110" font-size="18" font-weight="bold">U</text>
+  <text class="text-letter yellow" x="95" y="110" font-size="18" font-weight="bold">M</text>
+  <text class="text-letter purple" x="110" y="110" font-size="18" font-weight="bold">B</text>
+  <text class="text-letter red" x="125" y="110" font-size="18" font-weight="bold">R</text>
+  <text class="text-letter green" x="140" y="110" font-size="18" font-weight="bold">A</text>
+  <text class="text-letter blue" x="155" y="110" font-size="18" font-weight="bold">D</text>
+  <text class="text-letter yellow" x="170" y="110" font-size="18" font-weight="bold">O</text>
+  
+  <!-- Texto "PÚBLICO" con colores navideños - centrado y bien espaciado -->
+  <text class="text-letter orange" x="60" y="140" font-size="18" font-weight="bold">P</text>
+  <text class="text-letter red" x="75" y="140" font-size="18" font-weight="bold">Ú</text>
+  <text class="text-letter green" x="90" y="140" font-size="18" font-weight="bold">B</text>
+  <text class="text-letter blue" x="105" y="140" font-size="18" font-weight="bold">L</text>
+  <text class="text-letter yellow" x="120" y="140" font-size="18" font-weight="bold">I</text>
+  <text class="text-letter purple" x="135" y="140" font-size="18" font-weight="bold">C</text>
+  <text class="text-letter pink" x="150" y="140" font-size="18" font-weight="bold">O</text>
+</svg>
+
+

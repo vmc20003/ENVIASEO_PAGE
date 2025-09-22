@@ -1,0 +1,74 @@
+<svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <!-- Logo de Alumbrado Público con texto grande y visible -->
+  <defs>
+    <style>
+      .circle-outline { fill: none; stroke: #059669; stroke-width: 4; }
+      .text-letter { font-family: 'Arial', sans-serif; font-weight: bold; text-anchor: middle; }
+      .red { fill: #dc2626; }
+      .green { fill: #059669; }
+      .blue { fill: #2563eb; }
+      .yellow { fill: #fbbf24; }
+      .purple { fill: #7c3aed; }
+      .orange { fill: #f97316; }
+      .pink { fill: #ec4899; }
+      .decoration { fill: #fbbf24; }
+      .star { fill: #f97316; }
+    </style>
+  </defs>
+  
+  <!-- Círculo exterior -->
+  <circle class="circle-outline" cx="100" cy="100" r="90"/>
+  
+  <!-- Fondo blanco -->
+  <circle cx="100" cy="100" r="85" fill="#ffffff"/>
+  
+  <!-- Decoraciones navideñas -->
+  <!-- Estrellas pequeñas -->
+  <polygon class="star" points="30,40 32,44 36,44 33,47 35,51 30,48 25,51 27,47 24,44 28,44" transform="scale(0.8)"/>
+  <polygon class="star" points="170,40 172,44 176,44 173,47 175,51 170,48 165,51 167,47 164,44 168,44" transform="scale(0.8)"/>
+  <polygon class="star" points="100,25 102,29 106,29 103,32 105,36 100,33 95,36 97,32 94,29 98,29" transform="scale(1.2)"/>
+  
+  <!-- Guirnalda decorativa -->
+  <path d="M 40 60 Q 60 50 80 60 Q 100 50 120 60 Q 140 50 160 60" fill="none" stroke="#10b981" stroke-width="2"/>
+  
+  <!-- Luces en la guirnalda -->
+  <circle class="red" cx="50" cy="55" r="2"/>
+  <circle class="green" cx="70" cy="50" r="2"/>
+  <circle class="blue" cx="90" cy="55" r="2"/>
+  <circle class="yellow" cx="110" cy="50" r="2"/>
+  <circle class="purple" cx="130" cy="55" r="2"/>
+  <circle class="orange" cx="150" cy="50" r="2"/>
+  
+  <!-- Texto "ALUMBRADO" con colores navideños - letras MUY grandes y visibles -->
+  <text class="text-letter red" x="35" y="110" font-size="26" font-weight="bold">A</text>
+  <text class="text-letter green" x="55" y="110" font-size="26" font-weight="bold">L</text>
+  <text class="text-letter blue" x="75" y="110" font-size="26" font-weight="bold">U</text>
+  <text class="text-letter yellow" x="95" y="110" font-size="26" font-weight="bold">M</text>
+  <text class="text-letter purple" x="115" y="110" font-size="26" font-weight="bold">B</text>
+  <text class="text-letter red" x="135" y="110" font-size="26" font-weight="bold">R</text>
+  <text class="text-letter green" x="155" y="110" font-size="26" font-weight="bold">A</text>
+  <text class="text-letter blue" x="175" y="110" font-size="26" font-weight="bold">D</text>
+  <text class="text-letter yellow" x="195" y="110" font-size="26" font-weight="bold">O</text>
+  
+  <!-- Texto "PÚBLICO" con colores navideños - letras MUY grandes y visibles -->
+  <text class="text-letter orange" x="45" y="140" font-size="26" font-weight="bold">P</text>
+  <text class="text-letter red" x="65" y="140" font-size="26" font-weight="bold">Ú</text>
+  <text class="text-letter green" x="85" y="140" font-size="26" font-weight="bold">B</text>
+  <text class="text-letter blue" x="105" y="140" font-size="26" font-weight="bold">L</text>
+  <text class="text-letter yellow" x="125" y="140" font-size="26" font-weight="bold">I</text>
+  <text class="text-letter purple" x="145" y="140" font-size="26" font-weight="bold">C</text>
+  <text class="text-letter pink" x="165" y="140" font-size="26" font-weight="bold">O</text>
+  
+  <!-- Decoraciones inferiores -->
+  <path d="M 50 165 Q 70 175 90 165 Q 110 175 130 165 Q 150 175 170 165" fill="none" stroke="#10b981" stroke-width="2"/>
+  
+  <!-- Bayas decorativas -->
+  <circle class="red" cx="60" cy="170" r="2"/>
+  <circle class="green" cx="80" cy="175" r="2"/>
+  <circle class="blue" cx="100" cy="170" r="2"/>
+  <circle class="yellow" cx="120" cy="175" r="2"/>
+  <circle class="purple" cx="140" cy="170" r="2"/>
+  <circle class="orange" cx="160" cy="175" r="2"/>
+</svg>
+
+

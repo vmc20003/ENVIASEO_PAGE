@@ -4,7 +4,7 @@ import * as XLSX from "xlsx";
 import ExcelJS from "exceljs";
 import { saveAs } from "file-saver";
 import { API_CONFIG } from "../../config.js";
-import logoAlcaldia from "../../assets/logo_alcaldia_envigado_simple.svg";
+import logoAlcaldia from "../../assets/logo_alcaldia_envigado_limpio.svg";
 
 const PAGE_SIZE = 10;
 
@@ -558,87 +558,98 @@ function AlcaldiaEnvigadoPage({ onBack }) {
             </h3>
             <p>⚡ Busque y filtre registros por nombre, ID, departamento o punto de acceso</p>
           </div>
+          
           <div className="filters-section">
             <div className="filters-grid">
-            <div className="search-container">
+              <div className="search-container">
                 <input
                   type="text"
-                  className="search-input"
+                  className="form-control"
                   placeholder="Buscar por nombre, ID o departamento..."
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
                 />
-            </div>
+              </div>
 
               <div className="filter-select-container">
-              <select
-                className="filter-select"
-                value={selectedAccessPoint}
-                onChange={handleFilterChange}
-              >
-                <option value="all">Todos los puntos de acceso</option>
-                {Array.isArray(accessPoints) && accessPoints.map((point, index) => (
-                  <option key={index} value={point}>
-                    {point}
-                  </option>
-                ))}
-              </select>
+                <select
+                  className="form-control"
+                  value={selectedAccessPoint}
+                  onChange={handleFilterChange}
+                >
+                  <option value="all">Todos los puntos de acceso</option>
+                  {Array.isArray(accessPoints) && accessPoints.map((point, index) => (
+                    <option key={index} value={point}>
+                      {point}
+                    </option>
+                  ))}
+                </select>
               </div>
 
               <div className="filter-checkbox">
                 <input
                   type="checkbox"
-                  className="checkbox-input"
+                  className="form-control"
                   id="horasExtraAlcaldia"
                   checked={soloConHorasExtra}
                   onChange={(e) => setSoloConHorasExtra(e.target.checked)}
                 />
                 <label htmlFor="horasExtraAlcaldia" className="checkbox-text">
                   Solo mostrar registros con horas extra
-              </label>
-            </div>
+                </label>
+              </div>
 
-            <div className="action-buttons">
-                <button className="btn-modern btn-primary" onClick={refreshData}>
-                <i className="bi bi-arrow-clockwise"></i>
-                  🔄 Actualizar Datos
-              </button>
-                <button className="btn-modern btn-danger" onClick={clearDatabase}>
-                <i className="bi bi-trash"></i>
-                  🗑️ Limpiar Registros
-              </button>
+              <div className="action-buttons">
+                <button className="btn btn-primary" onClick={refreshData}>
+                  <i className="bi bi-arrow-clockwise"></i>
+                  Actualizar Datos
+                </button>
+                <button className="btn btn-secondary" onClick={clearDatabase}>
+                  <i className="bi bi-trash"></i>
+                  Limpiar Registros
+                </button>
               </div>
             </div>
           </div>
         </div>
 
         {/* Tabla de registros */}
-            <div className="table-container">
-              <table className="data-table">
-                <thead>
+        <div className="modern-card">
+          <div className="card-header">
+            <h3>
+              <i className="bi bi-table"></i>
+              📊 Registros de Asistencia
+            </h3>
+            <p>Lista de todos los registros de asistencia del personal municipal</p>
+          </div>
+          
+          <div className="table-container">
+            <table className="table">
+              <thead>
+                <tr>
+                  <th>ID de Persona</th>
+                  <th>Nombre</th>
+                  <th>Departamento</th>
+                  <th>Hora</th>
+                  <th>Punto de Verificación</th>
+                  {soloConHorasExtra && <th>Horas Trabajadas</th>}
+                  {soloConHorasExtra && <th>Horas Extra</th>}
+                </tr>
+              </thead>
+              <tbody>
+                {searching ? (
                   <tr>
-                    <th>ID de Persona</th>
-                    <th>Nombre</th>
-                    <th>Departamento</th>
-                    <th>Hora</th>
-                    <th>Punto de Verificación</th>
-                    {soloConHorasExtra && <th>Horas Trabajadas</th>}
-                    {soloConHorasExtra && <th>Horas Extra</th>}
+                    <td colSpan={soloConHorasExtra ? 7 : 5} className="text-center">
+                      <div className="d-flex align-items-center justify-content-center gap-3">
+                        <span className="spinner"></span>
+                        <span>Buscando...</span>
+                      </div>
+                    </td>
                   </tr>
-                </thead>
-                <tbody>
-                  {searching ? (
-                    <tr>
-                      <td colSpan={soloConHorasExtra ? 7 : 5} className="loading-cell">
-                        <div className="loading-spinner">
-                          <span className="spinner"></span>
-                          <span>Buscando...</span>
-                        </div>
-                      </td>
-                    </tr>
-                  ) : paginatedResults.length === 0 ? (
-                    <tr>
-                      <td colSpan={soloConHorasExtra ? 7 : 5} className="empty-state">
+                ) : paginatedResults.length === 0 ? (
+                  <tr>
+                    <td colSpan={soloConHorasExtra ? 7 : 5} className="text-center">
+                      <div className="empty-state">
                         <div className="empty-icon">
                           <img 
                             src={logoAlcaldia} 
@@ -647,9 +658,9 @@ function AlcaldiaEnvigadoPage({ onBack }) {
                           />
                         </div>
                         <div className="empty-title">
-                            {searchTerm.length === 0 && !soloConHorasExtra
+                          {searchTerm.length === 0 && !soloConHorasExtra
                             ? "📊 Registros de Asistencia Municipal"
-                              : soloConHorasExtra
+                            : soloConHorasExtra
                             ? "⏰ Filtro de Horas Extra"
                             : "🔍 Sin Resultados"}
                         </div>
@@ -660,74 +671,82 @@ function AlcaldiaEnvigadoPage({ onBack }) {
                             ? "No se encontraron registros con horas extra. Intente buscar por nombre o departamento."
                             : "No se encontraron resultados para su consulta"}
                         </div>
-                        <div className="empty-actions">
+                        <div className="empty-actions d-flex gap-3">
                           <button 
                             onClick={() => document.getElementById('fileInput')?.click()}
-                            className="btn-modern btn-primary"
+                            className="btn btn-primary"
                           >
                             <i className="bi bi-upload"></i>
-                            📁 Importar Archivo
+                            Importar Archivo
                           </button>
                           <button 
                             onClick={() => setSearchTerm('')}
-                            className="btn-modern btn-secondary"
+                            className="btn btn-secondary"
                           >
                             <i className="bi bi-search"></i>
-                            👀 Ver Todos los Registros
+                            Ver Todos los Registros
                           </button>
                         </div>
-                      </td>
+                      </div>
+                    </td>
+                  </tr>
+                ) : (
+                  paginatedResults.map((resultado, index) => (
+                    <tr key={index}>
+                      <td>{resultado.idPersona}</td>
+                      <td>{resultado.nombre}</td>
+                      <td>{resultado.departamento}</td>
+                      <td>{resultado.hora}</td>
+                      <td>{resultado.puntoVerificacion}</td>
+                      {soloConHorasExtra && (
+                        <td>
+                          {resultado.horasTrabajadas ? decimalToHHMMSS(resultado.horasTrabajadas) : "N/A"}
+                        </td>
+                      )}
+                      {soloConHorasExtra && (
+                        <td>
+                          {resultado.horasExtra ? decimalToHHMMSS(resultado.horasExtra) : "0:00:00"}
+                        </td>
+                      )}
                     </tr>
-                  ) : (
-                    paginatedResults.map((resultado, index) => (
-                      <tr key={index} className="data-row">
-                        <td className="id-cell">{resultado.idPersona}</td>
-                        <td className="name-cell">{resultado.nombre}</td>
-                        <td className="dept-cell">
-                          {resultado.departamento}
-                        </td>
-                        <td className="time-cell">{resultado.hora}</td>
-                        <td className="point-cell">
-                          {resultado.puntoVerificacion}
-                        </td>
-                        {soloConHorasExtra && (
-                          <td className="hours-cell">
-                            {resultado.horasTrabajadas ? decimalToHHMMSS(resultado.horasTrabajadas) : "N/A"}
-                          </td>
-                        )}
-                        {soloConHorasExtra && (
-                          <td className="extra-hours-cell">
-                            {resultado.horasExtra ? decimalToHHMMSS(resultado.horasExtra) : "0:00:00"}
-                          </td>
-                        )}
-                      </tr>
-                    ))
-                  )}
-                </tbody>
-              </table>
-            </div>
+                  ))
+                )}
+              </tbody>
+            </table>
+          </div>
+        </div>
 
-            {/* Estadísticas */}
-        <div className="stats-grid">
-          <div className="stat-card">
-            <div className="stat-number">📊 {stats?.totalRecords || 0}</div>
-                  <div className="stat-label">Total Registros</div>
-                </div>
-          <div className="stat-card">
-            <div className="stat-number">👥 {stats?.uniqueEmployees || 0}</div>
-            <div className="stat-label">Empleados Únicos</div>
-                  </div>
-          <div className="stat-card">
-            <div className="stat-number">🏢 {stats?.uniqueDepartments || 0}</div>
-            <div className="stat-label">Departamentos</div>
-                </div>
-          <div className="stat-card">
-            <div className="stat-number">📁 {files.length}</div>
-            <div className="stat-label">Archivos Cargados</div>
-              </div>
+        {/* Estadísticas */}
+        <div className="modern-card">
+          <div className="card-header">
+            <h3>
+              <i className="bi bi-graph-up"></i>
+              📈 Estadísticas del Sistema
+            </h3>
+            <p>Resumen de datos y métricas del sistema de asistencia</p>
+          </div>
+          
+          <div className="stats-grid">
+            <div className="stat-card">
+              <div className="stat-number">📊 {stats?.totalRecords || 0}</div>
+              <div className="stat-label">Total Registros</div>
             </div>
-                </div>
-                    </div>
+            <div className="stat-card">
+              <div className="stat-number">👥 {stats?.uniqueEmployees || 0}</div>
+              <div className="stat-label">Empleados Únicos</div>
+            </div>
+            <div className="stat-card">
+              <div className="stat-number">🏢 {stats?.uniqueDepartments || 0}</div>
+              <div className="stat-label">Departamentos</div>
+            </div>
+            <div className="stat-card">
+              <div className="stat-number">📁 {files.length}</div>
+              <div className="stat-label">Archivos Cargados</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   );
 }
 

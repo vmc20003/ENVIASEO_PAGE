@@ -1,0 +1,38 @@
+<svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <!-- Logo minimalista de Alumbrado Público -->
+  <defs>
+    <style>
+      .circle-outline { fill: none; stroke: #059669; stroke-width: 4; }
+      .text-alumbrado { fill: #059669; font-family: 'Arial', sans-serif; font-weight: bold; text-anchor: middle; }
+      .text-publico { fill: #f97316; font-family: 'Arial', sans-serif; font-weight: bold; text-anchor: middle; }
+      .streetlight { fill: #059669; }
+      .lamp { fill: #fbbf24; }
+    </style>
+  </defs>
+  
+  <!-- Círculo exterior -->
+  <circle class="circle-outline" cx="100" cy="100" r="90"/>
+  
+  <!-- Fondo blanco -->
+  <circle cx="100" cy="100" r="85" fill="#ffffff"/>
+  
+  <!-- Farola izquierda -->
+  <rect class="streetlight" x="40" y="70" width="4" height="50" rx="2"/>
+  <circle class="lamp" cx="42" cy="65" r="6"/>
+  
+  <!-- Farola derecha -->
+  <rect class="streetlight" x="156" y="80" width="4" height="40" rx="2"/>
+  <circle class="lamp" cx="158" cy="75" r="5"/>
+  
+  <!-- Farola central -->
+  <rect class="streetlight" x="98" y="90" width="4" height="30" rx="2"/>
+  <circle class="lamp" cx="100" cy="85" r="4"/>
+  
+  <!-- Texto "ALUMBRADO" -->
+  <text class="text-alumbrado" x="100" y="130" font-size="18" font-weight="bold">ALUMBRADO</text>
+  
+  <!-- Texto "PÚBLICO" -->
+  <text class="text-publico" x="100" y="150" font-size="18" font-weight="bold">PÚBLICO</text>
+</svg>
+
+

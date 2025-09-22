@@ -1,7 +1,7 @@
 import React from "react";
 import "./SelectionPage.css";
 import logoAlumbrado from "../../assets/logo_alumbrado_publico_correcto.svg";
-import logoAlcaldia from "../../assets/logo_alcaldia_envigado_decorado.svg";
+import logoAlcaldia from "../../assets/logo_alcaldia_envigado_limpio.svg";
 import logoEnviaseo from "../../assets/logo_enviaseo_simple.svg";
 
 function SelectionPage({ onSelectOption, onLogout }) {
