@@ -1,0 +1,106 @@
+{
+  "name": "sistema-gestion-asistencia-electron",
+  "version": "1.0.0",
+  "description": "Sistema de Gestión de Asistencia - Aplicación de Escritorio",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "build": "electron-builder",
+    "build-win": "electron-builder --win",
+    "build-mac": "electron-builder --mac",
+    "build-linux": "electron-builder --linux",
+    "dist": "npm run build",
+    "pack": "electron-builder --dir",
+    "postinstall": "electron-builder install-app-deps"
+  },
+  "build": {
+    "appId": "com.enviaseo.sistema-gestion-asistencia",
+    "productName": "Sistema de Gestión de Asistencia",
+    "directories": {
+      "output": "dist"
+    },
+    "files": [
+      "main.js",
+      "preload.js",
+      "renderer.js",
+      "index.html",
+      "package.json",
+      "../frontend/build/**/*",
+      "../backend/**/*",
+      "../backend-alcaldia/**/*",
+      "../backend-enviaseo-control-acceso/**/*",
+      "!../backend/node_modules",
+      "!../backend-alcaldia/node_modules",
+      "!../backend-enviaseo-control-acceso/node_modules",
+      "!../frontend/node_modules"
+    ],
+    "extraResources": [
+      {
+        "from": "../frontend/build",
+        "to": "frontend"
+      },
+      {
+        "from": "../backend",
+        "to": "backend"
+      },
+      {
+        "from": "../backend-alcaldia",
+        "to": "backend-alcaldia"
+      },
+      {
+        "from": "../backend-enviaseo-control-acceso",
+        "to": "backend-enviaseo-control-acceso"
+      }
+    ],
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": ["x64"]
+        },
+        {
+          "target": "portable",
+          "arch": ["x64"]
+        }
+      ],
+      "publisherName": "Envíaseo E.S.P.",
+      "requestedExecutionLevel": "asInvoker"
+    },
+    "forceCodeSigning": false,
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "Sistema Gestión Asistencia",
+      "installerIcon": "assets/icon.ico",
+      "uninstallerIcon": "assets/icon.ico",
+      "installerHeaderIcon": "assets/icon.ico",
+      "deleteAppDataOnUninstall": false,
+      "runAfterFinish": true,
+      "menuCategory": "Productivity",
+      "displayLanguageSelector": false,
+      "language": "1033"
+    },
+    "mac": {
+      "target": "dmg",
+      "icon": "assets/icon.icns",
+      "category": "public.app-category.productivity"
+    },
+    "linux": {
+      "target": "AppImage",
+      "icon": "assets/icon.png",
+      "category": "Office"
+    }
+  },
+  "devDependencies": {
+    "electron": "^27.0.0",
+    "electron-builder": "^24.6.4"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "cors": "^2.8.5",
+    "multer": "^1.4.5-lts.1",
+    "xlsx": "^0.18.5"
+  }
+}

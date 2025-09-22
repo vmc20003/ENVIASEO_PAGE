@@ -1,14 +1,14 @@
 // Configuración para desarrollo y producción
 const config = {
   development: {
-    port: 4001,
+    port: 4002,
     corsOrigin: "http://localhost:3000",
     database: {
       type: "memory" // Base de datos en memoria para desarrollo
     }
   },
   production: {
-    port: process.env.PORT || 4001,
+    port: process.env.PORT || 4002,
     corsOrigin: process.env.FRONTEND_URL || "https://alcaldia-frontend.onrender.com",
     database: {
       type: "memory" // Por ahora mantenemos en memoria, después podemos migrar a PostgreSQL

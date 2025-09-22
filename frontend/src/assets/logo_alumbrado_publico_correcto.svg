@@ -1,0 +1,98 @@
+<svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <!-- Logo correcto de Alumbrado Público basado en la imagen -->
+  <defs>
+    <style>
+      .circle-outline { fill: none; stroke: #059669; stroke-width: 8; }
+      .text-alumbrado { fill: #059669; font-family: 'Arial', sans-serif; font-weight: bold; text-anchor: middle; }
+      .text-publico { fill: #f97316; font-family: 'Arial', sans-serif; font-weight: bold; text-anchor: middle; }
+      .streetlight { fill: #059669; stroke: #047857; stroke-width: 2; }
+      .lamp { fill: #fbbf24; stroke: #f59e0b; stroke-width: 1; }
+      .garland { fill: #10b981; stroke: #059669; stroke-width: 1; }
+      .light { fill: #f97316; stroke: #ea580c; stroke-width: 1; }
+      .star { fill: #f97316; }
+      .sparkle { fill: #fbbf24; }
+      .branch { fill: #10b981; stroke: #059669; stroke-width: 1; }
+      .berry { fill: #f97316; }
+    </style>
+    
+    <!-- Gradientes para efectos de brillo -->
+    <radialGradient id="lampGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" style="stop-color:#fef3c7;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#fbbf24;stop-opacity:0.8" />
+    </radialGradient>
+  </defs>
+  
+  <!-- Círculo exterior con borde verde grueso -->
+  <circle class="circle-outline" cx="100" cy="100" r="90"/>
+  
+  <!-- Fondo crema -->
+  <circle cx="100" cy="100" r="85" fill="#fef7ed"/>
+  
+  <!-- Farola izquierda (más alta) -->
+  <rect class="streetlight" x="35" y="70" width="6" height="70" rx="3"/>
+  <rect class="streetlight" x="33" y="68" width="10" height="4" rx="2"/>
+  <rect class="streetlight" x="33" y="142" width="10" height="4" rx="2"/>
+  <!-- Lámpara izquierda con brillo -->
+  <circle class="lamp" cx="38" cy="65" r="10" fill="url(#lampGlow)"/>
+  <circle cx="38" cy="65" r="6" fill="#fef3c7"/>
+  
+  <!-- Farola derecha (más baja) -->
+  <rect class="streetlight" x="159" y="90" width="6" height="50" rx="3"/>
+  <rect class="streetlight" x="157" y="88" width="10" height="4" rx="2"/>
+  <rect class="streetlight" x="157" y="142" width="10" height="4" rx="2"/>
+  <!-- Lámpara derecha con brillo -->
+  <circle class="lamp" cx="162" cy="85" r="8" fill="url(#lampGlow)"/>
+  <circle cx="162" cy="85" r="5" fill="#fef3c7"/>
+  
+  <!-- Guirnalda de luces entre las farolas -->
+  <path class="garland" d="M 50 60 Q 75 50 100 60 Q 125 50 150 60" fill="none" stroke="#10b981" stroke-width="3"/>
+  
+  <!-- Luces de navidad en la guirnalda -->
+  <circle class="light" cx="60" cy="55" r="3"/>
+  <circle class="light" cx="75" cy="50" r="3"/>
+  <circle class="light" cx="90" cy="55" r="3"/>
+  <circle class="light" cx="105" cy="50" r="3"/>
+  <circle class="light" cx="120" cy="55" r="3"/>
+  <circle class="light" cx="135" cy="50" r="3"/>
+  <circle class="light" cx="150" cy="55" r="3"/>
+  
+  <!-- Estrella central grande naranja -->
+  <polygon class="star" points="100,40 105,50 115,50 107,57 110,67 100,62 90,67 93,57 85,50 95,50" transform="scale(1.3)"/>
+  
+  <!-- Estrellas pequeñas (sparkles) doradas -->
+  <polygon class="sparkle" points="70,35 72,39 76,39 73,42 75,46 70,43 65,46 67,42 64,39 68,39" transform="scale(0.7)"/>
+  <polygon class="sparkle" points="130,35 132,39 136,39 133,42 135,46 130,43 125,46 127,42 124,39 128,39" transform="scale(0.7)"/>
+  <polygon class="sparkle" points="80,25 82,29 86,29 83,32 85,36 80,33 75,36 77,32 74,29 78,29" transform="scale(0.6)"/>
+  <polygon class="sparkle" points="120,25 122,29 126,29 123,32 125,36 120,33 115,36 117,32 114,29 118,29" transform="scale(0.6)"/>
+  <polygon class="sparkle" points="60,55 62,59 66,59 63,62 65,66 60,63 55,66 57,62 54,59 58,59" transform="scale(0.5)"/>
+  <polygon class="sparkle" points="140,55 142,59 146,59 143,62 145,66 140,63 135,66 137,62 134,59 138,59" transform="scale(0.5)"/>
+  
+  <!-- Ramas con bayas decorativas -->
+  <path class="branch" d="M 30 110 Q 50 100 70 110 Q 90 100 110 110 Q 130 100 150 110 Q 170 100 190 110" fill="none" stroke-width="2"/>
+  
+  <!-- Bayas naranjas en las ramas -->
+  <circle class="berry" cx="40" cy="105" r="2"/>
+  <circle class="berry" cx="60" cy="100" r="2"/>
+  <circle class="berry" cx="80" cy="105" r="2"/>
+  <circle class="berry" cx="100" cy="100" r="2"/>
+  <circle class="berry" cx="120" cy="105" r="2"/>
+  <circle class="berry" cx="140" cy="100" r="2"/>
+  <circle class="berry" cx="160" cy="105" r="2"/>
+  
+  <!-- Texto "ALUMBRADO" -->
+  <text class="text-alumbrado" x="100" y="125" font-size="18" font-weight="bold">ALUMBRADO</text>
+  
+  <!-- Texto "PÚBLICO" -->
+  <text class="text-publico" x="100" y="150" font-size="18" font-weight="bold">PÚBLICO</text>
+  
+  <!-- Ramas decorativas inferiores -->
+  <path class="branch" d="M 40 165 Q 60 175 80 165 Q 100 175 120 165 Q 140 175 160 165" fill="none" stroke-width="2"/>
+  
+  <!-- Bayas inferiores -->
+  <circle class="berry" cx="50" cy="170" r="2"/>
+  <circle class="berry" cx="70" cy="175" r="2"/>
+  <circle class="berry" cx="90" cy="170" r="2"/>
+  <circle class="berry" cx="110" cy="175" r="2"/>
+  <circle class="berry" cx="130" cy="170" r="2"/>
+  <circle class="berry" cx="150" cy="175" r="2"/>
+</svg>

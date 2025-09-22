@@ -189,6 +189,21 @@ app.get("/access-points", (req, res) => {
   }
 });
 
+// Endpoint para obtener todos los registros
+app.get("/all-records", (req, res) => {
+  try {
+    const db = loadDB();
+    res.json({
+      systemType: req.systemType,
+      resultados: db,
+      total: db.length
+    });
+  } catch (error) {
+    console.error("Error getting all records:", error);
+    res.status(500).json({ error: "Error obteniendo registros" });
+  }
+});
+
 // Endpoint de búsqueda
 app.get("/buscar/:query", (req, res) => {
   try {

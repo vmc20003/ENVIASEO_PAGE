@@ -1,14 +1,13 @@
 {
   "name": "backend-alcaldia",
   "version": "2.0.0",
-  "main": "server.js",
+  "main": "server-new.js",
   "type": "module",
   "scripts": {
-    "start": "node server.js",
-    "dev": "node --watch server.js",
+    "start": "node server-new.js",
+    "dev": "node --watch server-new.js",
     "test": "node test-backend.js",
-    "test:health": "curl http://localhost:4001/health",
-    "test:deployment": "node test-deployment.js"
+    "test:health": "curl http://localhost:4001/health"
   },
   "dependencies": {
     "cors": "^2.8.5",

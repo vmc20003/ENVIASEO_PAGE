@@ -1,78 +1,44 @@
-// ...existing code...
-import React, { useState, useEffect, useRef } from "react";
-
+import React, { useState, useEffect, useMemo, useCallback } from "react";
 import "./AlcaldiaEnvigadoPage.css";
 import * as XLSX from "xlsx";
 import ExcelJS from "exceljs";
 import { saveAs } from "file-saver";
-import { API_BASE_URL } from "../../config";
+import { API_CONFIG } from "../../config.js";
+import logoAlcaldia from "../../assets/logo_alcaldia_envigado_simple.svg";
 
 const PAGE_SIZE = 10;
 
 function AlcaldiaEnvigadoPage({ onBack }) {
-  const searchTimeoutRef = useRef();
   const [file, setFile] = useState(null);
-  const [results, setResults] = useState([]);
-  const [message, setMessage] = useState("");
-  const [page, setPage] = useState(1);
-  const [files, setFiles] = useState([]);
-  const [searchTerm, setSearchTerm] = useState("");
   const [resultados, setResultados] = useState([]);
+  const [message, setMessage] = useState("");
+  const [searchTerm, setSearchTerm] = useState("");
+  const [debouncedSearch, setDebouncedSearch] = useState("");
+  const [selectedAccessPoint, setSelectedAccessPoint] = useState("all");
+  const [accessPoints, setAccessPoints] = useState([]);
+  const [files, setFiles] = useState([]);
   const [stats, setStats] = useState(null);
   const [loading, setLoading] = useState(false);
   const [searching, setSearching] = useState(false);
-  const [accessPoints, setAccessPoints] = useState([]);
-  const [selectedAccessPoint, setSelectedAccessPoint] = useState("all");
+  const [page, setPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
+  const [soloConHorasExtra, setSoloConHorasExtra] = useState(false);
+  const [horariosCalculados, setHorariosCalculados] = useState([]);
+  const [estadisticasHorarios, setEstadisticasHorarios] = useState(null);
+  const [loadingHorarios, setLoadingHorarios] = useState(false);
 
   const handleFileChange = (e) => setFile(e.target.files[0]);
-
-  const handleAccessPointChange = (e) => {
-    const newAccessPoint = e.target.value;
-    console.log("🔄 Cambiando filtro a:", newAccessPoint);
-    handleFilterChange(newAccessPoint);
-  };
-
-  const loadDataWithFilter = async (accessPoint) => {
-    setSearching(true);
-    setMessage("Cargando datos filtrados...");
-
-    try {
-      const url =
-        accessPoint === "all"
-          ? `${API_BASE_URL}/all-records`
-          : `${API_BASE_URL}/all-records?accessPoint=${encodeURIComponent(
-              accessPoint
-            )}`;
-
-      console.log("🌐 URL de petición:", url);
-      console.log("🎯 Filtro seleccionado:", accessPoint);
-
-      const recordsResponse = await fetch(url);
-      const records = await recordsResponse.json();
-
-      if (records.length > 0) {
-        console.log("📊 Registros recibidos:", records.length);
-        console.log("🔍 Primer registro:", records[0]);
-        setResultados(records);
-        setMessage(
-          `Datos cargados: ${records.length} registros disponibles${
-            accessPoint !== "all" ? ` (filtrados por ${accessPoint})` : ""
-          }`
-        );
-      } else {
-        setResultados([]);
-        setMessage(
-          accessPoint !== "all"
-            ? `No se encontraron registros para ${accessPoint}`
-            : "No hay datos disponibles"
-        );
-      }
-    } catch (error) {
-      console.error("❌ Error cargando datos filtrados:", error);
-      setMessage("Error cargando datos filtrados");
-    } finally {
-      setSearching(false);
+  
+  const handleDrop = (e) => {
+    e.preventDefault();
+    const droppedFile = e.dataTransfer.files[0];
+    if (droppedFile && (droppedFile.name.endsWith('.xlsx') || droppedFile.name.endsWith('.xls'))) {
+      setFile(droppedFile);
     }
+  };
+  
+  const handleDragOver = (e) => {
+    e.preventDefault();
   };
 
   const handleUpload = async () => {
@@ -88,7 +54,7 @@ function AlcaldiaEnvigadoPage({ onBack }) {
       const formData = new FormData();
       formData.append("file", file);
 
-      const response = await fetch(`${API_BASE_URL}/upload`, {
+      const response = await fetch(`${API_CONFIG.ALCALDIA.BASE_URL}/upload`, {
         method: "POST",
         body: formData,
       });
@@ -100,7 +66,7 @@ function AlcaldiaEnvigadoPage({ onBack }) {
       }
 
       // Cargar los datos procesados desde el servidor
-      const recordsResponse = await fetch(`${API_BASE_URL}/all-records`);
+      const recordsResponse = await fetch(`${API_CONFIG.ALCALDIA.BASE_URL}/all-records`);
       const recordsData = await recordsResponse.json();
 
       setResultados(Array.isArray(recordsData) ? recordsData : []);
@@ -124,9 +90,10 @@ function AlcaldiaEnvigadoPage({ onBack }) {
 
   const fetchFiles = async () => {
     try {
-      const response = await fetch(`${API_BASE_URL}/files`);
+      const response = await fetch(`${API_CONFIG.ALCALDIA.BASE_URL}/files`);
       const data = await response.json();
-      setFiles(Array.isArray(data) ? data : []);
+      const filesArray = data.files || data;
+      setFiles(Array.isArray(filesArray) ? filesArray : []);
     } catch (error) {
       console.error("Error fetching files:", error);
       setFiles([]);
@@ -135,7 +102,7 @@ function AlcaldiaEnvigadoPage({ onBack }) {
 
   const fetchStats = async () => {
     try {
-      const response = await fetch(`${API_BASE_URL}/stats`);
+      const response = await fetch(`${API_CONFIG.ALCALDIA.BASE_URL}/stats`);
       const data = await response.json();
       setStats(data);
     } catch (error) {
@@ -145,16 +112,64 @@ function AlcaldiaEnvigadoPage({ onBack }) {
 
   const fetchAccessPoints = async () => {
     try {
-      console.log("🔍 Obteniendo puntos de acceso...");
-      const response = await fetch(`${API_BASE_URL}/access-points`);
+      const response = await fetch(`${API_CONFIG.ALCALDIA.BASE_URL}/access-points`);
       const data = await response.json();
-      console.log("📊 Puntos de acceso recibidos:", data);
-      setAccessPoints(data.accessPoints || []);
-      console.log("✅ Puntos de acceso guardados:", data.accessPoints || []);
+      setAccessPoints(Array.isArray(data) ? data : []);
     } catch (error) {
-      console.error("❌ Error fetching access points:", error);
+      console.error("Error fetching access points:", error);
       setAccessPoints([]);
     }
+  };
+
+  const fetchHorariosCalculados = async () => {
+    if (resultados.length === 0) return;
+    setLoadingHorarios(true);
+    try {
+      const response = await fetch(`${API_CONFIG.ALCALDIA.BASE_URL}/horarios-calculo`);
+      const data = await response.json();
+      if (data.success) {
+        setHorariosCalculados(data.horarios);
+        setEstadisticasHorarios(data.estadisticas);
+      }
+    } catch (error) {
+      console.error("Error fetching horarios:", error);
+    } finally {
+      setLoadingHorarios(false);
+    }
+  };
+
+  const handleFiltroHorasExtraChange = (e) => {
+    setSoloConHorasExtra(e.target.checked);
+    setPage(1);
+  };
+
+  const exportarHorariosExcel = async () => {
+    try {
+      const response = await fetch(`${API_CONFIG.ALCALDIA.BASE_URL}/exportar-horarios`);
+      if (response.ok) {
+        const blob = await response.blob();
+        const url = window.URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'horarios_alcaldia.xlsx';
+        document.body.appendChild(a);
+        a.click();
+        window.URL.revokeObjectURL(url);
+        document.body.removeChild(a);
+      }
+    } catch (error) {
+      console.error("Error exporting horarios:", error);
+    }
+  };
+
+  const decimalToHHMMSS = (decimalHours) => {
+    if (typeof decimalHours !== "number" || isNaN(decimalHours) || decimalHours < 0) {
+      return "00:00:00";
+    }
+    const hours = Math.floor(decimalHours);
+    const minutes = Math.floor((decimalHours - hours) * 60);
+    const seconds = Math.floor(((decimalHours - hours) * 60 - minutes) * 60);
+    return `${hours.toString().padStart(2, "0")}:${minutes.toString().padStart(2, "0")}:${seconds.toString().padStart(2, "0")}`;
   };
 
   const clearDatabase = async () => {
@@ -167,16 +182,16 @@ function AlcaldiaEnvigadoPage({ onBack }) {
     }
 
     try {
-      const response = await fetch(`${API_BASE_URL}/clear`, {
+      const response = await fetch(`${API_CONFIG.ALCALDIA.BASE_URL}/clear-db`, {
         method: "DELETE",
       });
 
       if (response.ok) {
         setMessage("Base de datos limpiada correctamente");
         setResultados([]);
-        window.__registrosExcel = [];
+        setHorariosCalculados([]);
+        setEstadisticasHorarios(null);
         fetchStats();
-        fetchFiles();
       } else {
         const data = await response.json();
         setMessage(`Error: ${data.error}`);
@@ -187,67 +202,12 @@ function AlcaldiaEnvigadoPage({ onBack }) {
   };
 
   const loadSavedData = async () => {
-    setSearching(true);
-    setMessage("Cargando datos guardados...");
     try {
-      // Primero verificar si hay archivos subidos
-      const filesResponse = await fetch(`${API_BASE_URL}/files`);
-      const files = await filesResponse.json();
-
-      // Luego cargar los registros con filtro
-      const url =
-        selectedAccessPoint === "all"
-          ? `${API_BASE_URL}/all-records`
-          : `${API_BASE_URL}/all-records?accessPoint=${encodeURIComponent(
-              selectedAccessPoint
-            )}`;
-
-      console.log("🌐 URL de petición:", url);
-      console.log("🎯 Filtro seleccionado:", selectedAccessPoint);
-
-      const recordsResponse = await fetch(url);
-      const records = await recordsResponse.json();
-
-      if (records.length > 0) {
-        // Hay datos guardados, cargarlos
-        setResultados(records);
-
-        // Solo actualizar window.__registrosExcel si no hay filtro activo
-        if (selectedAccessPoint === "all") {
-          window.__registrosExcel = records;
-        }
-
-        setMessage(
-          `Datos cargados: ${records.length} registros disponibles${
-            selectedAccessPoint !== "all"
-              ? ` (filtrados por ${selectedAccessPoint})`
-              : ""
-          }`
-        );
-      } else if (files.length > 0) {
-        // Hay archivos pero no hay datos procesados
-        setMessage(
-          `Se encontraron ${files.length} archivo(s) pero no están procesados. Sube el archivo nuevamente para procesarlo.`
-        );
-        setResultados([]);
-        if (selectedAccessPoint === "all") {
-          window.__registrosExcel = [];
-        }
-      } else {
-        // No hay archivos ni datos
-        setMessage(
-          "No hay datos guardados. Sube un archivo Excel para comenzar."
-        );
-        setResultados([]);
-        if (selectedAccessPoint === "all") {
-          window.__registrosExcel = [];
-        }
-      }
+      const response = await fetch(`${API_CONFIG.ALCALDIA.BASE_URL}/all-records`);
+      const data = await response.json();
+      setResultados(Array.isArray(data) ? data : []);
     } catch (error) {
       console.error("Error loading saved data:", error);
-      setMessage("Error cargando datos guardados");
-    } finally {
-      setSearching(false);
     }
   };
 
@@ -255,11 +215,8 @@ function AlcaldiaEnvigadoPage({ onBack }) {
     setSearching(true);
     setMessage("Refrescando datos...");
     try {
-      const response = await fetch(`${API_BASE_URL}/all-records`);
-      const data = await response.json();
-      setResultados(data);
-      window.__registrosExcel = data;
-      setMessage(`Analizando ${data.length} registros...`);
+      await loadSavedData();
+      setMessage("Datos actualizados correctamente");
     } catch (error) {
       setMessage(`Error refrescando datos: ${error.message}`);
     } finally {
@@ -267,174 +224,72 @@ function AlcaldiaEnvigadoPage({ onBack }) {
     }
   };
 
-  const processUploadedFiles = async () => {
-    setSearching(true);
-    setMessage("Procesando archivos subidos...");
-    try {
-      // Obtener lista de archivos
-      const filesResponse = await fetch(`${API_BASE_URL}/files`);
-      const files = await filesResponse.json();
-
-      if (files.length === 0) {
-        setMessage("No hay archivos para procesar");
-        return;
-      }
-
-      // Procesar el archivo más reciente
-      const latestFile = files[files.length - 1];
-      setMessage(`Procesando archivo: ${latestFile.name}...`);
-
-      // Llamar al endpoint de reprocesamiento
-      const reprocessResponse = await fetch(
-        `${API_BASE_URL}/reprocess/${latestFile.name}`,
-        {
-          method: "POST",
-        }
-      );
-
-      const reprocessData = await reprocessResponse.json();
-
-      if (!reprocessResponse.ok) {
-        throw new Error(
-          reprocessData.error || reprocessData.details || "Error desconocido"
-        );
-      }
-
-      // Cargar los datos procesados
-      const recordsResponse = await fetch(`${API_BASE_URL}/all-records`);
-      const records = await recordsResponse.json();
-
-      setResultados(records);
-      window.__registrosExcel = records;
-      setMessage(
-        `Archivo procesado: ${reprocessData.recordsProcessed} registros cargados. Total en BD: ${reprocessData.totalRecords}`
-      );
-      fetchStats();
-      fetchFiles();
-    } catch (error) {
-      console.error("Error processing files:", error);
-      setMessage(`Error procesando archivos: ${error.message}`);
-    } finally {
-      setSearching(false);
-    }
-  };
-
   useEffect(() => {
-    console.log("🚀 Iniciando carga de datos...");
     fetchFiles();
     fetchStats();
     fetchAccessPoints();
-    // Cargar datos automáticamente al entrar a la página
-    loadSavedData();
   }, []);
 
-  // Función directa para manejar búsqueda
+  useEffect(() => {
+    if (resultados.length > 0) {
+      fetchHorariosCalculados();
+    }
+  }, [resultados]);
+
+  // Función mejorada para manejar búsqueda
   const handleSearch = (value) => {
     setSearchTerm(value);
     setPage(1);
-
-    // Limpiar timeout anterior
-    if (searchTimeoutRef.current) {
-      clearTimeout(searchTimeoutRef.current);
-    }
-
-    // Aplicar búsqueda con debounce
-    searchTimeoutRef.current = setTimeout(() => {
-      const term = value.toLowerCase().trim();
-      let baseData = window.__registrosExcel || [];
-
-      // Si hay filtro activo, buscar solo en los datos filtrados
-      if (selectedAccessPoint !== "all") {
-        baseData = baseData.filter(
-          (r) =>
-            r.puntoVerificacion &&
-            r.puntoVerificacion.includes(selectedAccessPoint)
-        );
-      }
-
-      if (term.length > 0) {
-        setSearching(true);
-        setMessage("Buscando...");
-
-        const filtered = baseData.filter(
-          (r) =>
-            (r.idPersona &&
-              r.idPersona.toString().toLowerCase().includes(term)) ||
-            (r.nombre && r.nombre.toLowerCase().includes(term)) ||
-            (r.departamento && r.departamento.toLowerCase().includes(term)) ||
-            (r.hora && r.hora.toLowerCase().includes(term)) ||
-            (r.puntoVerificacion &&
-              r.puntoVerificacion.toLowerCase().includes(term))
-        );
-
-        setResultados(filtered);
-        setMessage(
-          filtered.length > 0
-            ? `${filtered.length} resultados encontrados`
-            : "No se encontraron resultados"
-        );
-        setSearching(false);
-      } else {
-        // Si no hay término de búsqueda, restaurar datos según filtro
-        if (selectedAccessPoint === "all") {
-          setResultados(window.__registrosExcel || []);
-          setMessage("");
-        } else {
-          // Mantener filtro activo
-          const filtered = baseData.filter(
-            (r) =>
-              r.puntoVerificacion &&
-              r.puntoVerificacion.includes(selectedAccessPoint)
-          );
-          setResultados(filtered);
-          setMessage(
-            filtered.length > 0
-              ? `${filtered.length} registros filtrados por ${selectedAccessPoint}`
-              : "No se encontraron registros para este punto de acceso"
-          );
-        }
-        setSearching(false);
-      }
-    }, 150); // Debounce más rápido
   };
 
-  // Función para manejar cambio de filtro
-  const handleFilterChange = (newAccessPoint) => {
-    setSelectedAccessPoint(newAccessPoint);
-    setSearchTerm(""); // Limpiar búsqueda
+  const handleFilterChange = (e) => {
+    setSelectedAccessPoint(e.target.value);
     setPage(1);
-
-    if (newAccessPoint === "all") {
-      setResultados(window.__registrosExcel || []);
-      setMessage("");
-    } else {
-      const baseData = window.__registrosExcel || [];
-      const filtered = baseData.filter(
-        (r) =>
-          r.puntoVerificacion && r.puntoVerificacion.includes(newAccessPoint)
-      );
-      setResultados(filtered);
-      setMessage(
-        filtered.length > 0
-          ? `${filtered.length} registros filtrados por ${newAccessPoint}`
-          : "No se encontraron registros para este punto de acceso"
-      );
-    }
   };
+
+  // Filtrar resultados por punto de acceso
+  // Debounce searchTerm para evitar renders y filtros costosos
+  useEffect(() => {
+    const id = setTimeout(() => setDebouncedSearch(searchTerm), 400);
+    return () => clearTimeout(id);
+  }, [searchTerm]);
+
+  const filteredResults = useMemo(() => {
+    let base = selectedAccessPoint === "all"
+      ? resultados
+      : resultados.filter(resultado => 
+          resultado.puntoVerificacion && 
+          resultado.puntoVerificacion.includes(selectedAccessPoint)
+        );
+    if (!debouncedSearch.trim()) return base;
+    const lower = debouncedSearch.toLowerCase();
+    return base.filter(r => 
+      r.nombre.toLowerCase().includes(lower) ||
+      r.idPersona.toLowerCase().includes(lower) ||
+      r.departamento.toLowerCase().includes(lower)
+    );
+  }, [resultados, selectedAccessPoint, debouncedSearch]);
+
+  // Aplicar filtro de horas extra si está activado
+  const resultadosFinales = useMemo(() => {
+    return soloConHorasExtra ? horariosCalculados.filter(h => h.horasExtra > 0) : filteredResults;
+  }, [soloConHorasExtra, horariosCalculados, filteredResults]);
 
   // Paginación
-  const totalPages = Math.ceil(resultados.length / PAGE_SIZE);
-  const paginatedResults = Array.isArray(resultados)
-    ? resultados.slice((page - 1) * PAGE_SIZE, page * PAGE_SIZE)
-    : [];
+  const totalPagesCalculated = Math.ceil(resultadosFinales.length / PAGE_SIZE);
+  const paginatedResults = resultadosFinales.slice((page - 1) * PAGE_SIZE, page * PAGE_SIZE);
+
+  // Actualizar totalPages si es necesario
+  useEffect(() => {
+    if (totalPagesCalculated !== totalPages) {
+      setTotalPages(totalPagesCalculated);
+    }
+  }, [totalPagesCalculated, totalPages]);
 
   // Debug: mostrar estado actual
   console.log("🎯 Estado actual - selectedAccessPoint:", selectedAccessPoint);
   console.log("📊 Estado actual - resultados.length:", resultados.length);
-  console.log(
-    "📄 Estado actual - paginatedResults.length:",
-    paginatedResults.length
-  );
+  console.log("📄 Estado actual - paginatedResults.length:", paginatedResults.length);
 
   async function exportarExcel() {
     if (resultados.length === 0) {
@@ -499,63 +354,88 @@ function AlcaldiaEnvigadoPage({ onBack }) {
 
   function renderPagination(page, totalPages, setPage) {
     if (totalPages <= 1) return null;
-    const visible = 5;
-    let start = Math.max(1, page - Math.floor(visible / 2));
-    let end = start + visible - 1;
-    if (end > totalPages) {
-      end = totalPages;
-      start = Math.max(1, end - visible + 1);
-    }
+
     const pages = [];
-    for (let i = start; i <= end; i++) {
-      pages.push(i);
+    const maxVisiblePages = 5;
+    let startPage = Math.max(1, page - Math.floor(maxVisiblePages / 2));
+    let endPage = Math.min(totalPages, startPage + maxVisiblePages - 1);
+
+    if (endPage - startPage + 1 < maxVisiblePages) {
+      startPage = Math.max(1, endPage - maxVisiblePages + 1);
     }
+
+    // Primera página
+    if (startPage > 1) {
+      pages.push(
+        <li key="first" className="page-item">
+          <button className="page-link" onClick={() => setPage(1)}>
+            1
+          </button>
+        </li>
+      );
+      if (startPage > 2) {
+        pages.push(
+          <li key="ellipsis1" className="page-item disabled">
+            <span className="page-link">...</span>
+          </li>
+        );
+      }
+    }
+
+    // Páginas visibles
+    for (let i = startPage; i <= endPage; i++) {
+      pages.push(
+        <li
+          key={i}
+          className={`page-item ${page === i ? "active" : ""}`}
+        >
+          <button className="page-link" onClick={() => setPage(i)}>
+            {i}
+          </button>
+        </li>
+      );
+    }
+
+    // Última página
+    if (endPage < totalPages) {
+      if (endPage < totalPages - 1) {
+        pages.push(
+          <li key="ellipsis2" className="page-item disabled">
+            <span className="page-link">...</span>
+          </li>
+        );
+      }
+      pages.push(
+        <li key="last" className="page-item">
+          <button className="page-link" onClick={() => setPage(totalPages)}>
+            {totalPages}
+          </button>
+        </li>
+      );
+    }
+
     return (
-      <div className="d-flex justify-content-center mt-4">
-        <nav>
+      <div className="pagination-container">
+        <nav aria-label="Navegación de páginas">
           <ul className="pagination">
-            <li className={`page-item ${page === 1 ? "disabled" : ""}`}>
-              <button
-                className="page-link"
-                onClick={() => setPage(1)}
-                disabled={page === 1}
-              >
-                &laquo;
-              </button>
-            </li>
-            <li className={`page-item ${page === 1 ? "disabled" : ""}`}>
+            <li
+              className={`page-item ${page === 1 ? "disabled" : ""}`}
+            >
               <button
                 className="page-link"
                 onClick={() => setPage(page - 1)}
                 disabled={page === 1}
               >
-                &lt;
+                &laquo;
               </button>
             </li>
-            {pages.map((i) => (
-              <li key={i} className={`page-item ${page === i ? "active" : ""}`}>
-                <button className="page-link" onClick={() => setPage(i)}>
-                  {i}
-                </button>
-              </li>
-            ))}
+            {pages}
             <li
               className={`page-item ${page === totalPages ? "disabled" : ""}`}
             >
               <button
                 className="page-link"
                 onClick={() => setPage(page + 1)}
-                disabled={page === totalPages}
-              >
-                &gt;
-              </button>
-            </li>
-            <li
-              className={`page-item ${page === totalPages ? "disabled" : ""}`}
-            >
-              <button
-                className="page-link"
-                onClick={() => setPage(totalPages)}
                 disabled={page === totalPages}
               >
                 &raquo;
@@ -569,16 +449,14 @@ function AlcaldiaEnvigadoPage({ onBack }) {
 
   return (
     <div className="alcaldia-container">
-      {/* Header con logo y botón de volver */}
+      {/* Header moderno */}
       <div className="alcaldia-header">
         <div className="header-content">
           <div className="logo-section">
-            <div className="logo-placeholder">
-              <i className="bi bi-building"></i>
-              <span>Alcaldía de Envigado</span>
+              <h1>Sistema de Asistencia</h1>
+            <span>ALCALDÍA DE ENVIGADO</span>
             </div>
-          </div>
-          <button onClick={onBack} className="btn-volver">
+          <button className="btn-back" onClick={onBack}>
             <i className="bi bi-arrow-left"></i>
             Volver al Panel
           </button>
@@ -586,327 +464,270 @@ function AlcaldiaEnvigadoPage({ onBack }) {
       </div>
 
       {/* Contenido principal */}
-      <div className="alcaldia-main">
-        <div className="main-card">
-          {/* Título principal */}
-          <div className="title-section">
-            <h1>Sistema de Asistencia</h1>
-            <h2>Alcaldía de Envigado</h2>
-          </div>
+      <div className="main-content">
+        {/* Título principal */}
+        <div className="title-section">
+          <h1>🏛️ Sistema de Gestión de Asistencia</h1>
+          <h2>✨ Control integral de asistencia y verificación de personal municipal para la Alcaldía de Envigado</h2>
+        </div>
 
-          {/* Sección de carga de archivos */}
+        {/* Sección de carga de archivos */}
+        <div className="modern-card">
+          <div className="card-header">
+            <h3>
+              <i className="bi bi-cloud-upload"></i>
+              📊 Carga de Datos de Asistencia
+            </h3>
+            <p>🚀 Importe archivos Excel (.xlsx, .xls) con registros de asistencia para procesamiento automático</p>
+          </div>
           <div className="upload-section">
-            <div className="upload-container">
-              <div className="file-input-wrapper">
+            {/* Área de selección de archivo */}
+            <div 
+              className="upload-area" 
+              onClick={() => document.getElementById('fileInput').click()}
+              onDrop={handleDrop}
+              onDragOver={handleDragOver}
+            >
+              <div className="upload-icon">
+                <i className={`${file ? 'bi bi-check-circle-fill' : 'bi bi-cloud-upload'}`}></i>
+              </div>
+              
+              <div className="upload-text">
+                {file ? '✅ Archivo Seleccionado' : '📊 Seleccionar Archivo de Datos'}
+              </div>
+              
+              <div className="upload-subtitle">
+                {file ? 'Haz clic para cambiar el archivo' : 'Arrastra tu archivo Excel aquí o haz clic para seleccionar'}
+              </div>
+              
+              <div className="upload-formats">
+                {file ? `Archivo: ${file.name}` : 'Formatos compatibles: .xlsx, .xls'}
+              </div>
+              
                 <input
                   type="file"
-                  className="file-input"
+                className="file-input"
                   accept=".xlsx,.xls"
                   onChange={handleFileChange}
                   disabled={loading}
-                  id="file-upload"
-                />
-                <label htmlFor="file-upload" className="file-label">
-                  <i className="bi bi-cloud-upload"></i>
-                  <span>{file ? file.name : "Seleccionar archivo Excel"}</span>
-                </label>
+                id="fileInput"
+              />
               </div>
+            
+            {/* Botón de subida */}
               <button
-                className="btn-upload"
+              className={`upload-button ${!file || loading ? 'disabled' : ''}`}
                 onClick={handleUpload}
                 disabled={!file || loading}
               >
                 {loading ? (
                   <>
                     <span className="spinner"></span>
-                    Subiendo...
+                  Procesando archivo...
                   </>
                 ) : (
                   <>
                     <i className="bi bi-upload"></i>
-                    Subir Archivo
+                  {file ? 'Subir Archivo Excel' : 'Selecciona un archivo primero'}
                   </>
                 )}
               </button>
-            </div>
           </div>
+        </div>
 
-          {/* Mensaje de estado */}
-          {message && (
-            <div
-              className={`message ${
+        {/* Mensaje de estado */}
+        {message && (
+          <div className={`status-message ${
+            message.includes("Error") || message.includes("No se") ? "error" : "success"
+          }`}>
+            <i className={`bi ${
                 message.includes("Error") || message.includes("No se")
-                  ? "error"
-                  : "success"
-              }`}
-            >
-              <i
-                className={`bi ${
-                  message.includes("Error") || message.includes("No se")
-                    ? "bi-exclamation-triangle"
-                    : "bi-check-circle"
-                }`}
-              ></i>
-              {message}
-            </div>
-          )}
+                  ? "bi-exclamation-triangle"
+                  : "bi-check-circle"
+            }`}></i>
+            <span>{message}</span>
+          </div>
+        )}
 
-          {/* Barra de búsqueda y acciones */}
-          <div className="search-section">
+        {/* Filtros y búsqueda */}
+        <div className="modern-card">
+          <div className="card-header">
+            <h3>
+              <i className="bi bi-funnel"></i>
+              🔍 Filtros y Consultas
+            </h3>
+            <p>⚡ Busque y filtre registros por nombre, ID, departamento o punto de acceso</p>
+          </div>
+          <div className="filters-section">
+            <div className="filters-grid">
             <div className="search-container">
-              <div className="search-input-wrapper">
-                <i className="bi bi-search search-icon"></i>
                 <input
                   type="text"
                   className="search-input"
-                  placeholder="Buscar por ID, nombre, departamento, hora o punto de verificación..."
+                  placeholder="Buscar por nombre, ID o departamento..."
                   value={searchTerm}
-                  onChange={(e) => handleSearch(e.target.value)}
-                  disabled={searching}
+                  onChange={(e) => setSearchTerm(e.target.value)}
                 />
-              </div>
-              <div className="action-buttons">
-                <button
-                  className="btn-refresh"
-                  onClick={refreshData}
-                  disabled={searching}
-                  title="Refrescar datos"
-                >
-                  <i className="bi bi-arrow-clockwise"></i>
-                  Refrescar
-                </button>
-                <button
-                  className="btn-process"
-                  onClick={processUploadedFiles}
-                  disabled={searching}
-                  title="Procesar archivos subidos"
-                >
-                  <i className="bi bi-gear"></i>
-                  Procesar Archivos
-                </button>
-                <button
-                  className="btn-clear"
-                  onClick={clearDatabase}
-                  title="Limpiar base de datos"
-                >
-                  <i className="bi bi-trash"></i>
-                  Limpiar BD
-                </button>
-              </div>
-
-              {/* Filtro de Puntos de Acceso */}
-              <div className="filter-section">
-                <div className="filter-container">
-                  <label htmlFor="accessPointFilter" className="filter-label">
-                    <i className="bi bi-funnel"></i>
-                    Filtrar por Punto de Acceso:
-                  </label>
-                  <select
-                    id="accessPointFilter"
-                    className="filter-select"
-                    value={selectedAccessPoint}
-                    onChange={handleAccessPointChange}
-                    disabled={searching}
-                  >
-                    <option value="all">Todos los puntos de acceso</option>
-                    {accessPoints.map((point, index) => (
-                      <option key={index} value={point}>
-                        {point}
-                      </option>
-                    ))}
-                    {/* Debug: mostrar cantidad de puntos */}
-                    {accessPoints.length === 0 && (
-                      <option disabled>
-                        No hay puntos de acceso disponibles
-                      </option>
-                    )}
-                  </select>
-                  {selectedAccessPoint !== "all" && (
-                    <button
-                      className="btn-clear-filter"
-                      onClick={() => handleFilterChange("all")}
-                      title="Limpiar filtro"
-                    >
-                      <i className="bi bi-x-circle"></i>
-                    </button>
-                  )}
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Contenido principal con tabla y sidebar */}
-          <div className="content-section">
-            {/* Tabla principal */}
-            <div className="table-section">
-              <div className="table-container">
-                <table className="data-table">
-                  <thead>
-                    <tr>
-                      <th>ID de Persona</th>
-                      <th>Nombre</th>
-                      <th>Departamento</th>
-                      <th>Hora</th>
-                      <th>Punto de Verificación</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {searching ? (
-                      <tr>
-                        <td colSpan={5} className="loading-cell">
-                          <div className="loading-spinner">
-                            <span className="spinner"></span>
-                            <span>Buscando...</span>
-                          </div>
-                        </td>
-                      </tr>
-                    ) : paginatedResults.length === 0 ? (
-                      <tr>
-                        <td colSpan={5} className="empty-cell">
-                          <div className="empty-state">
-                            <i className="bi bi-inbox"></i>
-                            <span>
-                              {searchTerm.length === 0
-                                ? "No hay datos cargados. Sube un archivo Excel para comenzar."
-                                : "No se encontraron resultados"}
-                            </span>
-                          </div>
-                        </td>
-                      </tr>
-                    ) : (
-                      paginatedResults.map((resultado, index) => (
-                        <tr key={index} className="data-row">
-                          <td className="id-cell">{resultado.idPersona}</td>
-                          <td className="name-cell">{resultado.nombre}</td>
-                          <td className="dept-cell">
-                            {resultado.departamento}
-                          </td>
-                          <td className="time-cell">{resultado.hora}</td>
-                          <td className="point-cell">
-                            {resultado.puntoVerificacion}
-                          </td>
-                        </tr>
-                      ))
-                    )}
-                  </tbody>
-                </table>
-              </div>
-
-              {/* Paginación */}
-              {renderPagination(page, totalPages, setPage)}
             </div>
 
-            {/* Sidebar con estadísticas y archivos */}
-            <div className="sidebar">
-              {/* Estadísticas */}
-              <div className="stats-card">
-                <div className="card-header">
-                  <i className="bi bi-graph-up"></i>
-                  <h3>Estadísticas</h3>
-                </div>
-                <div className="stats-content">
-                  <div className="stat-item">
-                    <div className="stat-number">
-                      {stats?.totalRecords || 0}
-                    </div>
-                    <div className="stat-label">Total Registros</div>
-                  </div>
-                  <div className="stat-item">
-                    <div className="stat-number">
-                      {stats?.uniquePersons || 0}
-                    </div>
-                    <div className="stat-label">Personas Únicas</div>
-                  </div>
-                </div>
+              <div className="filter-select-container">
+              <select
+                className="filter-select"
+                value={selectedAccessPoint}
+                onChange={handleFilterChange}
+              >
+                <option value="all">Todos los puntos de acceso</option>
+                {Array.isArray(accessPoints) && accessPoints.map((point, index) => (
+                  <option key={index} value={point}>
+                    {point}
+                  </option>
+                ))}
+              </select>
               </div>
 
-              {/* Archivos subidos */}
-              <div className="files-card">
-                <div className="card-header">
-                  <i className="bi bi-folder"></i>
-                  <h3>Archivos Subidos</h3>
-                </div>
-                <div className="files-content">
-                  {files.length === 0 ? (
-                    <div className="empty-files">
-                      <i className="bi bi-folder-x"></i>
-                      <span>No hay archivos subidos</span>
-                    </div>
-                  ) : (
-                    <div className="files-list">
-                      {files.map((file, index) => (
-                        <div key={index} className="file-item">
-                          <div className="file-info">
-                            <span className="file-name">
-                              {file.name.length > 25
-                                ? file.name.substring(0, 25) + "..."
-                                : file.name}
-                            </span>
-                            <span className="file-date">
-                              {new Date(file.mtime).toLocaleDateString()}
-                            </span>
-                          </div>
-                          <div className="file-actions">
-                            <button
-                              className="btn-file-action"
-                              onClick={() =>
-                                window.open(
-                                  `${API_BASE_URL}/files/${file.name}`,
-                                  "_blank"
-                                )
-                              }
-                              title="Ver archivo"
-                            >
-                              <i className="bi bi-eye"></i>
-                            </button>
-                            <button
-                              className="btn-file-action delete"
-                              onClick={async () => {
-                                if (
-                                  window.confirm(
-                                    "¿Estás seguro de que quieres eliminar este archivo?"
-                                  )
-                                ) {
-                                  try {
-                                    const response = await fetch(
-                                      `${API_BASE_URL}/files/${file.name}`,
-                                      { method: "DELETE" }
-                                    );
-                                    if (response.ok) {
-                                      fetchFiles();
-                                    }
-                                  } catch (error) {
-                                    console.error(
-                                      "Error deleting file:",
-                                      error
-                                    );
-                                  }
-                                }
-                              }}
-                              title="Eliminar archivo"
-                            >
-                              <i className="bi bi-trash"></i>
-                            </button>
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-                  )}
-                </div>
-              </div>
+              <div className="filter-checkbox">
+                <input
+                  type="checkbox"
+                  className="checkbox-input"
+                  id="horasExtraAlcaldia"
+                  checked={soloConHorasExtra}
+                  onChange={(e) => setSoloConHorasExtra(e.target.checked)}
+                />
+                <label htmlFor="horasExtraAlcaldia" className="checkbox-text">
+                  Solo mostrar registros con horas extra
+              </label>
+            </div>
 
-              {/* Botón de exportar */}
-              {resultados.length > 0 && (
-                <button className="btn-export" onClick={exportarExcel}>
-                  <i className="bi bi-file-earmark-excel"></i>
-                  Exportar a Excel
-                </button>
-              )}
+            <div className="action-buttons">
+                <button className="btn-modern btn-primary" onClick={refreshData}>
+                <i className="bi bi-arrow-clockwise"></i>
+                  🔄 Actualizar Datos
+              </button>
+                <button className="btn-modern btn-danger" onClick={clearDatabase}>
+                <i className="bi bi-trash"></i>
+                  🗑️ Limpiar Registros
+              </button>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    </div>
+
+        {/* Tabla de registros */}
+            <div className="table-container">
+              <table className="data-table">
+                <thead>
+                  <tr>
+                    <th>ID de Persona</th>
+                    <th>Nombre</th>
+                    <th>Departamento</th>
+                    <th>Hora</th>
+                    <th>Punto de Verificación</th>
+                    {soloConHorasExtra && <th>Horas Trabajadas</th>}
+                    {soloConHorasExtra && <th>Horas Extra</th>}
+                  </tr>
+                </thead>
+                <tbody>
+                  {searching ? (
+                    <tr>
+                      <td colSpan={soloConHorasExtra ? 7 : 5} className="loading-cell">
+                        <div className="loading-spinner">
+                          <span className="spinner"></span>
+                          <span>Buscando...</span>
+                        </div>
+                      </td>
+                    </tr>
+                  ) : paginatedResults.length === 0 ? (
+                    <tr>
+                      <td colSpan={soloConHorasExtra ? 7 : 5} className="empty-state">
+                        <div className="empty-icon">
+                          <img 
+                            src={logoAlcaldia} 
+                            alt="Logo Alcaldía de Envigado" 
+                            className="empty-logo"
+                          />
+                        </div>
+                        <div className="empty-title">
+                            {searchTerm.length === 0 && !soloConHorasExtra
+                            ? "📊 Registros de Asistencia Municipal"
+                              : soloConHorasExtra
+                            ? "⏰ Filtro de Horas Extra"
+                            : "🔍 Sin Resultados"}
+                        </div>
+                        <div className="empty-description">
+                          {searchTerm.length === 0 && !soloConHorasExtra
+                            ? "Importe un archivo Excel para visualizar los registros de asistencia del personal municipal"
+                            : soloConHorasExtra
+                            ? "No se encontraron registros con horas extra. Intente buscar por nombre o departamento."
+                            : "No se encontraron resultados para su consulta"}
+                        </div>
+                        <div className="empty-actions">
+                          <button 
+                            onClick={() => document.getElementById('fileInput')?.click()}
+                            className="btn-modern btn-primary"
+                          >
+                            <i className="bi bi-upload"></i>
+                            📁 Importar Archivo
+                          </button>
+                          <button 
+                            onClick={() => setSearchTerm('')}
+                            className="btn-modern btn-secondary"
+                          >
+                            <i className="bi bi-search"></i>
+                            👀 Ver Todos los Registros
+                          </button>
+                        </div>
+                      </td>
+                    </tr>
+                  ) : (
+                    paginatedResults.map((resultado, index) => (
+                      <tr key={index} className="data-row">
+                        <td className="id-cell">{resultado.idPersona}</td>
+                        <td className="name-cell">{resultado.nombre}</td>
+                        <td className="dept-cell">
+                          {resultado.departamento}
+                        </td>
+                        <td className="time-cell">{resultado.hora}</td>
+                        <td className="point-cell">
+                          {resultado.puntoVerificacion}
+                        </td>
+                        {soloConHorasExtra && (
+                          <td className="hours-cell">
+                            {resultado.horasTrabajadas ? decimalToHHMMSS(resultado.horasTrabajadas) : "N/A"}
+                          </td>
+                        )}
+                        {soloConHorasExtra && (
+                          <td className="extra-hours-cell">
+                            {resultado.horasExtra ? decimalToHHMMSS(resultado.horasExtra) : "0:00:00"}
+                          </td>
+                        )}
+                      </tr>
+                    ))
+                  )}
+                </tbody>
+              </table>
+            </div>
+
+            {/* Estadísticas */}
+        <div className="stats-grid">
+          <div className="stat-card">
+            <div className="stat-number">📊 {stats?.totalRecords || 0}</div>
+                  <div className="stat-label">Total Registros</div>
+                </div>
+          <div className="stat-card">
+            <div className="stat-number">👥 {stats?.uniqueEmployees || 0}</div>
+            <div className="stat-label">Empleados Únicos</div>
+                  </div>
+          <div className="stat-card">
+            <div className="stat-number">🏢 {stats?.uniqueDepartments || 0}</div>
+            <div className="stat-label">Departamentos</div>
+                </div>
+          <div className="stat-card">
+            <div className="stat-number">📁 {files.length}</div>
+            <div className="stat-label">Archivos Cargados</div>
+              </div>
+            </div>
+                </div>
+                    </div>
   );
 }
 

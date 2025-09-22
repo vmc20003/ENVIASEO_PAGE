@@ -1,22 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import "./LoginPage.css";
-import logoImage from "../../assets/logo_sistema.jpg";
 
 function LoginPage({ onLogin }) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
-
-  // Cambiar el fondo del body cuando se monta el componente
-  useEffect(() => {
-    document.body.style.background = 'linear-gradient(135deg, #f0f8f0 0%, #e8f5e8 50%, #d4edda 100%)';
-    
-    // Limpiar cuando se desmonte el componente
-    return () => {
-      document.body.style.background = '';
-    };
-  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -29,138 +18,67 @@ function LoginPage({ onLogin }) {
     setIsLoading(true);
     setError("");
 
-    // Simular proceso de login
-    setTimeout(() => {
-      if (username === "admin" && password === "admin") {
-        onLogin(true);
-      } else {
-        setError("Credenciales incorrectas. Usa: admin/admin");
-      }
+    try {
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      onLogin({ username, password });
+    } catch (err) {
+      setError("Error al iniciar sesión. Intenta nuevamente.");
+    } finally {
       setIsLoading(false);
-    }, 1500);
+    }
   };
 
   return (
-    <div 
-      className="login-container"
-      style={{
-        background: 'linear-gradient(135deg, #f0f8f0 0%, #e8f5e8 50%, #d4edda 100%)',
-        minHeight: '100vh',
-        position: 'relative',
-        overflow: 'hidden',
-        display: 'flex',
-        flexDirection: 'column'
-      }}
-    >
-      {/* Efectos de fondo */}
-      <div className="background-effects">
-        <div className="floating-shapes">
-          {[...Array(6)].map((_, i) => (
-            <div
-              key={i}
-              className="shape"
-              style={{
-                "--delay": `${i * 0.5}s`,
-                "--duration": `${3 + i * 0.5}s`,
-                "--size": `${20 + i * 10}px`,
-              }}
-            ></div>
-          ))}
+    <div className="login-container">
+      <div className="login-card">
+        <div className="login-header">
+          <h1 className="login-title">Sistema de Gestión</h1>
+          <p className="login-subtitle">
+            Control de Acceso y Asistencia
+          </p>
         </div>
-      </div>
 
-      {/* Contenido principal */}
-      <div className="login-main">
-        <div className="login-card">
-          {/* Header del login */}
-          <div className="login-header">
-            <div className="logo-section">
-              <div className="logo-icon">
-                <img
-                  src={logoImage}
-                  alt="Logo Sistema de Gestión"
-                  className="logo-image"
-                />
-              </div>
-              <div className="logo-text">
-                <h1>Control de Acceso</h1>
-                <p>Inicia sesión para continuar</p>
-              </div>
-            </div>
+        <form onSubmit={handleSubmit} className="login-form">
+          <div className="form-group">
+            <label htmlFor="username">Usuario</label>
+            <input
+              id="username"
+              type="text"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+              className="form-control"
+              placeholder="Ingresa tu usuario"
+              disabled={isLoading}
+            />
           </div>
 
-          {/* Formulario */}
-          <form onSubmit={handleSubmit} className="login-form">
-            <div className="form-group">
-              <div className="input-wrapper">
-                <div className="input-icon">
-                  <i className="bi bi-person"></i>
-                </div>
-                <input
-                  type="text"
-                  placeholder="Usuario"
-                  value={username}
-                  onChange={(e) => setUsername(e.target.value)}
-                  className="form-input"
-                  disabled={isLoading}
-                />
-              </div>
-            </div>
-
-            <div className="form-group">
-              <div className="input-wrapper">
-                <div className="input-icon">
-                  <i className="bi bi-lock"></i>
-                </div>
-                <input
-                  type="password"
-                  placeholder="Contraseña"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  className="form-input"
-                  disabled={isLoading}
-                />
-              </div>
-            </div>
-
-            {/* Mensaje de error */}
-            {error && (
-              <div className="error-message">
-                <i className="bi bi-exclamation-triangle"></i>
-                <span>{error}</span>
-              </div>
-            )}
-
-            {/* Botón de login */}
-            <button type="submit" className="login-button" disabled={isLoading}>
-              {isLoading ? (
-                <>
-                  <span className="spinner"></span>
-                  Iniciando sesión...
-                </>
-              ) : (
-                <>
-                  <i className="bi bi-box-arrow-in-right"></i>
-                  Iniciar Sesión
-                </>
-              )}
-            </button>
-          </form>
-        </div>
-      </div>
-
-      {/* Footer */}
-      <div className="login-footer">
-        <div className="footer-content">
-          <p>&copy; 2024 Sistema de Gestión. Todos los derechos reservados.</p>
-          <div className="footer-links">
-            <span>Política de Privacidad</span>
-            <span>•</span>
-            <span>Términos de Uso</span>
-            <span>•</span>
-            <span>Soporte Técnico</span>
+          <div className="form-group">
+            <label htmlFor="password">Contraseña</label>
+            <input
+              id="password"
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              className="form-control"
+              placeholder="Ingresa tu contraseña"
+              disabled={isLoading}
+            />
           </div>
-        </div>
+
+          <button
+            type="submit"
+            className="btn-login"
+            disabled={isLoading}
+          >
+            {isLoading ? "Iniciando..." : "Iniciar Sesión"}
+          </button>
+        </form>
+
+        {error && (
+          <div className="error-message">
+            <span>{error}</span>
+          </div>
+        )}
       </div>
     </div>
   );

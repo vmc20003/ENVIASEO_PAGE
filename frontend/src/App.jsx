@@ -3,6 +3,7 @@ import LoginPage from "./pages/LoginPage/LoginPage";
 import SelectionPage from "./pages/SelectionPage/SelectionPage";
 import MainApp from "./pages/MainApp/MainApp";
 import AlcaldiaEnvigadoPage from "./pages/AlcaldiaEnvigado/AlcaldiaEnvigadoPage";
+import EnviaseoControlAccesoPage from "./pages/EnviaseoControlAcceso/EnviaseoControlAccesoPage";
 import "./styles.css";
 
 function App() {
@@ -21,9 +22,8 @@ function App() {
       setCurrentPage("main");
     } else if (optionId === "alcaldia-envigado") {
       setCurrentPage("alcaldia");
-    } else if (optionId === "reports") {
-      // Aquí puedes agregar la lógica para la página de reportes
-      alert("Página de reportes en desarrollo");
+    } else if (optionId === "enviaseo-control-acceso") {
+      setCurrentPage("enviaseo-control-acceso");
     } else if (optionId === "settings") {
       // Aquí puedes agregar la lógica para la página de configuración
       alert("Página de configuración en desarrollo");
@@ -55,6 +55,8 @@ function App() {
         return <MainApp onBack={handleBackToSelection} />;
       case "alcaldia":
         return <AlcaldiaEnvigadoPage onBack={handleBackToSelection} />;
+      case "enviaseo-control-acceso":
+        return <EnviaseoControlAccesoPage onBack={handleBackToSelection} />;
       default:
         return <LoginPage onLogin={handleLogin} />;
     }

@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo, useCallback } from "react";
 import "./MainApp.css";
 import * as XLSX from "xlsx";
 import ExcelJS from "exceljs";
 import { saveAs } from "file-saver";
-import { ALUMBRADO_API_BASE_URL } from "../../config.js";
+import { API_CONFIG } from "../../config.js";
+import logoAlumbrado from "../../assets/logo_alumbrado_publico_correcto.svg";
 
 const PAGE_SIZE = 10;
 
@@ -15,169 +16,54 @@ function MainApp({ onBack }) {
   const [page, setPage] = useState(1);
   const [files, setFiles] = useState([]);
   const [cedula, setCedula] = useState("");
+  const [debouncedCedula, setDebouncedCedula] = useState("");
   const [resultados, setResultados] = useState([]);
-  const [stats, setStats] = useState(null);
+  const [stats, setStats] = useState({
+    totalEmpleados: 0,
+    totalHorasTrabajadas: 0,
+    totalHorasExtra: 0,
+    promedioHorasPorEmpleado: 0
+  });
   const [loading, setLoading] = useState(false);
   const [searching, setSearching] = useState(false);
   const [soloConHorasExtra, setSoloConHorasExtra] = useState(false);
   const JORNADA_LABORAL_HORAS = 8;
 
-  const handleFileChange = (e) => setFile(e.target.files[0]);
+  // Funciones auxiliares para identificar entrada y salida
+  function esEntrada(tipo) {
+    if (!tipo) return false;
+    const t = tipo.toLowerCase().replace(/[^a-z0-9]/g, "");
+    return (
+      t.includes("checkin") ||
+      t.includes("entrada") ||
+      t === "in" ||
+      t.includes("ingreso") ||
+      t.includes("lectordetarjetasdeentrada")
+    );
+  }
 
-  const handleUpload = async () => {
-    if (!file) {
-      setMessage("Por favor selecciona un archivo");
-      return;
-    }
-
-    setLoading(true);
-    setMessage("Subiendo archivo...");
-
-    try {
-      const formData = new FormData();
-      formData.append("file", file);
-
-      const response = await fetch(`${ALUMBRADO_API_BASE_URL}/upload`, {
-        method: "POST",
-        body: formData,
-      });
-
-      const data = await response.json();
-
-      if (response.ok) {
-        setMessage(
-          `Archivo subido exitosamente. ${data.recordsProcessed} registros procesados. Total en BD: ${data.totalRecords}`
-        );
-        setFile(null);
-        fetchFiles();
-        fetchStats();
-      } else {
-        setMessage(`Error: ${data.error || "Error desconocido"}`);
-      }
-    } catch (error) {
-      setMessage(`Error de conexión: ${error.message}`);
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  const fetchFiles = async () => {
-    try {
-      const response = await fetch(`${ALUMBRADO_API_BASE_URL}/files`);
-      const data = await response.json();
-      setFiles(data);
-    } catch (error) {
-      console.error("Error fetching files:", error);
-    }
-  };
-
-  const fetchStats = async () => {
-    try {
-      const response = await fetch(`${ALUMBRADO_API_BASE_URL}/stats`);
-      const data = await response.json();
-      setStats(data);
-    } catch (error) {
-      console.error("Error fetching stats:", error);
-    }
-  };
-
-  const clearDatabase = async () => {
-    if (
-      !window.confirm(
-        "¿Estás seguro de que quieres limpiar toda la base de datos?"
-      )
-    ) {
-      return;
-    }
-
-    try {
-      const response = await fetch(`${ALUMBRADO_API_BASE_URL}/clear`, {
-        method: "DELETE",
-      });
-
-      if (response.ok) {
-        setMessage("Base de datos limpiada correctamente");
-        setResultados([]);
-        fetchStats();
-      } else {
-        const data = await response.json();
-        setMessage(`Error: ${data.error}`);
-      }
-    } catch (error) {
-      setMessage(`Error de conexión: ${error.message}`);
-    }
-  };
-
-  const refreshData = async () => {
-    setSearching(true);
-    setMessage("Refrescando datos...");
-    try {
-      const response = await fetch(`${ALUMBRADO_API_BASE_URL}/all-records`);
-      const data = await response.json();
-      setResultados(data);
-      setMessage(`Analizando ${data.length} registros...`);
-    } catch (error) {
-      setMessage(`Error refrescando datos: ${error.message}`);
-    } finally {
-      setSearching(false);
-    }
-  };
-
-  useEffect(() => {
-    fetchFiles();
-    fetchStats();
-  }, []);
-
-  useEffect(() => {
-    const performSearch = async () => {
-      setPage(1);
-
-      if (cedula.length > 0) {
-        setSearching(true);
-        setMessage("Buscando...");
-        try {
-          const res = await fetch(`${ALUMBRADO_API_BASE_URL}/buscar/${cedula}`);
-          const data = await res.json();
-          setResultados(data);
-          setMessage(
-            data.length > 0
-              ? `${data.length} resultados encontrados`
-              : "No se encontraron resultados"
-          );
-        } catch (error) {
-          setMessage(`Error de búsqueda: ${error.message}`);
-          setResultados([]);
-        } finally {
-          setSearching(false);
-        }
-      } else if (soloConHorasExtra) {
-        setSearching(true);
-        setMessage("Buscando en todos los registros...");
-        try {
-          const res = await fetch(`${ALUMBRADO_API_BASE_URL}/all-records`);
-          const data = await res.json();
-          setResultados(data);
-          setMessage(`Analizando ${data.length} registros...`);
-        } catch (error) {
-          setMessage(`Error de búsqueda: ${error.message}`);
-          setResultados([]);
-        } finally {
-          setSearching(false);
-        }
-      } else {
-        setResultados([]);
-        setMessage("");
-      }
-    };
-
-    const timeoutId = setTimeout(performSearch, 300);
-    return () => clearTimeout(timeoutId);
-  }, [cedula, soloConHorasExtra]);
+  function esSalida(tipo) {
+    if (!tipo) return false;
+    const t = tipo.toLowerCase().replace(/[^a-z0-9]/g, "");
+    return (
+      t.includes("checkout") ||
+      t.includes("salida") ||
+      t === "out" ||
+      t.includes("egreso") ||
+      t.includes("lectordetarjetasdesalida")
+    );
+  }
 
   // Procesar resultados agrupados
-  function procesarResultadosAgrupados(resultados) {
+  const procesarResultadosAgrupados = useCallback((resultados) => {
     const resumenDiario = [];
     const personas = {};
+
+    // Asegurar que resultados sea un array
+    if (!Array.isArray(resultados)) {
+      console.warn("resultados no es un array:", resultados);
+      return resumenDiario;
+    }
 
     resultados.forEach((registro) => {
       // Normalizar campos para aceptar ambos formatos
@@ -187,11 +73,13 @@ function MainApp({ onBack }) {
       const hora =
         registro.hora ||
         (registro.time ? registro.time.split(" ")[1] || "" : "");
-      const cedula = registro.cedula || registro.personNo || "";
+      const cedula = registro.cedula || registro.personNo || registro.idPersona || "";
       const nombre = registro.nombre || registro.firstName || "";
       const apellido = registro.apellido || registro.lastName || "";
       const tipo_asistencia =
-        registro.tipo_asistencia || registro.attendanceType || "";
+        registro.tipo_asistencia || 
+        registro.attendanceType || 
+        registro.puntoVerificacion || "";
 
       if (!fecha) return;
 
@@ -252,70 +140,217 @@ function MainApp({ onBack }) {
     });
 
     return resumenDiario;
-  }
+  }, []);
 
-  // Funciones auxiliares para identificar entrada y salida
-  function esEntrada(tipo) {
-    if (!tipo) return false;
-    const t = tipo.toLowerCase().replace(/[^a-z0-9]/g, "");
-    return (
-      t.includes("checkin") ||
-      t.includes("entrada") ||
-      t === "in" ||
-      t.includes("ingreso")
-    );
-  }
+  const handleFileChange = (e) => setFile(e.target.files[0]);
+  
+  const handleDrop = (e) => {
+    e.preventDefault();
+    const droppedFile = e.dataTransfer.files[0];
+    if (droppedFile && (droppedFile.name.endsWith('.xlsx') || droppedFile.name.endsWith('.xls'))) {
+      setFile(droppedFile);
+    }
+  };
+  
+  const handleDragOver = (e) => {
+    e.preventDefault();
+  };
 
-  function esSalida(tipo) {
-    if (!tipo) return false;
-    const t = tipo.toLowerCase().replace(/[^a-z0-9]/g, "");
-    return (
-      t.includes("checkout") ||
-      t.includes("salida") ||
-      t === "out" ||
-      t.includes("egreso")
-    );
-  }
+  const handleUpload = async () => {
+    if (!file) {
+      setMessage("Por favor selecciona un archivo");
+      return;
+    }
 
-  // Paginación
-  let resultadosAgrupados = procesarResultadosAgrupados(resultados);
+    setLoading(true);
+    setMessage("Subiendo archivo...");
 
-  // Debug: mostrar información sobre los datos procesados
-  console.log("Resultados originales:", resultados.length);
-  console.log("Resultados agrupados:", resultadosAgrupados.length);
-  console.log("Muestra de datos agrupados:", resultadosAgrupados.slice(0, 3));
-  console.log("Estructura de un registro:", resultadosAgrupados[0]);
+    try {
+      const formData = new FormData();
+      formData.append("file", file);
 
-  resultadosAgrupados = resultadosAgrupados.sort((a, b) => {
-    if (!a.fecha) return 1;
-    if (!b.fecha) return -1;
-    return b.fecha.localeCompare(a.fecha);
-  });
+      const response = await fetch(`${API_CONFIG.ALUMBRADO.BASE_URL}/upload`, {
+        method: "POST",
+        body: formData,
+      });
 
-  const resultadosFiltrados = soloConHorasExtra
-    ? resultadosAgrupados.filter((r) => {
-        const tieneHorasExtra = (r.horasExtra || 0) > 0.001;
-        console.log(
-          `Filtro horas extra - ${r.nombre} ${r.apellido}: ${r.horasExtra} -> ${tieneHorasExtra}`
+      const data = await response.json();
+
+      if (response.ok) {
+        setMessage(
+          `Archivo subido exitosamente. ${data.recordsProcessed} registros procesados. Total en BD: ${data.totalRecords}`
         );
-        return tieneHorasExtra;
-      })
-    : resultadosAgrupados;
+        setFile(null);
+        fetchFiles();
+        fetchStats();
+      } else {
+        setMessage(`Error: ${data.error || "Error desconocido"}`);
+      }
+    } catch (error) {
+      setMessage(`Error de conexión: ${error.message}`);
+    } finally {
+      setLoading(false);
+    }
+  };
 
-  console.log("Resultados filtrados:", resultadosFiltrados.length);
+  const fetchFiles = async () => {
+    try {
+      const response = await fetch(`${API_CONFIG.ALUMBRADO.BASE_URL}/files`);
+      const data = await response.json();
+      // El backend devuelve { files: [...] }, extraer el array
+      const filesArray = data.files || data;
+      setFiles(Array.isArray(filesArray) ? filesArray : []);
+    } catch (error) {
+      console.error("Error fetching files:", error);
+      setFiles([]); // En caso de error, establecer como array vacío
+    }
+  };
 
-  const totalPages = Math.ceil(resultadosFiltrados.length / PAGE_SIZE);
-  const paginatedResults = resultadosFiltrados.slice(
-    (page - 1) * PAGE_SIZE,
-    page * PAGE_SIZE
-  );
+  const fetchStats = async () => {
+    try {
+      const response = await fetch(`${API_CONFIG.ALUMBRADO.BASE_URL}/stats`);
+      const data = await response.json();
+      setStats(data);
+    } catch (error) {
+      console.error("Error fetching stats:", error);
+    }
+  };
+
+  const clearDatabase = async () => {
+    if (
+      !window.confirm(
+        "¿Estás seguro de que quieres limpiar toda la base de datos?"
+      )
+    ) {
+      return;
+    }
+
+    try {
+      const response = await fetch(`${API_CONFIG.ALUMBRADO.BASE_URL}/clear-all`, {
+        method: "DELETE",
+      });
+
+      if (response.ok) {
+        setMessage("Base de datos limpiada correctamente");
+        setResultados([]);
+        fetchStats();
+      } else {
+        const data = await response.json();
+        setMessage(`Error: ${data.error}`);
+      }
+    } catch (error) {
+      setMessage(`Error de conexión: ${error.message}`);
+    }
+  };
+
+  const refreshData = async () => {
+    setSearching(true);
+    setMessage("Refrescando datos...");
+    try {
+      const response = await fetch(`${API_CONFIG.ALUMBRADO.BASE_URL}/all-records`);
+      const data = await response.json();
+      // El backend devuelve { resultados: [...] }, extraer el array
+      const resultadosArray = data.resultados || data;
+      setResultados(resultadosArray);
+      setMessage(`Analizando ${resultadosArray.length} registros...`);
+    } catch (error) {
+      setMessage(`Error refrescando datos: ${error.message}`);
+    } finally {
+      setSearching(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchFiles();
+    fetchStats();
+  }, []);
+
+  // Debounce de la cédula para reducir llamadas a red
+  useEffect(() => {
+    const id = setTimeout(() => setDebouncedCedula(cedula), 400);
+    return () => clearTimeout(id);
+  }, [cedula]);
+
+  // Solo cargar datos una vez al montar el componente
+  useEffect(() => {
+    const loadInitialData = async () => {
+        setSearching(true);
+      setMessage("Cargando datos...");
+        try {
+          const res = await fetch(`${API_CONFIG.ALUMBRADO.BASE_URL}/all-records`);
+          const data = await res.json();
+          // El backend puede devolver { resultados: [...] } o directamente un array
+          const resultadosArray = data.resultados || data;
+          setResultados(resultadosArray);
+        setMessage(`Cargados ${resultadosArray.length} registros. Use los filtros para buscar.`);
+        } catch (error) {
+        setMessage(`Error cargando datos: ${error.message}`);
+          setResultados([]);
+        } finally {
+          setSearching(false);
+        }
+    };
+
+    loadInitialData();
+  }, []);
+
+  // Paginación y cálculos memoizados
+  const resultadosAgrupados = useMemo(() => {
+    const agrupados = procesarResultadosAgrupados(resultados || []);
+    const ordenados = agrupados.sort((a, b) => {
+      if (!a.fecha) return 1;
+      if (!b.fecha) return -1;
+      return b.fecha.localeCompare(a.fecha);
+    });
+    return ordenados;
+  }, [resultados, procesarResultadosAgrupados]);
+
+  const resultadosFiltrados = useMemo(() => {
+    let filtrados = resultadosAgrupados || [];
+    
+    // Filtro por horas extra
+    if (soloConHorasExtra) {
+      filtrados = filtrados.filter((r) => (r.horasExtra || 0) > 0.001);
+    }
+    
+    // Filtro por búsqueda (nombre, apellido o cédula)
+    if (cedula.trim().length > 0) {
+      const termino = cedula.trim().toLowerCase();
+      filtrados = filtrados.filter((r) => 
+        (r.nombre && r.nombre.toLowerCase().includes(termino)) ||
+        (r.apellido && r.apellido.toLowerCase().includes(termino)) ||
+        (r.cedula && r.cedula.toString().includes(termino))
+      );
+    }
+    
+    return filtrados;
+  }, [resultadosAgrupados, soloConHorasExtra, cedula]);
+
+  const totalPages = useMemo(() => Math.ceil((resultadosFiltrados || []).length / PAGE_SIZE), [resultadosFiltrados]);
+  const paginatedResults = useMemo(() => (resultadosFiltrados || []).slice((page - 1) * PAGE_SIZE, page * PAGE_SIZE), [resultadosFiltrados, page]);
 
   const handleFiltroHorasExtraChange = (e) => {
     console.log("Checkbox cambiado:", e.target.checked);
     setSoloConHorasExtra(e.target.checked);
   };
 
-  function decimalToHHMMSS(decimalHours) {
+  // Actualizar mensaje cuando cambian los filtros
+  useEffect(() => {
+    if (resultadosFiltrados.length > 0) {
+      if (cedula.trim().length > 0) {
+        setMessage(`${resultadosFiltrados.length} resultados encontrados para "${cedula}"`);
+      } else if (soloConHorasExtra) {
+        setMessage(`${resultadosFiltrados.length} registros con horas extra`);
+      } else {
+        setMessage(`${resultadosFiltrados.length} registros mostrados`);
+      }
+    } else if (resultados.length > 0) {
+      setMessage("No se encontraron resultados con los filtros aplicados");
+    }
+  }, [resultadosFiltrados, cedula, soloConHorasExtra, resultados.length]);
+
+
+  const decimalToHHMMSS = useCallback(function decimalToHHMMSS(decimalHours) {
     if (
       typeof decimalHours !== "number" ||
       isNaN(decimalHours) ||
@@ -329,7 +364,7 @@ function MainApp({ onBack }) {
     const seconds = totalSeconds % 60;
     const pad = (num) => String(num).padStart(2, "0");
     return `${pad(hours)}:${pad(minutes)}:${pad(seconds)}`;
-  }
+  }, []);
 
   async function exportarExcel(resumen, desglose) {
     const workbook = new ExcelJS.Workbook();
@@ -686,16 +721,14 @@ function MainApp({ onBack }) {
 
   return (
     <div className="alumbrado-container">
-      {/* Header con logo y botón de volver */}
+      {/* Header moderno */}
       <div className="alumbrado-header">
         <div className="header-content">
           <div className="logo-section">
-            <div className="logo-placeholder">
-              <i className="bi bi-lightbulb"></i>
-              <span>Alumbrado Público</span>
+              <h1>Sistema de Asistencia</h1>
+            <span>ALUMBRADO PÚBLICO</span>
             </div>
-          </div>
-          <button onClick={onBack} className="btn-volver">
+          <button className="btn-back" onClick={onBack}>
             <i className="bi bi-arrow-left"></i>
             Volver al Panel
           </button>
@@ -703,323 +736,245 @@ function MainApp({ onBack }) {
       </div>
 
       {/* Contenido principal */}
-      <div className="alumbrado-main">
-        <div className="main-card">
-          {/* Título principal */}
-          <div className="title-section">
-            <h1>Sistema de Asistencia</h1>
-            <h2>Alumbrado Público</h2>
-          </div>
+      <div className="main-content">
+        {/* Título principal */}
+        <div className="title-section">
+          <h1>🏢 Sistema de Gestión de Asistencia</h1>
+          <h2>✨ Control integral de horarios, horas extra y reportes de personal para Alumbrado Público</h2>
+        </div>
 
-          {/* Sección de carga de archivos */}
+        {/* Sección de carga de archivos */}
+        <div className="modern-card">
+          <div className="card-header">
+            <h3>
+              <i className="bi bi-cloud-upload"></i>
+              📊 Carga de Datos de Asistencia
+            </h3>
+            <p>🚀 Importe archivos Excel (.xlsx, .xls) con registros de asistencia para procesamiento automático</p>
+          </div>
           <div className="upload-section">
-            <div className="upload-container">
-              <div className="file-input-wrapper">
-                <input
-                  type="file"
-                  className="file-input"
-                  accept=".xlsx,.xls"
-                  onChange={handleFileChange}
-                  disabled={loading}
-                  id="file-upload"
-                />
-                <label htmlFor="file-upload" className="file-label">
-                  <i className="bi bi-cloud-upload"></i>
-                  <span>{file ? file.name : "Seleccionar archivo Excel"}</span>
-                </label>
-              </div>
-              <button
-                className="btn-upload"
-                onClick={handleUpload}
-                disabled={!file || loading}
-              >
-                {loading ? (
-                  <>
-                    <span className="spinner"></span>
-                    Subiendo...
-                  </>
-                ) : (
-                  <>
-                    <i className="bi bi-upload"></i>
-                    Subir Archivo
-                  </>
-                )}
-              </button>
-            </div>
-          </div>
-
-          {/* Mensaje de estado */}
-          {message && (
-            <div
-              className={`message ${
-                message.includes("Error") || message.includes("No se")
-                  ? "error"
-                  : "success"
-              }`}
+            {/* Área de selección de archivo */}
+            <div 
+              className="upload-area" 
+              onClick={() => document.getElementById('fileInput').click()}
+              onDrop={handleDrop}
+              onDragOver={handleDragOver}
             >
-              <i
-                className={`bi ${
-                  message.includes("Error") || message.includes("No se")
-                    ? "bi-exclamation-triangle"
-                    : "bi-check-circle"
-                }`}
-              ></i>
-              {message}
-            </div>
-          )}
-
-          {/* Filtro de horas extra */}
-          <div className="filter-section">
-            <div className="filter-container">
-              <label className="filter-checkbox">
-                <input
-                  type="checkbox"
-                  checked={soloConHorasExtra}
-                  onChange={handleFiltroHorasExtraChange}
-                />
-                <span className="checkmark"></span>
-                Mostrar solo con horas extra
-              </label>
-              {soloConHorasExtra && resultadosFiltrados.length > 0 && (
-                <button
-                  className="btn-export-filter"
-                  onClick={() => {
-                    console.log(
-                      "Exportando desde filtro con datos:",
-                      resultadosFiltrados
-                    );
-                    exportarExcelGlobal([], resultadosFiltrados);
-                  }}
-                >
-                  <i className="bi bi-file-earmark-excel"></i>
-                  Exportar a Excel
-                </button>
-              )}
-            </div>
-          </div>
-
-          {/* Barra de búsqueda y acciones */}
-          <div className="search-section">
-            <div className="search-container">
-              <div className="search-input-wrapper">
-                <i className="bi bi-search search-icon"></i>
-                <input
-                  type="text"
-                  className="search-input"
-                  placeholder="Buscar por cédula..."
-                  value={cedula}
-                  onChange={(e) => setCedula(e.target.value)}
-                  disabled={searching}
-                />
+              <div className="upload-icon">
+                <i className={`${file ? 'bi bi-check-circle-fill' : 'bi bi-cloud-upload'}`}></i>
               </div>
-              <div className="action-buttons">
-                <button
-                  className="btn-refresh"
-                  onClick={refreshData}
-                  disabled={searching}
-                >
-                  <i className="bi bi-arrow-clockwise"></i>
-                  Refrescar
-                </button>
-                <button className="btn-clear" onClick={clearDatabase}>
-                  <i className="bi bi-trash"></i>
-                  Limpiar BD
-                </button>
-              </div>
-            </div>
-          </div>
-
-          {/* Contenido principal con tabla y sidebar */}
-          <div className="content-section">
-            {/* Tabla principal */}
-            <div className="table-section">
-              <div className="table-container">
-                <table className="data-table">
-                  <thead>
-                    <tr>
-                      <th>Nombre</th>
-                      <th>Apellido</th>
-                      <th>Cédula</th>
-                      <th>Fecha</th>
-                      <th>Hora Check-In</th>
-                      <th>Hora Check-Out</th>
-                      <th>Horas Trabajadas</th>
-                      <th>Horas Extra</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {searching ? (
-                      <tr>
-                        <td colSpan={8} className="loading-cell">
-                          <div className="loading-spinner">
-                            <span className="spinner"></span>
-                            <span>Buscando...</span>
-                          </div>
-                        </td>
-                      </tr>
-                    ) : paginatedResults.length === 0 ? (
-                      <tr>
-                        <td colSpan={8} className="empty-cell">
-                          <div className="empty-state">
-                            <i className="bi bi-inbox"></i>
-                            <span>
-                              {cedula.length === 0 && !soloConHorasExtra
-                                ? "Ingresa un término de búsqueda para ver registros"
-                                : soloConHorasExtra && cedula.length === 0
-                                ? "No hay registros con horas extra. Intenta buscar por cédula o nombre."
-                                : "No se encontraron resultados"}
-                            </span>
-                          </div>
-                        </td>
-                      </tr>
-                    ) : (
-                      paginatedResults.map((resultado, index) => (
-                        <tr key={index} className="data-row">
-                          <td className="name-cell">{resultado.nombre}</td>
-                          <td className="name-cell">{resultado.apellido}</td>
-                          <td className="id-cell">{resultado.cedula}</td>
-                          <td className="date-cell">{resultado.fecha}</td>
-                          <td className="time-cell">
-                            {resultado.horaCheckin || "–"}
-                          </td>
-                          <td className="time-cell">
-                            {resultado.horaCheckout || "–"}
-                          </td>
-                          <td className="hours-cell">
-                            {decimalToHHMMSS(resultado.horasTrabajadas)}
-                          </td>
-                          <td className="overtime-cell">
-                            {decimalToHHMMSS(resultado.horasExtra)}
-                          </td>
-                        </tr>
-                      ))
-                    )}
-                  </tbody>
-                </table>
-              </div>
-
-              {/* Paginación */}
-              {renderPagination(page, totalPages, setPage)}
-            </div>
-
-            {/* Sidebar con estadísticas y archivos */}
-            <div className="sidebar">
-              {/* Estadísticas */}
-              <div className="stats-card">
-                <div className="card-header">
-                  <i className="bi bi-graph-up"></i>
-                  <h3>Estadísticas</h3>
-                </div>
-                <div className="stats-content">
-                  <div className="stat-item">
-                    <div className="stat-number">
-                      {stats?.totalRecords || 0}
-                    </div>
-                    <div className="stat-label">Total Registros</div>
+              
+              <div className="upload-text">
+                {file ? '✅ Archivo Seleccionado' : '📊 Seleccionar Archivo de Datos'}
+                      </div>
+                      
+              <div className="upload-subtitle">
+                {file ? 'Haz clic para cambiar el archivo' : 'Arrastra tu archivo Excel aquí o haz clic para seleccionar'}
+                      </div>
+                      
+              <div className="upload-formats">
+                {file ? `Archivo: ${file.name}` : 'Formatos compatibles: .xlsx, .xls'}
                   </div>
-                  <div className="stat-item">
-                    <div className="stat-number">
-                      {stats?.uniquePersons || 0}
-                    </div>
-                    <div className="stat-label">Personas Únicas</div>
-                  </div>
-                </div>
+                  
+                  <input
+                    type="file"
+                className="file-input"
+                    accept=".xlsx,.xls"
+                    onChange={handleFileChange}
+                    disabled={loading}
+                id="fileInput"
+                  />
               </div>
-
-              {/* Archivos subidos */}
-              <div className="files-card">
-                <div className="card-header">
-                  <i className="bi bi-folder"></i>
-                  <h3>Archivos Subidos</h3>
-                </div>
-                <div className="files-content">
-                  {files.length === 0 ? (
-                    <div className="empty-files">
-                      <i className="bi bi-folder-x"></i>
-                      <span>No hay archivos subidos</span>
-                    </div>
+              
+              {/* Botón de subida */}
+                <button
+              className={`upload-button ${!file || loading ? 'disabled' : ''}`}
+                  onClick={handleUpload}
+                  disabled={!file || loading}
+                >
+                  {loading ? (
+                    <>
+                      <span className="spinner"></span>
+                      Procesando archivo...
+                    </>
                   ) : (
-                    <div className="files-list">
-                      {files.map((file, index) => (
-                        <div key={index} className="file-item">
-                          <div className="file-info">
-                            <span className="file-name">
-                              {file.name.length > 25
-                                ? file.name.substring(0, 25) + "..."
-                                : file.name}
-                            </span>
-                            <span className="file-date">
-                              {new Date(file.mtime).toLocaleDateString()}
-                            </span>
-                          </div>
-                          <div className="file-actions">
-                            <button
-                              className="btn-file-action"
-                              onClick={() =>
-                                window.open(
-                                  `${ALUMBRADO_API_BASE_URL}/files/${file.name}`,
-                                  "_blank"
-                                )
-                              }
-                              title="Ver archivo"
-                            >
-                              <i className="bi bi-eye"></i>
-                            </button>
-                            <button
-                              className="btn-file-action delete"
-                              onClick={async () => {
-                                if (
-                                  window.confirm(
-                                    "¿Estás seguro de que quieres eliminar este archivo?"
-                                  )
-                                ) {
-                                  try {
-                                    const response = await fetch(
-                                      `${ALUMBRADO_API_BASE_URL}/files/${file.name}`,
-                                      { method: "DELETE" }
-                                    );
-                                    if (response.ok) {
-                                      fetchFiles();
-                                    }
-                                  } catch (error) {
-                                    console.error(
-                                      "Error deleting file:",
-                                      error
-                                    );
-                                  }
-                                }
-                              }}
-                              title="Eliminar archivo"
-                            >
-                              <i className="bi bi-trash"></i>
-                            </button>
-                          </div>
-                        </div>
-                      ))}
-                    </div>
+                    <>
+                      <i className="bi bi-upload"></i>
+                  {file ? 'Subir Archivo Excel' : 'Selecciona un archivo primero'}
+                    </>
                   )}
+                </button>
+          </div>
+        </div>
+
+        {/* Mensaje de estado */}
+        {message && (
+          <div className={`status-message ${
+            message.includes("Error") || message.includes("No se") ? "error" : "success"
+          }`}>
+            <i className={`bi ${
+              message.includes("Error") || message.includes("No se")
+                ? "bi-exclamation-triangle"
+                : "bi-check-circle"
+            }`}></i>
+            <span>{message}</span>
+          </div>
+        )}
+
+        {/* Filtros y búsqueda */}
+        <div className="modern-card">
+          <div className="card-header">
+            <h3>
+              <i className="bi bi-funnel"></i>
+              🔍 Filtros y Consultas
+            </h3>
+            <p>⚡ Busque y filtre registros por cédula, nombre o criterios específicos</p>
+          </div>
+          <div className="filters-section">
+            <div className="filters-grid">
+              <div className="search-container">
+                <i className="bi bi-search search-icon"></i>
+                      <input
+                        type="text"
+                  className="search-input"
+                  placeholder="Ingrese cédula, nombre o apellido..."
+                        value={cedula}
+                        onChange={(e) => setCedula(e.target.value)}
+                />
+                  </div>
+                  
+              <div className="filter-checkbox">
+                      <input
+                        type="checkbox"
+                  className="checkbox-input"
+                  id="horasExtra"
+                        checked={soloConHorasExtra}
+                        onChange={handleFiltroHorasExtraChange}
+                />
+                <label htmlFor="horasExtra" className="checkbox-text">
+                  Solo mostrar registros con horas extra
+                  </label>
+                </div>
+
+              <div className="action-buttons">
+                <button className="btn-modern btn-primary" onClick={refreshData}>
+                  <i className="bi bi-arrow-clockwise"></i>
+                  🔄 Actualizar Datos
+                    </button>
+                <button className="btn-modern btn-danger" onClick={clearDatabase}>
+                  <i className="bi bi-trash"></i>
+                  🗑️ Limpiar Registros
+                      </button>
+                    </div>
                 </div>
               </div>
-
-              {/* Botón de exportar */}
-              <div className="export-container">
-                {resultadosFiltrados.length > 0 && (
-                  <button
-                    className="btn-export"
-                    onClick={() => {
-                      console.log(
-                        "Exportando desde sidebar con datos:",
-                        resultadosFiltrados
-                      );
-                      exportarExcelGlobal([], resultadosFiltrados);
-                    }}
-                  >
-                    <i className="bi bi-file-earmark-excel"></i>
-                    Exportar a Excel
-                  </button>
-                )}
-              </div>
             </div>
+
+        {/* Tabla de registros */}
+                <div className="table-container">
+                  <table className="data-table">
+                    <thead>
+                      <tr>
+                <th>NOMBRE</th>
+                <th>APELLIDO</th>
+                <th>CÉDULA</th>
+                <th>FECHA</th>
+                <th>HORA CHECK-IN</th>
+                <th>HORA CHECK-OUT</th>
+                       <th>HORAS TRABAJADAS</th>
+                       <th>HORAS EXTRA</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+              {paginatedResults.length > 0 ? (
+                        paginatedResults.map((resultado, index) => (
+                  <tr key={index}>
+                    <td>{resultado.nombre}</td>
+                    <td>{resultado.apellido}</td>
+                    <td>{resultado.cedula}</td>
+                            <td>{resultado.fecha}</td>
+                    <td>{resultado.horaCheckin}</td>
+                    <td>{resultado.horaCheckout}</td>
+                    <td>
+                      {resultado.horasTrabajadas ? 
+                        `${resultado.horasTrabajadas.toFixed(1)}h` : 
+                        'N/A'
+                      }
+                    </td>
+                    <td>
+                      {resultado.horasExtra && resultado.horasExtra > 0 ? 
+                        <span style={{color: '#dc2626', fontWeight: 'bold'}}>
+                          +{resultado.horasExtra.toFixed(1)}h
+                        </span> : 
+                        '0h'
+                      }
+                            </td>
+                          </tr>
+                        ))
+              ) : (
+                <tr>
+                         <td colSpan={8} className="empty-state">
+                           <div className="empty-icon">
+                             <img 
+                               src={logoAlumbrado} 
+                               alt="Logo Alumbrado Público" 
+                               className="empty-logo"
+                             />
+                              </div>
+                           <div className="empty-title">
+                             {cedula.length === 0 && !soloConHorasExtra
+                               ? "📊 Registros de Asistencia"
+                               : soloConHorasExtra && cedula.length === 0
+                               ? "⏰ Filtro de Horas Extra"
+                               : "🔍 Sin Resultados"}
+                           </div>
+                           <div className="empty-description">
+                             {cedula.length === 0 && !soloConHorasExtra
+                               ? "Importe un archivo Excel para visualizar los registros de asistencia del personal"
+                               : soloConHorasExtra && cedula.length === 0
+                               ? "No se encontraron registros con horas extra. Intente buscar por cédula o nombre."
+                               : "No se encontraron resultados para su consulta"}
+                           </div>
+                           <div className="empty-actions">
+                                <button
+                               onClick={() => document.getElementById('fileInput')?.click()}
+                               className="btn-modern btn-primary"
+                             >
+                               <i className="bi bi-upload"></i>
+                               📁 Importar Archivo
+                                </button>
+                                <button
+                               onClick={() => setCedula('')}
+                               className="btn-modern btn-secondary"
+                             >
+                               <i className="bi bi-search"></i>
+                               👀 Ver Todos los Registros
+                                </button>
+                              </div>
+                            </td>
+                          </tr>
+              )}
+                      </tbody>
+                    </table>
+                  </div>
+
+        {/* Estadísticas */}
+        <div className="stats-grid">
+          <div className="stat-card">
+            <div className="stat-number">👥 {stats.totalEmpleados || 0}</div>
+            <div className="stat-label">Personal Registrado</div>
+              </div>
+          <div className="stat-card">
+            <div className="stat-number">⏰ {stats.totalHorasTrabajadas ? stats.totalHorasTrabajadas.toFixed(1) : '0.0'}h</div>
+            <div className="stat-label">Horas Totales Trabajadas</div>
+            </div>
+          <div className="stat-card">
+            <div className="stat-number">⚡ {stats.totalHorasExtra ? stats.totalHorasExtra.toFixed(1) : '0.0'}h</div>
+            <div className="stat-label">Horas Extra Acumuladas</div>
+          </div>
+          <div className="stat-card">
+            <div className="stat-number">📊 {stats.promedioHorasPorEmpleado ? stats.promedioHorasPorEmpleado.toFixed(1) : '0.0'}h</div>
+            <div className="stat-label">Promedio por Persona</div>
           </div>
         </div>
       </div>

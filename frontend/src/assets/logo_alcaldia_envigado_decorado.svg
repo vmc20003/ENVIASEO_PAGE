@@ -1,0 +1,75 @@
+<svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <!-- Logo decorado de la Alcaldía de Envigado -->
+  <defs>
+    <style>
+      .circle-outline { fill: none; stroke: #f97316; stroke-width: 6; }
+      .text { fill: #f97316; font-family: 'Arial', sans-serif; font-weight: bold; text-anchor: middle; }
+      .column { fill: #f97316; stroke: #d97706; stroke-width: 2; }
+      .shield { fill: #f97316; stroke: #d97706; stroke-width: 2; }
+      .crown { fill: #fbbf24; stroke: #f59e0b; stroke-width: 1.5; }
+      .laurel { fill: #10b981; stroke: #059669; stroke-width: 1; }
+      .arch { fill: none; stroke: #f97316; stroke-width: 3; }
+      .star { fill: #fbbf24; }
+    </style>
+    
+    <!-- Gradientes para efectos -->
+    <linearGradient id="columnGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#f97316;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#d97706;stop-opacity:1" />
+    </linearGradient>
+    
+    <linearGradient id="shieldGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#f97316;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#ea580c;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Círculo exterior con decoración -->
+  <circle class="circle-outline" cx="100" cy="100" r="90"/>
+  
+  <!-- Corona de laurel superior -->
+  <path class="laurel" d="M 30 50 Q 50 40 70 50 Q 90 40 110 50 Q 130 40 150 50 Q 170 40 190 50 Q 180 60 170 50 Q 150 60 130 50 Q 110 60 90 50 Q 70 60 50 50 Q 30 60 20 50 Q 30 50 30 50 Z"/>
+  
+  <!-- Columnas clásicas a los lados -->
+  <!-- Columna izquierda -->
+  <rect class="column" x="25" y="60" width="8" height="80" rx="4" fill="url(#columnGradient)"/>
+  <rect class="column" x="23" y="58" width="12" height="6" rx="2"/>
+  <rect class="column" x="23" y="142" width="12" height="6" rx="2"/>
+  
+  <!-- Columna derecha -->
+  <rect class="column" x="167" y="60" width="8" height="80" rx="4" fill="url(#columnGradient)"/>
+  <rect class="column" x="165" y="58" width="12" height="6" rx="2"/>
+  <rect class="column" x="165" y="142" width="12" height="6" rx="2"/>
+  
+  <!-- Arco arquitectónico superior -->
+  <path class="arch" d="M 40 60 Q 100 40 160 60" fill="none"/>
+  
+  <!-- Escudo municipal central -->
+  <path class="shield" d="M 85 70 L 115 70 L 120 85 L 115 100 L 100 110 L 85 100 L 80 85 Z" fill="url(#shieldGradient)"/>
+  
+  <!-- Corona sobre el escudo -->
+  <path class="crown" d="M 90 65 L 95 60 L 100 65 L 105 60 L 110 65 L 100 70 Z"/>
+  
+  <!-- Estrella en el escudo -->
+  <polygon class="star" points="100,80 102,85 107,85 103,88 105,93 100,90 95,93 97,88 93,85 98,85" transform="scale(0.8)"/>
+  
+  <!-- Texto "ALCALDÍA" -->
+  <text class="text" x="100" y="125" font-size="18" font-weight="bold">ALCALDÍA</text>
+  
+  <!-- Texto "DE" -->
+  <text class="text" x="100" y="145" font-size="14" font-weight="bold">DE</text>
+  
+  <!-- Texto "ENVIGADO" -->
+  <text class="text" x="100" y="165" font-size="18" font-weight="bold">ENVIGADO</text>
+  
+  <!-- Decoración inferior -->
+  <path class="laurel" d="M 40 180 Q 60 190 80 180 Q 100 190 120 180 Q 140 190 160 180 Q 150 170 140 180 Q 120 170 100 180 Q 80 170 60 180 Q 50 170 40 180 Z"/>
+  
+  <!-- Estrellas decorativas -->
+  <polygon class="star" points="50,30 52,35 57,35 53,38 55,43 50,40 45,43 47,38 43,35 48,35" transform="scale(0.6)"/>
+  <polygon class="star" points="150,30 152,35 157,35 153,38 155,43 150,40 145,43 147,38 143,35 148,35" transform="scale(0.6)"/>
+  <polygon class="star" points="50,170 52,175 57,175 53,178 55,183 50,180 45,183 47,178 43,175 48,175" transform="scale(0.6)"/>
+  <polygon class="star" points="150,170 152,175 157,175 153,178 155,183 150,180 145,183 147,178 143,175 148,175" transform="scale(0.6)"/>
+</svg>
+
+

@@ -1,125 +1,66 @@
 import fs from "fs";
 import path from "path";
-import { config } from "../config.js";
 
-// Cargar base de datos desde archivo JSON
+const dbFile = path.join("uploads_excel", "database.json");
+
 export function loadDB() {
+  if (!fs.existsSync(dbFile)) return [];
   try {
-    const dbPath = path.join(
-      process.cwd(),
-      config.UPLOAD_FOLDER,
-      config.DATABASE_FILE
-    );
-    if (fs.existsSync(dbPath)) {
-      const data = fs.readFileSync(dbPath, "utf8");
-      return JSON.parse(data);
-    }
-  } catch (error) {
-    console.error("Error loading database:", error);
+    return JSON.parse(fs.readFileSync(dbFile, "utf8"));
+  } catch (e) {
+    console.error("Error loading database:", e);
+    return [];
   }
-  return [];
 }
 
-// Guardar base de datos en archivo JSON
 export function saveDB(data) {
   try {
-    const dbPath = path.join(
-      process.cwd(),
-      config.UPLOAD_FOLDER,
-      config.DATABASE_FILE
-    );
-    const dbDir = path.dirname(dbPath);
-
-    if (!fs.existsSync(dbDir)) {
-      fs.mkdirSync(dbDir, { recursive: true });
-    }
-
-    fs.writeFileSync(dbPath, JSON.stringify(data, null, 2));
-    return true;
-  } catch (error) {
-    console.error("Error saving database:", error);
-    return false;
+    fs.writeFileSync(dbFile, JSON.stringify(data, null, 2), "utf8");
+    console.log(`Database saved with ${data.length} records`);
+  } catch (e) {
+    console.error("Error saving database:", e);
+    throw e;
   }
 }
 
-// Unir filas de datos, evitando duplicados
-export function mergeRows(existingData, newData) {
-  const merged = [...existingData];
-
-  newData.forEach((newRow) => {
-    const isDuplicate = existingData.some((existingRow) => {
-      return (
-        existingRow.idPersona === newRow.idPersona &&
-        existingRow.nombre === newRow.nombre &&
-        existingRow.departamento === newRow.departamento &&
-        existingRow.hora === newRow.hora &&
-        existingRow.puntoVerificacion === newRow.puntoVerificacion
-      );
-    });
-
-    if (!isDuplicate) {
-      merged.push(newRow);
-    }
-  });
-
-  return merged;
+export function mergeRows(existing, incoming) {
+  // Evitar duplicados por idPersona y hora
+  const key = (r) => `${String(r.idPersona).replace(/\D/g, "")}|${r.hora}`;
+  const map = new Map(existing.map((r) => [key(r), r]));
+  for (const row of incoming) {
+    map.set(key(row), row);
+  }
+  return Array.from(map.values());
 }
 
-// Obtener estadísticas de la base de datos
 export function getStats() {
-  const data = loadDB();
-  const uniquePersons = new Set(data.map((row) => row.idPersona)).size;
-
+  const db = loadDB();
   return {
-    totalRecords: data.length,
-    uniquePersons: uniquePersons,
-    lastUpdate: new Date().toISOString(),
+    totalRecords: db.length,
+    uniquePersons: new Set(db.map((r) => String(r.idPersona).replace(/\D/g, "")))
+      .size,
   };
 }
 
-// Buscar registros por consulta
-export function searchByQuery(query, page = 1) {
-  const data = loadDB();
-  const searchTerm = query.toLowerCase();
-
-  const filtered = data.filter((row) => {
-    return (
-      (row.idPersona &&
-        row.idPersona.toString().toLowerCase().includes(searchTerm)) ||
-      (row.nombre && row.nombre.toLowerCase().includes(searchTerm)) ||
-      (row.departamento &&
-        row.departamento.toLowerCase().includes(searchTerm)) ||
-      (row.hora && row.hora.toLowerCase().includes(searchTerm)) ||
-      (row.puntoVerificacion &&
-        row.puntoVerificacion.toLowerCase().includes(searchTerm))
-    );
-  });
-
-  const startIndex = (page - 1) * config.PAGE_SIZE;
-  const endIndex = startIndex + config.PAGE_SIZE;
-
-  return {
-    data: filtered.slice(startIndex, endIndex),
-    total: filtered.length,
-    page: page,
-    totalPages: Math.ceil(filtered.length / config.PAGE_SIZE),
-  };
+export function searchByQuery(query) {
+  const db = loadDB();
+  const q = String(query).replace(/\s+/g, "").toLowerCase();
+  return db
+    .filter((row) => {
+      const nombre = (row.nombre || "").replace(/\s+/g, "").toLowerCase();
+      const idPersona = String(row.idPersona).replace(/\D/g, "");
+      const departamento = (row.departamento || "").replace(/\s+/g, "").toLowerCase();
+      return nombre.includes(q) || idPersona.includes(q) || departamento.includes(q);
+    })
+    .map((row) => ({
+      idPersona: String(row.idPersona).replace(/\D/g, ""),
+      nombre: row.nombre,
+      departamento: row.departamento,
+      hora: row.hora,
+      puntoVerificacion: row.puntoVerificacion,
+    }));
 }
 
-// Limpiar base de datos
 export function clearDatabase() {
-  try {
-    const dbPath = path.join(
-      process.cwd(),
-      config.UPLOAD_FOLDER,
-      config.DATABASE_FILE
-    );
-    if (fs.existsSync(dbPath)) {
-      fs.unlinkSync(dbPath);
-    }
-    return true;
-  } catch (error) {
-    console.error("Error clearing database:", error);
-    return false;
-  }
+  saveDB([]);
 }

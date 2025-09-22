@@ -1,25 +1,25 @@
 {
   "name": "sistema-gestion-asistencia",
   "version": "1.0.0",
-  "description": "Sistema de Gestión de Asistencia para envíaseo E.S.P.",
+  "description": "Sistema de Gestión de Asistencia para envíaseo E.S.P. - Aplicación de código abierto",
   "main": "index.js",
   "scripts": {
-    "install-all": "npm install && cd backend && npm install && cd ../frontend && npm install && cd ../backend-alcaldia && npm install",
-    "start-backend": "cd backend && npm start",
-    "start-frontend": "cd frontend && npm start",
-    "start-alcaldia": "cd backend-alcaldia && node server-new.js",
-    "dev": "concurrently \"npm run start-backend\" \"npm run start-frontend\"",
-    "dev-all": "concurrently \"npm run start-backend\" \"npm run start-frontend\" \"npm run start-alcaldia\"",
-    "start-cmd": "powershell -ExecutionPolicy Bypass -File start-all-cmd.ps1",
-    "start-single-cmd": "powershell -ExecutionPolicy Bypass -File start-all-single-cmd.ps1",
-    "start-original": "powershell -ExecutionPolicy Bypass -File start-all.ps1",
-    "dev-team": "powershell -ExecutionPolicy Bypass -File team-setup/scripts/dev-team.ps1",
-    "setup-team": "powershell -ExecutionPolicy Bypass -File team-setup/scripts/setup-team.ps1",
-    "verify-sync": "powershell -ExecutionPolicy Bypass -File team-setup/scripts/verify-and-sync.ps1",
-    "check-project": "powershell -ExecutionPolicy Bypass -File team-setup/scripts/check-project.ps1",
-    "start-simple": "powershell -ExecutionPolicy Bypass -File team-setup/scripts/start-project.ps1",
-    "build": "cd frontend && npm run build",
+    "install-all": "npm install && npm --prefix backend install && npm --prefix frontend install && npm --prefix backend-alcaldia install && npm --prefix backend-enviaseo-control-acceso install",
+    "start": "npm run start-all",
+    "start-all": "concurrently \"npm run start-frontend\" \"npm run start-backend\" \"npm run start-alcaldia\" \"npm run start-enviaseo\"",
+    "start-frontend": "npm --prefix frontend start",
+    "start-backend": "npm --prefix backend start",
+    "start-alcaldia": "npm --prefix backend-alcaldia start",
+    "start-enviaseo": "npm --prefix backend-enviaseo-control-acceso start",
+    "build": "npm --prefix frontend run build",
+    "build-all": "npm run build",
+    "dev": "npm run start-all",
     "test": "echo \"No tests specified\" && exit 0",
+    "clean": "npm run clean:node-modules && npm run clean:build",
+    "clean:node-modules": "rimraf node_modules && rimraf frontend/node_modules && rimraf backend/node_modules && rimraf backend-alcaldia/node_modules && rimraf backend-enviaseo-control-acceso/node_modules",
+    "clean:build": "rimraf frontend/build",
+    "setup": "npm run install-all",
+    "postinstall": "echo \"✅ Instalación completada. Ejecuta 'npm start' para iniciar la aplicación\"",
     "git-status": "git status",
     "git-log": "git log --oneline -10",
     "git-pull": "git pull origin main",
@@ -30,12 +30,29 @@
     "horas-extras",
     "excel",
     "react",
-    "nodejs"
+    "nodejs",
+    "open-source",
+    "microservices",
+    "gestion-empleados",
+    "envíaseo"
   ],
   "author": "envíaseo E.S.P.",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/envíaseo/sistema-gestion-asistencia.git"
+  },
+  "bugs": {
+    "url": "https://github.com/envíaseo/sistema-gestion-asistencia/issues"
+  },
+  "homepage": "https://github.com/envíaseo/sistema-gestion-asistencia#readme",
+  "engines": {
+    "node": ">=16.0.0",
+    "npm": ">=8.0.0"
+  },
   "devDependencies": {
-    "concurrently": "^8.2.2"
+    "concurrently": "^8.2.2",
+    "rimraf": "^5.0.0"
   },
   "dependencies": {
     "node-fetch": "^3.3.2",

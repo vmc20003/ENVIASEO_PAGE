@@ -39,30 +39,54 @@ export function findHeaderKey(keys, searchTerms) {
 // NUEVO: Buscar la fila de encabezados real ignorando filas con celdas gigantes
 function findHeaderRowAndHeaders(sheet) {
   const range = xlsx.utils.decode_range(sheet["!ref"]);
-  for (let R = range.s.r; R <= range.e.r; ++R) {
+  console.log(`🔍 Buscando encabezados en rango: ${range.s.r}-${range.e.r}, columnas: ${range.s.c}-${range.e.c}`);
+  
+  for (let R = range.s.r; R <= Math.min(range.e.r, range.s.r + 20); ++R) { // Limitar a primeras 20 filas
     let rowValues = [];
     for (let C = range.s.c; C <= range.e.c; ++C) {
       const cell = sheet[xlsx.utils.encode_cell({ r: R, c: C })];
       rowValues.push(cell ? String(cell.v) : "");
     }
+    
+    console.log(`🔍 Fila ${R}:`, rowValues.slice(0, 5)); // Mostrar primeras 5 columnas
+    
     // Ignorar filas donde la primera celda tenga muchas comas (celdas gigantes tipo CSV)
     if (
       rowValues[0] &&
       rowValues[0].split(",").length > 5 &&
       rowValues.filter((x) => x).length === 1
     ) {
+      console.log(`⚠️ Fila ${R} ignorada: celda gigante con ${rowValues[0].split(",").length} comas`);
       continue;
     }
+    
     const normalizedRow = rowValues.map((v) => normalize(v));
-    if (
-      normalizedRow.some((v) => v.includes("firstname")) &&
-      normalizedRow.some((v) => v.includes("lastname")) &&
-      (normalizedRow.some((v) => v.includes("personno")) ||
-        normalizedRow.some((v) => v.includes("cardno")))
-    ) {
+    console.log(`🔍 Fila ${R} normalizada:`, normalizedRow.slice(0, 5));
+    
+    // Buscar patrones de encabezados más flexibles
+    const hasFirstName = normalizedRow.some((v) => 
+      v.includes("firstname") || v.includes("nombre") || v.includes("name")
+    );
+    const hasLastName = normalizedRow.some((v) => 
+      v.includes("lastname") || v.includes("apellido") || v.includes("surname")
+    );
+    const hasPersonNo = normalizedRow.some((v) => 
+      v.includes("personno") || v.includes("cardno") || v.includes("cedula") || 
+      v.includes("id") || v.includes("documento")
+    );
+    const hasTime = normalizedRow.some((v) => 
+      v.includes("time") || v.includes("hora") || v.includes("fecha")
+    );
+    
+    console.log(`🔍 Fila ${R} - hasFirstName: ${hasFirstName}, hasLastName: ${hasLastName}, hasPersonNo: ${hasPersonNo}, hasTime: ${hasTime}`);
+    
+    if (hasFirstName && hasLastName && hasPersonNo) {
+      console.log(`✅ Encabezados encontrados en fila ${R}:`, rowValues);
       return { headerRow: R, headers: rowValues };
     }
   }
+  
+  console.log("❌ No se encontraron encabezados válidos");
   return { headerRow: 0, headers: [] };
 }
 
@@ -176,12 +200,84 @@ export function forceParseCsvLikeExcel(sheet) {
   return null;
 }
 
+// Función para procesar datos CSV
+function processCsvData(csvData) {
+  console.log("🔄 Procesando datos CSV...");
+  
+  const processed = csvData.map((row, idx) => {
+    const keys = Object.keys(row);
+    const firstNameKey = findHeaderKey(keys, excelConfig.HEADER_SEARCH_TERMS.firstName);
+    const lastNameKey = findHeaderKey(keys, excelConfig.HEADER_SEARCH_TERMS.lastName);
+    const personNoKey = findHeaderKey(keys, excelConfig.HEADER_SEARCH_TERMS.personNo);
+    const timeKey = findHeaderKey(keys, excelConfig.HEADER_SEARCH_TERMS.time);
+    const accessPointKey = findHeaderKey(keys, excelConfig.HEADER_SEARCH_TERMS.accessPoint);
+    const attendanceTypeKey = findHeaderKey(keys, excelConfig.HEADER_SEARCH_TERMS.attendanceType);
+    
+    // Separar nombre y apellido si vienen juntos en una celda
+    let firstName = row[firstNameKey] || "";
+    let lastName = row[lastNameKey] || "";
+    if (firstName && firstName.includes(",")) {
+      const parts = firstName.split(",");
+      firstName = parts[0].trim();
+      lastName = parts[1] ? parts[1].trim() : lastName;
+    }
+    if (lastName && lastName.includes(",")) {
+      const parts = lastName.split(",");
+      lastName = parts[0].trim();
+    }
+    
+    return {
+      firstName,
+      lastName,
+      personNo: row[personNoKey] || "",
+      time: row[timeKey] || "",
+      accessPoint: row[accessPointKey] || "",
+      attendanceType: row[attendanceTypeKey] || "",
+    };
+  }).filter((row) => {
+    const cedula = String(row.personNo).replace(/\D/g, "");
+    return cedula.length >= 5 && !isNaN(Number(cedula));
+  });
+
+  console.log(`✅ Procesados ${processed.length} registros CSV válidos`);
+  return processed;
+}
+
 export function processExcelData(sheet) {
+  console.log("🔄 Iniciando procesamiento de archivo Excel...");
+  
   // Buscar la fila de encabezados real ignorando filas basura
-  const { headerRow, headers } = findHeaderRowAndHeaders(sheet);
+  let { headerRow, headers } = findHeaderRowAndHeaders(sheet);
+  
   if (!headers.length) {
-    throw new Error("No se encontraron encabezados válidos en el archivo.");
+    console.log("⚠️ No se encontraron encabezados válidos, intentando procesamiento alternativo...");
+    
+    // Intentar procesar como CSV embebido
+    const csvData = parseCsvLikeExcel(sheet);
+    if (csvData && csvData.length > 0) {
+      console.log("✅ Procesado como CSV embebido, registros:", csvData.length);
+      return processCsvData(csvData);
+    }
+    
+    // Si no funciona, usar la primera fila como encabezados
+    const range = xlsx.utils.decode_range(sheet["!ref"]);
+    let firstRowValues = [];
+    for (let C = range.s.c; C <= range.e.c; ++C) {
+      const cell = sheet[xlsx.utils.encode_cell({ r: range.s.r, c: C })];
+      firstRowValues.push(cell ? String(cell.v) : "");
+    }
+    
+    if (firstRowValues.length > 0) {
+      console.log("⚠️ Usando primera fila como encabezados:", firstRowValues);
+      headers = firstRowValues;
+      headerRow = range.s.r;
+    } else {
+      throw new Error("No se encontraron encabezados válidos en el archivo.");
+    }
   }
+  
+  console.log(`📋 Procesando desde fila ${headerRow + 1} con encabezados:`, headers);
+  
   // Procesar solo las filas debajo del encabezado
   let data = xlsx.utils.sheet_to_json(sheet, {
     defval: "",
@@ -189,9 +285,11 @@ export function processExcelData(sheet) {
     range: headerRow + 1,
   });
 
+  console.log(`📊 Total de filas encontradas: ${data.length}`);
+
   if (data.length > 0) {
     const keys = Object.keys(data[0]);
-    console.log("Encabezados detectados:", keys);
+    console.log("🔑 Encabezados detectados:", keys);
   }
 
   const processed = data
@@ -241,8 +339,12 @@ export function processExcelData(sheet) {
     })
     .filter((row) => {
       const cedula = String(row.personNo).replace(/\D/g, "");
-      // Solo incluir filas donde la cédula sea un número colombiano válido (mínimo 5 dígitos)
-      return cedula.length >= 5 && !isNaN(Number(cedula));
+      // Ser más permisivo: incluir filas con cédula de al menos 3 dígitos o con nombre válido
+      const hasValidCedula = cedula.length >= 3 && !isNaN(Number(cedula));
+      const hasValidName = (row.firstName && row.firstName.trim().length > 0) || 
+                          (row.lastName && row.lastName.trim().length > 0);
+      
+      return hasValidCedula || hasValidName;
     });
 
   console.log("Datos procesados:", processed.slice(0, 5));
