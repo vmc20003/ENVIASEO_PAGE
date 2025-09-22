@@ -68,3 +68,4 @@ echo.
 echo O ejecuta el script: iniciar-aplicacion.bat
 echo.
 pause
+
