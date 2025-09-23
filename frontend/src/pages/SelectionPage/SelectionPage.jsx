@@ -468,11 +468,17 @@ function SelectionPage({ onSelectOption, onLogout }) {
                 {option.logo ? (
                   <img 
                     src={option.logo} 
-                    alt={`Logo ${option.subtitle}`} 
+                    alt={`Logo ${option.subtitle}`}
+                    onError={(e) => {
+                      e.target.style.display = 'none';
+                      e.target.nextElementSibling.style.display = 'block';
+                    }}
                   />
-                ) : (
-                  <i className={option.icon}></i>
-                )}
+                ) : null}
+                <i 
+                  className={option.icon}
+                  style={{ display: option.logo ? 'none' : 'block' }}
+                ></i>
               </div>
               
               <div className="card-content">

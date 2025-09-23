@@ -1,6 +1,6 @@
 // Configuración de APIs para diferentes funcionalidades
 // Detect host for portability across PCs and networks
-const HOSTNAME = typeof window !== 'undefined' ? window.location.hostname : 'localhost';
+const HOSTNAME = 'localhost';
 const DEFAULTS = {
   ALUMBRADO: `http://${HOSTNAME}:4000`,
   ALCALDIA: `http://${HOSTNAME}:4002`,
@@ -12,9 +12,9 @@ export const API_CONFIG = {
   ALUMBRADO: {
     BASE_URL: process.env.REACT_APP_ALUMBRADO_API_URL || DEFAULTS.ALUMBRADO,
     ENDPOINTS: {
-      UPLOAD: '/api/upload',
-      DATA: '/api/data',
-      FILES: '/api/files'
+      UPLOAD: '/upload',
+      DATA: '/data',
+      FILES: '/files'
     }
   },
   

@@ -169,12 +169,20 @@ function MainApp({ onBack }) {
       const formData = new FormData();
       formData.append("file", file);
 
-      const response = await fetch(`${API_CONFIG.ALUMBRADO.BASE_URL}/upload`, {
+      const uploadUrl = `${API_CONFIG.ALUMBRADO.BASE_URL}/upload`;
+      console.log("Uploading to:", uploadUrl);
+      console.log("File:", file.name, file.size);
+
+      const response = await fetch(uploadUrl, {
         method: "POST",
         body: formData,
       });
 
+      console.log("Response status:", response.status);
+      console.log("Response ok:", response.ok);
+
       const data = await response.json();
+      console.log("Response data:", data);
 
       if (response.ok) {
         setMessage(
@@ -187,6 +195,7 @@ function MainApp({ onBack }) {
         setMessage(`Error: ${data.error || "Error desconocido"}`);
       }
     } catch (error) {
+      console.error("Upload error:", error);
       setMessage(`Error de conexión: ${error.message}`);
     } finally {
       setLoading(false);
@@ -753,42 +762,48 @@ function MainApp({ onBack }) {
             <p>🚀 Importe archivos Excel (.xlsx, .xls) con registros de asistencia para procesamiento automático</p>
           </div>
           <div className="upload-section">
-            {/* Área de selección de archivo */}
-            <div 
-              className="upload-area" 
-              onClick={() => document.getElementById('fileInput').click()}
-              onDrop={handleDrop}
-              onDragOver={handleDragOver}
-            >
-              <div className="upload-icon">
-                <i className={`${file ? 'bi bi-check-circle-fill' : 'bi bi-cloud-upload'}`}></i>
+            {/* Área de selección de archivo mejorada */}
+            <div className="upload-container">
+              <div 
+                className="upload-area" 
+                onClick={(e) => {
+                  e.preventDefault();
+                  e.stopPropagation();
+                  document.getElementById('fileInput').click();
+                }}
+                onDrop={handleDrop}
+                onDragOver={handleDragOver}
+              >
+                <div className="upload-icon">
+                  <i className={`${file ? 'bi bi-check-circle-fill' : 'bi bi-cloud-upload'}`}></i>
+                </div>
+                
+                <div className="upload-text">
+                  {file ? '✅ Archivo Seleccionado' : '📊 Seleccionar Archivo de Datos'}
+                </div>
+                
+                <div className="upload-subtitle">
+                  {file ? 'Haz clic para cambiar el archivo' : 'Arrastra tu archivo Excel aquí o haz clic para seleccionar'}
+                </div>
+                
+                <div className="upload-formats">
+                  {file ? `Archivo: ${file.name}` : 'Formatos compatibles: .xlsx, .xls'}
+                </div>
+                
+                <input
+                  type="file"
+                  className="file-input"
+                  accept=".xlsx,.xls"
+                  onChange={handleFileChange}
+                  disabled={loading}
+                  id="fileInput"
+                />
               </div>
               
-              <div className="upload-text">
-                {file ? '✅ Archivo Seleccionado' : '📊 Seleccionar Archivo de Datos'}
-                      </div>
-                      
-              <div className="upload-subtitle">
-                {file ? 'Haz clic para cambiar el archivo' : 'Arrastra tu archivo Excel aquí o haz clic para seleccionar'}
-                      </div>
-                      
-              <div className="upload-formats">
-                {file ? `Archivo: ${file.name}` : 'Formatos compatibles: .xlsx, .xls'}
-                  </div>
-                  
-                  <input
-                    type="file"
-                className="file-input"
-                    accept=".xlsx,.xls"
-                    onChange={handleFileChange}
-                    disabled={loading}
-                id="fileInput"
-                  />
-              </div>
-              
-              {/* Botón de subida */}
+              {/* Botón de acción mejorado */}
+              <div className="upload-actions">
                 <button
-              className={`upload-button ${!file || loading ? 'disabled' : ''}`}
+                  className={`upload-button ${!file || loading ? 'disabled' : ''}`}
                   onClick={handleUpload}
                   disabled={!file || loading}
                 >
@@ -800,12 +815,14 @@ function MainApp({ onBack }) {
                   ) : (
                     <>
                       <i className="bi bi-upload"></i>
-                  {file ? 'Subir Archivo Excel' : 'Selecciona un archivo primero'}
+                      {file ? 'Subir Archivo Excel' : 'Selecciona un archivo primero'}
                     </>
                   )}
                 </button>
+              </div>
+            </div>
           </div>
-        </div>
+            </div>
 
         {/* Mensaje de estado */}
         {message && (

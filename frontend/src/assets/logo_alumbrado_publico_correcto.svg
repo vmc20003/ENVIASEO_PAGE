@@ -2,15 +2,15 @@
   <!-- Logo de Alumbrado Público con texto estilo luces navideñas decorado -->
   <defs>
     <style>
-      .circle-outline { fill: none; stroke: #059669; stroke-width: 4; }
-      .text-letter { font-family: 'Arial', sans-serif; font-weight: bold; text-anchor: middle; }
-      .red { fill: #dc2626; }
-      .green { fill: #059669; }
-      .blue { fill: #2563eb; }
-      .yellow { fill: #fbbf24; }
-      .purple { fill: #7c3aed; }
-      .orange { fill: #f97316; }
-      .pink { fill: #ec4899; }
+      .circle-outline { fill: none; stroke: #000000; stroke-width: 6; }
+      .text-letter { font-family: 'Arial', sans-serif; font-weight: bold; text-anchor: middle; font-size: 18px; }
+      .red { fill: #8b0000; }
+      .green { fill: #006400; }
+      .blue { fill: #000080; }
+      .yellow { fill: #b8860b; }
+      .purple { fill: #4b0082; }
+      .orange { fill: #ff8c00; }
+      .pink { fill: #8b008b; }
     </style>
   </defs>
   
@@ -23,24 +23,24 @@
   <!-- Sin decoraciones torcidas - logo limpio -->
   
   <!-- Texto "ALUMBRADO" con colores navideños - CENTRADO PERFECTO -->
-  <text class="text-letter red" x="40" y="110" font-size="16" font-weight="bold">A</text>
-  <text class="text-letter green" x="55" y="110" font-size="16" font-weight="bold">L</text>
-  <text class="text-letter blue" x="70" y="110" font-size="16" font-weight="bold">U</text>
-  <text class="text-letter yellow" x="85" y="110" font-size="16" font-weight="bold">M</text>
-  <text class="text-letter purple" x="100" y="110" font-size="16" font-weight="bold">B</text>
-  <text class="text-letter red" x="115" y="110" font-size="16" font-weight="bold">R</text>
-  <text class="text-letter green" x="130" y="110" font-size="16" font-weight="bold">A</text>
-  <text class="text-letter blue" x="145" y="110" font-size="16" font-weight="bold">D</text>
-  <text class="text-letter yellow" x="160" y="110" font-size="16" font-weight="bold">O</text>
+  <text class="text-letter red" x="40" y="110" font-size="18" font-weight="bold">A</text>
+  <text class="text-letter green" x="55" y="110" font-size="18" font-weight="bold">L</text>
+  <text class="text-letter blue" x="70" y="110" font-size="18" font-weight="bold">U</text>
+  <text class="text-letter yellow" x="85" y="110" font-size="18" font-weight="bold">M</text>
+  <text class="text-letter purple" x="100" y="110" font-size="18" font-weight="bold">B</text>
+  <text class="text-letter red" x="115" y="110" font-size="18" font-weight="bold">R</text>
+  <text class="text-letter green" x="130" y="110" font-size="18" font-weight="bold">A</text>
+  <text class="text-letter blue" x="145" y="110" font-size="18" font-weight="bold">D</text>
+  <text class="text-letter yellow" x="160" y="110" font-size="18" font-weight="bold">O</text>
   
   <!-- Texto "PÚBLICO" con colores navideños - CENTRADO PERFECTO -->
-  <text class="text-letter orange" x="50" y="140" font-size="16" font-weight="bold">P</text>
-  <text class="text-letter red" x="65" y="140" font-size="16" font-weight="bold">Ú</text>
-  <text class="text-letter green" x="80" y="140" font-size="16" font-weight="bold">B</text>
-  <text class="text-letter blue" x="95" y="140" font-size="16" font-weight="bold">L</text>
-  <text class="text-letter yellow" x="110" y="140" font-size="16" font-weight="bold">I</text>
-  <text class="text-letter purple" x="125" y="140" font-size="16" font-weight="bold">C</text>
-  <text class="text-letter pink" x="140" y="140" font-size="16" font-weight="bold">O</text>
+  <text class="text-letter orange" x="50" y="140" font-size="18" font-weight="bold">P</text>
+  <text class="text-letter red" x="65" y="140" font-size="18" font-weight="bold">Ú</text>
+  <text class="text-letter green" x="80" y="140" font-size="18" font-weight="bold">B</text>
+  <text class="text-letter blue" x="95" y="140" font-size="18" font-weight="bold">L</text>
+  <text class="text-letter yellow" x="110" y="140" font-size="18" font-weight="bold">I</text>
+  <text class="text-letter purple" x="125" y="140" font-size="18" font-weight="bold">C</text>
+  <text class="text-letter pink" x="140" y="140" font-size="18" font-weight="bold">O</text>
   
   <!-- Logo limpio sin decoraciones feas -->
 </svg>
