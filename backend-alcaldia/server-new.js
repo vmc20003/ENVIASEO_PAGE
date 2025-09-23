@@ -576,6 +576,16 @@ app.get("/health", (req, res) => {
   }
 });
 
+// Endpoint adicional para verificar que el servidor está funcionando
+app.get("/api/health", (req, res) => {
+  res.json({ 
+    status: "OK", 
+    system: "alcaldia",
+    timestamp: new Date().toISOString(),
+    port: PORT
+  });
+});
+
 // Endpoint de prueba simple
 app.get("/test", (req, res) => {
   res.status(200).json({

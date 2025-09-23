@@ -97,11 +97,18 @@ function startBackendServers() {
     // Verificar que el directorio existe
     if (require('fs').existsSync(backendPath)) {
       try {
+        console.log(`Iniciando ${name} en: ${backendPath}`);
+        
         const process = spawn('npm', ['start'], {
           cwd: backendPath,
           shell: true,
           detached: false,
-          env: { ...process.env, NODE_ENV: 'production' }
+          env: { 
+            ...process.env, 
+            NODE_ENV: 'production',
+            PORT: name === 'backend' ? '4000' : 
+                  name === 'backend-alcaldia' ? '4002' : '4001'
+          }
         });
 
         process.stdout.on('data', (data) => {
@@ -116,7 +123,14 @@ function startBackendServers() {
           console.error(`Error starting ${name}:`, error);
         });
 
+        process.on('exit', (code) => {
+          console.log(`${name} exited with code ${code}`);
+        });
+
         backendProcesses.push(process);
+        
+        // Esperar un poco antes de iniciar el siguiente backend
+        setTimeout(() => {}, 1000);
       } catch (error) {
         console.error(`Error spawning ${name}:`, error);
       }
