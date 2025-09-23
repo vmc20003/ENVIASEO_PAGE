@@ -34,7 +34,7 @@ function createMainWindow() {
   }
   
   console.log('Loading URL:', startUrl);
-  console.log('File exists:', require('fs').existsSync(path.join(process.resourcesPath || __dirname, 'frontend/build/index.html')));
+  console.log('File exists:', require('fs').existsSync(path.join(process.resourcesPath || __dirname, '../frontend/build/index.html')));
   
   mainWindow.loadURL(startUrl).catch((error) => {
     console.error('Error loading URL:', error);

@@ -7,7 +7,7 @@
     "start": "node server-new.js",
     "dev": "node --watch server-new.js",
     "test": "node test-backend.js",
-    "test:health": "curl http://localhost:4001/health"
+    "test:health": "curl http://localhost:4002/health"
   },
   "dependencies": {
     "cors": "^2.8.5",

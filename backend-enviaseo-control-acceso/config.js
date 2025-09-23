@@ -97,4 +97,4 @@ const excelConfig = {
   }
 };
 
-module.exports = { config, excelConfig };
+export { config, excelConfig };
