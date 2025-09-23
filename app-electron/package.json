@@ -1,0 +1,70 @@
+{
+  "name": "sistema-enviaseo-desktop",
+  "version": "2.0.0",
+  "description": "Sistema de Gestión de Asistencia Enviaseo E.S.P. - Aplicación Desktop",
+  "main": "main.js",
+  "homepage": "./",
+  "scripts": {
+    "start": "electron .",
+    "build": "npm run build:frontend && npm run build:electron",
+    "build:frontend": "cd ../frontend && npm run build",
+    "build:electron": "electron-builder",
+    "dist": "npm run build && electron-builder --publish=never",
+    "pack": "npm run build && electron-builder --dir"
+  },
+  "keywords": [
+    "enviaseo",
+    "asistencia",
+    "desktop",
+    "electron"
+  ],
+  "author": "Enviaseo E.S.P.",
+  "license": "MIT",
+  "devDependencies": {
+    "electron": "^27.0.0",
+    "electron-builder": "^24.6.4"
+  },
+  "dependencies": {
+    "electron-updater": "^6.1.4"
+  },
+  "build": {
+    "appId": "com.enviaseo.sistema-gestion-asistencia",
+    "productName": "Sistema Enviaseo",
+    "directories": {
+      "output": "dist"
+    },
+    "files": [
+      "main.js",
+      "node_modules/**/*",
+      "../frontend/build/**/*",
+      "../backend/**/*",
+      "../backend-alcaldia/**/*",
+      "../backend-enviaseo-control-acceso/**/*",
+      "!../backend/node_modules",
+      "!../backend-alcaldia/node_modules",
+      "!../backend-enviaseo-control-acceso/node_modules",
+      "!../frontend/node_modules"
+    ],
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": ["x64"]
+        }
+      ],
+      "publisherName": "Enviaseo E.S.P."
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "Sistema Enviaseo"
+    },
+    "publish": {
+      "provider": "github",
+      "owner": "vmc20003",
+      "repo": "ENVIASEO_PAGE"
+    }
+  }
+}
