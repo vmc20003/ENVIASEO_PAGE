@@ -32,7 +32,26 @@ function createMainWindow() {
     // En desarrollo
     startUrl = `file://${path.join(__dirname, '../frontend/build/index.html')}`;
   }
-  mainWindow.loadURL(startUrl);
+  
+  console.log('Loading URL:', startUrl);
+  console.log('File exists:', require('fs').existsSync(path.join(process.resourcesPath || __dirname, 'frontend/build/index.html')));
+  
+  mainWindow.loadURL(startUrl).catch((error) => {
+    console.error('Error loading URL:', error);
+    // Si falla, mostrar una página de error
+    mainWindow.loadURL(`data:text/html,
+      <html>
+        <head><title>Error</title></head>
+        <body style="font-family: Arial; padding: 20px; background: #f5f5f5;">
+          <h1>Error al cargar la aplicación</h1>
+          <p>No se pudo cargar el archivo principal de la aplicación.</p>
+          <p>URL intentada: ${startUrl}</p>
+          <p>Por favor, contacte al soporte técnico.</p>
+          <button onclick="location.reload()" style="padding: 10px 20px; background: #007bff; color: white; border: none; border-radius: 5px; cursor: pointer;">Reintentar</button>
+        </body>
+      </html>
+    `);
+  });
 
   // Mostrar ventana cuando esté lista
   mainWindow.once('ready-to-show', () => {

@@ -33,6 +33,24 @@
     "directories": {
       "output": "dist"
     },
+    "extraResources": [
+      {
+        "from": "../frontend/build",
+        "to": "frontend/build"
+      },
+      {
+        "from": "../backend",
+        "to": "backend"
+      },
+      {
+        "from": "../backend-alcaldia",
+        "to": "backend-alcaldia"
+      },
+      {
+        "from": "../backend-enviaseo-control-acceso",
+        "to": "backend-enviaseo-control-acceso"
+      }
+    ],
     "files": [
       "main.js",
       "node_modules/**/*",
@@ -40,10 +58,14 @@
       "../backend/**/*",
       "../backend-alcaldia/**/*",
       "../backend-enviaseo-control-acceso/**/*",
-      "!../backend/node_modules",
-      "!../backend-alcaldia/node_modules",
-      "!../backend-enviaseo-control-acceso/node_modules",
-      "!../frontend/node_modules"
+      "!../backend/node_modules/**/*",
+      "!../backend-alcaldia/node_modules/**/*",
+      "!../backend-enviaseo-control-acceso/node_modules/**/*",
+      "!../frontend/node_modules/**/*",
+      "!../backend/package-lock.json",
+      "!../backend-alcaldia/package-lock.json",
+      "!../backend-enviaseo-control-acceso/package-lock.json",
+      "!../frontend/package-lock.json"
     ],
     "win": {
       "target": [
