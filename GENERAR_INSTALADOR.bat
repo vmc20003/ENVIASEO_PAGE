@@ -27,6 +27,22 @@ if %errorlevel% neq 0 (
     exit /b 1
 )
 
+:: Cambiar al directorio del script
+cd /d "%~dp0"
+
+:: Verificar que estamos en el directorio correcto
+if not exist "package.json" (
+    echo ERROR: No se encontró package.json. Asegúrese de ejecutar este script desde la raíz del proyecto.
+    pause
+    exit /b 1
+)
+
+if not exist "frontend\package.json" (
+    echo ERROR: No se encontró frontend\package.json. Verifique la estructura del proyecto.
+    pause
+    exit /b 1
+)
+
 echo [1/5] Instalando dependencias del frontend...
 call npm --prefix frontend install --silent
 

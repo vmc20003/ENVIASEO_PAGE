@@ -24,7 +24,14 @@ function createMainWindow() {
   });
 
   // Cargar la aplicación
-  const startUrl = `file://${path.join(__dirname, '../frontend/build/index.html')}`;
+  let startUrl;
+  if (app.isPackaged) {
+    // En la aplicación instalada, el frontend está en resources
+    startUrl = `file://${path.join(process.resourcesPath, 'frontend/build/index.html')}`;
+  } else {
+    // En desarrollo
+    startUrl = `file://${path.join(__dirname, '../frontend/build/index.html')}`;
+  }
   mainWindow.loadURL(startUrl);
 
   // Mostrar ventana cuando esté lista
@@ -47,28 +54,56 @@ function createMainWindow() {
 function startBackendServers() {
   console.log('Iniciando servidores backend...');
   
-  const backendPaths = [
-    { name: 'backend', path: path.join(__dirname, '../backend') },
-    { name: 'backend-alcaldia', path: path.join(__dirname, '../backend-alcaldia') },
-    { name: 'backend-enviaseo-control-acceso', path: path.join(__dirname, '../backend-enviaseo-control-acceso') }
-  ];
+  // Verificar si estamos en desarrollo o en la aplicación empaquetada
+  const isPackaged = app.isPackaged;
+  let backendPaths;
+  
+  if (isPackaged) {
+    // En la aplicación instalada, los backends están en resources
+    backendPaths = [
+      { name: 'backend', path: path.join(process.resourcesPath, 'backend') },
+      { name: 'backend-alcaldia', path: path.join(process.resourcesPath, 'backend-alcaldia') },
+      { name: 'backend-enviaseo-control-acceso', path: path.join(process.resourcesPath, 'backend-enviaseo-control-acceso') }
+    ];
+  } else {
+    // En desarrollo, los backends están en el directorio padre
+    backendPaths = [
+      { name: 'backend', path: path.join(__dirname, '../backend') },
+      { name: 'backend-alcaldia', path: path.join(__dirname, '../backend-alcaldia') },
+      { name: 'backend-enviaseo-control-acceso', path: path.join(__dirname, '../backend-enviaseo-control-acceso') }
+    ];
+  }
 
   backendPaths.forEach(({ name, path: backendPath }) => {
-    const process = spawn('npm', ['start'], {
-      cwd: backendPath,
-      shell: true,
-      detached: false
-    });
+    // Verificar que el directorio existe
+    if (require('fs').existsSync(backendPath)) {
+      try {
+        const process = spawn('npm', ['start'], {
+          cwd: backendPath,
+          shell: true,
+          detached: false,
+          env: { ...process.env, NODE_ENV: 'production' }
+        });
 
-    process.stdout.on('data', (data) => {
-      console.log(`${name}: ${data}`);
-    });
+        process.stdout.on('data', (data) => {
+          console.log(`${name}: ${data}`);
+        });
 
-    process.stderr.on('data', (data) => {
-      console.error(`${name} error: ${data}`);
-    });
+        process.stderr.on('data', (data) => {
+          console.error(`${name} error: ${data}`);
+        });
 
-    backendProcesses.push(process);
+        process.on('error', (error) => {
+          console.error(`Error starting ${name}:`, error);
+        });
+
+        backendProcesses.push(process);
+      } catch (error) {
+        console.error(`Error spawning ${name}:`, error);
+      }
+    } else {
+      console.warn(`Backend directory not found: ${backendPath}`);
+    }
   });
 }
 
