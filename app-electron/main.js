@@ -112,19 +112,40 @@ function startBackendServers() {
         });
 
         process.stdout.on('data', (data) => {
-          console.log(`${name}: ${data}`);
+          const output = data.toString();
+          console.log(`${name}: ${output}`);
+          
+          // Verificar si el servidor está listo
+          if (output.includes('Servidor ejecutándose en puerto') || 
+              output.includes('listening on port') ||
+              output.includes('Server running')) {
+            console.log(`✅ ${name} está listo y ejecutándose`);
+          }
         });
 
         process.stderr.on('data', (data) => {
-          console.error(`${name} error: ${data}`);
+          const error = data.toString();
+          console.error(`${name} error: ${error}`);
+          
+          // Verificar errores específicos
+          if (error.includes('EADDRINUSE')) {
+            console.error(`❌ ${name}: Puerto ya en uso`);
+          } else if (error.includes('ENOENT')) {
+            console.error(`❌ ${name}: Archivo no encontrado`);
+          } else if (error.includes('Error:')) {
+            console.error(`❌ ${name}: Error crítico`);
+          }
         });
 
         process.on('error', (error) => {
-          console.error(`Error starting ${name}:`, error);
+          console.error(`❌ Error starting ${name}:`, error);
         });
 
         process.on('exit', (code) => {
-          console.log(`${name} exited with code ${code}`);
+          console.log(`⚠️ ${name} exited with code ${code}`);
+          if (code !== 0) {
+            console.error(`❌ ${name} terminó con error (código ${code})`);
+          }
         });
 
         backendProcesses.push(process);
@@ -149,6 +170,30 @@ function stopBackendServers() {
     }
   });
   backendProcesses = [];
+}
+
+// Función para verificar la salud de los backends
+async function verifyBackendHealth() {
+  console.log('🔍 Verificando salud de los backends...');
+  
+  const backends = [
+    { name: 'Alumbrado Público', url: 'http://localhost:4000/health' },
+    { name: 'Alcaldía', url: 'http://localhost:4002/health' },
+    { name: 'Enviaseo Control Acceso', url: 'http://localhost:4001/health' }
+  ];
+  
+  for (const backend of backends) {
+    try {
+      const response = await fetch(backend.url);
+      if (response.ok) {
+        console.log(`✅ ${backend.name}: OK`);
+      } else {
+        console.log(`❌ ${backend.name}: Error ${response.status}`);
+      }
+    } catch (error) {
+      console.log(`❌ ${backend.name}: No responde - ${error.message}`);
+    }
+  }
 }
 
 // Crear menú de la aplicación
@@ -238,6 +283,11 @@ app.whenReady().then(() => {
   // Iniciar servidores backend después de un breve delay
   setTimeout(() => {
     startBackendServers();
+    
+    // Verificar que los backends estén funcionando después de 5 segundos
+    setTimeout(() => {
+      verifyBackendHealth();
+    }, 5000);
   }, 3000);
 
   app.on('activate', () => {

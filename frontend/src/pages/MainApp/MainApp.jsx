@@ -169,9 +169,10 @@ function MainApp({ onBack }) {
       const formData = new FormData();
       formData.append("file", file);
 
-      const uploadUrl = `${API_CONFIG.ALUMBRADO.BASE_URL}/upload`;
+      const uploadUrl = `${API_CONFIG.ALUMBRADO.BASE_URL}${API_CONFIG.ALUMBRADO.ENDPOINTS.UPLOAD}`;
       console.log("Uploading to:", uploadUrl);
       console.log("File:", file.name, file.size);
+      console.log("API Config:", API_CONFIG.ALUMBRADO);
 
       const response = await fetch(uploadUrl, {
         method: "POST",
@@ -180,6 +181,12 @@ function MainApp({ onBack }) {
 
       console.log("Response status:", response.status);
       console.log("Response ok:", response.ok);
+
+      if (!response.ok) {
+        const errorText = await response.text();
+        console.error("Error response:", errorText);
+        throw new Error(`Error del servidor: ${response.status} - ${errorText}`);
+      }
 
       const data = await response.json();
       console.log("Response data:", data);
