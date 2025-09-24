@@ -127,17 +127,17 @@ function startBackendServers() {
           console.log(`✅ ${name}: node_modules encontrado`);
         }
         
-        const process = spawn('node', [serverFile], {
-          cwd: backendPath,
-          shell: true,
-          detached: false,
-          env: { 
-            ...process.env, 
-            NODE_ENV: 'production',
-            PORT: name === 'backend' ? '4000' : 
-                  name === 'backend-alcaldia' ? '4002' : '4001'
-          }
-        });
+                const process = spawn('npm', ['start'], {
+                  cwd: backendPath,
+                  shell: true,
+                  detached: false,
+                  env: { 
+                    ...process.env, 
+                    NODE_ENV: 'production',
+                    PORT: name === 'backend' ? '4000' : 
+                          name === 'backend-alcaldia' ? '4002' : '4001'
+                  }
+                });
 
         process.stdout.on('data', (data) => {
           const output = data.toString();
