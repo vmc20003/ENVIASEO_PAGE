@@ -99,7 +99,35 @@ function startBackendServers() {
       try {
         console.log(`Iniciando ${name} en: ${backendPath}`);
         
-        const process = spawn('npm', ['start'], {
+        // Determinar el archivo de entrada del servidor
+        let serverFile;
+        if (name === 'backend') {
+          serverFile = 'server.js';
+        } else if (name === 'backend-alcaldia') {
+          serverFile = 'server-new.js';
+        } else {
+          serverFile = 'server.js';
+        }
+        
+        const serverFilePath = path.join(backendPath, serverFile);
+        console.log(`Archivo del servidor: ${serverFilePath}`);
+        
+        // Verificar que el archivo del servidor existe
+        if (!require('fs').existsSync(serverFilePath)) {
+          console.error(`❌ ${name}: Archivo del servidor no encontrado: ${serverFilePath}`);
+          return;
+        }
+        
+        // Verificar que node_modules existe
+        const nodeModulesPath = path.join(backendPath, 'node_modules');
+        if (!require('fs').existsSync(nodeModulesPath)) {
+          console.error(`❌ ${name}: node_modules no encontrado en: ${nodeModulesPath}`);
+          console.log(`Intentando iniciar sin node_modules...`);
+        } else {
+          console.log(`✅ ${name}: node_modules encontrado`);
+        }
+        
+        const process = spawn('node', [serverFile], {
           cwd: backendPath,
           shell: true,
           detached: false,
