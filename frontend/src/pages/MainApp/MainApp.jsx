@@ -76,6 +76,16 @@ function MainApp({ onBack }) {
       const cedula = registro.cedula || registro.personNo || registro.idPersona || "";
       const nombre = registro.nombre || registro.firstName || "";
       const apellido = registro.apellido || registro.lastName || "";
+      
+      // Debug: verificar los datos que llegan
+      if (registro.firstName || registro.lastName) {
+        console.log("Registro recibido:", {
+          firstName: registro.firstName,
+          lastName: registro.lastName,
+          nombre: nombre,
+          apellido: apellido
+        });
+      }
       const tipo_asistencia =
         registro.tipo_asistencia || 
         registro.attendanceType || 
@@ -127,7 +137,7 @@ function MainApp({ onBack }) {
         horasExtra = Math.max(0, horasTrabajadas - JORNADA_LABORAL_HORAS);
       }
 
-      resumenDiario.push({
+      const resumen = {
         nombre: persona.nombre,
         apellido: persona.apellido,
         cedula: persona.cedula,
@@ -136,7 +146,14 @@ function MainApp({ onBack }) {
         horaCheckout: ultimoCheckOut,
         horasTrabajadas,
         horasExtra,
-      });
+      };
+      
+      // Debug: verificar el resumen generado
+      if (persona.nombre || persona.apellido) {
+        console.log("Resumen generado:", resumen);
+      }
+      
+      resumenDiario.push(resumen);
     });
 
     return resumenDiario;
@@ -191,6 +208,18 @@ function MainApp({ onBack }) {
         setFile(null);
         fetchFiles();
         fetchStats();
+        
+        // Recargar los datos después de subir el archivo
+        try {
+          const dataResponse = await fetch(`${API_CONFIG.ALUMBRADO.BASE_URL}/all-records`);
+          const dataRecords = await dataResponse.json();
+          const resultadosArray = dataRecords.resultados || dataRecords;
+          setResultados(resultadosArray);
+          setMessage(`Archivo subido exitosamente. ${resultadosArray.length} registros cargados.`);
+        } catch (error) {
+          console.error("Error recargando datos:", error);
+          setMessage(`Archivo subido pero error recargando datos: ${error.message}`);
+        }
       } else {
         setMessage(`Error: ${data.error || "Error desconocido"}`);
       }
@@ -283,21 +312,27 @@ function MainApp({ onBack }) {
   // Solo cargar datos una vez al montar el componente
   useEffect(() => {
     const loadInitialData = async () => {
-        setSearching(true);
+      setSearching(true);
       setMessage("Cargando datos...");
-        try {
-          const res = await fetch(`${API_CONFIG.ALUMBRADO.BASE_URL}/all-records`);
-          const data = await res.json();
-          // El backend puede devolver { resultados: [...] } o directamente un array
-          const resultadosArray = data.resultados || data;
-          setResultados(resultadosArray);
+      try {
+        console.log("Cargando datos desde:", `${API_CONFIG.ALUMBRADO.BASE_URL}/all-records`);
+        const res = await fetch(`${API_CONFIG.ALUMBRADO.BASE_URL}/all-records`);
+        const data = await res.json();
+        console.log("Datos recibidos:", data);
+        
+        // El backend puede devolver { resultados: [...] } o directamente un array
+        const resultadosArray = data.resultados || data;
+        console.log("Resultados procesados:", resultadosArray.length, "registros");
+        
+        setResultados(resultadosArray);
         setMessage(`Cargados ${resultadosArray.length} registros. Use los filtros para buscar.`);
-        } catch (error) {
+      } catch (error) {
+        console.error("Error cargando datos:", error);
         setMessage(`Error cargando datos: ${error.message}`);
-          setResultados([]);
-        } finally {
-          setSearching(false);
-        }
+        setResultados([]);
+      } finally {
+        setSearching(false);
+      }
     };
 
     loadInitialData();
@@ -975,25 +1010,6 @@ function MainApp({ onBack }) {
                     </table>
                   </div>
 
-        {/* Estadísticas */}
-        <div className="stats-grid">
-          <div className="stat-card">
-            <div className="stat-number">👥 {stats.totalEmpleados || 0}</div>
-            <div className="stat-label">Personal Registrado</div>
-              </div>
-          <div className="stat-card">
-            <div className="stat-number">⏰ {stats.totalHorasTrabajadas ? stats.totalHorasTrabajadas.toFixed(1) : '0.0'}h</div>
-            <div className="stat-label">Horas Totales Trabajadas</div>
-            </div>
-          <div className="stat-card">
-            <div className="stat-number">⚡ {stats.totalHorasExtra ? stats.totalHorasExtra.toFixed(1) : '0.0'}h</div>
-            <div className="stat-label">Horas Extra Acumuladas</div>
-          </div>
-          <div className="stat-card">
-            <div className="stat-number">📊 {stats.promedioHorasPorEmpleado ? stats.promedioHorasPorEmpleado.toFixed(1) : '0.0'}h</div>
-            <div className="stat-label">Promedio por Persona</div>
-          </div>
-        </div>
       </div>
     </div>
   );
