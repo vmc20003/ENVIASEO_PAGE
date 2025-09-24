@@ -330,6 +330,16 @@ app.get("/health", (req, res) => {
   }
 });
 
+// Endpoint adicional para verificar que el servidor está funcionando
+app.get("/api/health", (req, res) => {
+  res.json({ 
+    status: "OK", 
+    system: "alumbrado",
+    timestamp: new Date().toISOString(),
+    port: config.PORT
+  });
+});
+
 // Ruta raíz con información del servicio
 app.get("/", (req, res) => {
   res.json({

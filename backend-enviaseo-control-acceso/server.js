@@ -1,14 +1,18 @@
-const express = require('express');
-const cors = require('cors');
-const multer = require('multer');
-const path = require('path');
-const fs = require('fs');
-const ExcelJS = require('exceljs');
-const { config, excelConfig } = require('./config.js');
-const { processExcelFile } = require('./utils/excelProcessor.js');
-const { saveToDatabase, getDataFromDatabase } = require('./utils/database.js');
+import express from 'express';
+import cors from 'cors';
+import multer from 'multer';
+import path from 'path';
+import fs from 'fs';
+import ExcelJS from 'exceljs';
+import { config, excelConfig } from './config.js';
+import { processExcelFile } from './utils/excelProcessor.js';
+import { saveToDatabase, getDataFromDatabase } from './utils/database.js';
 
 const app = express();
+
+import { fileURLToPath } from 'url';
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 // Limpiar base de datos al iniciar el servidor
 function cleanDatabaseOnStartup() {
@@ -71,6 +75,15 @@ const upload = multer({
 
 // Rutas
 app.get('/api/health', (req, res) => {
+  res.json({ 
+    status: 'OK', 
+    service: 'Enviaseo Control de Acceso API',
+    timestamp: new Date().toISOString()
+  });
+});
+
+// Health check básico
+app.get('/health', (req, res) => {
   res.json({ 
     status: 'OK', 
     service: 'Enviaseo Control de Acceso API',
@@ -272,4 +285,4 @@ app.listen(PORT, '0.0.0.0', () => {
   console.log(`🌐 CORS habilitado para cualquier origen`);
 });
 
-module.exports = app;
+export default app;

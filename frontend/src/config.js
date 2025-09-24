@@ -14,7 +14,8 @@ export const API_CONFIG = {
     ENDPOINTS: {
       UPLOAD: '/upload',
       DATA: '/data',
-      FILES: '/files'
+      FILES: '/files',
+      HEALTH: '/health'
     }
   },
   

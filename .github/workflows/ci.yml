@@ -30,6 +30,7 @@ jobs:
         cd ../backend && npm install
         cd ../backend-alcaldia && npm install
         cd ../backend-enviaseo-control-acceso && npm install
+        cd ../app-electron && npm install
     
     - name: Run tests (if available)
       run: |
@@ -41,6 +42,11 @@ jobs:
         cd frontend
         npm run build
     
+    - name: Validate Electron app
+      run: |
+        cd app-electron
+        npm run build:frontend
+    
     - name: Check for vulnerabilities
       run: |
         npm audit --audit-level moderate
@@ -48,6 +54,7 @@ jobs:
         cd ../backend && npm audit --audit-level moderate
         cd ../backend-alcaldia && npm audit --audit-level moderate
         cd ../backend-enviaseo-control-acceso && npm audit --audit-level moderate
+        cd ../app-electron && npm audit --audit-level moderate
 
   deploy:
     needs: test
