@@ -25,7 +25,8 @@
     "electron-builder": "^24.6.4"
   },
   "dependencies": {
-    "electron-updater": "^6.1.4"
+    "electron-updater": "^6.1.4",
+    "sistema-gestion-asistencia": "file:.."
   },
   "build": {
     "appId": "com.enviaseo.sistema-gestion-asistencia",
@@ -68,7 +69,9 @@
       "target": [
         {
           "target": "nsis",
-          "arch": ["x64"]
+          "arch": [
+            "x64"
+          ]
         }
       ],
       "publisherName": "Enviaseo E.S.P."

@@ -3,7 +3,8 @@ import "./MainApp.css";
 import * as XLSX from "xlsx";
 import ExcelJS from "exceljs";
 import { saveAs } from "file-saver";
-import { API_CONFIG } from "../../config.js";
+import { API_CONFIG, isDemoMode } from "../../config.js";
+import { demoAlumbradoService } from "../../services/demoService.js";
 import logoAlumbrado from "../../assets/logo_alumbrado_publico_correcto.svg";
 
 const PAGE_SIZE = 10;
@@ -56,6 +57,7 @@ function MainApp({ onBack }) {
 
   // Procesar resultados agrupados
   const procesarResultadosAgrupados = useCallback((resultados) => {
+    console.log("Procesando resultados:", resultados.slice(0, 3)); // Mostrar solo los primeros 3 registros
     const resumenDiario = [];
     const personas = {};
 
@@ -77,15 +79,6 @@ function MainApp({ onBack }) {
       const nombre = registro.nombre || registro.firstName || "";
       const apellido = registro.apellido || registro.lastName || "";
       
-      // Debug: verificar los datos que llegan
-      if (registro.firstName || registro.lastName) {
-        console.log("Registro recibido:", {
-          firstName: registro.firstName,
-          lastName: registro.lastName,
-          nombre: nombre,
-          apellido: apellido
-        });
-      }
       const tipo_asistencia =
         registro.tipo_asistencia || 
         registro.attendanceType || 
@@ -149,9 +142,7 @@ function MainApp({ onBack }) {
       };
       
       // Debug: verificar el resumen generado
-      if (persona.nombre || persona.apellido) {
-        console.log("Resumen generado:", resumen);
-      }
+      console.log("Resumen generado:", resumen);
       
       resumenDiario.push(resumen);
     });
@@ -183,6 +174,21 @@ function MainApp({ onBack }) {
     setMessage("Subiendo archivo...");
 
     try {
+      if (isDemoMode()) {
+        // Simular subida de archivo en modo demo
+        const data = await demoAlumbradoService.uploadFile(file);
+        setMessage(`Archivo procesado exitosamente (modo demo). ${data.data.totalRecords} registros simulados.`);
+        setFile(null);
+        fetchFiles();
+        fetchStats();
+        
+        // Recargar datos demo
+        const demoData = await demoAlumbradoService.getAllRecords();
+        setResultados(demoData);
+        setMessage(`Archivo procesado exitosamente. ${demoData.length} registros de demostración cargados.`);
+        return;
+      }
+
       const formData = new FormData();
       formData.append("file", file);
 
@@ -240,6 +246,12 @@ function MainApp({ onBack }) {
 
   const fetchFiles = async () => {
     try {
+      if (isDemoMode()) {
+        const data = await demoAlumbradoService.getFiles();
+        setFiles(data);
+        return;
+      }
+      
       const response = await fetch(`${API_CONFIG.ALUMBRADO.BASE_URL}/files`);
       const data = await response.json();
       // El backend devuelve { files: [...] }, extraer el array
@@ -253,6 +265,12 @@ function MainApp({ onBack }) {
 
   const fetchStats = async () => {
     try {
+      if (isDemoMode()) {
+        const data = await demoAlumbradoService.getStats();
+        setStats(data);
+        return;
+      }
+      
       const response = await fetch(`${API_CONFIG.ALUMBRADO.BASE_URL}/stats`);
       const data = await response.json();
       setStats(data);
@@ -292,6 +310,13 @@ function MainApp({ onBack }) {
     setSearching(true);
     setMessage("Refrescando datos...");
     try {
+      if (isDemoMode()) {
+        const data = await demoAlumbradoService.getAllRecords();
+        setResultados(data);
+        setMessage(`Analizando ${data.length} registros (modo demo)...`);
+        return;
+      }
+      
       const response = await fetch(`${API_CONFIG.ALUMBRADO.BASE_URL}/all-records`);
       const data = await response.json();
       // El backend devuelve { resultados: [...] }, extraer el array
@@ -322,6 +347,15 @@ function MainApp({ onBack }) {
       setSearching(true);
       setMessage("Cargando datos...");
       try {
+        if (isDemoMode()) {
+          console.log("Modo demo activado - cargando datos de demostración");
+          const data = await demoAlumbradoService.getAllRecords();
+          console.log("Datos de demo cargados:", data.slice(0, 3)); // Mostrar solo los primeros 3 registros
+          setResultados(data);
+          setMessage(`Cargados ${data.length} registros de demostración`);
+          return;
+        }
+        
         console.log("Cargando datos desde:", `${API_CONFIG.ALUMBRADO.BASE_URL}/all-records`);
         const res = await fetch(`${API_CONFIG.ALUMBRADO.BASE_URL}/all-records`);
         const data = await res.json();
@@ -772,6 +806,26 @@ function MainApp({ onBack }) {
 
   return (
     <div className="alumbrado-container">
+      {/* Indicador de modo demo */}
+      {isDemoMode() && (
+        <div style={{
+          position: 'fixed',
+          top: '10px',
+          right: '10px',
+          background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+          color: 'white',
+          padding: '8px 16px',
+          borderRadius: '20px',
+          fontSize: '12px',
+          fontWeight: 'bold',
+          zIndex: 1000,
+          boxShadow: '0 4px 12px rgba(0,0,0,0.3)',
+          animation: 'pulse 2s infinite'
+        }}>
+          🎭 MODO DEMO
+        </div>
+      )}
+      
       {/* Header moderno */}
       <div className="alumbrado-header">
         <div className="header-content">

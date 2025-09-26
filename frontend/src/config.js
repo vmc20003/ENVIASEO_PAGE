@@ -2,9 +2,9 @@
 // Detect host for portability across PCs and networks
 const HOSTNAME = 'localhost';
 const DEFAULTS = {
-  ALUMBRADO: `http://${HOSTNAME}:4000`,
-  ALCALDIA: `http://${HOSTNAME}:4002`,
-  ENVIASEO: `http://${HOSTNAME}:4001`
+  ALUMBRADO: `http://${HOSTNAME}:5000`,
+  ALCALDIA: `http://${HOSTNAME}:5002`,
+  ENVIASEO: `http://${HOSTNAME}:5001`
 };
 
 export const API_CONFIG = {
@@ -71,4 +71,91 @@ export const DEV_CONFIG = {
   DEBUG_MODE: process.env.NODE_ENV === 'development',
   LOG_LEVEL: process.env.REACT_APP_LOG_LEVEL || 'info',
   MOCK_API: process.env.REACT_APP_MOCK_API === 'true'
+};
+
+// Modo Demo - Datos de prueba para demostración sin backends
+export const DEMO_DATA = {
+  ALUMBRADO: [
+    {
+      firstName: "JUAN",
+      lastName: "PÉREZ GARCÍA",
+      nombre: "JUAN",
+      apellido: "PÉREZ GARCÍA",
+      personNo: "12345678",
+      cedula: "12345678",
+      time: "2024-01-15 08:00:00",
+      fecha: "2024-01-15",
+      hora: "08:00:00",
+      accessPoint: "Entrada Principal",
+      attendanceType: "Check In",
+      tipo_asistencia: "Check In"
+    },
+    {
+      firstName: "MARÍA",
+      lastName: "LÓPEZ RODRÍGUEZ",
+      nombre: "MARÍA",
+      apellido: "LÓPEZ RODRÍGUEZ",
+      personNo: "87654321",
+      cedula: "87654321",
+      time: "2024-01-15 08:15:00",
+      fecha: "2024-01-15",
+      hora: "08:15:00",
+      accessPoint: "Entrada Principal",
+      attendanceType: "Check In",
+      tipo_asistencia: "Check In"
+    },
+    {
+      firstName: "CARLOS",
+      lastName: "MARTÍNEZ SILVA",
+      nombre: "CARLOS",
+      apellido: "MARTÍNEZ SILVA",
+      personNo: "11223344",
+      cedula: "11223344",
+      time: "2024-01-15 17:30:00",
+      fecha: "2024-01-15",
+      hora: "17:30:00",
+      accessPoint: "Salida Principal",
+      attendanceType: "Check Out",
+      tipo_asistencia: "Check Out"
+    }
+  ],
+  ALCALDIA: [
+    {
+      idPersona: "1001",
+      nombre: "Ana Sofía Restrepo",
+      departamento: "Secretaría General",
+      hora: "08:00",
+      puntoVerificacion: "Alcaldía_Puerta1"
+    },
+    {
+      idPersona: "1002",
+      nombre: "Roberto Carlos Vélez",
+      departamento: "Hacienda",
+      hora: "08:15",
+      puntoVerificacion: "Alcaldía_Puerta2"
+    }
+  ],
+  ENVIASEO: [
+    {
+      nombreArchivo: "control_acceso_2024.xlsx",
+      id: "EMP001",
+      temperatura: "36.5°C",
+      estadoTemperatura: "Normal",
+      usandoMascara: "Sí",
+      numeroTarjeta: "12345",
+      grupoPersonas: "Personal Operativo",
+      tiempo: "2024-01-15 08:00:00",
+      puntoAcceso: "Entrada Principal",
+      lectorTarjetas: "Lector 01",
+      resultadoAutenticacion: "Exitoso",
+      tipoAutenticacion: "Tarjeta",
+      tipoAsistencia: "Entrada"
+    }
+  ]
+};
+
+// Función para detectar si estamos en modo demo
+export const isDemoMode = () => {
+  return process.env.REACT_APP_DEMO_MODE === 'true' || 
+         window.location.search.includes('demo=true');
 };

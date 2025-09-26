@@ -1,10 +1,11 @@
-const ExcelJS = require('exceljs');
-const XLSX = require('xlsx');
-const path = require('path');
+import ExcelJS from 'exceljs';
+import XLSX from 'xlsx';
+import path from 'path';
+import fs from 'fs';
 
 async function processExcelFile(filePath, config) {
   try {
-    if (!require('fs').existsSync(filePath)) {
+    if (!fs.existsSync(filePath)) {
       throw new Error(`El archivo no existe: ${filePath}`);
     }
     
@@ -765,6 +766,6 @@ function extractTimeFromDateTime(timeValue) {
   }
 }
 
-module.exports = {
+export {
   processExcelFile
 };

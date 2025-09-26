@@ -243,8 +243,8 @@
 }
 
 .attendance-logo {
-  width: 80px;
-  height: 80px;
+  width: 120px;
+  height: 120px;
   border-radius: 50%;
   box-shadow: 0 4px 16px rgba(59, 130, 246, 0.2);
 }
@@ -1039,8 +1039,8 @@
 }
 
 .empty-logo {
-  width: 100px;
-  height: 100px;
+  width: 140px;
+  height: 140px;
   object-fit: contain;
   filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.1));
   transition: all var(--transition-normal);

@@ -1,48 +1,36 @@
 # Dependencies
 node_modules/
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
+*/node_modules/
+**/node_modules/
 
-# Production builds
+# Build outputs
 build/
 dist/
+*/build/
+*/dist/
 
-# Environment variables
+# Environment files
 .env
 .env.local
 .env.development.local
 .env.test.local
 .env.production.local
 
-# IDE and editor files
-.vscode/
-.idea/
-*.swp
-*.swo
-*~
-
-# OS generated files
-.DS_Store
-.DS_Store?
-._*
-.Spotlight-V100
-.Trashes
-ehthumbs.db
-Thumbs.db
-
 # Logs
-logs/
-*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
 
 # Runtime data
-pids/
+pids
 *.pid
 *.seed
 *.pid.lock
 
 # Coverage directory used by tools like istanbul
 coverage/
+*.lcov
 
 # nyc test coverage
 .nyc_output
@@ -52,6 +40,9 @@ jspm_packages/
 
 # Optional npm cache directory
 .npm
+
+# Optional eslint cache
+.eslintcache
 
 # Optional REPL history
 .node_repl_history
@@ -79,7 +70,7 @@ jspm_packages/
 .vuepress/dist
 
 # Serverless directories
-.serverless
+.serverless/
 
 # FuseBox cache
 .fusebox/
@@ -93,63 +84,64 @@ jspm_packages/
 # Stores VSCode versions used for testing VSCode extensions
 .vscode-test
 
-# Temporary folders
-tmp/
-temp/
+# Electron build outputs
+app-electron/dist/
+app-electron/build/
 
-# Uploaded files (keep structure but ignore content)
-uploads_excel/*
-!uploads_excel/.gitkeep
+# Excel uploads and temporary files
+uploads_excel/
+*.xlsx
+*.xls
+*.csv
 
-# Database files (if using local JSON databases)
+# Database files
 *.db
 *.sqlite
 *.sqlite3
 
-# Backup files
-*.backup
-*.bak
+# Temporary files
 *.tmp
+*.temp
+*.log
 
-# Test files
-test_*.xlsx
-test_*.xls
-test_*.csv
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
 
-# Compiled files
-*.com
-*.class
-*.dll
-*.exe
-*.o
-*.so
-
-# Archives
-*.7z
-*.dmg
-*.gz
-*.iso
-*.jar
-*.rar
-*.tar
-*.zip
-
-# Application specific
-SistemaGestionAsistencia-*.exe
-SistemaGestionAsistencia-*.zip
+# Windows
 *.exe
 *.msi
-*.deb
-*.rpm
+*.zip
+*.rar
+*.7z
 
-# Electron build files
-electron-app/dist/
-electron-app/build/
+# Distribution packages
+Sistema_Enviaseo_Distribucion/
+Sistema_Enviaseo_Compartir.zip
 
-# Docker
-Dockerfile
-docker-compose.yml
-.dockerignore
+# Test files
+test-*.js
+*-test.js
+test/
+tests/
 
-# Scripts de instalación (opcional, descomenta si no quieres incluirlos)
-# scripts/
+# Backup files
+*.bak
+*.backup
+*~
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Package lock files (keep only root)
+package-lock.json
+!package-lock.json
