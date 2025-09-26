@@ -4,6 +4,7 @@ import { config } from '../config.js';
 
 class FileManager {
   constructor() {
+    this.uploadFolder = config.UPLOAD_FOLDER;
     this.filesMetadataPath = path.join(config.UPLOAD_FOLDER, 'files-metadata.json');
     this.uploadedFiles = [];
     this.loadFilesMetadata();
@@ -149,6 +150,59 @@ class FileManager {
     this.uploadedFiles = [];
     this.saveFilesMetadata();
     console.log('🗑️ Todos los archivos eliminados de metadatos');
+  }
+
+  // Obtener registros por archivo específico
+  getRecordsByFile(filename) {
+    try {
+      console.log(`🔍 Buscando registros para archivo: "${filename}"`);
+      console.log(`📁 Archivos disponibles:`, this.uploadedFiles.map(f => f.filename || f.originalName || f.name));
+      
+      if (!filename || filename === 'undefined') {
+        console.log('❌ Nombre de archivo inválido o undefined');
+        return [];
+      }
+      
+      // Buscar el archivo en los metadatos (puede tener diferentes nombres de propiedad)
+      const fileMetadata = this.uploadedFiles.find(f => 
+        f.name === filename || 
+        f.filename === filename || 
+        f.originalName === filename
+      );
+      
+      if (!fileMetadata) {
+        console.log(`❌ Archivo ${filename} no encontrado en metadatos`);
+        return [];
+      }
+      
+      console.log(`✅ Archivo encontrado en metadatos:`, fileMetadata);
+
+      // Cargar datos desde la base de datos
+      const dataPath = path.join(this.uploadFolder, 'database.json');
+      
+      if (!fs.existsSync(dataPath)) {
+        console.log('Base de datos no existe');
+        return [];
+      }
+
+      const rawData = fs.readFileSync(dataPath, 'utf8');
+      const database = JSON.parse(rawData);
+      
+      // Filtrar registros por archivo
+      const allRecords = database.resultados || [];
+      const fileRecords = allRecords.filter(record => 
+        record.sourceFile === filename || 
+        record.archivo === filename ||
+        record.fileName === filename
+      );
+
+      console.log(`📊 Archivo ${filename}: ${fileRecords.length} registros encontrados`);
+      return fileRecords;
+      
+    } catch (error) {
+      console.error(`Error obteniendo registros para archivo ${filename}:`, error);
+      return [];
+    }
   }
 
   // Obtener estadísticas de archivos

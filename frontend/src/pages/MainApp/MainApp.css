@@ -737,8 +737,10 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 30px;
+  gap: 25px;
   width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
 }
 
 .search-container {
@@ -874,6 +876,7 @@
 .filter-checkbox {
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: var(--space-4);
   padding: var(--space-4) var(--space-6);
   background: var(--bg-primary);
@@ -882,6 +885,8 @@
   cursor: pointer;
   transition: all var(--transition-fast);
   box-shadow: var(--shadow-md);
+  width: 100%;
+  max-width: 400px;
 }
 
 .filter-checkbox:hover {
@@ -907,7 +912,11 @@
 
 .action-buttons {
   display: flex;
-  gap: var(--space-4);
+  justify-content: center;
+  align-items: center;
+  gap: var(--space-6);
+  width: 100%;
+  flex-wrap: wrap;
 }
 
 /* Botones ultra profesionales */
@@ -1650,4 +1659,233 @@
   border-top: 4px solid var(--primary-warm);
   border-radius: 50%;
   animation: spin 1s linear infinite;
+}
+
+/* Estilos para información de paginación */
+.pagination-info {
+  background: var(--bg-secondary);
+  padding: var(--space-4);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-primary);
+  margin-top: var(--space-4);
+}
+
+.pagination-info .text-muted {
+  color: var(--text-tertiary);
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.pagination-info .d-flex {
+  gap: var(--space-4);
+}
+
+@media (max-width: 768px) {
+  .pagination-info .d-flex {
+    flex-direction: column;
+    align-items: flex-start !important;
+    gap: var(--space-2);
+  }
+}
+
+/* Estilos para sección de archivos subidos */
+.files-section {
+  padding: var(--space-6);
+}
+
+.files-grid {
+  width: 100%;
+}
+
+.files-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--space-6);
+  padding: var(--space-4);
+  background: var(--bg-secondary);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-primary);
+}
+
+.files-count {
+  font-weight: 600;
+  color: var(--text-secondary);
+  font-size: var(--font-size-lg);
+}
+
+.folder-access-btn {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-3) var(--space-5);
+  background: linear-gradient(135deg, var(--primary-warm), var(--primary-warm-light));
+  color: var(--text-white);
+  border: none;
+  border-radius: var(--radius-xl);
+  font-weight: 600;
+  font-size: var(--font-size-sm);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  box-shadow: var(--shadow-md);
+}
+
+.folder-access-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+  background: linear-gradient(135deg, var(--primary-warm-dark), var(--primary-warm));
+}
+
+.folder-access-btn i {
+  font-size: var(--font-size-lg);
+}
+
+.files-container {
+  max-height: 400px;
+  overflow-y: auto;
+  border: 1px solid var(--border-primary);
+  border-radius: var(--radius-lg);
+  background: var(--bg-primary);
+}
+
+.no-files {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-12);
+  color: var(--text-tertiary);
+  text-align: center;
+}
+
+.no-files i {
+  font-size: 3rem;
+  margin-bottom: var(--space-4);
+  color: var(--text-light);
+}
+
+.no-files p {
+  font-weight: 600;
+  margin-bottom: var(--space-2);
+  color: var(--text-secondary);
+}
+
+.no-files small {
+  color: var(--text-tertiary);
+  font-size: var(--font-size-sm);
+}
+
+.file-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  padding: var(--space-4) var(--space-6);
+  border-bottom: 1px solid var(--border-primary);
+  transition: all var(--transition-fast);
+}
+
+.file-item:last-child {
+  border-bottom: none;
+}
+
+.file-item:hover {
+  background: var(--bg-secondary);
+}
+
+.file-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background: linear-gradient(135deg, #10b981, #059669);
+  border-radius: var(--radius-lg);
+  color: white;
+  font-size: var(--font-size-lg);
+}
+
+.file-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.file-name {
+  font-weight: 600;
+  color: var(--text-primary);
+  font-size: var(--font-size-base);
+  margin-bottom: var(--space-1);
+  word-break: break-word;
+}
+
+.file-details {
+  display: flex;
+  gap: var(--space-4);
+  font-size: var(--font-size-sm);
+  color: var(--text-tertiary);
+}
+
+.file-size {
+  font-weight: 500;
+}
+
+.file-date {
+  font-weight: 500;
+}
+
+.file-records {
+  font-weight: 600;
+  color: var(--primary-warm);
+  background: var(--bg-tertiary);
+  padding: 2px 8px;
+  border-radius: var(--radius-sm);
+  font-size: 12px;
+}
+
+.file-actions {
+  display: flex;
+  gap: var(--space-2);
+}
+
+.file-action-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  background: var(--bg-tertiary);
+  border: 1px solid var(--border-primary);
+  border-radius: var(--radius-lg);
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.file-action-btn:hover {
+  background: var(--primary-warm);
+  color: white;
+  border-color: var(--primary-warm);
+  transform: translateY(-1px);
+}
+
+.file-action-btn i {
+  font-size: var(--font-size-base);
+}
+
+/* Scrollbar personalizada para contenedor de archivos */
+.files-container::-webkit-scrollbar {
+  width: 8px;
+}
+
+.files-container::-webkit-scrollbar-track {
+  background: var(--bg-secondary);
+  border-radius: var(--radius-sm);
+}
+
+.files-container::-webkit-scrollbar-thumb {
+  background: var(--border-secondary);
+  border-radius: var(--radius-sm);
+}
+
+.files-container::-webkit-scrollbar-thumb:hover {
+  background: var(--border-accent);
 }

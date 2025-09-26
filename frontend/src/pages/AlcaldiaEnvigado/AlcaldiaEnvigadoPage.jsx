@@ -6,7 +6,7 @@ import { saveAs } from "file-saver";
 import { API_CONFIG } from "../../config.js";
 import logoAlcaldia from "../../assets/logo_alcaldia_envigado_limpio.svg";
 
-const PAGE_SIZE = 10;
+const PAGE_SIZE = 50;
 
 function AlcaldiaEnvigadoPage({ onBack }) {
   const [file, setFile] = useState(null);
@@ -41,6 +41,261 @@ function AlcaldiaEnvigadoPage({ onBack }) {
     e.preventDefault();
   };
 
+  // Funciones para modales interactivos
+  const showConfirmModal = (title, message, onConfirm, onCancel = null) => {
+    // Crear overlay
+    const overlay = document.createElement('div');
+    overlay.style.cssText = `
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.6);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 10000;
+      animation: fadeIn 0.3s ease-out;
+    `;
+
+    // Crear modal
+    const modal = document.createElement('div');
+    modal.style.cssText = `
+      background: white;
+      border-radius: 15px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+      max-width: 500px;
+      width: 90%;
+      overflow: hidden;
+      animation: slideIn 0.3s ease-out;
+    `;
+
+    // Agregar animaciones CSS
+    const style = document.createElement('style');
+    style.textContent = `
+      @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+      }
+      @keyframes slideIn {
+        from { transform: translateY(-50px); opacity: 0; }
+        to { transform: translateY(0); opacity: 1; }
+      }
+    `;
+    document.head.appendChild(style);
+
+    modal.innerHTML = `
+      <div style="background: linear-gradient(135deg, #dc3545 0%, #c82333 100%); padding: 25px; text-align: center; color: white;">
+        <div style="font-size: 48px; margin-bottom: 10px;">⚠️</div>
+        <h3 style="margin: 0; font-size: 20px; font-weight: 600;">${title}</h3>
+      </div>
+      <div style="padding: 30px 25px 25px 25px;">
+        <p style="margin: 0 0 25px 0; color: #495057; line-height: 1.6; font-size: 16px; text-align: center;">
+          ${message}
+        </p>
+        <div style="display: flex; gap: 12px; justify-content: center;">
+          <button id="confirmBtn" style="
+            background: linear-gradient(135deg, #dc3545 0%, #c82333 100%);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(220, 53, 69, 0.3);
+          ">
+            ✅ Confirmar
+          </button>
+          <button id="cancelBtn" style="
+            background: #6c757d;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(108, 117, 125, 0.3);
+          ">
+            ❌ Cancelar
+          </button>
+        </div>
+      </div>
+    `;
+
+    overlay.appendChild(modal);
+    document.body.appendChild(overlay);
+
+    // Event listeners
+    const confirmBtn = modal.querySelector('#confirmBtn');
+    const cancelBtn = modal.querySelector('#cancelBtn');
+
+    const closeModal = () => {
+      overlay.style.animation = 'fadeIn 0.3s ease-out reverse';
+      modal.style.animation = 'slideIn 0.3s ease-out reverse';
+      setTimeout(() => {
+        document.body.removeChild(overlay);
+        document.head.removeChild(style);
+      }, 300);
+    };
+
+    confirmBtn.addEventListener('click', () => {
+      closeModal();
+      if (onConfirm) onConfirm();
+    });
+
+    cancelBtn.addEventListener('click', () => {
+      closeModal();
+      if (onCancel) onCancel();
+    });
+
+    // Cerrar al hacer clic en el overlay
+    overlay.addEventListener('click', (e) => {
+      if (e.target === overlay) {
+        closeModal();
+        if (onCancel) onCancel();
+      }
+    });
+
+    // Hover effects
+    confirmBtn.addEventListener('mouseenter', () => {
+      confirmBtn.style.transform = 'translateY(-2px)';
+      confirmBtn.style.boxShadow = '0 6px 20px rgba(220, 53, 69, 0.4)';
+    });
+    confirmBtn.addEventListener('mouseleave', () => {
+      confirmBtn.style.transform = 'translateY(0)';
+      confirmBtn.style.boxShadow = '0 4px 15px rgba(220, 53, 69, 0.3)';
+    });
+
+    cancelBtn.addEventListener('mouseenter', () => {
+      cancelBtn.style.transform = 'translateY(-2px)';
+      cancelBtn.style.boxShadow = '0 6px 20px rgba(108, 117, 125, 0.4)';
+    });
+    cancelBtn.addEventListener('mouseleave', () => {
+      cancelBtn.style.transform = 'translateY(0)';
+      cancelBtn.style.boxShadow = '0 4px 15px rgba(108, 117, 125, 0.3)';
+    });
+  };
+
+  const showInfoModal = (title, message, type = 'info') => {
+    // Crear overlay
+    const overlay = document.createElement('div');
+    overlay.style.cssText = `
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.6);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 10000;
+      animation: fadeIn 0.3s ease-out;
+    `;
+
+    // Crear modal
+    const modal = document.createElement('div');
+    modal.style.cssText = `
+      background: white;
+      border-radius: 15px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+      max-width: 500px;
+      width: 90%;
+      overflow: hidden;
+      animation: slideIn 0.3s ease-out;
+    `;
+
+    // Agregar animaciones CSS
+    const style = document.createElement('style');
+    style.textContent = `
+      @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+      }
+      @keyframes slideIn {
+        from { transform: translateY(-50px); opacity: 0; }
+        to { transform: translateY(0); opacity: 1; }
+      }
+    `;
+    document.head.appendChild(style);
+
+    const colors = {
+      success: { bg: 'linear-gradient(135deg, #28a745 0%, #20c997 100%)', icon: '✅' },
+      error: { bg: 'linear-gradient(135deg, #dc3545 0%, #c82333 100%)', icon: '❌' },
+      info: { bg: 'linear-gradient(135deg, #17a2b8 0%, #138496 100%)', icon: 'ℹ️' },
+      warning: { bg: 'linear-gradient(135deg, #ffc107 0%, #e0a800 100%)', icon: '⚠️' }
+    };
+
+    const selectedColor = colors[type] || colors.info;
+
+    modal.innerHTML = `
+      <div style="background: ${selectedColor.bg}; padding: 25px; text-align: center; color: white;">
+        <div style="font-size: 48px; margin-bottom: 10px;">${selectedColor.icon}</div>
+        <h3 style="margin: 0; font-size: 20px; font-weight: 600;">${title}</h3>
+      </div>
+      <div style="padding: 30px 25px 25px 25px;">
+        <p style="margin: 0 0 25px 0; color: #495057; line-height: 1.6; font-size: 16px; text-align: center;">
+          ${message}
+        </p>
+        <div style="display: flex; justify-content: center;">
+          <button id="closeBtn" style="
+            background: ${selectedColor.bg};
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+          ">
+            Cerrar
+          </button>
+        </div>
+      </div>
+    `;
+
+    overlay.appendChild(modal);
+    document.body.appendChild(overlay);
+
+    // Event listeners
+    const closeBtn = modal.querySelector('#closeBtn');
+
+    const closeModal = () => {
+      overlay.style.animation = 'fadeIn 0.3s ease-out reverse';
+      modal.style.animation = 'slideIn 0.3s ease-out reverse';
+      setTimeout(() => {
+        document.body.removeChild(overlay);
+        document.head.removeChild(style);
+      }, 300);
+    };
+
+    closeBtn.addEventListener('click', closeModal);
+
+    // Cerrar al hacer clic en el overlay
+    overlay.addEventListener('click', (e) => {
+      if (e.target === overlay) {
+        closeModal();
+      }
+    });
+
+    // Hover effect
+    closeBtn.addEventListener('mouseenter', () => {
+      closeBtn.style.transform = 'translateY(-2px)';
+      closeBtn.style.boxShadow = '0 6px 20px rgba(0, 0, 0, 0.3)';
+    });
+    closeBtn.addEventListener('mouseleave', () => {
+      closeBtn.style.transform = 'translateY(0)';
+      closeBtn.style.boxShadow = '0 4px 15px rgba(0, 0, 0, 0.2)';
+    });
+  };
+
   const handleUpload = async () => {
     if (!file) {
       setMessage("Por favor selecciona un archivo");
@@ -72,9 +327,32 @@ function AlcaldiaEnvigadoPage({ onBack }) {
       setResultados(Array.isArray(recordsData) ? recordsData : []);
       window.__registrosExcel = Array.isArray(recordsData) ? recordsData : [];
 
-      setMessage(
-        `Archivo procesado correctamente. Se encontraron ${data.recordsProcessed} registros. Total en base de datos: ${data.totalRecords}`
+      // Mostrar mensaje de éxito con modal interactivo
+      showInfoModal(
+        "✅ Archivo Procesado Exitosamente",
+        `<div style="background: #f8f9fa; padding: 20px; border-radius: 10px; margin: 15px 0; border-left: 4px solid #28a745;">
+          <div style="display: flex; align-items: center; margin-bottom: 15px;">
+            <div style="background: #28a745; color: white; padding: 8px 12px; border-radius: 50%; margin-right: 12px; font-size: 18px;">📊</div>
+            <div>
+              <h4 style="margin: 0; color: #28a745; font-size: 18px;">Procesamiento Completado</h4>
+              <p style="margin: 5px 0 0 0; color: #6c757d; font-size: 14px;">Datos cargados correctamente en la base de datos</p>
+            </div>
+          </div>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+            <div style="background: white; padding: 15px; border-radius: 8px; text-align: center; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+              <div style="font-size: 24px; font-weight: bold; color: #17a2b8; margin-bottom: 5px;">${data.recordsProcessed}</div>
+              <div style="font-size: 12px; color: #6c757d; text-transform: uppercase; letter-spacing: 0.5px;">Registros Nuevos</div>
+            </div>
+            <div style="background: white; padding: 15px; border-radius: 8px; text-align: center; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+              <div style="font-size: 24px; font-weight: bold; color: #28a745; margin-bottom: 5px;">${data.totalRecords}</div>
+              <div style="font-size: 12px; color: #6c757d; text-transform: uppercase; letter-spacing: 0.5px;">Total en BD</div>
+            </div>
+          </div>
+        </div>`,
+        'success'
       );
+      
+      setMessage(`✅ Archivo procesado: ${data.recordsProcessed} registros nuevos. Total: ${data.totalRecords}`);
       setFile(null);
 
       // Actualizar estadísticas
@@ -92,8 +370,39 @@ function AlcaldiaEnvigadoPage({ onBack }) {
     try {
       const response = await fetch(`${API_CONFIG.ALCALDIA.BASE_URL}/files`);
       const data = await response.json();
-      const filesArray = data.files || data;
-      setFiles(Array.isArray(filesArray) ? filesArray : []);
+      let filesArray = data.files || data;
+      
+      if (Array.isArray(filesArray)) {
+        // Obtener información de registros para cada archivo
+        const filesWithRecords = await Promise.all(
+          filesArray.map(async (file) => {
+            try {
+              // Obtener registros por archivo desde el backend
+              const recordsResponse = await fetch(`${API_CONFIG.ALCALDIA.BASE_URL}/records-by-file/${encodeURIComponent(file.name)}`);
+              if (recordsResponse.ok) {
+                const recordsData = await recordsResponse.json();
+                return {
+                  ...file,
+                  recordCount: recordsData.count || recordsData.length || 0
+                };
+              }
+              return {
+                ...file,
+                recordCount: 0
+              };
+            } catch (error) {
+              console.error(`Error fetching records for file ${file.name}:`, error);
+              return {
+                ...file,
+                recordCount: 0
+              };
+            }
+          })
+        );
+        setFiles(filesWithRecords);
+      } else {
+        setFiles([]);
+      }
     } catch (error) {
       console.error("Error fetching files:", error);
       setFiles([]);
@@ -173,32 +482,33 @@ function AlcaldiaEnvigadoPage({ onBack }) {
   };
 
   const clearDatabase = async () => {
-    if (
-      !window.confirm(
-        "¿Estás seguro de que quieres limpiar toda la base de datos?"
-      )
-    ) {
-      return;
-    }
+    showConfirmModal(
+      "🗑️ Limpiar Base de Datos",
+      "Esta acción eliminará <strong>TODOS</strong> los registros de la base de datos de forma permanente.<br><br>⚠️ <strong>Esta acción no se puede deshacer.</strong>",
+      async () => {
+        try {
+          const response = await fetch(`${API_CONFIG.ALCALDIA.BASE_URL}/clear-db`, {
+            method: "DELETE",
+          });
 
-    try {
-      const response = await fetch(`${API_CONFIG.ALCALDIA.BASE_URL}/clear-db`, {
-        method: "DELETE",
-      });
-
-      if (response.ok) {
-        setMessage("Base de datos limpiada correctamente");
-        setResultados([]);
-        setHorariosCalculados([]);
-        setEstadisticasHorarios(null);
-        fetchStats();
-      } else {
-        const data = await response.json();
-        setMessage(`Error: ${data.error}`);
+          if (response.ok) {
+            setMessage("✅ Base de datos limpiada correctamente");
+            setResultados([]);
+            setHorariosCalculados([]);
+            setEstadisticasHorarios(null);
+            fetchStats();
+          } else {
+            const data = await response.json();
+            setMessage(`❌ Error: ${data.error}`);
+          }
+        } catch (error) {
+          setMessage(`❌ Error de conexión: ${error.message}`);
+        }
+      },
+      () => {
+        console.log("Operación cancelada por el usuario");
       }
-    } catch (error) {
-      setMessage(`Error de conexión: ${error.message}`);
-    }
+    );
   };
 
   const loadSavedData = async () => {
@@ -213,12 +523,24 @@ function AlcaldiaEnvigadoPage({ onBack }) {
 
   const refreshData = async () => {
     setSearching(true);
-    setMessage("Refrescando datos...");
+    setMessage("🔄 Refrescando datos...");
+    
     try {
       await loadSavedData();
-      setMessage("Datos actualizados correctamente");
+      
+      showInfoModal(
+        "✅ Datos Actualizados",
+        `Los datos se han actualizado correctamente.<br><br><strong>${resultados.length}</strong> registros cargados en la base de datos.`,
+        'success'
+      );
+      setMessage("✅ Datos actualizados correctamente");
     } catch (error) {
-      setMessage(`Error refrescando datos: ${error.message}`);
+      showInfoModal(
+        "❌ Error al Actualizar",
+        `No se pudieron actualizar los datos.<br><br>Error: ${error.message}`,
+        'error'
+      );
+      setMessage(`❌ Error refrescando datos: ${error.message}`);
     } finally {
       setSearching(false);
     }
@@ -484,7 +806,7 @@ function AlcaldiaEnvigadoPage({ onBack }) {
             {/* Área de selección de archivo */}
             <div 
               className="upload-area" 
-              onClick={() => document.getElementById('fileInput').click()}
+              onClick={() => document.getElementById('fileInputAlcaldia').click()}
               onDrop={handleDrop}
               onDragOver={handleDragOver}
             >
@@ -510,7 +832,7 @@ function AlcaldiaEnvigadoPage({ onBack }) {
                   accept=".xlsx,.xls"
                   onChange={handleFileChange}
                   disabled={loading}
-                id="fileInput"
+                id="fileInputAlcaldia"
               />
               </div>
             
@@ -549,14 +871,54 @@ function AlcaldiaEnvigadoPage({ onBack }) {
           </div>
         )}
 
+
         {/* Filtros y búsqueda */}
         <div className="modern-card">
           <div className="card-header">
-            <h3>
-              <i className="bi bi-funnel"></i>
-              🔍 Filtros y Consultas
-            </h3>
-            <p>⚡ Busque y filtre registros por nombre, ID, departamento o punto de acceso</p>
+            <div style={{ textAlign: 'center', marginBottom: '20px' }}>
+              <div style={{ 
+                display: 'flex', 
+                alignItems: 'center', 
+                justifyContent: 'center', 
+                gap: '15px',
+                marginBottom: '10px'
+              }}>
+                <div style={{
+                  background: 'linear-gradient(135deg, #f97316 0%, #ea580c 100%)',
+                  color: 'white',
+                  padding: '12px',
+                  borderRadius: '50%',
+                  fontSize: '24px',
+                  boxShadow: '0 4px 15px rgba(249, 115, 22, 0.3)'
+                }}>
+                  🔍
+                </div>
+                <h3 style={{ 
+                  margin: 0, 
+                  fontSize: '24px', 
+                  fontWeight: '700',
+                  background: 'linear-gradient(135deg, #f97316 0%, #ea580c 100%)',
+                  WebkitBackgroundClip: 'text',
+                  WebkitTextFillColor: 'transparent',
+                  backgroundClip: 'text'
+                }}>
+                  Filtros y Consultas
+                </h3>
+              </div>
+              <p style={{ 
+                margin: 0, 
+                color: '#6b7280', 
+                fontSize: '16px',
+                fontWeight: '500',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                gap: '8px'
+              }}>
+                <span style={{ fontSize: '18px' }}>⚡</span>
+                Busque y filtre registros por nombre, ID, departamento o punto de acceso
+              </p>
+            </div>
           </div>
           
           <div className="filters-section">
@@ -673,7 +1035,10 @@ function AlcaldiaEnvigadoPage({ onBack }) {
                         </div>
                         <div className="empty-actions d-flex gap-3">
                           <button 
-                            onClick={() => document.getElementById('fileInput')?.click()}
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              document.getElementById('fileInputAlcaldia').click();
+                            }}
                             className="btn btn-primary"
                           >
                             <i className="bi bi-upload"></i>
@@ -713,6 +1078,131 @@ function AlcaldiaEnvigadoPage({ onBack }) {
                 )}
               </tbody>
             </table>
+          </div>
+          
+          {/* Controles de paginación */}
+          {renderPagination(page, totalPages, setPage)}
+          
+          {/* Información de registros */}
+          <div className="pagination-info mt-3">
+            <div className="d-flex justify-content-between align-items-center">
+              <div className="text-muted">
+                Mostrando {((page - 1) * PAGE_SIZE) + 1} a {Math.min(page * PAGE_SIZE, resultadosFinales.length)} de {resultadosFinales.length} registros
+              </div>
+              <div className="text-muted">
+                Página {page} de {totalPages}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Sección de archivos subidos - DESPUÉS DE LA TABLA */}
+        <div className="modern-card">
+          <div className="card-header">
+            <h3>
+              <i className="bi bi-folder2-open"></i>
+              📁 Archivos Subidos
+            </h3>
+            <p>📂 Gestione y acceda a los archivos Excel procesados</p>
+          </div>
+          <div className="files-section">
+            <div className="files-grid">
+              <div className="files-list">
+                <div className="files-header">
+                  <span className="files-count">{files.length} archivo{files.length !== 1 ? 's' : ''}</span>
+                  <button 
+                    className="folder-access-btn"
+                    onClick={async () => {
+                      try {
+                        // Obtener la ruta de la carpeta desde el backend
+                        const response = await fetch(`${API_CONFIG.ALCALDIA.BASE_URL}/files-path`);
+                        const data = await response.json();
+                        
+                        if (data.absolutePath) {
+                          // Mostrar la ruta al usuario para que la copie manualmente
+                          const message = `📁 Ruta de la carpeta de archivos:\n\n${data.absolutePath}\n\n📋 Puedes copiar esta ruta y pegarla en el explorador de Windows para abrir la carpeta.`;
+                          alert(message);
+                          
+                          // Intentar copiar la ruta al portapapeles
+                          try {
+                            await navigator.clipboard.writeText(data.absolutePath);
+                            console.log('✅ Ruta copiada al portapapeles');
+                          } catch (clipboardError) {
+                            console.log('⚠️ No se pudo copiar automáticamente al portapapeles');
+                          }
+                          
+                          // También intentar abrir con protocolo file (puede funcionar en algunos casos)
+                          try {
+                            window.open(`file:///${data.absolutePath.replace(/\\/g, '/')}`, '_blank');
+                          } catch (fileError) {
+                            console.log('⚠️ No se pudo abrir directamente con protocolo file');
+                          }
+                        } else {
+                          // Fallback: mostrar información de archivos
+                          window.open(`${API_CONFIG.ALCALDIA.BASE_URL}/files`, '_blank');
+                        }
+                      } catch (error) {
+                        console.error('Error obteniendo ruta de carpeta:', error);
+                        // Fallback: mostrar información de archivos
+                        window.open(`${API_CONFIG.ALCALDIA.BASE_URL}/files`, '_blank');
+                      }
+                    }}
+                    title="Mostrar ruta de la carpeta de archivos"
+                  >
+                    <i className="bi bi-folder-fill"></i>
+                    📂 Ver Ruta de Carpeta
+                  </button>
+                </div>
+                <div className="files-container">
+                  {files.length === 0 ? (
+                    <div className="no-files">
+                      <i className="bi bi-folder-x"></i>
+                      <p>No hay archivos subidos aún</p>
+                      <small>Suba un archivo Excel para verlo aquí</small>
+                    </div>
+                  ) : (
+                    files.map((file, index) => (
+                      <div key={index} className="file-item">
+                        <div className="file-icon">
+                          <i className="bi bi-file-earmark-excel"></i>
+                        </div>
+                        <div className="file-info">
+                          <div className="file-name">{file.name}</div>
+                          <div className="file-details">
+                            <span className="file-size">{(file.size / 1024).toFixed(1)} KB</span>
+                            <span className="file-date">
+                              {file.uploadDate ? new Date(file.uploadDate).toLocaleDateString('es-ES', {
+                                year: 'numeric',
+                                month: '2-digit',
+                                day: '2-digit',
+                                hour: '2-digit',
+                                minute: '2-digit'
+                              }) : 'Fecha no disponible'}
+                            </span>
+                            <span className="file-records">{file.recordCount || 0} registros</span>
+                          </div>
+                        </div>
+                        <div className="file-actions">
+                          <button 
+                            className="file-action-btn"
+                            onClick={() => {
+                              // Descargar archivo
+                              const link = document.createElement('a');
+                              link.href = `${API_CONFIG.ALCALDIA.BASE_URL}/download/${file.name}`;
+                              link.download = file.name;
+                              link.click();
+                            }}
+                            title="Descargar archivo"
+                          >
+                            <i className="bi bi-download"></i>
+                          </button>
+                        </div>
+                      </div>
+                    ))
+                  )}
+                </div>
+              </div>
+            </div>
           </div>
         </div>
 

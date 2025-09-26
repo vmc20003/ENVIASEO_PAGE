@@ -223,6 +223,52 @@ app.get('/api/files', (req, res) => {
   }
 });
 
+// Obtener registros por archivo específico
+app.get('/records-by-file/:filename', (req, res) => {
+  try {
+    const filename = decodeURIComponent(req.params.filename);
+    
+    // Buscar registros por archivo en la base de datos
+    const data = getDataFromDatabase('enviaseo-control-acceso');
+    const allRecords = data || [];
+    
+    const fileRecords = allRecords.filter(record => 
+      record.archivo === filename || 
+      record.sourceFile === filename ||
+      record.fileName === filename
+    );
+    
+    res.json({
+      filename,
+      count: fileRecords.length,
+      records: fileRecords
+    });
+  } catch (error) {
+    console.error("Error getting records by file:", error);
+    res.status(500).json({ 
+      error: "No se pudieron obtener los registros del archivo.",
+      count: 0,
+      records: []
+    });
+  }
+});
+
+// Endpoint para obtener la ruta de la carpeta de archivos
+app.get('/files-path', (req, res) => {
+  try {
+    const uploadPath = path.join(__dirname, config.UPLOAD_FOLDER);
+    res.json({
+      path: config.UPLOAD_FOLDER,
+      absolutePath: uploadPath
+    });
+  } catch (error) {
+    console.error("Error getting files path:", error);
+    res.status(500).json({ 
+      error: "No se pudo obtener la ruta de archivos."
+    });
+  }
+});
+
 // Eliminar archivo y sus datos
 app.delete('/api/files/:fileId', async (req, res) => {
   try {

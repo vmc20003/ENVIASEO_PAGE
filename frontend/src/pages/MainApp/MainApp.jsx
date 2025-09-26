@@ -7,7 +7,7 @@ import { API_CONFIG, isDemoMode } from "../../config.js";
 import { demoAlumbradoService } from "../../services/demoService.js";
 import logoAlumbrado from "../../assets/logo_alumbrado_publico_correcto.svg";
 
-const PAGE_SIZE = 10;
+const PAGE_SIZE = 50;
 
 function MainApp({ onBack }) {
   const [file, setFile] = useState(null);
@@ -255,8 +255,52 @@ function MainApp({ onBack }) {
       const response = await fetch(`${API_CONFIG.ALUMBRADO.BASE_URL}/files`);
       const data = await response.json();
       // El backend devuelve { files: [...] }, extraer el array
-      const filesArray = data.files || data;
-      setFiles(Array.isArray(filesArray) ? filesArray : []);
+      let filesArray = data.files || data;
+      
+      if (Array.isArray(filesArray)) {
+        // Obtener información de registros para cada archivo
+        const filesWithRecords = await Promise.all(
+          filesArray.map(async (file) => {
+            try {
+              console.log('📄 Procesando archivo:', file);
+              const filename = file.name || file.filename || file.originalName;
+              console.log('📝 Nombre del archivo a buscar:', filename);
+              
+              if (!filename) {
+                console.warn('⚠️ Archivo sin nombre válido:', file);
+                return {
+                  ...file,
+                  recordCount: 0
+                };
+              }
+              
+              // Obtener registros por archivo desde el backend
+              const recordsResponse = await fetch(`${API_CONFIG.ALUMBRADO.BASE_URL}/records-by-file/${encodeURIComponent(filename)}`);
+              if (recordsResponse.ok) {
+                const recordsData = await recordsResponse.json();
+                console.log('📊 Datos de registros obtenidos:', recordsData);
+                return {
+                  ...file,
+                  recordCount: recordsData.count || recordsData.length || 0
+                };
+              }
+              return {
+                ...file,
+                recordCount: 0
+              };
+            } catch (error) {
+              console.error(`Error fetching records for file ${file.name}:`, error);
+              return {
+                ...file,
+                recordCount: 0
+              };
+            }
+          })
+        );
+        setFiles(filesWithRecords);
+      } else {
+        setFiles([]);
+      }
     } catch (error) {
       console.error("Error fetching files:", error);
       setFiles([]); // En caso de error, establecer como array vacío
@@ -279,36 +323,279 @@ function MainApp({ onBack }) {
     }
   };
 
-  const clearDatabase = async () => {
-    if (
-      !window.confirm(
-        "¿Estás seguro de que quieres limpiar toda la base de datos?"
-      )
-    ) {
-      return;
-    }
-
-    try {
-      const response = await fetch(`${API_CONFIG.ALUMBRADO.BASE_URL}/clear-all`, {
-        method: "DELETE",
-      });
-
-      if (response.ok) {
-        setMessage("Base de datos limpiada correctamente");
-        setResultados([]);
-        fetchStats();
-      } else {
-        const data = await response.json();
-        setMessage(`Error: ${data.error}`);
+  // Función para crear modal de confirmación interactivo
+  const showConfirmModal = (title, message, onConfirm, onCancel = null) => {
+    const modal = document.createElement('div');
+    modal.style.cssText = `
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.6);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 10000;
+      backdrop-filter: blur(4px);
+    `;
+    
+    const modalContent = document.createElement('div');
+    modalContent.style.cssText = `
+      background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+      padding: 0;
+      border-radius: 15px;
+      max-width: 450px;
+      width: 90%;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      overflow: hidden;
+      transform: scale(0.9);
+      animation: modalAppear 0.3s ease-out forwards;
+    `;
+    
+    // Agregar animación CSS
+    const style = document.createElement('style');
+    style.textContent = `
+      @keyframes modalAppear {
+        from { transform: scale(0.9); opacity: 0; }
+        to { transform: scale(1); opacity: 1; }
       }
-    } catch (error) {
-      setMessage(`Error de conexión: ${error.message}`);
-    }
+      @keyframes modalDisappear {
+        from { transform: scale(1); opacity: 1; }
+        to { transform: scale(0.9); opacity: 0; }
+      }
+    `;
+    document.head.appendChild(style);
+    
+    modalContent.innerHTML = `
+      <div style="background: linear-gradient(135deg, #dc3545 0%, #c82333 100%); padding: 25px; text-align: center; color: white;">
+        <div style="font-size: 48px; margin-bottom: 10px;">⚠️</div>
+        <h3 style="margin: 0; font-size: 20px; font-weight: 600;">${title}</h3>
+      </div>
+      
+      <div style="padding: 30px 25px 25px 25px;">
+        <p style="margin: 0 0 25px 0; color: #495057; line-height: 1.6; font-size: 16px; text-align: center;">
+          ${message}
+        </p>
+        
+        <div style="display: flex; gap: 12px; justify-content: center;">
+          <button id="confirmBtn" style="
+            background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(40, 167, 69, 0.3);
+            min-width: 100px;
+          ">
+            ✅ Confirmar
+          </button>
+          
+          <button id="cancelBtn" style="
+            background: linear-gradient(135deg, #6c757d 0%, #5a6268 100%);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(108, 117, 125, 0.3);
+            min-width: 100px;
+          ">
+            ❌ Cancelar
+          </button>
+        </div>
+      </div>
+    `;
+    
+    modal.appendChild(modalContent);
+    document.body.appendChild(modal);
+    
+    // Event listeners con efectos hover
+    const confirmBtn = document.getElementById('confirmBtn');
+    const cancelBtn = document.getElementById('cancelBtn');
+    
+    confirmBtn.addEventListener('mouseenter', () => {
+      confirmBtn.style.transform = 'translateY(-2px)';
+      confirmBtn.style.boxShadow = '0 6px 20px rgba(40, 167, 69, 0.4)';
+    });
+    
+    confirmBtn.addEventListener('mouseleave', () => {
+      confirmBtn.style.transform = 'translateY(0)';
+      confirmBtn.style.boxShadow = '0 4px 15px rgba(40, 167, 69, 0.3)';
+    });
+    
+    cancelBtn.addEventListener('mouseenter', () => {
+      cancelBtn.style.transform = 'translateY(-2px)';
+      cancelBtn.style.boxShadow = '0 6px 20px rgba(108, 117, 125, 0.4)';
+    });
+    
+    cancelBtn.addEventListener('mouseleave', () => {
+      cancelBtn.style.transform = 'translateY(0)';
+      cancelBtn.style.boxShadow = '0 4px 15px rgba(108, 117, 125, 0.3)';
+    });
+    
+    const closeModal = (callback) => {
+      modalContent.style.animation = 'modalDisappear 0.3s ease-out forwards';
+      setTimeout(() => {
+        document.body.removeChild(modal);
+        document.head.removeChild(style);
+        if (callback) callback();
+      }, 300);
+    };
+    
+    confirmBtn.onclick = () => closeModal(onConfirm);
+    cancelBtn.onclick = () => closeModal(onCancel);
+    
+    modal.onclick = (e) => {
+      if (e.target === modal) {
+        closeModal(onCancel);
+      }
+    };
+  };
+
+  const clearDatabase = async () => {
+    showConfirmModal(
+      "🗑️ Limpiar Base de Datos",
+      "Esta acción eliminará <strong>TODOS</strong> los registros de la base de datos de forma permanente.<br><br>⚠️ <strong>Esta acción no se puede deshacer.</strong>",
+      async () => {
+        // Función que se ejecuta al confirmar
+        try {
+          const response = await fetch(`${API_CONFIG.ALUMBRADO.BASE_URL}/clear-all`, {
+            method: "DELETE",
+          });
+
+          if (response.ok) {
+            setMessage("✅ Base de datos limpiada correctamente");
+            setResultados([]);
+            setFiles([]);
+          } else {
+            setMessage("❌ Error al limpiar la base de datos");
+          }
+        } catch (error) {
+          console.error("Error:", error);
+          setMessage("❌ Error de conexión al limpiar la base de datos");
+        }
+      },
+      () => {
+        // Función que se ejecuta al cancelar
+        console.log("Operación cancelada por el usuario");
+      }
+    );
+  };
+
+  // Función para crear modal de información/éxito
+  const showInfoModal = (title, message, type = 'info') => {
+    const modal = document.createElement('div');
+    modal.style.cssText = `
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.6);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 10000;
+      backdrop-filter: blur(4px);
+    `;
+    
+    const modalContent = document.createElement('div');
+    modalContent.style.cssText = `
+      background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+      padding: 0;
+      border-radius: 15px;
+      max-width: 400px;
+      width: 90%;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      overflow: hidden;
+      transform: scale(0.9);
+      animation: modalAppear 0.3s ease-out forwards;
+    `;
+    
+    const colors = {
+      success: { bg: 'linear-gradient(135deg, #28a745 0%, #20c997 100%)', icon: '✅' },
+      error: { bg: 'linear-gradient(135deg, #dc3545 0%, #c82333 100%)', icon: '❌' },
+      info: { bg: 'linear-gradient(135deg, #17a2b8 0%, #138496 100%)', icon: 'ℹ️' },
+      warning: { bg: 'linear-gradient(135deg, #ffc107 0%, #e0a800 100%)', icon: '⚠️' }
+    };
+    
+    const selectedColor = colors[type] || colors.info;
+    
+    modalContent.innerHTML = `
+      <div style="background: ${selectedColor.bg}; padding: 25px; text-align: center; color: white;">
+        <div style="font-size: 48px; margin-bottom: 10px;">${selectedColor.icon}</div>
+        <h3 style="margin: 0; font-size: 20px; font-weight: 600;">${title}</h3>
+      </div>
+      
+      <div style="padding: 30px 25px 25px 25px;">
+        <p style="margin: 0 0 25px 0; color: #495057; line-height: 1.6; font-size: 16px; text-align: center;">
+          ${message}
+        </p>
+        
+        <div style="display: flex; justify-content: center;">
+          <button id="closeBtn" style="
+            background: linear-gradient(135deg, #6c757d 0%, #5a6268 100%);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(108, 117, 125, 0.3);
+            min-width: 100px;
+          ">
+            Cerrar
+          </button>
+        </div>
+      </div>
+    `;
+    
+    modal.appendChild(modalContent);
+    document.body.appendChild(modal);
+    
+    const closeBtn = document.getElementById('closeBtn');
+    
+    closeBtn.addEventListener('mouseenter', () => {
+      closeBtn.style.transform = 'translateY(-2px)';
+      closeBtn.style.boxShadow = '0 6px 20px rgba(108, 117, 125, 0.4)';
+    });
+    
+    closeBtn.addEventListener('mouseleave', () => {
+      closeBtn.style.transform = 'translateY(0)';
+      closeBtn.style.boxShadow = '0 4px 15px rgba(108, 117, 125, 0.3)';
+    });
+    
+    const closeModal = () => {
+      modalContent.style.animation = 'modalDisappear 0.3s ease-out forwards';
+      setTimeout(() => {
+        document.body.removeChild(modal);
+      }, 300);
+    };
+    
+    closeBtn.onclick = closeModal;
+    modal.onclick = (e) => {
+      if (e.target === modal) {
+        closeModal();
+      }
+    };
   };
 
   const refreshData = async () => {
     setSearching(true);
-    setMessage("Refrescando datos...");
+    setMessage("🔄 Refrescando datos...");
+    
     try {
       if (isDemoMode()) {
         const data = await demoAlumbradoService.getAllRecords();
@@ -322,9 +609,24 @@ function MainApp({ onBack }) {
       // El backend devuelve { resultados: [...] }, extraer el array
       const resultadosArray = data.resultados || data;
       setResultados(resultadosArray);
-      setMessage(`Analizando ${resultadosArray.length} registros...`);
+      
+      // Mostrar modal de éxito
+      showInfoModal(
+        "✅ Datos Actualizados",
+        `Los datos se han actualizado correctamente.<br><br><strong>${resultadosArray.length}</strong> registros cargados en la base de datos.`,
+        'success'
+      );
+      
+      setMessage(`✅ Datos actualizados. ${resultadosArray.length} registros cargados.`);
     } catch (error) {
-      setMessage(`Error refrescando datos: ${error.message}`);
+      // Mostrar modal de error
+      showInfoModal(
+        "❌ Error al Actualizar",
+        `No se pudieron actualizar los datos.<br><br>Error: ${error.message}`,
+        'error'
+      );
+      
+      setMessage(`❌ Error refrescando datos: ${error.message}`);
     } finally {
       setSearching(false);
     }
@@ -862,10 +1164,8 @@ function MainApp({ onBack }) {
             <div className="upload-container">
               <div 
                 className="upload-area" 
-                onClick={(e) => {
-                  e.preventDefault();
-                  e.stopPropagation();
-                  document.getElementById('fileInput').click();
+                onClick={() => {
+                  document.getElementById('fileInputAlumbrado').click();
                 }}
                 onDrop={handleDrop}
                 onDragOver={handleDragOver}
@@ -892,7 +1192,7 @@ function MainApp({ onBack }) {
                   accept=".xlsx,.xls"
                   onChange={handleFileChange}
                   disabled={loading}
-                  id="fileInput"
+                  id="fileInputAlumbrado"
                 />
               </div>
               
@@ -933,6 +1233,7 @@ function MainApp({ onBack }) {
             <span>{message}</span>
           </div>
         )}
+
 
         {/* Filtros y búsqueda */}
         <div className="modern-card">
@@ -1050,7 +1351,10 @@ function MainApp({ onBack }) {
                            </div>
                            <div className="empty-actions">
                                 <button
-                               onClick={() => document.getElementById('fileInput')?.click()}
+                               onClick={(e) => {
+                                 e.stopPropagation();
+                                 document.getElementById('fileInputAlumbrado').click();
+                               }}
                                className="btn-modern btn-primary"
                              >
                                <i className="bi bi-upload"></i>
@@ -1070,6 +1374,198 @@ function MainApp({ onBack }) {
                       </tbody>
                     </table>
                   </div>
+                  
+                  {/* Controles de paginación */}
+                  {renderPagination(page, totalPages, setPage)}
+                  
+                  {/* Información de registros */}
+                  <div className="pagination-info mt-3">
+                    <div className="d-flex justify-content-between align-items-center">
+                      <div className="text-muted">
+                        Mostrando {((page - 1) * PAGE_SIZE) + 1} a {Math.min(page * PAGE_SIZE, (resultadosFiltrados || []).length)} de {(resultadosFiltrados || []).length} registros
+                      </div>
+                      <div className="text-muted">
+                        Página {page} de {totalPages}
+                      </div>
+                    </div>
+                  </div>
+
+        {/* Sección de archivos subidos - DESPUÉS DE LA TABLA */}
+        <div className="modern-card">
+          <div className="card-header">
+            <h3>
+              <i className="bi bi-folder2-open"></i>
+              📁 Archivos Subidos
+            </h3>
+            <p>📂 Gestione y acceda a los archivos Excel procesados</p>
+          </div>
+          <div className="files-section">
+            <div className="files-grid">
+              <div className="files-list">
+                <div className="files-header">
+                  <span className="files-count">{files.length} archivo{files.length !== 1 ? 's' : ''}</span>
+                  <button 
+                    className="folder-access-btn"
+                    onClick={async () => {
+                      try {
+                        // Obtener la ruta de la carpeta desde el backend
+                        const response = await fetch(`${API_CONFIG.ALUMBRADO.BASE_URL}/files-path`);
+                        const data = await response.json();
+                        
+                        if (data.absolutePath) {
+                          // Crear un modal más elegante para mostrar la información
+                          const modal = document.createElement('div');
+                          modal.style.cssText = `
+                            position: fixed;
+                            top: 0;
+                            left: 0;
+                            width: 100%;
+                            height: 100%;
+                            background: rgba(0,0,0,0.5);
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            z-index: 10000;
+                          `;
+                          
+                          const modalContent = document.createElement('div');
+                          modalContent.style.cssText = `
+                            background: white;
+                            padding: 30px;
+                            border-radius: 10px;
+                            max-width: 500px;
+                            width: 90%;
+                            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+                            font-family: Arial, sans-serif;
+                          `;
+                          
+                          modalContent.innerHTML = `
+                            <h3 style="margin: 0 0 20px 0; color: #333; text-align: center;">📁 Acceso a Carpeta de Archivos</h3>
+                            <div style="background: #f5f5f5; padding: 15px; border-radius: 5px; margin: 15px 0;">
+                              <strong>Ruta de la carpeta:</strong><br>
+                              <code style="background: #e9ecef; padding: 8px; border-radius: 3px; display: block; margin-top: 8px; word-break: break-all;">${data.absolutePath}</code>
+                            </div>
+                            <div style="background: #d1ecf1; padding: 15px; border-radius: 5px; margin: 15px 0; border-left: 4px solid #bee5eb;">
+                              <strong>💡 Instrucciones:</strong><br>
+                              1. Copia la ruta de arriba (Ctrl+C)<br>
+                              2. Abre el explorador de Windows<br>
+                              3. Pega la ruta en la barra de direcciones (Ctrl+V)<br>
+                              4. Presiona Enter
+                            </div>
+                            <div style="display: flex; gap: 10px; justify-content: center; margin-top: 20px;">
+                              <button id="copyBtn" style="background: #007bff; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer;">
+                                📋 Copiar Ruta
+                              </button>
+                              <button id="closeBtn" style="background: #6c757d; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer;">
+                                Cerrar
+                              </button>
+                            </div>
+                          `;
+                          
+                          modal.appendChild(modalContent);
+                          document.body.appendChild(modal);
+                          
+                          // Event listeners
+                          document.getElementById('copyBtn').onclick = async () => {
+                            try {
+                              await navigator.clipboard.writeText(data.absolutePath);
+                              alert('✅ Ruta copiada al portapapeles');
+                            } catch (error) {
+                              // Fallback para navegadores que no soportan clipboard API
+                              const textArea = document.createElement('textarea');
+                              textArea.value = data.absolutePath;
+                              document.body.appendChild(textArea);
+                              textArea.select();
+                              document.execCommand('copy');
+                              document.body.removeChild(textArea);
+                              alert('✅ Ruta copiada al portapapeles');
+                            }
+                          };
+                          
+                          document.getElementById('closeBtn').onclick = () => {
+                            document.body.removeChild(modal);
+                          };
+                          
+                          modal.onclick = (e) => {
+                            if (e.target === modal) {
+                              document.body.removeChild(modal);
+                            }
+                          };
+                          
+                          // También intentar abrir con protocolo file
+                          try {
+                            window.open(`file:///${data.absolutePath.replace(/\\/g, '/')}`, '_blank');
+                          } catch (fileError) {
+                            console.log('⚠️ No se pudo abrir directamente con protocolo file');
+                          }
+                        } else {
+                          // Fallback: mostrar información de archivos
+                          window.open(`${API_CONFIG.ALUMBRADO.BASE_URL}/files`, '_blank');
+                        }
+                      } catch (error) {
+                        console.error('Error obteniendo ruta de carpeta:', error);
+                        // Fallback: mostrar información de archivos
+                        window.open(`${API_CONFIG.ALUMBRADO.BASE_URL}/files`, '_blank');
+                      }
+                    }}
+                    title="Abrir carpeta de archivos"
+                  >
+                    <i className="bi bi-folder-fill"></i>
+                    📂 Abrir Carpeta
+                  </button>
+                </div>
+                <div className="files-container">
+                  {files.length === 0 ? (
+                    <div className="no-files">
+                      <i className="bi bi-folder-x"></i>
+                      <p>No hay archivos subidos aún</p>
+                      <small>Suba un archivo Excel para verlo aquí</small>
+                    </div>
+                  ) : (
+                    files.map((file, index) => (
+                      <div key={index} className="file-item">
+                        <div className="file-icon">
+                          <i className="bi bi-file-earmark-excel"></i>
+                        </div>
+                        <div className="file-info">
+                          <div className="file-name">{file.name}</div>
+                          <div className="file-details">
+                            <span className="file-size">{(file.size / 1024).toFixed(1)} KB</span>
+                            <span className="file-date">
+                              {file.uploadDate ? new Date(file.uploadDate).toLocaleDateString('es-ES', {
+                                year: 'numeric',
+                                month: '2-digit',
+                                day: '2-digit',
+                                hour: '2-digit',
+                                minute: '2-digit'
+                              }) : 'Fecha no disponible'}
+                            </span>
+                            <span className="file-records">{file.recordCount || 0} registros</span>
+                          </div>
+                        </div>
+                        <div className="file-actions">
+                          <button 
+                            className="file-action-btn"
+                            onClick={() => {
+                              // Descargar archivo
+                              const link = document.createElement('a');
+                              link.href = `${API_CONFIG.ALUMBRADO.BASE_URL}/download/${file.name}`;
+                              link.download = file.name;
+                              link.click();
+                            }}
+                            title="Descargar archivo"
+                          >
+                            <i className="bi bi-download"></i>
+                          </button>
+                        </div>
+                      </div>
+                    ))
+                  )}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
 
       </div>
     </div>
