@@ -1,6 +1,10 @@
-const fs = require('fs');
-const path = require('path');
-const { config } = require('../config.js');
+import fs from 'fs';
+import path from 'path';
+import { fileURLToPath } from 'url';
+import { config } from '../config.js';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 async function saveToDatabase(data, type) {
   try {
@@ -70,7 +74,7 @@ async function getDataFromDatabase(type) {
   }
 }
 
-module.exports = {
+export {
   saveToDatabase,
   getDataFromDatabase
 };

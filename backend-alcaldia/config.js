@@ -1,7 +1,7 @@
 // Configuración para desarrollo y producción
 const config = {
   development: {
-    port: 4002,
+    port: 4001,
     // Permitir cualquier origen por defecto para portabilidad en red local
     corsOrigin: process.env.FRONTEND_URL || "*",
     database: {
@@ -9,7 +9,7 @@ const config = {
     }
   },
   production: {
-    port: process.env.PORT || 4002,
+    port: process.env.PORT || 4001,
     corsOrigin: process.env.FRONTEND_URL || "*",
     database: {
       type: "memory" // Por ahora mantenemos en memoria, después podemos migrar a PostgreSQL

@@ -11,7 +11,7 @@ function EnviaseoControlAccesoPage({ onBack }) {
   const [currentPage, setCurrentPage] = useState(1);
   const [searchTerm, setSearchTerm] = useState("");
   const [filteredData, setFilteredData] = useState([]);
-  const [itemsPerPage] = useState(20); // Mostrar 20 registros por página
+  const [itemsPerPage] = useState(50); // Mostrar 50 registros por página
   const [files, setFiles] = useState([]);
   const [debouncedSearch, setDebouncedSearch] = useState("");
   const [totalPages, setTotalPages] = useState(1);
@@ -36,6 +36,261 @@ function EnviaseoControlAccesoPage({ onBack }) {
   
   const handleDragOver = (e) => {
     e.preventDefault();
+  };
+
+  // Funciones para modales interactivos
+  const showConfirmModal = (title, message, onConfirm, onCancel = null) => {
+    // Crear overlay
+    const overlay = document.createElement('div');
+    overlay.style.cssText = `
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.6);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 10000;
+      animation: fadeIn 0.3s ease-out;
+    `;
+
+    // Crear modal
+    const modal = document.createElement('div');
+    modal.style.cssText = `
+      background: white;
+      border-radius: 15px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+      max-width: 500px;
+      width: 90%;
+      overflow: hidden;
+      animation: slideIn 0.3s ease-out;
+    `;
+
+    // Agregar animaciones CSS
+    const style = document.createElement('style');
+    style.textContent = `
+      @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+      }
+      @keyframes slideIn {
+        from { transform: translateY(-50px); opacity: 0; }
+        to { transform: translateY(0); opacity: 1; }
+      }
+    `;
+    document.head.appendChild(style);
+
+    modal.innerHTML = `
+      <div style="background: linear-gradient(135deg, #dc3545 0%, #c82333 100%); padding: 25px; text-align: center; color: white;">
+        <div style="font-size: 48px; margin-bottom: 10px;">⚠️</div>
+        <h3 style="margin: 0; font-size: 20px; font-weight: 600;">${title}</h3>
+      </div>
+      <div style="padding: 30px 25px 25px 25px;">
+        <p style="margin: 0 0 25px 0; color: #495057; line-height: 1.6; font-size: 16px; text-align: center;">
+          ${message}
+        </p>
+        <div style="display: flex; gap: 12px; justify-content: center;">
+          <button id="confirmBtn" style="
+            background: linear-gradient(135deg, #dc3545 0%, #c82333 100%);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(220, 53, 69, 0.3);
+          ">
+            ✅ Confirmar
+          </button>
+          <button id="cancelBtn" style="
+            background: #6c757d;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(108, 117, 125, 0.3);
+          ">
+            ❌ Cancelar
+          </button>
+        </div>
+      </div>
+    `;
+
+    overlay.appendChild(modal);
+    document.body.appendChild(overlay);
+
+    // Event listeners
+    const confirmBtn = modal.querySelector('#confirmBtn');
+    const cancelBtn = modal.querySelector('#cancelBtn');
+
+    const closeModal = () => {
+      overlay.style.animation = 'fadeIn 0.3s ease-out reverse';
+      modal.style.animation = 'slideIn 0.3s ease-out reverse';
+      setTimeout(() => {
+        document.body.removeChild(overlay);
+        document.head.removeChild(style);
+      }, 300);
+    };
+
+    confirmBtn.addEventListener('click', () => {
+      closeModal();
+      if (onConfirm) onConfirm();
+    });
+
+    cancelBtn.addEventListener('click', () => {
+      closeModal();
+      if (onCancel) onCancel();
+    });
+
+    // Cerrar al hacer clic en el overlay
+    overlay.addEventListener('click', (e) => {
+      if (e.target === overlay) {
+        closeModal();
+        if (onCancel) onCancel();
+      }
+    });
+
+    // Hover effects
+    confirmBtn.addEventListener('mouseenter', () => {
+      confirmBtn.style.transform = 'translateY(-2px)';
+      confirmBtn.style.boxShadow = '0 6px 20px rgba(220, 53, 69, 0.4)';
+    });
+    confirmBtn.addEventListener('mouseleave', () => {
+      confirmBtn.style.transform = 'translateY(0)';
+      confirmBtn.style.boxShadow = '0 4px 15px rgba(220, 53, 69, 0.3)';
+    });
+
+    cancelBtn.addEventListener('mouseenter', () => {
+      cancelBtn.style.transform = 'translateY(-2px)';
+      cancelBtn.style.boxShadow = '0 6px 20px rgba(108, 117, 125, 0.4)';
+    });
+    cancelBtn.addEventListener('mouseleave', () => {
+      cancelBtn.style.transform = 'translateY(0)';
+      cancelBtn.style.boxShadow = '0 4px 15px rgba(108, 117, 125, 0.3)';
+    });
+  };
+
+  const showInfoModal = (title, message, type = 'info') => {
+    // Crear overlay
+    const overlay = document.createElement('div');
+    overlay.style.cssText = `
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.6);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 10000;
+      animation: fadeIn 0.3s ease-out;
+    `;
+
+    // Crear modal
+    const modal = document.createElement('div');
+    modal.style.cssText = `
+      background: white;
+      border-radius: 15px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+      max-width: 500px;
+      width: 90%;
+      overflow: hidden;
+      animation: slideIn 0.3s ease-out;
+    `;
+
+    // Agregar animaciones CSS
+    const style = document.createElement('style');
+    style.textContent = `
+      @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+      }
+      @keyframes slideIn {
+        from { transform: translateY(-50px); opacity: 0; }
+        to { transform: translateY(0); opacity: 1; }
+      }
+    `;
+    document.head.appendChild(style);
+
+    const colors = {
+      success: { bg: 'linear-gradient(135deg, #28a745 0%, #20c997 100%)', icon: '✅' },
+      error: { bg: 'linear-gradient(135deg, #dc3545 0%, #c82333 100%)', icon: '❌' },
+      info: { bg: 'linear-gradient(135deg, #17a2b8 0%, #138496 100%)', icon: 'ℹ️' },
+      warning: { bg: 'linear-gradient(135deg, #ffc107 0%, #e0a800 100%)', icon: '⚠️' }
+    };
+
+    const selectedColor = colors[type] || colors.info;
+
+    modal.innerHTML = `
+      <div style="background: ${selectedColor.bg}; padding: 25px; text-align: center; color: white;">
+        <div style="font-size: 48px; margin-bottom: 10px;">${selectedColor.icon}</div>
+        <h3 style="margin: 0; font-size: 20px; font-weight: 600;">${title}</h3>
+      </div>
+      <div style="padding: 30px 25px 25px 25px;">
+        <p style="margin: 0 0 25px 0; color: #495057; line-height: 1.6; font-size: 16px; text-align: center;">
+          ${message}
+        </p>
+        <div style="display: flex; justify-content: center;">
+          <button id="closeBtn" style="
+            background: ${selectedColor.bg};
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+          ">
+            Cerrar
+          </button>
+        </div>
+      </div>
+    `;
+
+    overlay.appendChild(modal);
+    document.body.appendChild(overlay);
+
+    // Event listeners
+    const closeBtn = modal.querySelector('#closeBtn');
+
+    const closeModal = () => {
+      overlay.style.animation = 'fadeIn 0.3s ease-out reverse';
+      modal.style.animation = 'slideIn 0.3s ease-out reverse';
+      setTimeout(() => {
+        document.body.removeChild(overlay);
+        document.head.removeChild(style);
+      }, 300);
+    };
+
+    closeBtn.addEventListener('click', closeModal);
+
+    // Cerrar al hacer clic en el overlay
+    overlay.addEventListener('click', (e) => {
+      if (e.target === overlay) {
+        closeModal();
+      }
+    });
+
+    // Hover effect
+    closeBtn.addEventListener('mouseenter', () => {
+      closeBtn.style.transform = 'translateY(-2px)';
+      closeBtn.style.boxShadow = '0 6px 20px rgba(0, 0, 0, 0.3)';
+    });
+    closeBtn.addEventListener('mouseleave', () => {
+      closeBtn.style.transform = 'translateY(0)';
+      closeBtn.style.boxShadow = '0 4px 15px rgba(0, 0, 0, 0.2)';
+    });
   };
 
   const handleProcessFile = async () => {
@@ -68,7 +323,11 @@ function EnviaseoControlAccesoPage({ onBack }) {
       
     } catch (error) {
       console.error('Error al procesar archivo:', error);
-      alert(`Error al procesar el archivo: ${error.message}`);
+      showInfoModal(
+        "❌ Error al Procesar Archivo",
+        `No se pudo procesar el archivo.<br><br>Error: ${error.message}`,
+        'error'
+      );
     } finally {
       setIsProcessing(false);
     }
@@ -119,7 +378,11 @@ function EnviaseoControlAccesoPage({ onBack }) {
       
     } catch (error) {
       console.error('Error al cargar datos:', error);
-      alert(`Error al cargar los datos: ${error.message}`);
+      showInfoModal(
+        "❌ Error al Cargar Datos",
+        `No se pudieron cargar los datos.<br><br>Error: ${error.message}`,
+        'error'
+      );
     }
   };
 
@@ -129,13 +392,41 @@ function EnviaseoControlAccesoPage({ onBack }) {
       if (response.ok) {
         const result = await response.json();
         // Filtrar solo archivos de Enviaseo Control de Acceso
-        const enviaseoFiles = (result.data || []).filter(file => 
+        let enviaseoFiles = (result.data || []).filter(file => 
           file.type === 'enviaseo-control-acceso' || 
           !file.type || // Si no tiene tipo, asumir que es de Enviaseo
           file.filename?.includes('enviaseo') ||
           file.originalName?.includes('enviaseo')
         );
-        setFiles(enviaseoFiles);
+
+        // Obtener información de registros para cada archivo
+        const filesWithRecords = await Promise.all(
+          enviaseoFiles.map(async (file) => {
+            try {
+              const filename = file.filename || file.name || file.originalName;
+              // Obtener registros por archivo desde el backend
+              const recordsResponse = await fetch(`${API_CONFIG.ENVIASEO_CONTROL_ACCESO.BASE_URL}/records-by-file/${encodeURIComponent(filename)}`);
+              if (recordsResponse.ok) {
+                const recordsData = await recordsResponse.json();
+                return {
+                  ...file,
+                  recordCount: recordsData.count || recordsData.length || 0
+                };
+              }
+              return {
+                ...file,
+                recordCount: 0
+              };
+            } catch (error) {
+              console.error(`Error fetching records for file ${file.name}:`, error);
+              return {
+                ...file,
+                recordCount: 0
+              };
+            }
+          })
+        );
+        setFiles(filesWithRecords);
       }
     } catch (error) {
       console.error('Error fetching files:', error);
@@ -192,7 +483,7 @@ function EnviaseoControlAccesoPage({ onBack }) {
           {/* Área de selección de archivo */}
           <div 
             className="upload-area" 
-            onClick={() => document.getElementById('fileInput').click()}
+            onClick={() => document.getElementById('fileInputEnviaseo').click()}
             onDrop={handleDrop}
             onDragOver={handleDragOver}
           >
@@ -218,7 +509,7 @@ function EnviaseoControlAccesoPage({ onBack }) {
               accept=".xlsx,.xls"
               onChange={handleFileUpload}
               disabled={isProcessing}
-              id="fileInput"
+              id="fileInputEnviaseo"
             />
           </div>
           
@@ -290,7 +581,10 @@ function EnviaseoControlAccesoPage({ onBack }) {
               </div>
               <div className="empty-actions">
                 <button 
-                  onClick={() => document.getElementById('fileInput')?.click()}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    document.getElementById('fileInputEnviaseo').click();
+                  }}
                   className="btn-modern btn-primary"
                 >
                   <i className="bi bi-upload"></i>
@@ -359,11 +653,10 @@ function EnviaseoControlAccesoPage({ onBack }) {
                     <button
                       className="btn-action btn-delete"
                       onClick={async () => {
-                        if (
-                          window.confirm(
-                            "¿Estás seguro de que quieres eliminar este archivo? Esta acción no se puede deshacer."
-                          )
-                        ) {
+                        showConfirmModal(
+                          "🗑️ Eliminar Archivo",
+                          "¿Estás seguro de que quieres eliminar este archivo?<br><br>⚠️ <strong>Esta acción no se puede deshacer.</strong>",
+                          async () => {
                           try {
                             const response = await fetch(
                               `${API_CONFIG.ENVIASEO_CONTROL_ACCESO.BASE_URL}/files/${file.filename || file.name}`,
@@ -371,15 +664,31 @@ function EnviaseoControlAccesoPage({ onBack }) {
                             );
                             if (response.ok) {
                               await fetchFiles();
-                              alert("Archivo eliminado exitosamente");
+                              showInfoModal(
+                                "✅ Archivo Eliminado",
+                                "El archivo se ha eliminado exitosamente.",
+                                'success'
+                              );
                             } else {
-                              alert("Error al eliminar el archivo");
+                              showInfoModal(
+                                "❌ Error al Eliminar",
+                                "No se pudo eliminar el archivo.",
+                                'error'
+                              );
                             }
                           } catch (error) {
                             console.error("Error deleting file:", error);
-                            alert("Error al eliminar el archivo");
+                            showInfoModal(
+                              "❌ Error al Eliminar",
+                              `Error al eliminar el archivo: ${error.message}`,
+                              'error'
+                            );
                           }
-                        }
+                          },
+                          () => {
+                            console.log("Eliminación cancelada por el usuario");
+                          }
+                        );
                       }}
                       title="Eliminar archivo"
                     >
@@ -590,6 +899,129 @@ function EnviaseoControlAccesoPage({ onBack }) {
           </div>
         </div>
       )}
+
+      {/* Sección de archivos subidos - DESPUÉS DE LA TABLA */}
+      <div className="modern-card">
+        <div className="card-header">
+          <h3>
+            <i className="bi bi-folder2-open"></i>
+            📁 Archivos Subidos
+          </h3>
+          <p>📂 Gestione y acceda a los archivos Excel procesados</p>
+        </div>
+        <div className="files-section">
+          <div className="files-grid">
+            <div className="files-list">
+              <div className="files-header">
+                <span className="files-count">{files.length} archivo{files.length !== 1 ? 's' : ''}</span>
+                <button 
+                  className="folder-access-btn"
+                  onClick={async () => {
+                    try {
+                      // Obtener la ruta de la carpeta desde el backend
+                      const response = await fetch(`${API_CONFIG.ENVIASEO_CONTROL_ACCESO.BASE_URL}/files-path`);
+                      const data = await response.json();
+                      
+                      if (data.absolutePath) {
+                        // Mostrar la ruta al usuario para que la copie manualmente
+                        showInfoModal(
+                          "📁 Acceso a Carpeta de Archivos",
+                          `<div style="background: #f5f5f5; padding: 15px; border-radius: 5px; margin: 15px 0;">
+                            <strong>Ruta de la carpeta:</strong><br>
+                            <code style="background: #e9ecef; padding: 8px; border-radius: 3px; display: block; margin-top: 8px; word-break: break-all;">${data.absolutePath}</code>
+                          </div>
+                          <div style="background: #d1ecf1; padding: 15px; border-radius: 5px; margin: 15px 0; border-left: 4px solid #bee5eb;">
+                            <strong>💡 Instrucciones:</strong><br>
+                            1. Copia la ruta de arriba (Ctrl+C)<br>
+                            2. Abre el explorador de Windows<br>
+                            3. Pega la ruta en la barra de direcciones (Ctrl+V)<br>
+                            4. Presiona Enter
+                          </div>`,
+                          'info'
+                        );
+                        
+                        // Intentar copiar la ruta al portapapeles
+                        try {
+                          await navigator.clipboard.writeText(data.absolutePath);
+                          console.log('✅ Ruta copiada al portapapeles');
+                        } catch (clipboardError) {
+                          console.log('⚠️ No se pudo copiar automáticamente al portapapeles');
+                        }
+                        
+                        // También intentar abrir con protocolo file (puede funcionar en algunos casos)
+                        try {
+                          window.open(`file:///${data.absolutePath.replace(/\\/g, '/')}`, '_blank');
+                        } catch (fileError) {
+                          console.log('⚠️ No se pudo abrir directamente con protocolo file');
+                        }
+                      } else {
+                        // Fallback: mostrar información de archivos
+                        window.open(`${API_CONFIG.ENVIASEO_CONTROL_ACCESO.BASE_URL}/files`, '_blank');
+                      }
+                    } catch (error) {
+                      console.error('Error obteniendo ruta de carpeta:', error);
+                      // Fallback: mostrar información de archivos
+                      window.open(`${API_CONFIG.ENVIASEO_CONTROL_ACCESO.BASE_URL}/files`, '_blank');
+                    }
+                  }}
+                  title="Mostrar ruta de la carpeta de archivos"
+                >
+                  <i className="bi bi-folder-fill"></i>
+                  📂 Ver Ruta de Carpeta
+                </button>
+              </div>
+              <div className="files-container">
+                {files.length === 0 ? (
+                  <div className="no-files">
+                    <i className="bi bi-folder-x"></i>
+                    <p>No hay archivos subidos aún</p>
+                    <small>Suba un archivo Excel para verlo aquí</small>
+                  </div>
+                ) : (
+                  files.map((file, index) => (
+                    <div key={index} className="file-item">
+                      <div className="file-icon">
+                        <i className="bi bi-file-earmark-excel"></i>
+                      </div>
+                      <div className="file-info">
+                        <div className="file-name">{file.name}</div>
+                        <div className="file-details">
+                          <span className="file-size">{(file.size / 1024).toFixed(1)} KB</span>
+                          <span className="file-date">
+                            {file.uploadDate ? new Date(file.uploadDate).toLocaleDateString('es-ES', {
+                              year: 'numeric',
+                              month: '2-digit',
+                              day: '2-digit',
+                              hour: '2-digit',
+                              minute: '2-digit'
+                            }) : 'Fecha no disponible'}
+                          </span>
+                          <span className="file-records">{file.recordCount || 0} registros</span>
+                        </div>
+                      </div>
+                      <div className="file-actions">
+                        <button 
+                          className="file-action-btn"
+                          onClick={() => {
+                            // Descargar archivo
+                            const link = document.createElement('a');
+                            link.href = `${API_CONFIG.ENVIASEO_CONTROL_ACCESO.BASE_URL}/download/${file.name}`;
+                            link.download = file.name;
+                            link.click();
+                          }}
+                          title="Descargar archivo"
+                        >
+                          <i className="bi bi-download"></i>
+                        </button>
+                      </div>
+                    </div>
+                  ))
+                )}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 

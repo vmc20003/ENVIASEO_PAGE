@@ -371,45 +371,139 @@
   animation: fadeIn 0.3s ease-out;
 }
 
-/* Sección de filtros */
+/* Sección de filtros mejorada */
 .filters-section {
-  padding: 20px 0;
+  padding: 25px;
+  background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+  border-radius: var(--radius-lg);
+  margin: 20px 0;
+  box-shadow: var(--shadow-lg);
 }
 
 .filters-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 20px;
-  align-items: end;
+  grid-template-columns: 1fr;
+  gap: 25px;
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
 }
 
 .search-container {
-  grid-column: 1 / -1;
+  position: relative;
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.search-container input {
+  width: 100%;
+  padding: 15px 20px;
+  border: 2px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  font-size: 16px;
+  background: white;
+  transition: all 0.3s ease;
+  box-shadow: var(--shadow);
+}
+
+.search-container input:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(249, 115, 22, 0.1);
+  transform: translateY(-2px);
 }
 
 .filter-select-container {
-  grid-column: 1;
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto;
 }
 
 .filter-checkbox {
-  grid-column: 2;
   display: flex;
   align-items: center;
-  gap: 10px;
+  justify-content: center;
+  gap: 12px;
+  padding: 15px 20px;
+  background: white;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow);
+  border: 2px solid transparent;
+  transition: all 0.3s ease;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.filter-checkbox:hover {
+  border-color: var(--primary-color);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+}
+
+.filter-checkbox input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
+  accent-color: var(--primary-color);
+  cursor: pointer;
 }
 
 .checkbox-text {
   font-size: 14px;
   color: var(--text-primary);
   margin: 0;
+  font-weight: 500;
+  cursor: pointer;
+  user-select: none;
 }
 
 .action-buttons {
-  grid-column: 1 / -1;
   display: flex;
-  gap: 15px;
+  gap: 20px;
   justify-content: center;
-  margin-top: 20px;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-top: 25px;
+}
+
+.action-buttons .btn {
+  padding: 15px 30px;
+  border-radius: var(--radius-lg);
+  font-weight: 600;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: var(--shadow);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 180px;
+  justify-content: center;
+}
+
+.action-buttons .btn-primary {
+  background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+  color: white;
+}
+
+.action-buttons .btn-primary:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(249, 115, 22, 0.3);
+}
+
+.action-buttons .btn-secondary {
+  background: white;
+  color: var(--text-primary);
+  border: 2px solid var(--border-color);
+}
+
+.action-buttons .btn-secondary:hover {
+  background: #f8f9fa;
+  border-color: var(--primary-color);
+  color: var(--primary-color);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
 }
 
 /* Estadísticas */
@@ -534,4 +628,206 @@
 
 .w-100 {
   width: 100%;
+}
+
+/* Estilos para sección de archivos subidos */
+.files-section {
+  padding: 20px;
+}
+
+.files-grid {
+  width: 100%;
+}
+
+.files-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  padding: 15px;
+  background: #f8fafc;
+  border-radius: 12px;
+  border: 1px solid #e2e8f0;
+}
+
+.files-count {
+  font-weight: 600;
+  color: #334155;
+  font-size: 18px;
+}
+
+.folder-access-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  background: linear-gradient(135deg, #3b82f6, #60a5fa);
+  color: white;
+  border: none;
+  border-radius: 25px;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.folder-access-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+  background: linear-gradient(135deg, #1e40af, #3b82f6);
+}
+
+.folder-access-btn i {
+  font-size: 18px;
+}
+
+.files-container {
+  max-height: 400px;
+  overflow-y: auto;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  background: white;
+}
+
+.no-files {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60px;
+  color: #64748b;
+  text-align: center;
+}
+
+.no-files i {
+  font-size: 3rem;
+  margin-bottom: 15px;
+  color: #cbd5e1;
+}
+
+.no-files p {
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: #334155;
+}
+
+.no-files small {
+  color: #64748b;
+  font-size: 14px;
+}
+
+.file-item {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 15px 20px;
+  border-bottom: 1px solid #e2e8f0;
+  transition: all 0.2s ease;
+}
+
+.file-item:last-child {
+  border-bottom: none;
+}
+
+.file-item:hover {
+  background: #f8fafc;
+}
+
+.file-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background: linear-gradient(135deg, #10b981, #059669);
+  border-radius: 12px;
+  color: white;
+  font-size: 18px;
+}
+
+.file-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.file-name {
+  font-weight: 600;
+  color: #0f172a;
+  font-size: 16px;
+  margin-bottom: 4px;
+  word-break: break-word;
+}
+
+.file-details {
+  display: flex;
+  gap: 15px;
+  font-size: 14px;
+  color: #64748b;
+}
+
+.file-size {
+  font-weight: 500;
+}
+
+.file-date {
+  font-weight: 500;
+}
+
+.file-records {
+  font-weight: 600;
+  color: #3b82f6;
+  background: #f1f5f9;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+}
+
+.file-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.file-action-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  background: #f1f5f9;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  color: #334155;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.file-action-btn:hover {
+  background: #3b82f6;
+  color: white;
+  border-color: #3b82f6;
+  transform: translateY(-1px);
+}
+
+.file-action-btn i {
+  font-size: 16px;
+}
+
+/* Scrollbar personalizada para contenedor de archivos */
+.files-container::-webkit-scrollbar {
+  width: 8px;
+}
+
+.files-container::-webkit-scrollbar-track {
+  background: #f8fafc;
+  border-radius: 4px;
+}
+
+.files-container::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 4px;
+}
+
+.files-container::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
 }

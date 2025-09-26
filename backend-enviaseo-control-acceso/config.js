@@ -1,5 +1,5 @@
 const config = {
-  PORT: process.env.PORT || 4001,
+  PORT: process.env.PORT || 4002,
   UPLOAD_FOLDER: "uploads_excel",
   DATABASE_FILE: "database.json",
   // Permitir cualquier origen por defecto para portabilidad en red local

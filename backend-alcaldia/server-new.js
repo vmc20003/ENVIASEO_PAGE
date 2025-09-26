@@ -24,7 +24,8 @@ app.use(
     credentials: true,
   })
 );
-app.use(express.json());
+app.use(express.json({ limit: '50mb' }));
+app.use(express.urlencoded({ extended: true, limit: '50mb' }));
 
 // Configuración de multer para subida de archivos
 const storage = multer.diskStorage({
@@ -464,6 +465,49 @@ app.get("/files", (req, res) => {
   } catch (error) {
     console.error("❌ Error obteniendo archivos:", error);
     res.status(500).json({ error: "Error obteniendo archivos" });
+  }
+});
+
+// Obtener registros por archivo específico
+app.get("/records-by-file/:filename", (req, res) => {
+  try {
+    const filename = decodeURIComponent(req.params.filename);
+    
+    // Buscar registros por archivo en la base de datos
+    const fileRecords = processedRecords.filter(record => 
+      record.archivo === filename || 
+      record.sourceFile === filename ||
+      record.fileName === filename
+    );
+    
+    res.json({
+      filename,
+      count: fileRecords.length,
+      records: fileRecords
+    });
+  } catch (error) {
+    console.error("Error getting records by file:", error);
+    res.status(500).json({ 
+      error: "No se pudieron obtener los registros del archivo.",
+      count: 0,
+      records: []
+    });
+  }
+});
+
+// Endpoint para obtener la ruta de la carpeta de archivos
+app.get("/files-path", (req, res) => {
+  try {
+    const uploadPath = "uploads_excel";
+    res.json({
+      path: uploadPath,
+      absolutePath: path.resolve(uploadPath)
+    });
+  } catch (error) {
+    console.error("Error getting files path:", error);
+    res.status(500).json({ 
+      error: "No se pudo obtener la ruta de archivos."
+    });
   }
 });
 

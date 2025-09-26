@@ -3,8 +3,8 @@
 const HOSTNAME = 'localhost';
 const DEFAULTS = {
   ALUMBRADO: `http://${HOSTNAME}:4000`,
-  ALCALDIA: `http://${HOSTNAME}:4002`,
-  ENVIASEO: `http://${HOSTNAME}:4001`
+  ALCALDIA: `http://${HOSTNAME}:4001`,
+  ENVIASEO: `http://${HOSTNAME}:4002`
 };
 
 export const API_CONFIG = {

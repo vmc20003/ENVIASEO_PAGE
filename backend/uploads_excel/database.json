@@ -1,5 +1,6845 @@
 [
   {
+    "firstName": "CAROLINA",
+    "lastName": "MARÍA CARVAJAL RESTREPO",
+    "personNo": "43259250",
+    "time": "2025-07-18 07:09:22",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "JUAN",
+    "lastName": "PABLO BOLIVAR CARMONA",
+    "personNo": "1037616429",
+    "time": "2025-07-18 06:57:01",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "JUAN",
+    "lastName": "GONZALO MEJIA RAMIREZ",
+    "personNo": "98657672",
+    "time": "2025-07-18 06:56:21",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "JUAN",
+    "lastName": "CAMILO CORREA",
+    "personNo": "1037608566",
+    "time": "2025-07-18 06:52:42",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "ROBERTO",
+    "lastName": "CARLOS SALAS MEJIA",
+    "personNo": "98559765",
+    "time": "2025-07-18 06:48:54",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "FREDDY",
+    "lastName": "OYOLA MEDINA OYOLA MEDINA",
+    "personNo": "70564371",
+    "time": "2025-07-18 06:46:32",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "OSCAR",
+    "lastName": "ALONSO SIERRA CALLE",
+    "personNo": "98570071",
+    "time": "2025-07-18 06:38:50",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "JUAN",
+    "lastName": "ESTEBAN AGUDELO LOPEZ",
+    "personNo": "1037574131",
+    "time": "2025-07-18 06:13:51",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "JUAN",
+    "lastName": "DAVID CORREA",
+    "personNo": "1037640023",
+    "time": "2025-07-18 06:13:40",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "LUIS",
+    "lastName": "GUILLERMO TAMAYO",
+    "personNo": "70556188",
+    "time": "2025-07-18 06:08:31",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "JUAN",
+    "lastName": "FERNANDO BERMUDEZ",
+    "personNo": "8031691",
+    "time": "2025-07-18 06:07:30",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "ROBINSON",
+    "lastName": "ALBERTO GIL PARRA",
+    "personNo": "8105156",
+    "time": "2025-07-18 06:05:44",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "BLADIMIR",
+    "lastName": "PEÑATE URRUTIA",
+    "personNo": "71989423",
+    "time": "2025-07-18 06:01:39",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "JOSE",
+    "lastName": "NELSON MONTOYA",
+    "personNo": "79679104",
+    "time": "2025-07-18 06:00:56",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "CELIO",
+    "lastName": "SILVA",
+    "personNo": "79003889",
+    "time": "2025-07-18 05:57:44",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "JUAN",
+    "lastName": "DAVID HINCAPIE CASTAÑO",
+    "personNo": "70558387",
+    "time": "2025-07-18 05:57:05",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "JONATHAN",
+    "lastName": "CAMPUSANO",
+    "personNo": "8162404",
+    "time": "2025-07-18 05:56:05",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "JOHN",
+    "lastName": "WALTER QUINTERO PALACIO",
+    "personNo": "98567379",
+    "time": "2025-07-18 05:52:50",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "YOJAN",
+    "lastName": "ALEXANDER VELEZ ACOSTA",
+    "personNo": "8160929",
+    "time": "2025-07-18 05:51:48",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "JOHAN",
+    "lastName": "ESTEBAN TORRES",
+    "personNo": "8028937",
+    "time": "2025-07-18 05:50:23",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "JESUS",
+    "lastName": "ALFONSO GOMEZ GONZALEZ",
+    "personNo": "70470800",
+    "time": "2025-07-18 05:49:52",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "JOSE",
+    "lastName": "ALEJANDRO PEREZ",
+    "personNo": "1001366585",
+    "time": "2025-07-17 21:55:01",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "RICARDO",
+    "lastName": "LOPEZ ARANGO",
+    "personNo": "1037647216",
+    "time": "2025-07-17 21:54:10",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "JOHAN",
+    "lastName": "ESTEBAN TORRES",
+    "personNo": "8028937",
+    "time": "2025-07-17 21:53:30",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "JUAN",
+    "lastName": "DAVID CORREA",
+    "personNo": "1037640023",
+    "time": "2025-07-17 21:53:22",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "CELIO",
+    "lastName": "SILVA",
+    "personNo": "79003889",
+    "time": "2025-07-17 21:51:26",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "JONATHAN",
+    "lastName": "CAMPUSANO",
+    "personNo": "8162404",
+    "time": "2025-07-17 21:51:19",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "FREDDY",
+    "lastName": "OYOLA MEDINA OYOLA MEDINA",
+    "personNo": "70564371",
+    "time": "2025-07-17 18:51:03",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "ANDRES",
+    "lastName": "DAVID ALZATE LONDOÑO",
+    "personNo": "71266618",
+    "time": "2025-07-17 17:23:29",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "ALEXANDER",
+    "lastName": "ANGARITA IGUARAN",
+    "personNo": "17990059",
+    "time": "2025-07-17 17:06:22",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "CAROLINA",
+    "lastName": "MARÍA CARVAJAL RESTREPO",
+    "personNo": "43259250",
+    "time": "2025-07-17 17:06:04",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "OSCAR",
+    "lastName": "ALONSO SIERRA CALLE",
+    "personNo": "98570071",
+    "time": "2025-07-17 17:04:37",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "JUAN",
+    "lastName": "FERNANDO BERMUDEZ",
+    "personNo": "8031691",
+    "time": "2025-07-17 17:03:37",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "LUIS",
+    "lastName": "GUILLERMO TAMAYO",
+    "personNo": "70556188",
+    "time": "2025-07-17 17:00:03",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "JUAN",
+    "lastName": "ESTEBAN AGUDELO LOPEZ",
+    "personNo": "1037574131",
+    "time": "2025-07-17 15:13:04",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "JUAN",
+    "lastName": "DAVID HINCAPIE CASTAÑO",
+    "personNo": "70558387",
+    "time": "2025-07-17 15:02:43",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "JOSE",
+    "lastName": "NELSON MONTOYA",
+    "personNo": "79679104",
+    "time": "2025-07-17 14:18:48",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "RICARDO",
+    "lastName": "LOPEZ ARANGO",
+    "personNo": "1037647216",
+    "time": "2025-07-17 14:16:18",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "ASDRUBAL",
+    "lastName": "PALACIO SOTO",
+    "personNo": "98669881",
+    "time": "2025-07-17 14:15:16",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "JESUS",
+    "lastName": "ALFONSO GOMEZ GONZALEZ",
+    "personNo": "70470800",
+    "time": "2025-07-17 14:15:10",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "JOHN",
+    "lastName": "WALTER QUINTERO PALACIO",
+    "personNo": "98567379",
+    "time": "2025-07-17 14:09:18",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "BLADIMIR",
+    "lastName": "PEÑATE URRUTIA",
+    "personNo": "71989423",
+    "time": "2025-07-17 14:09:11",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "ROBINSON",
+    "lastName": "ALBERTO GIL PARRA",
+    "personNo": "8105156",
+    "time": "2025-07-17 14:09:05",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "YOJAN",
+    "lastName": "ALEXANDER VELEZ ACOSTA",
+    "personNo": "8160929",
+    "time": "2025-07-17 14:08:08",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "JOHAN",
+    "lastName": "ESTEBAN TORRES",
+    "personNo": "8028937",
+    "time": "2025-07-17 13:56:23",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "CELIO",
+    "lastName": "SILVA",
+    "personNo": "79003889",
+    "time": "2025-07-17 13:56:02",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "JOSE",
+    "lastName": "ALEJANDRO PEREZ",
+    "personNo": "1001366585",
+    "time": "2025-07-17 13:47:39",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "JONATHAN",
+    "lastName": "CAMPUSANO",
+    "personNo": "8162404",
+    "time": "2025-07-17 13:40:21",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "JUAN",
+    "lastName": "DAVID CORREA",
+    "personNo": "1037640023",
+    "time": "2025-07-17 13:19:34",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "ANDRES",
+    "lastName": "DAVID ALZATE LONDOÑO",
+    "personNo": "71266618",
+    "time": "2025-07-17 07:51:27",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "JUAN",
+    "lastName": "CAMILO CORREA",
+    "personNo": "1037608566",
+    "time": "2025-07-17 07:00:24",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "ROBERTO",
+    "lastName": "CARLOS SALAS MEJIA",
+    "personNo": "98559765",
+    "time": "2025-07-17 06:58:41",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "JUAN",
+    "lastName": "GONZALO MEJIA RAMIREZ",
+    "personNo": "98657672",
+    "time": "2025-07-17 06:56:23",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "JUAN",
+    "lastName": "PABLO BOLIVAR CARMONA",
+    "personNo": "1037616429",
+    "time": "2025-07-17 06:54:33",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "OSCAR",
+    "lastName": "ALONSO SIERRA CALLE",
+    "personNo": "98570071",
+    "time": "2025-07-17 06:49:36",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "YOJAN",
+    "lastName": "ALEXANDER VELEZ ACOSTA",
+    "personNo": "8160929",
+    "time": "2025-07-17 06:24:08",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "JUAN",
+    "lastName": "ESTEBAN AGUDELO LOPEZ",
+    "personNo": "1037574131",
+    "time": "2025-07-17 06:15:27",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "JUAN",
+    "lastName": "DAVID HINCAPIE CASTAÑO",
+    "personNo": "70558387",
+    "time": "2025-07-17 06:15:14",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "BLADIMIR",
+    "lastName": "PEÑATE URRUTIA",
+    "personNo": "71989423",
+    "time": "2025-07-17 06:05:46",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "JUAN",
+    "lastName": "FERNANDO BERMUDEZ",
+    "personNo": "8031691",
+    "time": "2025-07-17 06:05:30",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "ROBINSON",
+    "lastName": "ALBERTO GIL PARRA",
+    "personNo": "8105156",
+    "time": "2025-07-17 06:03:21",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "JOHN",
+    "lastName": "WALTER QUINTERO PALACIO",
+    "personNo": "98567379",
+    "time": "2025-07-17 05:56:23",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "YOJAN",
+    "lastName": "ALEXANDER VELEZ ACOSTA",
+    "personNo": "8160929",
+    "time": "2025-07-17 05:55:30",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "JOSE",
+    "lastName": "NELSON MONTOYA",
+    "personNo": "79679104",
+    "time": "2025-07-17 05:54:23",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "FREDDY",
+    "lastName": "OYOLA MEDINA OYOLA MEDINA",
+    "personNo": "70564371",
+    "time": "2025-07-17 05:45:42",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "LUIS",
+    "lastName": "GUILLERMO TAMAYO",
+    "personNo": "70556188",
+    "time": "2025-07-17 05:43:39",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "ASDRUBAL",
+    "lastName": "PALACIO SOTO",
+    "personNo": "98669881",
+    "time": "2025-07-17 05:36:28",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "JESUS",
+    "lastName": "ALFONSO GOMEZ GONZALEZ",
+    "personNo": "70470800",
+    "time": "2025-07-17 05:33:52",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "FREDDY",
+    "lastName": "OYOLA MEDINA OYOLA MEDINA",
+    "personNo": "70564371",
+    "time": "2025-07-16 22:36:22",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "JOSE",
+    "lastName": "ALEJANDRO PEREZ",
+    "personNo": "1001366585",
+    "time": "2025-07-16 21:54:21",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "RICARDO",
+    "lastName": "LOPEZ ARANGO",
+    "personNo": "1037647216",
+    "time": "2025-07-16 21:54:14",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "ASDRUBAL",
+    "lastName": "PALACIO SOTO",
+    "personNo": "98669881",
+    "time": "2025-07-16 21:54:08",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "JUAN",
+    "lastName": "DAVID CORREA",
+    "personNo": "1037640023",
+    "time": "2025-07-16 21:54:00",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "JOHAN",
+    "lastName": "ESTEBAN TORRES",
+    "personNo": "8028937",
+    "time": "2025-07-16 21:53:55",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "JONATHAN",
+    "lastName": "CAMPUSANO",
+    "personNo": "8162404",
+    "time": "2025-07-16 21:50:15",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "JUAN",
+    "lastName": "ESTEBAN AGUDELO LOPEZ",
+    "personNo": "1037574131",
+    "time": "2025-07-16 21:09:05",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "OSCAR",
+    "lastName": "ALONSO SIERRA CALLE",
+    "personNo": "98570071",
+    "time": "2025-07-16 18:21:45",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "JUAN",
+    "lastName": "CAMILO CORREA",
+    "personNo": "1037608566",
+    "time": "2025-07-16 18:01:53",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "CAROLINA",
+    "lastName": "MARÍA CARVAJAL RESTREPO",
+    "personNo": "43259250",
+    "time": "2025-07-16 18:01:47",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "ROBERTO",
+    "lastName": "CARLOS SALAS MEJIA",
+    "personNo": "98559765",
+    "time": "2025-07-16 17:48:33",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "ANDRES",
+    "lastName": "DAVID ALZATE LONDOÑO",
+    "personNo": "71266618",
+    "time": "2025-07-16 17:13:21",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "ALEXANDER",
+    "lastName": "ANGARITA IGUARAN",
+    "personNo": "17990059",
+    "time": "2025-07-16 17:11:29",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "JUAN",
+    "lastName": "PABLO BOLIVAR CARMONA",
+    "personNo": "1037616429",
+    "time": "2025-07-16 17:11:15",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "JUAN",
+    "lastName": "FERNANDO BERMUDEZ",
+    "personNo": "8031691",
+    "time": "2025-07-16 17:00:11",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "LUIS",
+    "lastName": "GUILLERMO TAMAYO",
+    "personNo": "70556188",
+    "time": "2025-07-16 16:59:47",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "JUAN",
+    "lastName": "DAVID HINCAPIE CASTAÑO",
+    "personNo": "70558387",
+    "time": "2025-07-16 15:42:46",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "JESUS",
+    "lastName": "ALFONSO GOMEZ GONZALEZ",
+    "personNo": "70470800",
+    "time": "2025-07-16 14:28:57",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "JOSE",
+    "lastName": "NELSON MONTOYA",
+    "personNo": "79679104",
+    "time": "2025-07-16 14:24:08",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "JOHN",
+    "lastName": "WALTER QUINTERO PALACIO",
+    "personNo": "98567379",
+    "time": "2025-07-16 14:20:19",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "BLADIMIR",
+    "lastName": "PEÑATE URRUTIA",
+    "personNo": "71989423",
+    "time": "2025-07-16 14:20:03",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "CELIO",
+    "lastName": "SILVA",
+    "personNo": "79003889",
+    "time": "2025-07-16 14:19:12",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "ROBINSON",
+    "lastName": "ALBERTO GIL PARRA",
+    "personNo": "8105156",
+    "time": "2025-07-16 14:19:00",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "JOHAN",
+    "lastName": "ESTEBAN TORRES",
+    "personNo": "8028937",
+    "time": "2025-07-16 13:59:25",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "JUAN",
+    "lastName": "DAVID CORREA",
+    "personNo": "1037640023",
+    "time": "2025-07-16 13:58:42",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "JOSE",
+    "lastName": "ALEJANDRO PEREZ",
+    "personNo": "1001366585",
+    "time": "2025-07-16 13:54:48",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "RICARDO",
+    "lastName": "LOPEZ ARANGO",
+    "personNo": "1037647216",
+    "time": "2025-07-16 13:53:17",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "YOJAN",
+    "lastName": "ALEXANDER VELEZ ACOSTA",
+    "personNo": "8160929",
+    "time": "2025-07-16 13:30:14",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "JONATHAN",
+    "lastName": "CAMPUSANO",
+    "personNo": "8162404",
+    "time": "2025-07-16 13:27:48",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "ASDRUBAL",
+    "lastName": "PALACIO SOTO",
+    "personNo": "98669881",
+    "time": "2025-07-16 13:15:00",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "JESUS",
+    "lastName": "ALFONSO GOMEZ GONZALEZ",
+    "personNo": "70470800",
+    "time": "2025-07-16 08:41:03",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "ANDRES",
+    "lastName": "DAVID ALZATE LONDOÑO",
+    "personNo": "71266618",
+    "time": "2025-07-16 07:55:10",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "CAROLINA",
+    "lastName": "MARÍA CARVAJAL RESTREPO",
+    "personNo": "43259250",
+    "time": "2025-07-16 07:11:24",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "JUAN",
+    "lastName": "PABLO BOLIVAR CARMONA",
+    "personNo": "1037616429",
+    "time": "2025-07-16 07:01:56",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "ROBERTO",
+    "lastName": "CARLOS SALAS MEJIA",
+    "personNo": "98559765",
+    "time": "2025-07-16 06:57:15",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "OSCAR",
+    "lastName": "ALONSO SIERRA CALLE",
+    "personNo": "98570071",
+    "time": "2025-07-16 06:46:25",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "FREDDY",
+    "lastName": "OYOLA MEDINA OYOLA MEDINA",
+    "personNo": "70564371",
+    "time": "2025-07-16 06:41:09",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "JUAN",
+    "lastName": "ESTEBAN AGUDELO LOPEZ",
+    "personNo": "1037574131",
+    "time": "2025-07-16 06:13:54",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "JUAN",
+    "lastName": "FERNANDO BERMUDEZ",
+    "personNo": "8031691",
+    "time": "2025-07-16 06:09:54",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "YOJAN",
+    "lastName": "ALEXANDER VELEZ ACOSTA",
+    "personNo": "8160929",
+    "time": "2025-07-16 06:08:04",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "ROBINSON",
+    "lastName": "ALBERTO GIL PARRA",
+    "personNo": "8105156",
+    "time": "2025-07-16 06:03:55",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "JOSE",
+    "lastName": "NELSON MONTOYA",
+    "personNo": "79679104",
+    "time": "2025-07-16 06:00:19",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "BLADIMIR",
+    "lastName": "PEÑATE URRUTIA",
+    "personNo": "71989423",
+    "time": "2025-07-16 05:59:52",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "CELIO",
+    "lastName": "SILVA",
+    "personNo": "79003889",
+    "time": "2025-07-16 05:58:33",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "JOHN",
+    "lastName": "WALTER QUINTERO PALACIO",
+    "personNo": "98567379",
+    "time": "2025-07-16 05:54:42",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "YOJAN",
+    "lastName": "ALEXANDER VELEZ ACOSTA",
+    "personNo": "8160929",
+    "time": "2025-07-16 05:53:47",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "JUAN",
+    "lastName": "DAVID HINCAPIE CASTAÑO",
+    "personNo": "70558387",
+    "time": "2025-07-16 05:53:29",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "LUIS",
+    "lastName": "GUILLERMO TAMAYO",
+    "personNo": "70556188",
+    "time": "2025-07-16 05:42:46",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "RICARDO",
+    "lastName": "LOPEZ ARANGO",
+    "personNo": "1037647216",
+    "time": "2025-07-15 21:53:15",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "ASDRUBAL",
+    "lastName": "PALACIO SOTO",
+    "personNo": "98669881",
+    "time": "2025-07-15 21:53:07",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "JOHAN",
+    "lastName": "ESTEBAN TORRES",
+    "personNo": "8028937",
+    "time": "2025-07-15 21:51:49",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "JOSE",
+    "lastName": "ALEJANDRO PEREZ",
+    "personNo": "1001366585",
+    "time": "2025-07-15 21:51:33",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "JONATHAN",
+    "lastName": "CAMPUSANO",
+    "personNo": "8162404",
+    "time": "2025-07-15 21:51:27",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "JUAN",
+    "lastName": "DAVID CORREA",
+    "personNo": "1037640023",
+    "time": "2025-07-15 21:51:23",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "ROBERTO",
+    "lastName": "CARLOS SALAS MEJIA",
+    "personNo": "98559765",
+    "time": "2025-07-15 18:45:59",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "JUAN",
+    "lastName": "CAMILO CORREA",
+    "personNo": "1037608566",
+    "time": "2025-07-15 18:01:27",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "OSCAR",
+    "lastName": "ALONSO SIERRA CALLE",
+    "personNo": "98570071",
+    "time": "2025-07-15 18:01:17",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "CAROLINA",
+    "lastName": "MARÍA CARVAJAL RESTREPO",
+    "personNo": "43259250",
+    "time": "2025-07-15 18:01:11",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "ANDRES",
+    "lastName": "DAVID ALZATE LONDOÑO",
+    "personNo": "71266618",
+    "time": "2025-07-15 17:32:16",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "JUAN",
+    "lastName": "ESTEBAN AGUDELO LOPEZ",
+    "personNo": "1037574131",
+    "time": "2025-07-15 17:23:37",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "JUAN",
+    "lastName": "PABLO BOLIVAR CARMONA",
+    "personNo": "1037616429",
+    "time": "2025-07-15 17:18:22",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "JUAN",
+    "lastName": "FERNANDO BERMUDEZ",
+    "personNo": "8031691",
+    "time": "2025-07-15 17:11:10",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "ALEXANDER",
+    "lastName": "ANGARITA IGUARAN",
+    "personNo": "17990059",
+    "time": "2025-07-15 17:07:51",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "JESUS",
+    "lastName": "ALFONSO GOMEZ GONZALEZ",
+    "personNo": "70470800",
+    "time": "2025-07-15 17:02:43",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "LUIS",
+    "lastName": "GUILLERMO TAMAYO",
+    "personNo": "70556188",
+    "time": "2025-07-15 16:58:50",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "BLADIMIR",
+    "lastName": "PEÑATE URRUTIA",
+    "personNo": "71989423",
+    "time": "2025-07-15 16:25:52",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "JUAN",
+    "lastName": "DAVID HINCAPIE CASTAÑO",
+    "personNo": "70558387",
+    "time": "2025-07-15 15:27:17",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "ROBINSON",
+    "lastName": "ALBERTO GIL PARRA",
+    "personNo": "8105156",
+    "time": "2025-07-15 14:56:29",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "JOSE",
+    "lastName": "NELSON MONTOYA",
+    "personNo": "79679104",
+    "time": "2025-07-15 14:53:43",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "YOJAN",
+    "lastName": "ALEXANDER VELEZ ACOSTA",
+    "personNo": "8160929",
+    "time": "2025-07-15 14:47:53",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "JOHN",
+    "lastName": "WALTER QUINTERO PALACIO",
+    "personNo": "98567379",
+    "time": "2025-07-15 14:46:55",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "JOSE",
+    "lastName": "ALEJANDRO PEREZ",
+    "personNo": "1001366585",
+    "time": "2025-07-15 13:59:11",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "RICARDO",
+    "lastName": "LOPEZ ARANGO",
+    "personNo": "1037647216",
+    "time": "2025-07-15 13:53:16",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "JUAN",
+    "lastName": "DAVID CORREA",
+    "personNo": "1037640023",
+    "time": "2025-07-15 13:51:06",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "JOHAN",
+    "lastName": "ESTEBAN TORRES",
+    "personNo": "8028937",
+    "time": "2025-07-15 13:49:42",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "JONATHAN",
+    "lastName": "CAMPUSANO",
+    "personNo": "8162404",
+    "time": "2025-07-15 13:43:04",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "JUAN",
+    "lastName": "DAVID CORREA",
+    "personNo": "1037640023",
+    "time": "2025-07-15 13:25:58",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "ASDRUBAL",
+    "lastName": "PALACIO SOTO",
+    "personNo": "98669881",
+    "time": "2025-07-15 13:19:07",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "CAROLINA",
+    "lastName": "MARÍA CARVAJAL RESTREPO",
+    "personNo": "43259250",
+    "time": "2025-07-15 07:10:59",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "JUAN",
+    "lastName": "PABLO BOLIVAR CARMONA",
+    "personNo": "1037616429",
+    "time": "2025-07-15 06:51:56",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "FREDDY",
+    "lastName": "OYOLA MEDINA OYOLA MEDINA",
+    "personNo": "70564371",
+    "time": "2025-07-15 06:44:52",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "JUAN",
+    "lastName": "CAMILO CORREA",
+    "personNo": "1037608566",
+    "time": "2025-07-15 06:44:41",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "OSCAR",
+    "lastName": "ALONSO SIERRA CALLE",
+    "personNo": "98570071",
+    "time": "2025-07-15 06:44:33",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "ROBERTO",
+    "lastName": "CARLOS SALAS MEJIA",
+    "personNo": "98559765",
+    "time": "2025-07-15 06:40:06",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "BLADIMIR",
+    "lastName": "PEÑATE URRUTIA",
+    "personNo": "71989423",
+    "time": "2025-07-15 06:22:54",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "JUAN",
+    "lastName": "FERNANDO BERMUDEZ",
+    "personNo": "8031691",
+    "time": "2025-07-15 06:05:35",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "JOSE",
+    "lastName": "NELSON MONTOYA",
+    "personNo": "79679104",
+    "time": "2025-07-15 06:02:34",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "ROBINSON",
+    "lastName": "ALBERTO GIL PARRA",
+    "personNo": "8105156",
+    "time": "2025-07-15 06:02:26",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "CELIO",
+    "lastName": "SILVA",
+    "personNo": "79003889",
+    "time": "2025-07-15 05:58:13",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "JOHN",
+    "lastName": "WALTER QUINTERO PALACIO",
+    "personNo": "98567379",
+    "time": "2025-07-15 05:58:06",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "YOJAN",
+    "lastName": "ALEXANDER VELEZ ACOSTA",
+    "personNo": "8160929",
+    "time": "2025-07-15 05:57:29",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "JUAN",
+    "lastName": "DAVID HINCAPIE CASTAÑO",
+    "personNo": "70558387",
+    "time": "2025-07-15 05:51:26",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "LUIS",
+    "lastName": "GUILLERMO TAMAYO",
+    "personNo": "70556188",
+    "time": "2025-07-15 05:46:44",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "JESUS",
+    "lastName": "ALFONSO GOMEZ GONZALEZ",
+    "personNo": "70470800",
+    "time": "2025-07-15 05:45:39",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "JOHAN",
+    "lastName": "ESTEBAN TORRES",
+    "personNo": "8028937",
+    "time": "2025-07-14 21:56:41",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "JOSE",
+    "lastName": "ALEJANDRO PEREZ",
+    "personNo": "1001366585",
+    "time": "2025-07-14 21:56:33",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "ASDRUBAL",
+    "lastName": "PALACIO SOTO",
+    "personNo": "98669881",
+    "time": "2025-07-14 21:56:22",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "RICARDO",
+    "lastName": "LOPEZ ARANGO",
+    "personNo": "1037647216",
+    "time": "2025-07-14 21:56:11",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "JUAN",
+    "lastName": "DAVID CORREA",
+    "personNo": "1037640023",
+    "time": "2025-07-14 21:56:00",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "JONATHAN",
+    "lastName": "CAMPUSANO",
+    "personNo": "8162404",
+    "time": "2025-07-14 21:54:12",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "JUAN",
+    "lastName": "PABLO BOLIVAR CARMONA",
+    "personNo": "1037616429",
+    "time": "2025-07-14 19:44:56",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "OSCAR",
+    "lastName": "ALONSO SIERRA CALLE",
+    "personNo": "98570071",
+    "time": "2025-07-14 19:43:28",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "ROBERTO",
+    "lastName": "CARLOS SALAS MEJIA",
+    "personNo": "98559765",
+    "time": "2025-07-14 19:08:04",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "ANDRES",
+    "lastName": "DAVID ALZATE LONDOÑO",
+    "personNo": "71266618",
+    "time": "2025-07-14 18:50:21",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "JUAN",
+    "lastName": "DAVID HINCAPIE CASTAÑO",
+    "personNo": "70558387",
+    "time": "2025-07-14 18:13:30",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "CAROLINA",
+    "lastName": "MARÍA CARVAJAL RESTREPO",
+    "personNo": "43259250",
+    "time": "2025-07-14 17:59:28",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "ALEXANDER",
+    "lastName": "ANGARITA IGUARAN",
+    "personNo": "17990059",
+    "time": "2025-07-14 17:09:29",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "FREDDY",
+    "lastName": "OYOLA MEDINA OYOLA MEDINA",
+    "personNo": "70564371",
+    "time": "2025-07-14 17:08:07",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "JUAN",
+    "lastName": "FERNANDO BERMUDEZ",
+    "personNo": "8031691",
+    "time": "2025-07-14 17:04:20",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "LUIS",
+    "lastName": "GUILLERMO TAMAYO",
+    "personNo": "70556188",
+    "time": "2025-07-14 17:03:04",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "JUAN",
+    "lastName": "ESTEBAN AGUDELO LOPEZ",
+    "personNo": "1037574131",
+    "time": "2025-07-14 14:50:55",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "JOSE",
+    "lastName": "NELSON MONTOYA",
+    "personNo": "79679104",
+    "time": "2025-07-14 14:47:53",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "JESUS",
+    "lastName": "ALFONSO GOMEZ GONZALEZ",
+    "personNo": "70470800",
+    "time": "2025-07-14 14:40:29",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "ROBINSON",
+    "lastName": "ALBERTO GIL PARRA",
+    "personNo": "8105156",
+    "time": "2025-07-14 14:37:20",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "BLADIMIR",
+    "lastName": "PEÑATE URRUTIA",
+    "personNo": "71989423",
+    "time": "2025-07-14 14:34:48",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "YOJAN",
+    "lastName": "ALEXANDER VELEZ ACOSTA",
+    "personNo": "8160929",
+    "time": "2025-07-14 14:32:55",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "JOHN",
+    "lastName": "WALTER QUINTERO PALACIO",
+    "personNo": "98567379",
+    "time": "2025-07-14 14:32:30",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "JOSE",
+    "lastName": "ALEJANDRO PEREZ",
+    "personNo": "1001366585",
+    "time": "2025-07-14 14:02:46",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "JUAN",
+    "lastName": "DAVID CORREA",
+    "personNo": "1037640023",
+    "time": "2025-07-14 13:57:57",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "JUAN",
+    "lastName": "DAVID CORREA",
+    "personNo": "1037640023",
+    "time": "2025-07-14 13:57:25",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "RICARDO",
+    "lastName": "LOPEZ ARANGO",
+    "personNo": "1037647216",
+    "time": "2025-07-14 13:53:13",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "JOHAN",
+    "lastName": "ESTEBAN TORRES",
+    "personNo": "8028937",
+    "time": "2025-07-14 13:51:41",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "JONATHAN",
+    "lastName": "CAMPUSANO",
+    "personNo": "8162404",
+    "time": "2025-07-14 13:29:37",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "ASDRUBAL",
+    "lastName": "PALACIO SOTO",
+    "personNo": "98669881",
+    "time": "2025-07-14 13:20:08",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "JUAN",
+    "lastName": "CAMILO CORREA",
+    "personNo": "1037608566",
+    "time": "2025-07-14 07:29:41",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "CAROLINA",
+    "lastName": "MARÍA CARVAJAL RESTREPO",
+    "personNo": "43259250",
+    "time": "2025-07-14 07:12:59",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "ROBERTO",
+    "lastName": "CARLOS SALAS MEJIA",
+    "personNo": "98559765",
+    "time": "2025-07-14 07:06:25",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "SEBASTIAN",
+    "lastName": "AGUDELO MONTOYA",
+    "personNo": "1036448249",
+    "time": "2025-07-14 07:00:26",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "JUAN",
+    "lastName": "PABLO BOLIVAR CARMONA",
+    "personNo": "1037616429",
+    "time": "2025-07-14 06:50:26",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "OSCAR",
+    "lastName": "ALONSO SIERRA CALLE",
+    "personNo": "98570071",
+    "time": "2025-07-14 06:42:04",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "JANCELLY",
+    "lastName": "GUTIERREZ SALAZAR",
+    "personNo": "43189917",
+    "time": "2025-07-14 06:40:47",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "JUAN",
+    "lastName": "FERNANDO BERMUDEZ",
+    "personNo": "8031691",
+    "time": "2025-07-14 06:13:35",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "BLADIMIR",
+    "lastName": "PEÑATE URRUTIA",
+    "personNo": "71989423",
+    "time": "2025-07-14 06:05:10",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "CELIO",
+    "lastName": "SILVA",
+    "personNo": "79003889",
+    "time": "2025-07-14 06:00:55",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "ROBINSON",
+    "lastName": "ALBERTO GIL PARRA",
+    "personNo": "8105156",
+    "time": "2025-07-14 05:59:21",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "JOHN",
+    "lastName": "WALTER QUINTERO PALACIO",
+    "personNo": "98567379",
+    "time": "2025-07-14 05:58:12",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "YOJAN",
+    "lastName": "ALEXANDER VELEZ ACOSTA",
+    "personNo": "8160929",
+    "time": "2025-07-14 05:57:29",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "JUAN",
+    "lastName": "DAVID HINCAPIE CASTAÑO",
+    "personNo": "70558387",
+    "time": "2025-07-14 05:55:55",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "JUAN",
+    "lastName": "ESTEBAN AGUDELO LOPEZ",
+    "personNo": "1037574131",
+    "time": "2025-07-14 05:55:40",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "LUIS",
+    "lastName": "GUILLERMO TAMAYO",
+    "personNo": "70556188",
+    "time": "2025-07-14 05:54:26",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "JOSE",
+    "lastName": "NELSON MONTOYA",
+    "personNo": "79679104",
+    "time": "2025-07-14 05:51:40",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "JESUS",
+    "lastName": "ALFONSO GOMEZ GONZALEZ",
+    "personNo": "70470800",
+    "time": "2025-07-14 05:49:43",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "ALBEIRO",
+    "lastName": "ANTONIO VILLA BETANCUR",
+    "personNo": "70548221",
+    "time": "2025-07-14 05:18:29",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "JESUS",
+    "lastName": "ALFONSO GOMEZ GONZALEZ",
+    "personNo": "70470800",
+    "time": "2025-07-13 21:11:01",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "BLADIMIR",
+    "lastName": "PEÑATE URRUTIA",
+    "personNo": "71989423",
+    "time": "2025-07-13 21:09:30",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "ASDRUBAL",
+    "lastName": "PALACIO SOTO",
+    "personNo": "98669881",
+    "time": "2025-07-13 21:09:19",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "LUIS",
+    "lastName": "GUILLERMO TAMAYO",
+    "personNo": "70556188",
+    "time": "2025-07-13 13:59:23",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "JUAN",
+    "lastName": "ESTEBAN AGUDELO LOPEZ",
+    "personNo": "1037574131",
+    "time": "2025-07-13 10:06:28",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "JUAN",
+    "lastName": "DAVID HINCAPIE CASTAÑO",
+    "personNo": "70558387",
+    "time": "2025-07-13 08:06:29",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "BLADIMIR",
+    "lastName": "PEÑATE URRUTIA",
+    "personNo": "71989423",
+    "time": "2025-07-13 08:02:34",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "JESUS",
+    "lastName": "ALFONSO GOMEZ GONZALEZ",
+    "personNo": "70470800",
+    "time": "2025-07-13 07:38:28",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "ASDRUBAL",
+    "lastName": "PALACIO SOTO",
+    "personNo": "98669881",
+    "time": "2025-07-13 07:28:27",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "ROBERTO",
+    "lastName": "CARLOS SALAS MEJIA",
+    "personNo": "98559765",
+    "time": "2025-07-13 07:09:26",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "JUAN",
+    "lastName": "ESTEBAN AGUDELO LOPEZ",
+    "personNo": "1037574131",
+    "time": "2025-07-13 06:12:53",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "LUIS",
+    "lastName": "GUILLERMO TAMAYO",
+    "personNo": "70556188",
+    "time": "2025-07-13 05:52:28",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "DANIEL",
+    "lastName": "OSSA JARAMILLO",
+    "personNo": "1037585260",
+    "time": "2025-07-12 19:39:50",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "ROBERTO",
+    "lastName": "CARLOS SALAS MEJIA",
+    "personNo": "98559765",
+    "time": "2025-07-12 16:57:09",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "JUAN",
+    "lastName": "FERNANDO BERMUDEZ",
+    "personNo": "8031691",
+    "time": "2025-07-12 15:01:38",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "JUAN",
+    "lastName": "ESTEBAN AGUDELO LOPEZ",
+    "personNo": "1037574131",
+    "time": "2025-07-12 14:32:23",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "LUIS",
+    "lastName": "GUILLERMO TAMAYO",
+    "personNo": "70556188",
+    "time": "2025-07-12 14:01:09",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "JOSE",
+    "lastName": "ALEJANDRO PEREZ",
+    "personNo": "1001366585",
+    "time": "2025-07-12 13:14:34",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "RICARDO",
+    "lastName": "LOPEZ ARANGO",
+    "personNo": "1037647216",
+    "time": "2025-07-12 13:14:08",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "ROBINSON",
+    "lastName": "ALBERTO GIL PARRA",
+    "personNo": "8105156",
+    "time": "2025-07-12 13:12:52",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "JOHN",
+    "lastName": "WALTER QUINTERO PALACIO",
+    "personNo": "98567379",
+    "time": "2025-07-12 13:10:33",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "YOJAN",
+    "lastName": "ALEXANDER VELEZ ACOSTA",
+    "personNo": "8160929",
+    "time": "2025-07-12 13:09:17",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "JOSE",
+    "lastName": "NELSON MONTOYA",
+    "personNo": "79679104",
+    "time": "2025-07-12 13:08:41",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "FREDDY",
+    "lastName": "OYOLA MEDINA OYOLA MEDINA",
+    "personNo": "70564371",
+    "time": "2025-07-12 13:02:09",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "DANIEL",
+    "lastName": "OSSA JARAMILLO",
+    "personNo": "1037585260",
+    "time": "2025-07-12 08:43:35",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "ROBERTO",
+    "lastName": "CARLOS SALAS MEJIA",
+    "personNo": "98559765",
+    "time": "2025-07-12 08:31:09",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "JUAN",
+    "lastName": "DAVID CORREA",
+    "personNo": "1037640023",
+    "time": "2025-07-12 06:13:07",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "RICARDO",
+    "lastName": "LOPEZ ARANGO",
+    "personNo": "1037647216",
+    "time": "2025-07-12 06:07:37",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "JUAN",
+    "lastName": "ESTEBAN AGUDELO LOPEZ",
+    "personNo": "1037574131",
+    "time": "2025-07-12 06:07:31",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "JUAN",
+    "lastName": "FERNANDO BERMUDEZ",
+    "personNo": "8031691",
+    "time": "2025-07-12 06:07:11",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "JOSE",
+    "lastName": "ALEJANDRO PEREZ",
+    "personNo": "1001366585",
+    "time": "2025-07-12 06:05:23",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "CELIO",
+    "lastName": "SILVA",
+    "personNo": "79003889",
+    "time": "2025-07-12 06:05:11",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "ROBINSON",
+    "lastName": "ALBERTO GIL PARRA",
+    "personNo": "8105156",
+    "time": "2025-07-12 06:01:50",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "JUAN",
+    "lastName": "DAVID HINCAPIE CASTAÑO",
+    "personNo": "70558387",
+    "time": "2025-07-12 05:54:37",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "JOHN",
+    "lastName": "WALTER QUINTERO PALACIO",
+    "personNo": "98567379",
+    "time": "2025-07-12 05:53:13",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "JOSE",
+    "lastName": "NELSON MONTOYA",
+    "personNo": "79679104",
+    "time": "2025-07-12 05:52:34",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "YOJAN",
+    "lastName": "ALEXANDER VELEZ ACOSTA",
+    "personNo": "8160929",
+    "time": "2025-07-12 05:51:39",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "LUIS",
+    "lastName": "GUILLERMO TAMAYO",
+    "personNo": "70556188",
+    "time": "2025-07-12 05:49:21",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "FREDDY",
+    "lastName": "OYOLA MEDINA OYOLA MEDINA",
+    "personNo": "70564371",
+    "time": "2025-07-12 05:49:14",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "JOHAN",
+    "lastName": "ESTEBAN TORRES",
+    "personNo": "8028937",
+    "time": "2025-07-12 05:48:27",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "JOSE",
+    "lastName": "NELSON MONTOYA",
+    "personNo": "79679104",
+    "time": "2025-07-11 22:09:00",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "RICARDO",
+    "lastName": "LOPEZ ARANGO",
+    "personNo": "1037647216",
+    "time": "2025-07-11 22:08:27",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "JOSE",
+    "lastName": "ALEJANDRO PEREZ",
+    "personNo": "1001366585",
+    "time": "2025-07-11 22:08:21",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "ASDRUBAL",
+    "lastName": "PALACIO SOTO",
+    "personNo": "98669881",
+    "time": "2025-07-11 22:08:01",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "JOSE",
+    "lastName": "ALEJANDRO PEREZ",
+    "personNo": "1001366585",
+    "time": "2025-07-11 22:07:47",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "JUAN",
+    "lastName": "DAVID CORREA",
+    "personNo": "1037640023",
+    "time": "2025-07-11 22:01:03",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "JONATHAN",
+    "lastName": "CAMPUSANO",
+    "personNo": "8162404",
+    "time": "2025-07-11 21:54:24",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "ROBERTO",
+    "lastName": "CARLOS SALAS MEJIA",
+    "personNo": "98559765",
+    "time": "2025-07-11 20:14:21",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "DANIEL",
+    "lastName": "OSSA JARAMILLO",
+    "personNo": "1037585260",
+    "time": "2025-07-11 20:12:14",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "DANIEL",
+    "lastName": "OSSA JARAMILLO",
+    "personNo": "1037585260",
+    "time": "2025-07-11 20:11:36",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "JUAN",
+    "lastName": "PABLO BOLIVAR CARMONA",
+    "personNo": "1037616429",
+    "time": "2025-07-11 17:39:01",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "ANDRES",
+    "lastName": "DAVID ALZATE LONDOÑO",
+    "personNo": "71266618",
+    "time": "2025-07-11 17:07:00",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "OSCAR",
+    "lastName": "ALONSO SIERRA CALLE",
+    "personNo": "98570071",
+    "time": "2025-07-11 17:06:11",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "CAROLINA",
+    "lastName": "MARÍA CARVAJAL RESTREPO",
+    "personNo": "43259250",
+    "time": "2025-07-11 17:06:01",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "JUAN",
+    "lastName": "CAMILO CORREA",
+    "personNo": "1037608566",
+    "time": "2025-07-11 17:05:50",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "ALEXANDER",
+    "lastName": "ANGARITA IGUARAN",
+    "personNo": "17990059",
+    "time": "2025-07-11 17:05:34",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "JUAN",
+    "lastName": "DAVID HINCAPIE CASTAÑO",
+    "personNo": "70558387",
+    "time": "2025-07-11 15:46:37",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "JUAN",
+    "lastName": "ESTEBAN AGUDELO LOPEZ",
+    "personNo": "1037574131",
+    "time": "2025-07-11 15:42:41",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "JUAN",
+    "lastName": "FERNANDO BERMUDEZ",
+    "personNo": "8031691",
+    "time": "2025-07-11 15:08:53",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "LUIS",
+    "lastName": "GUILLERMO TAMAYO",
+    "personNo": "70556188",
+    "time": "2025-07-11 15:00:27",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "JESUS",
+    "lastName": "ALFONSO GOMEZ GONZALEZ",
+    "personNo": "70470800",
+    "time": "2025-07-11 14:11:08",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "JOSE",
+    "lastName": "NELSON MONTOYA",
+    "personNo": "79679104",
+    "time": "2025-07-11 14:06:52",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "CELIO",
+    "lastName": "SILVA",
+    "personNo": "79003889",
+    "time": "2025-07-11 14:02:55",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "YOJAN",
+    "lastName": "ALEXANDER VELEZ ACOSTA",
+    "personNo": "8160929",
+    "time": "2025-07-11 14:02:44",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "JOSE",
+    "lastName": "ALEJANDRO PEREZ",
+    "personNo": "1001366585",
+    "time": "2025-07-11 14:01:23",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "RICARDO",
+    "lastName": "LOPEZ ARANGO",
+    "personNo": "1037647216",
+    "time": "2025-07-11 13:55:37",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "JUAN",
+    "lastName": "DAVID CORREA",
+    "personNo": "1037640023",
+    "time": "2025-07-11 13:39:13",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "JONATHAN",
+    "lastName": "CAMPUSANO",
+    "personNo": "8162404",
+    "time": "2025-07-11 13:38:46",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "BLADIMIR",
+    "lastName": "PEÑATE URRUTIA",
+    "personNo": "71989423",
+    "time": "2025-07-11 13:32:15",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "ASDRUBAL",
+    "lastName": "PALACIO SOTO",
+    "personNo": "98669881",
+    "time": "2025-07-11 13:13:35",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "ANDRES",
+    "lastName": "DAVID ALZATE LONDOÑO",
+    "personNo": "71266618",
+    "time": "2025-07-11 07:54:03",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "CAROLINA",
+    "lastName": "MARÍA CARVAJAL RESTREPO",
+    "personNo": "43259250",
+    "time": "2025-07-11 07:16:07",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "ALEXANDER",
+    "lastName": "ANGARITA IGUARAN",
+    "personNo": "17990059",
+    "time": "2025-07-11 07:10:31",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "DANIEL",
+    "lastName": "OSSA JARAMILLO",
+    "personNo": "1037585260",
+    "time": "2025-07-11 07:04:52",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "ROBERTO",
+    "lastName": "CARLOS SALAS MEJIA",
+    "personNo": "98559765",
+    "time": "2025-07-11 07:01:08",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "JUAN",
+    "lastName": "PABLO BOLIVAR CARMONA",
+    "personNo": "1037616429",
+    "time": "2025-07-11 06:56:01",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "JUAN",
+    "lastName": "GONZALO MEJIA RAMIREZ",
+    "personNo": "98657672",
+    "time": "2025-07-11 06:51:16",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "JUAN",
+    "lastName": "CAMILO CORREA",
+    "personNo": "1037608566",
+    "time": "2025-07-11 06:45:34",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "OSCAR",
+    "lastName": "ALONSO SIERRA CALLE",
+    "personNo": "98570071",
+    "time": "2025-07-11 06:44:54",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "JUAN",
+    "lastName": "FERNANDO BERMUDEZ",
+    "personNo": "8031691",
+    "time": "2025-07-11 06:07:44",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "BLADIMIR",
+    "lastName": "PEÑATE URRUTIA",
+    "personNo": "71989423",
+    "time": "2025-07-11 06:04:44",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "CELIO",
+    "lastName": "SILVA",
+    "personNo": "79003889",
+    "time": "2025-07-11 06:04:41",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "JOHN",
+    "lastName": "WALTER QUINTERO PALACIO",
+    "personNo": "98567379",
+    "time": "2025-07-11 05:59:07",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "JUAN",
+    "lastName": "DAVID HINCAPIE CASTAÑO",
+    "personNo": "70558387",
+    "time": "2025-07-11 05:58:54",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "ROBINSON",
+    "lastName": "ALBERTO GIL PARRA",
+    "personNo": "8105156",
+    "time": "2025-07-11 05:56:37",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "YOJAN",
+    "lastName": "ALEXANDER VELEZ ACOSTA",
+    "personNo": "8160929",
+    "time": "2025-07-11 05:53:47",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "JESUS",
+    "lastName": "ALFONSO GOMEZ GONZALEZ",
+    "personNo": "70470800",
+    "time": "2025-07-11 05:46:28",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "LUIS",
+    "lastName": "GUILLERMO TAMAYO",
+    "personNo": "70556188",
+    "time": "2025-07-11 05:37:17",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "JOSE",
+    "lastName": "ALEJANDRO PEREZ",
+    "personNo": "1001366585",
+    "time": "2025-07-10 23:13:08",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "ASDRUBAL",
+    "lastName": "PALACIO SOTO",
+    "personNo": "98669881",
+    "time": "2025-07-10 23:11:01",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "RICARDO",
+    "lastName": "LOPEZ ARANGO",
+    "personNo": "1037647216",
+    "time": "2025-07-10 23:10:51",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "JOHAN",
+    "lastName": "ESTEBAN TORRES",
+    "personNo": "8028937",
+    "time": "2025-07-10 21:59:29",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "JUAN",
+    "lastName": "DAVID CORREA",
+    "personNo": "1037640023",
+    "time": "2025-07-10 21:59:03",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "JONATHAN",
+    "lastName": "CAMPUSANO",
+    "personNo": "8162404",
+    "time": "2025-07-10 21:55:39",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "ROBERTO",
+    "lastName": "CARLOS SALAS MEJIA",
+    "personNo": "98559765",
+    "time": "2025-07-10 18:47:50",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "ANDRES",
+    "lastName": "DAVID ALZATE LONDOÑO",
+    "personNo": "71266618",
+    "time": "2025-07-10 17:43:31",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "JUAN",
+    "lastName": "PABLO BOLIVAR CARMONA",
+    "personNo": "1037616429",
+    "time": "2025-07-10 17:10:07",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "OSCAR",
+    "lastName": "ALONSO SIERRA CALLE",
+    "personNo": "98570071",
+    "time": "2025-07-10 17:07:16",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "ALEXANDER",
+    "lastName": "ANGARITA IGUARAN",
+    "personNo": "17990059",
+    "time": "2025-07-10 17:02:57",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "JUAN",
+    "lastName": "FERNANDO BERMUDEZ",
+    "personNo": "8031691",
+    "time": "2025-07-10 17:02:50",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "CAROLINA",
+    "lastName": "MARÍA CARVAJAL RESTREPO",
+    "personNo": "43259250",
+    "time": "2025-07-10 17:02:36",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "JUAN",
+    "lastName": "GONZALO MEJIA RAMIREZ",
+    "personNo": "98657672",
+    "time": "2025-07-10 17:01:35",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "LUIS",
+    "lastName": "GUILLERMO TAMAYO",
+    "personNo": "70556188",
+    "time": "2025-07-10 16:55:36",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "JUAN",
+    "lastName": "ESTEBAN AGUDELO LOPEZ",
+    "personNo": "1037574131",
+    "time": "2025-07-10 15:12:36",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "JESUS",
+    "lastName": "ALFONSO GOMEZ GONZALEZ",
+    "personNo": "70470800",
+    "time": "2025-07-10 14:49:36",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "ROBINSON",
+    "lastName": "ALBERTO GIL PARRA",
+    "personNo": "8105156",
+    "time": "2025-07-10 14:48:43",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "JOSE",
+    "lastName": "NELSON MONTOYA",
+    "personNo": "79679104",
+    "time": "2025-07-10 14:46:46",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "YOJAN",
+    "lastName": "ALEXANDER VELEZ ACOSTA",
+    "personNo": "8160929",
+    "time": "2025-07-10 14:34:19",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "JOHN",
+    "lastName": "WALTER QUINTERO PALACIO",
+    "personNo": "98567379",
+    "time": "2025-07-10 14:33:29",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "JOHAN",
+    "lastName": "ESTEBAN TORRES",
+    "personNo": "8028937",
+    "time": "2025-07-10 14:07:07",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "JOSE",
+    "lastName": "ALEJANDRO PEREZ",
+    "personNo": "1001366585",
+    "time": "2025-07-10 13:59:03",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "JUAN",
+    "lastName": "DAVID CORREA",
+    "personNo": "1037640023",
+    "time": "2025-07-10 13:50:03",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "ASDRUBAL",
+    "lastName": "PALACIO SOTO",
+    "personNo": "98669881",
+    "time": "2025-07-10 13:28:09",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "JONATHAN",
+    "lastName": "CAMPUSANO",
+    "personNo": "8162404",
+    "time": "2025-07-10 13:08:52",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "ANDRES",
+    "lastName": "DAVID ALZATE LONDOÑO",
+    "personNo": "71266618",
+    "time": "2025-07-10 07:45:58",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "DANIEL",
+    "lastName": "OSSA JARAMILLO",
+    "personNo": "1037585260",
+    "time": "2025-07-10 07:02:45",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "JUAN",
+    "lastName": "CAMILO CORREA",
+    "personNo": "1037608566",
+    "time": "2025-07-10 06:58:25",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "JUAN",
+    "lastName": "GONZALO MEJIA RAMIREZ",
+    "personNo": "98657672",
+    "time": "2025-07-10 06:56:08",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "ROBERTO",
+    "lastName": "CARLOS SALAS MEJIA",
+    "personNo": "98559765",
+    "time": "2025-07-10 06:52:50",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "OSCAR",
+    "lastName": "ALONSO SIERRA CALLE",
+    "personNo": "98570071",
+    "time": "2025-07-10 06:49:29",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "FREDDY",
+    "lastName": "OYOLA MEDINA OYOLA MEDINA",
+    "personNo": "70564371",
+    "time": "2025-07-10 06:47:37",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "JUAN",
+    "lastName": "PABLO BOLIVAR CARMONA",
+    "personNo": "1037616429",
+    "time": "2025-07-10 06:43:53",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "JUAN",
+    "lastName": "ESTEBAN AGUDELO LOPEZ",
+    "personNo": "1037574131",
+    "time": "2025-07-10 06:40:15",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "MARTHA",
+    "lastName": "LUZ MONROY BOLIVAR",
+    "personNo": "42885958",
+    "time": "2025-07-10 06:28:14",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "JUAN",
+    "lastName": "FERNANDO BERMUDEZ",
+    "personNo": "8031691",
+    "time": "2025-07-10 06:08:23",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "CELIO",
+    "lastName": "SILVA",
+    "personNo": "79003889",
+    "time": "2025-07-10 06:02:52",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "BLADIMIR",
+    "lastName": "PEÑATE URRUTIA",
+    "personNo": "71989423",
+    "time": "2025-07-10 06:02:20",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "WILSON",
+    "lastName": "PEREZ URAN",
+    "personNo": "8357590",
+    "time": "2025-07-10 05:59:33",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "JOSE",
+    "lastName": "NELSON MONTOYA",
+    "personNo": "79679104",
+    "time": "2025-07-10 05:59:24",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "JOHN",
+    "lastName": "WALTER QUINTERO PALACIO",
+    "personNo": "98567379",
+    "time": "2025-07-10 05:56:40",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "YOJAN",
+    "lastName": "ALEXANDER VELEZ ACOSTA",
+    "personNo": "8160929",
+    "time": "2025-07-10 05:55:31",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "LUIS",
+    "lastName": "GUILLERMO TAMAYO",
+    "personNo": "70556188",
+    "time": "2025-07-10 05:49:42",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "RAMON",
+    "lastName": "DE JESUS JIMENEZ GONZALEZ",
+    "personNo": "70569286",
+    "time": "2025-07-10 05:43:42",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "ROBINSON",
+    "lastName": "ALBERTO GIL PARRA",
+    "personNo": "8105156",
+    "time": "2025-07-10 05:43:15",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "JESUS",
+    "lastName": "ALFONSO GOMEZ GONZALEZ",
+    "personNo": "70470800",
+    "time": "2025-07-10 05:43:07",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "VICTOR",
+    "lastName": "MANUEL HERRERA VARGAS",
+    "personNo": "79928514",
+    "time": "2025-07-10 05:40:20",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "JAVIER",
+    "lastName": "ZAPATA ATEHORTUA",
+    "personNo": "71703212",
+    "time": "2025-07-10 05:31:24",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "JHON",
+    "lastName": "ARLEY PALACIO BETANCUR",
+    "personNo": "1037573137",
+    "time": "2025-07-10 05:30:58",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "WALTER",
+    "lastName": "DE JESUS CORREA GALLEGO",
+    "personNo": "98542784",
+    "time": "2025-07-10 05:30:51",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "RUBEN",
+    "lastName": "DARIO PATIÑO HERRERA",
+    "personNo": "70559682",
+    "time": "2025-07-10 05:24:30",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "JHON",
+    "lastName": "JAIRO CANO GAVIRIA",
+    "personNo": "70553890",
+    "time": "2025-07-10 05:21:21",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "JUAN",
+    "lastName": "GUILLERMO ARREDONDO RAMIREZ",
+    "personNo": "70566163",
+    "time": "2025-07-10 05:18:40",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "ALBEIRO",
+    "lastName": "ANTONIO VILLA BETANCUR",
+    "personNo": "70548221",
+    "time": "2025-07-10 05:18:28",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "JOHAN",
+    "lastName": "ESTEBAN TORRES",
+    "personNo": "8028937",
+    "time": "2025-07-09 22:16:17",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "JUAN",
+    "lastName": "DAVID CORREA",
+    "personNo": "1037640023",
+    "time": "2025-07-09 22:15:41",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "JONATHAN",
+    "lastName": "CAMPUSANO",
+    "personNo": "8162404",
+    "time": "2025-07-09 22:12:33",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "JOSE",
+    "lastName": "ALEJANDRO PEREZ",
+    "personNo": "1001366585",
+    "time": "2025-07-09 21:58:38",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "RICARDO",
+    "lastName": "LOPEZ ARANGO",
+    "personNo": "1037647216",
+    "time": "2025-07-09 21:58:34",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "ASDRUBAL",
+    "lastName": "PALACIO SOTO",
+    "personNo": "98669881",
+    "time": "2025-07-09 21:57:58",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "FREDDY",
+    "lastName": "OYOLA MEDINA OYOLA MEDINA",
+    "personNo": "70564371",
+    "time": "2025-07-09 20:27:39",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "ROBERTO",
+    "lastName": "CARLOS SALAS MEJIA",
+    "personNo": "98559765",
+    "time": "2025-07-09 18:16:05",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "DANIEL",
+    "lastName": "OSSA JARAMILLO",
+    "personNo": "1037585260",
+    "time": "2025-07-09 18:04:18",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "CAROLINA",
+    "lastName": "MARÍA CARVAJAL RESTREPO",
+    "personNo": "43259250",
+    "time": "2025-07-09 18:04:10",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "JUAN",
+    "lastName": "CAMILO CORREA",
+    "personNo": "1037608566",
+    "time": "2025-07-09 18:04:00",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "OSCAR",
+    "lastName": "ALONSO SIERRA CALLE",
+    "personNo": "98570071",
+    "time": "2025-07-09 17:57:51",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "JUAN",
+    "lastName": "GONZALO MEJIA RAMIREZ",
+    "personNo": "98657672",
+    "time": "2025-07-09 17:18:59",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "ALEXANDER",
+    "lastName": "ANGARITA IGUARAN",
+    "personNo": "17990059",
+    "time": "2025-07-09 17:18:48",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "JUAN",
+    "lastName": "FERNANDO BERMUDEZ",
+    "personNo": "8031691",
+    "time": "2025-07-09 17:02:38",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "LUIS",
+    "lastName": "GUILLERMO TAMAYO",
+    "personNo": "70556188",
+    "time": "2025-07-09 16:59:41",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "JUAN",
+    "lastName": "ESTEBAN AGUDELO LOPEZ",
+    "personNo": "1037574131",
+    "time": "2025-07-09 16:01:27",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "JAVIER",
+    "lastName": "ZAPATA ATEHORTUA",
+    "personNo": "71703212",
+    "time": "2025-07-09 16:01:06",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "ALBEIRO",
+    "lastName": "ANTONIO VILLA BETANCUR",
+    "personNo": "70548221",
+    "time": "2025-07-09 16:01:00",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "RUBEN",
+    "lastName": "DARIO PATIÑO HERRERA",
+    "personNo": "70559682",
+    "time": "2025-07-09 16:00:53",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "WALTER",
+    "lastName": "DE JESUS CORREA GALLEGO",
+    "personNo": "98542784",
+    "time": "2025-07-09 16:00:46",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "JHON",
+    "lastName": "JAIRO CANO GAVIRIA",
+    "personNo": "70553890",
+    "time": "2025-07-09 16:00:41",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "JESUS",
+    "lastName": "ALFONSO GOMEZ GONZALEZ",
+    "personNo": "70470800",
+    "time": "2025-07-09 14:34:56",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "JOSE",
+    "lastName": "NELSON MONTOYA",
+    "personNo": "79679104",
+    "time": "2025-07-09 14:24:03",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "YOJAN",
+    "lastName": "ALEXANDER VELEZ ACOSTA",
+    "personNo": "8160929",
+    "time": "2025-07-09 14:20:18",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "JOHN",
+    "lastName": "WALTER QUINTERO PALACIO",
+    "personNo": "98567379",
+    "time": "2025-07-09 14:15:46",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "BLADIMIR",
+    "lastName": "PEÑATE URRUTIA",
+    "personNo": "71989423",
+    "time": "2025-07-09 14:13:34",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "JUAN",
+    "lastName": "DAVID CORREA",
+    "personNo": "1037640023",
+    "time": "2025-07-09 13:49:02",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "MARTHA",
+    "lastName": "LUZ MONROY BOLIVAR",
+    "personNo": "42885958",
+    "time": "2025-07-09 12:12:00",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "CAROLINA",
+    "lastName": "MARÍA CARVAJAL RESTREPO",
+    "personNo": "43259250",
+    "time": "2025-07-09 07:14:02",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "ALEXANDER",
+    "lastName": "ANGARITA IGUARAN",
+    "personNo": "17990059",
+    "time": "2025-07-09 07:09:04",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "ROBERTO",
+    "lastName": "CARLOS SALAS MEJIA",
+    "personNo": "98559765",
+    "time": "2025-07-09 07:04:26",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "ROBERTO",
+    "lastName": "CARLOS SALAS MEJIA",
+    "personNo": "98559765",
+    "time": "2025-07-09 07:03:52",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "NATALIA",
+    "lastName": "MORENO LONDOÑO",
+    "personNo": "32243782",
+    "time": "2025-07-09 07:03:21",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "JUAN",
+    "lastName": "ESTEBAN AGUDELO LOPEZ",
+    "personNo": "1037574131",
+    "time": "2025-07-09 07:02:55",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "ILDA",
+    "lastName": "DORIS GOMEZ FRANCO",
+    "personNo": "43459225",
+    "time": "2025-07-09 07:01:04",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "JUAN",
+    "lastName": "GONZALO MEJIA RAMIREZ",
+    "personNo": "98657672",
+    "time": "2025-07-09 06:59:22",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "DANIEL",
+    "lastName": "OSSA JARAMILLO",
+    "personNo": "1037585260",
+    "time": "2025-07-09 06:56:46",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "JUAN",
+    "lastName": "CAMILO CORREA",
+    "personNo": "1037608566",
+    "time": "2025-07-09 06:56:34",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "MARIA",
+    "lastName": "LUCERO OSORIO MARTINEZ",
+    "personNo": "43752512",
+    "time": "2025-07-09 06:52:46",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "ANA",
+    "lastName": "MARIA ARANGO LOPEZ",
+    "personNo": "43737730",
+    "time": "2025-07-09 06:48:26",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "ANA",
+    "lastName": "PATRICIA DURANGO LOPEZ",
+    "personNo": "43756596",
+    "time": "2025-07-09 06:48:16",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "SANDRA",
+    "lastName": "MILENA CHARRY GONZALEZ",
+    "personNo": "43874155",
+    "time": "2025-07-09 06:48:08",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "OSCAR",
+    "lastName": "ALONSO SIERRA CALLE",
+    "personNo": "98570071",
+    "time": "2025-07-09 06:42:45",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "FREDDY",
+    "lastName": "OYOLA MEDINA OYOLA MEDINA",
+    "personNo": "70564371",
+    "time": "2025-07-09 06:42:08",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "SANDRA",
+    "lastName": "DIDIANI BEDOYA BALLESTEROS",
+    "personNo": "43730486",
+    "time": "2025-07-09 06:41:14",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "JANCELLY",
+    "lastName": "GUTIERREZ SALAZAR",
+    "personNo": "43189917",
+    "time": "2025-07-09 06:38:02",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "JULIET",
+    "lastName": "VANEGAS ALVAREZ",
+    "personNo": "39387593",
+    "time": "2025-07-09 06:27:59",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "NUBIA",
+    "lastName": "DOLLY CASTELLO CARDONA",
+    "personNo": "43869905",
+    "time": "2025-07-09 06:27:53",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "MARI",
+    "lastName": "CIELO OCHOA RAMIREZ",
+    "personNo": "42893312",
+    "time": "2025-07-09 06:27:49",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "LILIANA",
+    "lastName": "MARIA PEREZ SERNA",
+    "personNo": "43746660",
+    "time": "2025-07-09 06:24:28",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "OLGA",
+    "lastName": "LUCIA OSORIO GOMEZ",
+    "personNo": "43723171",
+    "time": "2025-07-09 06:24:21",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "MARTHA",
+    "lastName": "LUZ MONROY BOLIVAR",
+    "personNo": "42885958",
+    "time": "2025-07-09 06:24:13",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "MARIA",
+    "lastName": "EMILIA VILLA BRAND",
+    "personNo": "42889153",
+    "time": "2025-07-09 06:15:47",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "JUAN",
+    "lastName": "FERNANDO BERMUDEZ",
+    "personNo": "8031691",
+    "time": "2025-07-09 06:07:37",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "BLADIMIR",
+    "lastName": "PEÑATE URRUTIA",
+    "personNo": "71989423",
+    "time": "2025-07-09 06:03:04",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "CELIO",
+    "lastName": "SILVA",
+    "personNo": "79003889",
+    "time": "2025-07-09 06:02:08",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "JUAN",
+    "lastName": "DAVID HINCAPIE CASTAÑO",
+    "personNo": "70558387",
+    "time": "2025-07-09 06:00:57",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "VALENTINA",
+    "lastName": "ARCILA ARROYAVE",
+    "personNo": "1038867171",
+    "time": "2025-07-09 05:58:05",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "CARLOS",
+    "lastName": "ANDRES SALAZAR MEZA",
+    "personNo": "1102122648",
+    "time": "2025-07-09 05:57:50",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "ROBINSON",
+    "lastName": "ALBERTO GIL PARRA",
+    "personNo": "8105156",
+    "time": "2025-07-09 05:53:33",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "JOSE",
+    "lastName": "NELSON MONTOYA",
+    "personNo": "79679104",
+    "time": "2025-07-09 05:52:35",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "JOHN",
+    "lastName": "WALTER QUINTERO PALACIO",
+    "personNo": "98567379",
+    "time": "2025-07-09 05:51:58",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "JOAQUIN",
+    "lastName": "EMILIO HERRERA ARANGO",
+    "personNo": "70568794",
+    "time": "2025-07-09 05:51:37",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "YOJAN",
+    "lastName": "ALEXANDER VELEZ ACOSTA",
+    "personNo": "8160929",
+    "time": "2025-07-09 05:51:16",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "WILSON",
+    "lastName": "PEREZ URAN",
+    "personNo": "8357590",
+    "time": "2025-07-09 05:48:17",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "RAMON",
+    "lastName": "DE JESUS JIMENEZ GONZALEZ",
+    "personNo": "70569286",
+    "time": "2025-07-09 05:41:42",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "LUIS",
+    "lastName": "GUILLERMO TAMAYO",
+    "personNo": "70556188",
+    "time": "2025-07-09 05:41:14",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "JESUS",
+    "lastName": "ALFONSO GOMEZ GONZALEZ",
+    "personNo": "70470800",
+    "time": "2025-07-09 05:40:35",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "JAVIER",
+    "lastName": "ZAPATA ATEHORTUA",
+    "personNo": "71703212",
+    "time": "2025-07-09 05:40:03",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "VICTOR",
+    "lastName": "MANUEL HERRERA VARGAS",
+    "personNo": "79928514",
+    "time": "2025-07-09 05:39:57",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "JHON",
+    "lastName": "JAIRO CANO GAVIRIA",
+    "personNo": "70553890",
+    "time": "2025-07-09 05:29:59",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "WALTER",
+    "lastName": "DE JESUS CORREA GALLEGO",
+    "personNo": "98542784",
+    "time": "2025-07-09 05:29:51",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "RUBEN",
+    "lastName": "DARIO PATIÑO HERRERA",
+    "personNo": "70559682",
+    "time": "2025-07-09 05:27:40",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "JHON",
+    "lastName": "ARLEY PALACIO BETANCUR",
+    "personNo": "1037573137",
+    "time": "2025-07-09 05:27:32",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "JUAN",
+    "lastName": "GUILLERMO ARREDONDO RAMIREZ",
+    "personNo": "70566163",
+    "time": "2025-07-09 05:17:23",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "ALBEIRO",
+    "lastName": "ANTONIO VILLA BETANCUR",
+    "personNo": "70548221",
+    "time": "2025-07-09 05:16:35",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "JOSE",
+    "lastName": "ALEJANDRO PEREZ",
+    "personNo": "1001366585",
+    "time": "2025-07-08 22:03:04",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "RICARDO",
+    "lastName": "LOPEZ ARANGO",
+    "personNo": "1037647216",
+    "time": "2025-07-08 22:02:57",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "ASDRUBAL",
+    "lastName": "PALACIO SOTO",
+    "personNo": "98669881",
+    "time": "2025-07-08 22:01:50",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "JOHAN",
+    "lastName": "ESTEBAN TORRES",
+    "personNo": "8028937",
+    "time": "2025-07-08 21:55:37",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "JUAN",
+    "lastName": "DAVID CORREA",
+    "personNo": "1037640023",
+    "time": "2025-07-08 21:54:56",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "JONATHAN",
+    "lastName": "CAMPUSANO",
+    "personNo": "8162404",
+    "time": "2025-07-08 21:54:11",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "ANDRES",
+    "lastName": "DAVID ALZATE LONDOÑO",
+    "personNo": "71266618",
+    "time": "2025-07-08 19:49:04",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "FREDDY",
+    "lastName": "OYOLA MEDINA OYOLA MEDINA",
+    "personNo": "70564371",
+    "time": "2025-07-08 18:17:46",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "CAROLINA",
+    "lastName": "MARÍA CARVAJAL RESTREPO",
+    "personNo": "43259250",
+    "time": "2025-07-08 18:04:13",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "ROBERTO",
+    "lastName": "CARLOS SALAS MEJIA",
+    "personNo": "98559765",
+    "time": "2025-07-08 18:00:06",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "OSCAR",
+    "lastName": "ALONSO SIERRA CALLE",
+    "personNo": "98570071",
+    "time": "2025-07-08 17:59:57",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "JUAN",
+    "lastName": "ESTEBAN AGUDELO LOPEZ",
+    "personNo": "1037574131",
+    "time": "2025-07-08 17:42:55",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "JUAN",
+    "lastName": "GONZALO MEJIA RAMIREZ",
+    "personNo": "98657672",
+    "time": "2025-07-08 17:38:29",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "ALEXANDER",
+    "lastName": "ANGARITA IGUARAN",
+    "personNo": "17990059",
+    "time": "2025-07-08 17:26:51",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "JUAN",
+    "lastName": "FERNANDO BERMUDEZ",
+    "personNo": "8031691",
+    "time": "2025-07-08 17:05:31",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "LUIS",
+    "lastName": "GUILLERMO TAMAYO",
+    "personNo": "70556188",
+    "time": "2025-07-08 16:58:46",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "JUAN",
+    "lastName": "DAVID HINCAPIE CASTAÑO",
+    "personNo": "70558387",
+    "time": "2025-07-08 15:06:29",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "JESUS",
+    "lastName": "ALFONSO GOMEZ GONZALEZ",
+    "personNo": "70470800",
+    "time": "2025-07-08 14:13:18",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "YOJAN",
+    "lastName": "ALEXANDER VELEZ ACOSTA",
+    "personNo": "8160929",
+    "time": "2025-07-08 14:10:42",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "JOHN",
+    "lastName": "WALTER QUINTERO PALACIO",
+    "personNo": "98567379",
+    "time": "2025-07-08 14:10:35",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "ROBINSON",
+    "lastName": "ALBERTO GIL PARRA",
+    "personNo": "8105156",
+    "time": "2025-07-08 14:07:12",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "JOHAN",
+    "lastName": "ESTEBAN TORRES",
+    "personNo": "8028937",
+    "time": "2025-07-08 13:57:46",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "JOSE",
+    "lastName": "NELSON MONTOYA",
+    "personNo": "79679104",
+    "time": "2025-07-08 13:54:13",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "RICARDO",
+    "lastName": "LOPEZ ARANGO",
+    "personNo": "1037647216",
+    "time": "2025-07-08 13:53:15",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "CELIO",
+    "lastName": "SILVA",
+    "personNo": "79003889",
+    "time": "2025-07-08 13:52:32",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "JUAN",
+    "lastName": "DAVID CORREA",
+    "personNo": "1037640023",
+    "time": "2025-07-08 13:52:18",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "ASDRUBAL",
+    "lastName": "PALACIO SOTO",
+    "personNo": "98669881",
+    "time": "2025-07-08 13:26:51",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "CAROLINA",
+    "lastName": "MARÍA CARVAJAL RESTREPO",
+    "personNo": "43259250",
+    "time": "2025-07-08 07:09:16",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "FREDDY",
+    "lastName": "OYOLA MEDINA OYOLA MEDINA",
+    "personNo": "70564371",
+    "time": "2025-07-08 07:04:36",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "JUAN",
+    "lastName": "GONZALO MEJIA RAMIREZ",
+    "personNo": "98657672",
+    "time": "2025-07-08 07:00:03",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "ROBERTO",
+    "lastName": "CARLOS SALAS MEJIA",
+    "personNo": "98559765",
+    "time": "2025-07-08 06:55:29",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "JUAN",
+    "lastName": "CAMILO CORREA",
+    "personNo": "1037608566",
+    "time": "2025-07-08 06:50:45",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "OSCAR",
+    "lastName": "ALONSO SIERRA CALLE",
+    "personNo": "98570071",
+    "time": "2025-07-08 06:41:52",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "JUAN",
+    "lastName": "ESTEBAN AGUDELO LOPEZ",
+    "personNo": "1037574131",
+    "time": "2025-07-08 06:13:07",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "JUAN",
+    "lastName": "FERNANDO BERMUDEZ",
+    "personNo": "8031691",
+    "time": "2025-07-08 06:05:53",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "CELIO",
+    "lastName": "SILVA",
+    "personNo": "79003889",
+    "time": "2025-07-08 06:03:51",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "ROBINSON",
+    "lastName": "ALBERTO GIL PARRA",
+    "personNo": "8105156",
+    "time": "2025-07-08 06:01:27",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "BLADIMIR",
+    "lastName": "PEÑATE URRUTIA",
+    "personNo": "71989423",
+    "time": "2025-07-08 05:58:25",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "JUAN",
+    "lastName": "DAVID HINCAPIE CASTAÑO",
+    "personNo": "70558387",
+    "time": "2025-07-08 05:58:14",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "JOHN",
+    "lastName": "WALTER QUINTERO PALACIO",
+    "personNo": "98567379",
+    "time": "2025-07-08 05:51:28",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "JOSE",
+    "lastName": "NELSON MONTOYA",
+    "personNo": "79679104",
+    "time": "2025-07-08 05:51:18",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "YOJAN",
+    "lastName": "ALEXANDER VELEZ ACOSTA",
+    "personNo": "8160929",
+    "time": "2025-07-08 05:50:01",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "JESUS",
+    "lastName": "ALFONSO GOMEZ GONZALEZ",
+    "personNo": "70470800",
+    "time": "2025-07-08 05:42:38",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "LUIS",
+    "lastName": "GUILLERMO TAMAYO",
+    "personNo": "70556188",
+    "time": "2025-07-08 05:42:22",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "RICARDO",
+    "lastName": "LOPEZ ARANGO",
+    "personNo": "1037647216",
+    "time": "2025-07-07 21:54:49",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "ASDRUBAL",
+    "lastName": "PALACIO SOTO",
+    "personNo": "98669881",
+    "time": "2025-07-07 21:54:42",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "JOHAN",
+    "lastName": "ESTEBAN TORRES",
+    "personNo": "8028937",
+    "time": "2025-07-07 21:53:40",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "JUAN",
+    "lastName": "DAVID CORREA",
+    "personNo": "1037640023",
+    "time": "2025-07-07 21:51:39",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "JONATHAN",
+    "lastName": "CAMPUSANO",
+    "personNo": "8162404",
+    "time": "2025-07-07 21:51:34",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "JOSE",
+    "lastName": "ALEJANDRO PEREZ",
+    "personNo": "1001366585",
+    "time": "2025-07-07 21:51:00",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "DANIEL",
+    "lastName": "OSSA JARAMILLO",
+    "personNo": "1037585260",
+    "time": "2025-07-07 21:40:10",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "ANDRES",
+    "lastName": "DAVID ALZATE LONDOÑO",
+    "personNo": "71266618",
+    "time": "2025-07-07 19:57:51",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "ROBERTO",
+    "lastName": "CARLOS SALAS MEJIA",
+    "personNo": "98559765",
+    "time": "2025-07-07 19:57:30",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "CAROLINA",
+    "lastName": "MARÍA CARVAJAL RESTREPO",
+    "personNo": "43259250",
+    "time": "2025-07-07 18:04:22",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "OSCAR",
+    "lastName": "ALONSO SIERRA CALLE",
+    "personNo": "98570071",
+    "time": "2025-07-07 18:03:41",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "ALEXANDER",
+    "lastName": "ANGARITA IGUARAN",
+    "personNo": "17990059",
+    "time": "2025-07-07 17:09:04",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "LUIS",
+    "lastName": "GUILLERMO TAMAYO",
+    "personNo": "70556188",
+    "time": "2025-07-07 17:08:33",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "JUAN",
+    "lastName": "FERNANDO BERMUDEZ",
+    "personNo": "8031691",
+    "time": "2025-07-07 17:07:22",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "FREDDY",
+    "lastName": "OYOLA MEDINA OYOLA MEDINA",
+    "personNo": "70564371",
+    "time": "2025-07-07 16:59:58",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "JUAN",
+    "lastName": "GONZALO MEJIA RAMIREZ",
+    "personNo": "98657672",
+    "time": "2025-07-07 16:18:06",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "JUAN",
+    "lastName": "ESTEBAN AGUDELO LOPEZ",
+    "personNo": "1037574131",
+    "time": "2025-07-07 15:27:14",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "JUAN",
+    "lastName": "DAVID HINCAPIE CASTAÑO",
+    "personNo": "70558387",
+    "time": "2025-07-07 15:13:42",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "JOSE",
+    "lastName": "NELSON MONTOYA",
+    "personNo": "79679104",
+    "time": "2025-07-07 14:20:53",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "JESUS",
+    "lastName": "ALFONSO GOMEZ GONZALEZ",
+    "personNo": "70470800",
+    "time": "2025-07-07 14:07:34",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "BLADIMIR",
+    "lastName": "PEÑATE URRUTIA",
+    "personNo": "71989423",
+    "time": "2025-07-07 14:07:08",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "CELIO",
+    "lastName": "SILVA",
+    "personNo": "79003889",
+    "time": "2025-07-07 14:06:25",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "YOJAN",
+    "lastName": "ALEXANDER VELEZ ACOSTA",
+    "personNo": "8160929",
+    "time": "2025-07-07 14:05:06",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "ROBINSON",
+    "lastName": "ALBERTO GIL PARRA",
+    "personNo": "8105156",
+    "time": "2025-07-07 14:03:01",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "JOSE",
+    "lastName": "ALEJANDRO PEREZ",
+    "personNo": "1001366585",
+    "time": "2025-07-07 14:00:57",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "RICARDO",
+    "lastName": "LOPEZ ARANGO",
+    "personNo": "1037647216",
+    "time": "2025-07-07 13:49:05",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "JONATHAN",
+    "lastName": "CAMPUSANO",
+    "personNo": "8162404",
+    "time": "2025-07-07 13:30:54",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "JUAN",
+    "lastName": "DAVID CORREA",
+    "personNo": "1037640023",
+    "time": "2025-07-07 13:30:48",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "ASDRUBAL",
+    "lastName": "PALACIO SOTO",
+    "personNo": "98669881",
+    "time": "2025-07-07 13:24:54",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "LUIS",
+    "lastName": "GUILLERMO TAMAYO",
+    "personNo": "70556188",
+    "time": "2025-07-07 10:23:40",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "LUIS",
+    "lastName": "GUILLERMO TAMAYO",
+    "personNo": "70556188",
+    "time": "2025-07-07 08:23:56",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "ANDRES",
+    "lastName": "DAVID ALZATE LONDOÑO",
+    "personNo": "71266618",
+    "time": "2025-07-07 07:51:30",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "CAROLINA",
+    "lastName": "MARÍA CARVAJAL RESTREPO",
+    "personNo": "43259250",
+    "time": "2025-07-07 07:06:43",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "JUAN",
+    "lastName": "CAMILO CORREA",
+    "personNo": "1037608566",
+    "time": "2025-07-07 06:59:09",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "JUAN",
+    "lastName": "GONZALO MEJIA RAMIREZ",
+    "personNo": "98657672",
+    "time": "2025-07-07 06:58:05",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "DANIEL",
+    "lastName": "OSSA JARAMILLO",
+    "personNo": "1037585260",
+    "time": "2025-07-07 06:57:13",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "ROBERTO",
+    "lastName": "CARLOS SALAS MEJIA",
+    "personNo": "98559765",
+    "time": "2025-07-07 06:57:00",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "SEBASTIAN",
+    "lastName": "AGUDELO MONTOYA",
+    "personNo": "1036448249",
+    "time": "2025-07-07 06:56:36",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "EUGENIA",
+    "lastName": "MARIA DEL SOCORRO SALAZAR BONILLA",
+    "personNo": "65735019",
+    "time": "2025-07-07 06:55:50",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "MARIA",
+    "lastName": "LUCERO OSORIO MARTINEZ",
+    "personNo": "43752512",
+    "time": "2025-07-07 06:54:15",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "FREDDY",
+    "lastName": "OYOLA MEDINA OYOLA MEDINA",
+    "personNo": "70564371",
+    "time": "2025-07-07 06:45:03",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "OSCAR",
+    "lastName": "ALONSO SIERRA CALLE",
+    "personNo": "98570071",
+    "time": "2025-07-07 06:39:44",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "JUAN",
+    "lastName": "ESTEBAN AGUDELO LOPEZ",
+    "personNo": "1037574131",
+    "time": "2025-07-07 06:16:56",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "JUAN",
+    "lastName": "FERNANDO BERMUDEZ",
+    "personNo": "8031691",
+    "time": "2025-07-07 06:07:32",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "CELIO",
+    "lastName": "SILVA",
+    "personNo": "79003889",
+    "time": "2025-07-07 06:00:38",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "BLADIMIR",
+    "lastName": "PEÑATE URRUTIA",
+    "personNo": "71989423",
+    "time": "2025-07-07 06:00:22",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "JUAN",
+    "lastName": "DAVID HINCAPIE CASTAÑO",
+    "personNo": "70558387",
+    "time": "2025-07-07 05:57:58",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "JOHN",
+    "lastName": "WALTER QUINTERO PALACIO",
+    "personNo": "98567379",
+    "time": "2025-07-07 05:51:56",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "JOSE",
+    "lastName": "NELSON MONTOYA",
+    "personNo": "79679104",
+    "time": "2025-07-07 05:51:36",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "YOJAN",
+    "lastName": "ALEXANDER VELEZ ACOSTA",
+    "personNo": "8160929",
+    "time": "2025-07-07 05:51:27",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "ROBINSON",
+    "lastName": "ALBERTO GIL PARRA",
+    "personNo": "8105156",
+    "time": "2025-07-07 05:50:18",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "LUIS",
+    "lastName": "GUILLERMO TAMAYO",
+    "personNo": "70556188",
+    "time": "2025-07-07 05:47:43",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "JESUS",
+    "lastName": "ALFONSO GOMEZ GONZALEZ",
+    "personNo": "70470800",
+    "time": "2025-07-07 05:44:13",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "ROBINSON",
+    "lastName": "ALBERTO GIL PARRA",
+    "personNo": "8105156",
+    "time": "2025-07-06 19:57:44",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "JOHN",
+    "lastName": "WALTER QUINTERO PALACIO",
+    "personNo": "98567379",
+    "time": "2025-07-06 19:57:30",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "YOJAN",
+    "lastName": "ALEXANDER VELEZ ACOSTA",
+    "personNo": "8160929",
+    "time": "2025-07-06 19:54:41",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "YOJAN",
+    "lastName": "ALEXANDER VELEZ ACOSTA",
+    "personNo": "8160929",
+    "time": "2025-07-06 11:58:30",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "JOHN",
+    "lastName": "WALTER QUINTERO PALACIO",
+    "personNo": "98567379",
+    "time": "2025-07-06 11:54:51",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "ROBINSON",
+    "lastName": "ALBERTO GIL PARRA",
+    "personNo": "8105156",
+    "time": "2025-07-06 11:54:28",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "JUAN",
+    "lastName": "DAVID HINCAPIE CASTAÑO",
+    "personNo": "70558387",
+    "time": "2025-07-06 11:47:55",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "JESUS",
+    "lastName": "ALFONSO GOMEZ GONZALEZ",
+    "personNo": "70470800",
+    "time": "2025-07-05 21:57:27",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "RICARDO",
+    "lastName": "LOPEZ ARANGO",
+    "personNo": "1037647216",
+    "time": "2025-07-05 21:57:22",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "ASDRUBAL",
+    "lastName": "PALACIO SOTO",
+    "personNo": "98669881",
+    "time": "2025-07-05 21:57:14",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "JOSE",
+    "lastName": "ALEJANDRO PEREZ",
+    "personNo": "1001366585",
+    "time": "2025-07-05 21:57:07",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "JOHAN",
+    "lastName": "ESTEBAN TORRES",
+    "personNo": "8028937",
+    "time": "2025-07-05 21:56:53",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "JONATHAN",
+    "lastName": "CAMPUSANO",
+    "personNo": "8162404",
+    "time": "2025-07-05 21:49:46",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "ROBERTO",
+    "lastName": "CARLOS SALAS MEJIA",
+    "personNo": "98559765",
+    "time": "2025-07-05 16:40:28",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "JUAN",
+    "lastName": "ESTEBAN AGUDELO LOPEZ",
+    "personNo": "1037574131",
+    "time": "2025-07-05 15:02:45",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "JOSE",
+    "lastName": "NELSON MONTOYA",
+    "personNo": "79679104",
+    "time": "2025-07-05 14:03:35",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "CELIO",
+    "lastName": "SILVA",
+    "personNo": "79003889",
+    "time": "2025-07-05 14:02:14",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "LUIS",
+    "lastName": "GUILLERMO TAMAYO",
+    "personNo": "70556188",
+    "time": "2025-07-05 14:00:11",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "JOSE",
+    "lastName": "ALEJANDRO PEREZ",
+    "personNo": "1001366585",
+    "time": "2025-07-05 13:52:43",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "RICARDO",
+    "lastName": "LOPEZ ARANGO",
+    "personNo": "1037647216",
+    "time": "2025-07-05 13:52:34",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "JOHAN",
+    "lastName": "ESTEBAN TORRES",
+    "personNo": "8028937",
+    "time": "2025-07-05 13:51:21",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "JESUS",
+    "lastName": "ALFONSO GOMEZ GONZALEZ",
+    "personNo": "70470800",
+    "time": "2025-07-05 13:37:36",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "JONATHAN",
+    "lastName": "CAMPUSANO",
+    "personNo": "8162404",
+    "time": "2025-07-05 13:37:24",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "ASDRUBAL",
+    "lastName": "PALACIO SOTO",
+    "personNo": "98669881",
+    "time": "2025-07-05 13:19:39",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "ROBERTO",
+    "lastName": "CARLOS SALAS MEJIA",
+    "personNo": "98559765",
+    "time": "2025-07-05 09:10:48",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "FREDDY",
+    "lastName": "OYOLA MEDINA OYOLA MEDINA",
+    "personNo": "70564371",
+    "time": "2025-07-05 09:00:20",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "ANA",
+    "lastName": "PATRICIA DURANGO LOPEZ",
+    "personNo": "43756596",
+    "time": "2025-07-05 06:44:43",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "SANDRA",
+    "lastName": "MILENA CHARRY GONZALEZ",
+    "personNo": "43874155",
+    "time": "2025-07-05 06:44:26",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "JUAN",
+    "lastName": "ESTEBAN AGUDELO LOPEZ",
+    "personNo": "1037574131",
+    "time": "2025-07-05 06:10:25",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "BLADIMIR",
+    "lastName": "PEÑATE URRUTIA",
+    "personNo": "71989423",
+    "time": "2025-07-05 06:05:43",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "JUAN",
+    "lastName": "DAVID HINCAPIE CASTAÑO",
+    "personNo": "70558387",
+    "time": "2025-07-05 05:56:38",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "LUIS",
+    "lastName": "GUILLERMO TAMAYO",
+    "personNo": "70556188",
+    "time": "2025-07-05 05:54:23",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "FREDDY",
+    "lastName": "OYOLA MEDINA OYOLA MEDINA",
+    "personNo": "70564371",
+    "time": "2025-07-05 05:52:33",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "CELIO",
+    "lastName": "SILVA",
+    "personNo": "79003889",
+    "time": "2025-07-05 05:51:08",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "JHON",
+    "lastName": "ARLEY PALACIO BETANCUR",
+    "personNo": "1037573137",
+    "time": "2025-07-05 05:32:14",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "WALTER",
+    "lastName": "DE JESUS CORREA GALLEGO",
+    "personNo": "98542784",
+    "time": "2025-07-05 05:31:44",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "JOSE",
+    "lastName": "NELSON MONTOYA",
+    "personNo": "79679104",
+    "time": "2025-07-05 05:31:21",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "JOSE",
+    "lastName": "NELSON MONTOYA",
+    "personNo": "79679104",
+    "time": "2025-07-04 22:19:19",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "JOHN",
+    "lastName": "WALTER QUINTERO PALACIO",
+    "personNo": "98567379",
+    "time": "2025-07-04 22:18:25",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "ASDRUBAL",
+    "lastName": "PALACIO SOTO",
+    "personNo": "98669881",
+    "time": "2025-07-04 22:18:14",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "JOHN",
+    "lastName": "WALTER QUINTERO PALACIO",
+    "personNo": "98567379",
+    "time": "2025-07-04 22:17:50",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "ASDRUBAL",
+    "lastName": "PALACIO SOTO",
+    "personNo": "98669881",
+    "time": "2025-07-04 22:17:27",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "ROBERTO",
+    "lastName": "CARLOS SALAS MEJIA",
+    "personNo": "98559765",
+    "time": "2025-07-04 18:40:38",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "DANIEL",
+    "lastName": "OSSA JARAMILLO",
+    "personNo": "1037585260",
+    "time": "2025-07-04 18:16:56",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "ALEXANDER",
+    "lastName": "ANGARITA IGUARAN",
+    "personNo": "17990059",
+    "time": "2025-07-04 17:08:44",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "FREDDY",
+    "lastName": "OYOLA MEDINA OYOLA MEDINA",
+    "personNo": "70564371",
+    "time": "2025-07-04 17:08:06",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "CAROLINA",
+    "lastName": "MARÍA CARVAJAL RESTREPO",
+    "personNo": "43259250",
+    "time": "2025-07-04 17:07:41",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "JUAN",
+    "lastName": "CAMILO CORREA",
+    "personNo": "1037608566",
+    "time": "2025-07-04 17:03:13",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "OSCAR",
+    "lastName": "ALONSO SIERRA CALLE",
+    "personNo": "98570071",
+    "time": "2025-07-04 17:01:00",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "JUAN",
+    "lastName": "ESTEBAN AGUDELO LOPEZ",
+    "personNo": "1037574131",
+    "time": "2025-07-04 16:36:48",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "ASDRUBAL",
+    "lastName": "PALACIO SOTO",
+    "personNo": "98669881",
+    "time": "2025-07-04 13:13:19",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "ANDRES",
+    "lastName": "DAVID ALZATE LONDOÑO",
+    "personNo": "71266618",
+    "time": "2025-07-04 07:54:00",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "CAROLINA",
+    "lastName": "MARÍA CARVAJAL RESTREPO",
+    "personNo": "43259250",
+    "time": "2025-07-04 07:10:52",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "DANIEL",
+    "lastName": "OSSA JARAMILLO",
+    "personNo": "1037585260",
+    "time": "2025-07-04 07:07:48",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "MARIA",
+    "lastName": "BERNARDA PALACIO CALLE",
+    "personNo": "1037576200",
+    "time": "2025-07-04 07:00:37",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "EUGENIA",
+    "lastName": "MARIA DEL SOCORRO SALAZAR BONILLA",
+    "personNo": "65735019",
+    "time": "2025-07-04 06:57:26",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "FREDDY",
+    "lastName": "OYOLA MEDINA OYOLA MEDINA",
+    "personNo": "70564371",
+    "time": "2025-07-04 06:50:22",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "JUAN",
+    "lastName": "CAMILO CORREA",
+    "personNo": "1037608566",
+    "time": "2025-07-04 06:49:07",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "OSCAR",
+    "lastName": "ALONSO SIERRA CALLE",
+    "personNo": "98570071",
+    "time": "2025-07-04 06:35:01",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "ROBERTO",
+    "lastName": "CARLOS SALAS MEJIA",
+    "personNo": "98559765",
+    "time": "2025-07-04 06:21:23",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "JUAN",
+    "lastName": "ESTEBAN AGUDELO LOPEZ",
+    "personNo": "1037574131",
+    "time": "2025-07-04 06:12:45",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "JUAN",
+    "lastName": "DAVID CORREA",
+    "personNo": "1037640023",
+    "time": "2025-07-04 06:08:13",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "JUAN",
+    "lastName": "FERNANDO BERMUDEZ",
+    "personNo": "8031691",
+    "time": "2025-07-04 06:07:53",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "JOSE",
+    "lastName": "ALEJANDRO PEREZ",
+    "personNo": "1001366585",
+    "time": "2025-07-04 06:05:38",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "ROBINSON",
+    "lastName": "ALBERTO GIL PARRA",
+    "personNo": "8105156",
+    "time": "2025-07-04 06:02:33",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "JUAN",
+    "lastName": "DAVID HINCAPIE CASTAÑO",
+    "personNo": "70558387",
+    "time": "2025-07-04 06:00:20",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "YOJAN",
+    "lastName": "ALEXANDER VELEZ ACOSTA",
+    "personNo": "8160929",
+    "time": "2025-07-04 06:00:00",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "JOHAN",
+    "lastName": "ESTEBAN TORRES",
+    "personNo": "8028937",
+    "time": "2025-07-04 05:53:33",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "LUIS",
+    "lastName": "GUILLERMO TAMAYO",
+    "personNo": "70556188",
+    "time": "2025-07-04 05:49:13",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "JONATHAN",
+    "lastName": "CAMPUSANO",
+    "personNo": "8162404",
+    "time": "2025-07-04 05:47:51",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "WALTER",
+    "lastName": "DE JESUS CORREA GALLEGO",
+    "personNo": "98542784",
+    "time": "2025-07-04 05:21:29",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "ASDRUBAL",
+    "lastName": "PALACIO SOTO",
+    "personNo": "98669881",
+    "time": "2025-07-03 21:59:44",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "JOSE",
+    "lastName": "ALEJANDRO PEREZ",
+    "personNo": "1001366585",
+    "time": "2025-07-03 21:59:35",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "JOSE",
+    "lastName": "NELSON MONTOYA",
+    "personNo": "79679104",
+    "time": "2025-07-03 21:58:06",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "JOHAN",
+    "lastName": "ESTEBAN TORRES",
+    "personNo": "8028937",
+    "time": "2025-07-03 21:56:02",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "JUAN",
+    "lastName": "DAVID CORREA",
+    "personNo": "1037640023",
+    "time": "2025-07-03 21:51:30",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "JONATHAN",
+    "lastName": "CAMPUSANO",
+    "personNo": "8162404",
+    "time": "2025-07-03 21:51:25",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "JUAN",
+    "lastName": "ESTEBAN AGUDELO LOPEZ",
+    "personNo": "1037574131",
+    "time": "2025-07-03 18:12:20",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "ROBERTO",
+    "lastName": "CARLOS SALAS MEJIA",
+    "personNo": "98559765",
+    "time": "2025-07-03 17:19:12",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "DANIEL",
+    "lastName": "OSSA JARAMILLO",
+    "personNo": "1037585260",
+    "time": "2025-07-03 17:19:04",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "FREDDY",
+    "lastName": "OYOLA MEDINA OYOLA MEDINA",
+    "personNo": "70564371",
+    "time": "2025-07-03 17:07:31",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "OSCAR",
+    "lastName": "ALONSO SIERRA CALLE",
+    "personNo": "98570071",
+    "time": "2025-07-03 17:06:28",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "LUIS",
+    "lastName": "GUILLERMO TAMAYO",
+    "personNo": "70556188",
+    "time": "2025-07-03 16:57:07",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "CAROLINA",
+    "lastName": "MARÍA CARVAJAL RESTREPO",
+    "personNo": "43259250",
+    "time": "2025-07-03 16:56:48",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "JUAN",
+    "lastName": "DAVID HINCAPIE CASTAÑO",
+    "personNo": "70558387",
+    "time": "2025-07-03 15:30:30",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "JUAN",
+    "lastName": "DAVID CORREA",
+    "personNo": "1037640023",
+    "time": "2025-07-03 14:22:14",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "JOHN",
+    "lastName": "WALTER QUINTERO PALACIO",
+    "personNo": "98567379",
+    "time": "2025-07-03 14:07:22",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "ROBINSON",
+    "lastName": "ALBERTO GIL PARRA",
+    "personNo": "8105156",
+    "time": "2025-07-03 14:07:17",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "YOJAN",
+    "lastName": "ALEXANDER VELEZ ACOSTA",
+    "personNo": "8160929",
+    "time": "2025-07-03 14:06:57",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "JOSE",
+    "lastName": "ALEJANDRO PEREZ",
+    "personNo": "1001366585",
+    "time": "2025-07-03 13:51:16",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "JOHAN",
+    "lastName": "ESTEBAN TORRES",
+    "personNo": "8028937",
+    "time": "2025-07-03 13:49:16",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "JOSE",
+    "lastName": "NELSON MONTOYA",
+    "personNo": "79679104",
+    "time": "2025-07-03 13:40:20",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "ASDRUBAL",
+    "lastName": "PALACIO SOTO",
+    "personNo": "98669881",
+    "time": "2025-07-03 13:21:39",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "LAURA",
+    "lastName": "MARCELA CRUZ",
+    "personNo": "39201168",
+    "time": "2025-07-03 11:54:50",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "CAROLINA",
+    "lastName": "MARÍA CARVAJAL RESTREPO",
+    "personNo": "43259250",
+    "time": "2025-07-03 07:09:29",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "JUAN",
+    "lastName": "CAMILO CORREA",
+    "personNo": "1037608566",
+    "time": "2025-07-03 07:02:18",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "DANIEL",
+    "lastName": "OSSA JARAMILLO",
+    "personNo": "1037585260",
+    "time": "2025-07-03 06:57:28",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "ROBERTO",
+    "lastName": "CARLOS SALAS MEJIA",
+    "personNo": "98559765",
+    "time": "2025-07-03 06:54:30",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "OSCAR",
+    "lastName": "ALONSO SIERRA CALLE",
+    "personNo": "98570071",
+    "time": "2025-07-03 06:50:09",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "LAURA",
+    "lastName": "MARCELA CRUZ",
+    "personNo": "39201168",
+    "time": "2025-07-03 06:49:18",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "FREDDY",
+    "lastName": "OYOLA MEDINA OYOLA MEDINA",
+    "personNo": "70564371",
+    "time": "2025-07-03 06:48:47",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "MARI",
+    "lastName": "CIELO OCHOA RAMIREZ",
+    "personNo": "42893312",
+    "time": "2025-07-03 06:26:13",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "JUAN",
+    "lastName": "FERNANDO BERMUDEZ",
+    "personNo": "8031691",
+    "time": "2025-07-03 06:05:31",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "JUAN",
+    "lastName": "ESTEBAN AGUDELO LOPEZ",
+    "personNo": "1037574131",
+    "time": "2025-07-03 06:03:06",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "JUAN",
+    "lastName": "DAVID HINCAPIE CASTAÑO",
+    "personNo": "70558387",
+    "time": "2025-07-03 06:02:06",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "VALENTINA",
+    "lastName": "ARCILA ARROYAVE",
+    "personNo": "1038867171",
+    "time": "2025-07-03 06:00:43",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "CARLOS",
+    "lastName": "ANDRES SALAZAR MEZA",
+    "personNo": "1102122648",
+    "time": "2025-07-03 06:00:35",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "JOHN",
+    "lastName": "WALTER QUINTERO PALACIO",
+    "personNo": "98567379",
+    "time": "2025-07-03 05:54:19",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "YOJAN",
+    "lastName": "ALEXANDER VELEZ ACOSTA",
+    "personNo": "8160929",
+    "time": "2025-07-03 05:53:26",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "WILSON",
+    "lastName": "PEREZ URAN",
+    "personNo": "8357590",
+    "time": "2025-07-03 05:50:31",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "JOAQUIN",
+    "lastName": "EMILIO HERRERA ARANGO",
+    "personNo": "70568794",
+    "time": "2025-07-03 05:45:48",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "LUIS",
+    "lastName": "GUILLERMO TAMAYO",
+    "personNo": "70556188",
+    "time": "2025-07-03 05:45:16",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "RAMON",
+    "lastName": "DE JESUS JIMENEZ GONZALEZ",
+    "personNo": "70569286",
+    "time": "2025-07-03 05:43:53",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "RUBEN",
+    "lastName": "DARIO PATIÑO HERRERA",
+    "personNo": "70559682",
+    "time": "2025-07-03 05:41:52",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "VICTOR",
+    "lastName": "MANUEL HERRERA VARGAS",
+    "personNo": "79928514",
+    "time": "2025-07-03 05:41:05",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "ROBINSON",
+    "lastName": "ALBERTO GIL PARRA",
+    "personNo": "8105156",
+    "time": "2025-07-03 05:40:12",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "WALTER",
+    "lastName": "DE JESUS CORREA GALLEGO",
+    "personNo": "98542784",
+    "time": "2025-07-03 05:20:30",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "JUAN",
+    "lastName": "GUILLERMO ARREDONDO RAMIREZ",
+    "personNo": "70566163",
+    "time": "2025-07-03 05:20:23",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "JHON",
+    "lastName": "JAIRO CANO GAVIRIA",
+    "personNo": "70553890",
+    "time": "2025-07-03 05:19:13",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "ALBEIRO",
+    "lastName": "ANTONIO VILLA BETANCUR",
+    "personNo": "70548221",
+    "time": "2025-07-03 05:19:06",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "JOHAN",
+    "lastName": "ESTEBAN TORRES",
+    "personNo": "8028937",
+    "time": "2025-07-02 22:03:55",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "JOSE",
+    "lastName": "NELSON MONTOYA",
+    "personNo": "79679104",
+    "time": "2025-07-02 22:03:22",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "ASDRUBAL",
+    "lastName": "PALACIO SOTO",
+    "personNo": "98669881",
+    "time": "2025-07-02 22:03:11",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "JUAN",
+    "lastName": "DAVID CORREA",
+    "personNo": "1037640023",
+    "time": "2025-07-02 22:03:01",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "JOSE",
+    "lastName": "ALEJANDRO PEREZ",
+    "personNo": "1001366585",
+    "time": "2025-07-02 22:02:53",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "JONATHAN",
+    "lastName": "CAMPUSANO",
+    "personNo": "8162404",
+    "time": "2025-07-02 21:54:14",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "ROBERTO",
+    "lastName": "CARLOS SALAS MEJIA",
+    "personNo": "98559765",
+    "time": "2025-07-02 18:26:32",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "DANIEL",
+    "lastName": "OSSA JARAMILLO",
+    "personNo": "1037585260",
+    "time": "2025-07-02 18:24:27",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "JUAN",
+    "lastName": "ESTEBAN AGUDELO LOPEZ",
+    "personNo": "1037574131",
+    "time": "2025-07-02 18:17:27",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "JUAN",
+    "lastName": "CAMILO CORREA",
+    "personNo": "1037608566",
+    "time": "2025-07-02 18:09:41",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "CAROLINA",
+    "lastName": "MARÍA CARVAJAL RESTREPO",
+    "personNo": "43259250",
+    "time": "2025-07-02 18:03:57",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "ALEXANDER",
+    "lastName": "ANGARITA IGUARAN",
+    "personNo": "17990059",
+    "time": "2025-07-02 17:23:16",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "LAURA",
+    "lastName": "MARCELA CRUZ",
+    "personNo": "39201168",
+    "time": "2025-07-02 17:13:54",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "JUAN",
+    "lastName": "FERNANDO BERMUDEZ",
+    "personNo": "8031691",
+    "time": "2025-07-02 17:04:56",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "FREDDY",
+    "lastName": "OYOLA MEDINA OYOLA MEDINA",
+    "personNo": "70564371",
+    "time": "2025-07-02 17:04:10",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "LUIS",
+    "lastName": "GUILLERMO TAMAYO",
+    "personNo": "70556188",
+    "time": "2025-07-02 16:57:10",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "JHON",
+    "lastName": "ARLEY PALACIO BETANCUR",
+    "personNo": "1037573137",
+    "time": "2025-07-02 15:46:37",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "JUAN",
+    "lastName": "DAVID HINCAPIE CASTAÑO",
+    "personNo": "70558387",
+    "time": "2025-07-02 15:17:57",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "WILSON",
+    "lastName": "PEREZ URAN",
+    "personNo": "8357590",
+    "time": "2025-07-02 14:54:14",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "ROBINSON",
+    "lastName": "ALBERTO GIL PARRA",
+    "personNo": "8105156",
+    "time": "2025-07-02 14:10:28",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "JOHN",
+    "lastName": "WALTER QUINTERO PALACIO",
+    "personNo": "98567379",
+    "time": "2025-07-02 14:09:36",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "JOSE",
+    "lastName": "ALEJANDRO PEREZ",
+    "personNo": "1001366585",
+    "time": "2025-07-02 14:00:49",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "JOHAN",
+    "lastName": "ESTEBAN TORRES",
+    "personNo": "8028937",
+    "time": "2025-07-02 13:58:52",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "ASDRUBAL",
+    "lastName": "PALACIO SOTO",
+    "personNo": "98669881",
+    "time": "2025-07-02 13:53:17",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "JUAN",
+    "lastName": "DAVID CORREA",
+    "personNo": "1037640023",
+    "time": "2025-07-02 13:44:45",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "JONATHAN",
+    "lastName": "CAMPUSANO",
+    "personNo": "8162404",
+    "time": "2025-07-02 13:34:54",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "JOSE",
+    "lastName": "NELSON MONTOYA",
+    "personNo": "79679104",
+    "time": "2025-07-02 13:32:51",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "JULIETH",
+    "lastName": "CATALINA ARANGO ESTRADA",
+    "personNo": "1037575847",
+    "time": "2025-07-02 10:51:19",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "MARIA",
+    "lastName": "LUCERO OSORIO MARTINEZ",
+    "personNo": "43752512",
+    "time": "2025-07-02 10:18:45",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "CAROLINA",
+    "lastName": "MARÍA CARVAJAL RESTREPO",
+    "personNo": "43259250",
+    "time": "2025-07-02 07:09:57",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "ROBERTO",
+    "lastName": "CARLOS SALAS MEJIA",
+    "personNo": "98559765",
+    "time": "2025-07-02 07:06:51",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "ALEXANDER",
+    "lastName": "ANGARITA IGUARAN",
+    "personNo": "17990059",
+    "time": "2025-07-02 07:01:58",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "MARIA",
+    "lastName": "BERNARDA PALACIO CALLE",
+    "personNo": "1037576200",
+    "time": "2025-07-02 07:01:37",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "JUAN",
+    "lastName": "CAMILO CORREA",
+    "personNo": "1037608566",
+    "time": "2025-07-02 06:59:07",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "DANIEL",
+    "lastName": "OSSA JARAMILLO",
+    "personNo": "1037585260",
+    "time": "2025-07-02 06:57:41",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "MARIA",
+    "lastName": "LUCERO OSORIO MARTINEZ",
+    "personNo": "43752512",
+    "time": "2025-07-02 06:54:25",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "VALENTINA",
+    "lastName": "ARCILA ARROYAVE",
+    "personNo": "1038867171",
+    "time": "2025-07-02 06:53:48",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "TAPIAS",
+    "lastName": "LONDOÑO DIANA PATRICIA",
+    "personNo": "43733159",
+    "time": "2025-07-02 06:50:59",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "DORA",
+    "lastName": "MARIA LOPEZ MUNERA",
+    "personNo": "43725785",
+    "time": "2025-07-02 06:50:48",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "LEIDY",
+    "lastName": "DIANA SALDARRIAGA VELEZ",
+    "personNo": "43876541",
+    "time": "2025-07-02 06:49:27",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "FREDDY",
+    "lastName": "OYOLA MEDINA OYOLA MEDINA",
+    "personNo": "70564371",
+    "time": "2025-07-02 06:47:37",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "JAQUELINE",
+    "lastName": "TORRES RIOS",
+    "personNo": "32240606",
+    "time": "2025-07-02 06:46:58",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "ROSA",
+    "lastName": "ELENA URIBE URIBE",
+    "personNo": "42899126",
+    "time": "2025-07-02 06:45:14",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "SEBASTIAN",
+    "lastName": "AGUDELO MONTOYA",
+    "personNo": "1036448249",
+    "time": "2025-07-02 06:43:59",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "ANA",
+    "lastName": "MARIA ARANGO LOPEZ",
+    "personNo": "43737730",
+    "time": "2025-07-02 06:43:52",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "OSCAR",
+    "lastName": "ALONSO SIERRA CALLE",
+    "personNo": "98570071",
+    "time": "2025-07-02 06:42:34",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "NATALIA",
+    "lastName": "MORENO LONDOÑO",
+    "personNo": "32243782",
+    "time": "2025-07-02 06:40:58",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "VANESSA",
+    "lastName": "ARANGO",
+    "personNo": "1037621167",
+    "time": "2025-07-02 06:40:48",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "ILDA",
+    "lastName": "DORIS GOMEZ FRANCO",
+    "personNo": "43459225",
+    "time": "2025-07-02 06:40:37",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "SANDRA",
+    "lastName": "DIDIANI BEDOYA BALLESTEROS",
+    "personNo": "43730486",
+    "time": "2025-07-02 06:38:33",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "SANDRA",
+    "lastName": "MILENA CHARRY GONZALEZ",
+    "personNo": "43874155",
+    "time": "2025-07-02 06:36:34",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "ANA",
+    "lastName": "PATRICIA DURANGO LOPEZ",
+    "personNo": "43756596",
+    "time": "2025-07-02 06:36:29",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "JULIET",
+    "lastName": "VANEGAS ALVAREZ",
+    "personNo": "39387593",
+    "time": "2025-07-02 06:34:38",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "JANCELLY",
+    "lastName": "GUTIERREZ SALAZAR",
+    "personNo": "43189917",
+    "time": "2025-07-02 06:33:38",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "MARTHA",
+    "lastName": "LUZ MONROY BOLIVAR",
+    "personNo": "42885958",
+    "time": "2025-07-02 06:32:51",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "JESSICA",
+    "lastName": "ROMAN ESTRADA",
+    "personNo": "1037604880",
+    "time": "2025-07-02 06:32:26",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "GLORIA",
+    "lastName": "PATRICIA MONROY GARCIA",
+    "personNo": "43722000",
+    "time": "2025-07-02 06:32:18",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "OLGA",
+    "lastName": "LUCIA OSORIO GOMEZ",
+    "personNo": "43723171",
+    "time": "2025-07-02 06:30:22",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "LILIANA",
+    "lastName": "MARIA LONDOÑO PATIÑO",
+    "personNo": "43734252",
+    "time": "2025-07-02 06:30:01",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "NUBIA",
+    "lastName": "DOLLY CASTELLO CARDONA",
+    "personNo": "43869905",
+    "time": "2025-07-02 06:25:28",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "MARIA",
+    "lastName": "EMILIA VILLA BRAND",
+    "personNo": "42889153",
+    "time": "2025-07-02 06:18:35",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "LILIANA",
+    "lastName": "MARIA PEREZ SERNA",
+    "personNo": "43746660",
+    "time": "2025-07-02 06:14:47",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "JUAN",
+    "lastName": "ESTEBAN AGUDELO LOPEZ",
+    "personNo": "1037574131",
+    "time": "2025-07-02 06:14:36",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "MARI",
+    "lastName": "CIELO OCHOA RAMIREZ",
+    "personNo": "42893312",
+    "time": "2025-07-02 06:14:21",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "JUAN",
+    "lastName": "FERNANDO BERMUDEZ",
+    "personNo": "8031691",
+    "time": "2025-07-02 06:01:41",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "ROBINSON",
+    "lastName": "ALBERTO GIL PARRA",
+    "personNo": "8105156",
+    "time": "2025-07-02 06:01:33",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "CARLOS",
+    "lastName": "ANDRES SALAZAR MEZA",
+    "personNo": "1102122648",
+    "time": "2025-07-02 05:58:23",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "JUAN",
+    "lastName": "DAVID HINCAPIE CASTAÑO",
+    "personNo": "70558387",
+    "time": "2025-07-02 05:54:05",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "JOAQUIN",
+    "lastName": "EMILIO HERRERA ARANGO",
+    "personNo": "70568794",
+    "time": "2025-07-02 05:51:48",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "LAURA",
+    "lastName": "MARCELA CRUZ",
+    "personNo": "39201168",
+    "time": "2025-07-02 05:50:28",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "JOHN",
+    "lastName": "WALTER QUINTERO PALACIO",
+    "personNo": "98567379",
+    "time": "2025-07-02 05:45:04",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "LUIS",
+    "lastName": "GUILLERMO TAMAYO",
+    "personNo": "70556188",
+    "time": "2025-07-02 05:43:19",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "VICTOR",
+    "lastName": "MANUEL HERRERA VARGAS",
+    "personNo": "79928514",
+    "time": "2025-07-02 05:41:45",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "RAMON",
+    "lastName": "DE JESUS JIMENEZ GONZALEZ",
+    "personNo": "70569286",
+    "time": "2025-07-02 05:40:35",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "WILSON",
+    "lastName": "PEREZ URAN",
+    "personNo": "8357590",
+    "time": "2025-07-02 05:40:21",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "JAVIER",
+    "lastName": "ZAPATA ATEHORTUA",
+    "personNo": "71703212",
+    "time": "2025-07-02 05:39:56",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "YOJAN",
+    "lastName": "ALEXANDER VELEZ ACOSTA",
+    "personNo": "8160929",
+    "time": "2025-07-02 05:39:14",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "RUBEN",
+    "lastName": "DARIO PATIÑO HERRERA",
+    "personNo": "70559682",
+    "time": "2025-07-02 05:25:19",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "WALTER",
+    "lastName": "DE JESUS CORREA GALLEGO",
+    "personNo": "98542784",
+    "time": "2025-07-02 05:25:12",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "JHON",
+    "lastName": "ARLEY PALACIO BETANCUR",
+    "personNo": "1037573137",
+    "time": "2025-07-02 05:25:05",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "JUAN",
+    "lastName": "GUILLERMO ARREDONDO RAMIREZ",
+    "personNo": "70566163",
+    "time": "2025-07-02 05:25:01",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "JHON",
+    "lastName": "JAIRO CANO GAVIRIA",
+    "personNo": "70553890",
+    "time": "2025-07-02 05:23:29",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "ALBEIRO",
+    "lastName": "ANTONIO VILLA BETANCUR",
+    "personNo": "70548221",
+    "time": "2025-07-02 05:19:59",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "ASDRUBAL",
+    "lastName": "PALACIO SOTO",
+    "personNo": "98669881",
+    "time": "2025-07-01 21:57:55",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "JOSE",
+    "lastName": "NELSON MONTOYA",
+    "personNo": "79679104",
+    "time": "2025-07-01 21:57:42",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "JOSE",
+    "lastName": "ALEJANDRO PEREZ",
+    "personNo": "1001366585",
+    "time": "2025-07-01 21:57:33",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "ASDRUBAL",
+    "lastName": "PALACIO SOTO",
+    "personNo": "98669881",
+    "time": "2025-07-01 21:57:24",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "FREDDY",
+    "lastName": "OYOLA MEDINA OYOLA MEDINA",
+    "personNo": "70564371",
+    "time": "2025-07-01 21:57:12",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "JOHAN",
+    "lastName": "ESTEBAN TORRES",
+    "personNo": "8028937",
+    "time": "2025-07-01 21:57:05",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "JUAN",
+    "lastName": "DAVID CORREA",
+    "personNo": "1037640023",
+    "time": "2025-07-01 21:56:29",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "JONATHAN",
+    "lastName": "CAMPUSANO",
+    "personNo": "8162404",
+    "time": "2025-07-01 21:56:19",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "ROBERTO",
+    "lastName": "CARLOS SALAS MEJIA",
+    "personNo": "98559765",
+    "time": "2025-07-01 21:49:44",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "OSCAR",
+    "lastName": "ALONSO SIERRA CALLE",
+    "personNo": "98570071",
+    "time": "2025-07-01 17:59:17",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "DANIEL",
+    "lastName": "OSSA JARAMILLO",
+    "personNo": "1037585260",
+    "time": "2025-07-01 17:17:02",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "FREDDY",
+    "lastName": "OYOLA MEDINA OYOLA MEDINA",
+    "personNo": "70564371",
+    "time": "2025-07-01 17:13:20",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "ALEXANDER",
+    "lastName": "ANGARITA IGUARAN",
+    "personNo": "17990059",
+    "time": "2025-07-01 17:12:20",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "VALENTINA",
+    "lastName": "ARCILA ARROYAVE",
+    "personNo": "1038867171",
+    "time": "2025-07-01 17:06:26",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "MARIA",
+    "lastName": "BERNARDA PALACIO CALLE",
+    "personNo": "1037576200",
+    "time": "2025-07-01 17:05:29",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "MARI",
+    "lastName": "CIELO OCHOA RAMIREZ",
+    "personNo": "42893312",
+    "time": "2025-07-01 17:05:23",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "JESSICA",
+    "lastName": "ROMAN ESTRADA",
+    "personNo": "1037604880",
+    "time": "2025-07-01 17:05:15",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "NATALIA",
+    "lastName": "MORENO LONDOÑO",
+    "personNo": "32243782",
+    "time": "2025-07-01 17:04:06",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "LAURA",
+    "lastName": "MARCELA CRUZ",
+    "personNo": "39201168",
+    "time": "2025-07-01 17:03:58",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "MARIA",
+    "lastName": "LUCERO OSORIO MARTINEZ",
+    "personNo": "43752512",
+    "time": "2025-07-01 17:03:42",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "FREDDY",
+    "lastName": "OYOLA MEDINA OYOLA MEDINA",
+    "personNo": "70564371",
+    "time": "2025-07-01 17:02:46",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "ANA",
+    "lastName": "MARIA ARANGO LOPEZ",
+    "personNo": "43737730",
+    "time": "2025-07-01 17:02:37",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "ROSA",
+    "lastName": "ELENA URIBE URIBE",
+    "personNo": "42899126",
+    "time": "2025-07-01 17:02:29",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "JULIETH",
+    "lastName": "CATALINA ARANGO ESTRADA",
+    "personNo": "1037575847",
+    "time": "2025-07-01 17:02:18",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "SANDRA",
+    "lastName": "MILENA CHARRY GONZALEZ",
+    "personNo": "43874155",
+    "time": "2025-07-01 17:02:11",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "ANA",
+    "lastName": "PATRICIA DURANGO LOPEZ",
+    "personNo": "43756596",
+    "time": "2025-07-01 17:02:05",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "EUGENIA",
+    "lastName": "MARIA DEL SOCORRO SALAZAR BONILLA",
+    "personNo": "65735019",
+    "time": "2025-07-01 17:01:57",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "MARTHA",
+    "lastName": "LUZ MONROY BOLIVAR",
+    "personNo": "42885958",
+    "time": "2025-07-01 17:01:50",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "GLORIA",
+    "lastName": "PATRICIA MONROY GARCIA",
+    "personNo": "43722000",
+    "time": "2025-07-01 17:01:44",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "SANDRA",
+    "lastName": "DIDIANI BEDOYA BALLESTEROS",
+    "personNo": "43730486",
+    "time": "2025-07-01 17:01:36",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "OLGA",
+    "lastName": "LUCIA OSORIO GOMEZ",
+    "personNo": "43723171",
+    "time": "2025-07-01 17:01:28",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "TAPIAS",
+    "lastName": "LONDOÑO DIANA PATRICIA",
+    "personNo": "43733159",
+    "time": "2025-07-01 17:01:19",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "DORA",
+    "lastName": "MARIA LOPEZ MUNERA",
+    "personNo": "43725785",
+    "time": "2025-07-01 17:01:11",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "JULIET",
+    "lastName": "VANEGAS ALVAREZ",
+    "personNo": "39387593",
+    "time": "2025-07-01 17:01:04",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "ILDA",
+    "lastName": "DORIS GOMEZ FRANCO",
+    "personNo": "43459225",
+    "time": "2025-07-01 17:00:59",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "SEBASTIAN",
+    "lastName": "AGUDELO MONTOYA",
+    "personNo": "1036448249",
+    "time": "2025-07-01 17:00:54",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "NUBIA",
+    "lastName": "DOLLY CASTELLO CARDONA",
+    "personNo": "43869905",
+    "time": "2025-07-01 17:00:48",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "LILIANA",
+    "lastName": "MARIA LONDOÑO PATIÑO",
+    "personNo": "43734252",
+    "time": "2025-07-01 17:00:45",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "VANESSA",
+    "lastName": "ARANGO",
+    "personNo": "1037621167",
+    "time": "2025-07-01 17:00:38",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "MARIA",
+    "lastName": "EMILIA VILLA BRAND",
+    "personNo": "42889153",
+    "time": "2025-07-01 17:00:33",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "LILIANA",
+    "lastName": "MARIA PEREZ SERNA",
+    "personNo": "43746660",
+    "time": "2025-07-01 17:00:28",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "LEIDY",
+    "lastName": "DIANA SALDARRIAGA VELEZ",
+    "personNo": "43876541",
+    "time": "2025-07-01 17:00:20",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "JAQUELINE",
+    "lastName": "TORRES RIOS",
+    "personNo": "32240606",
+    "time": "2025-07-01 17:00:14",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "LUIS",
+    "lastName": "GUILLERMO TAMAYO",
+    "personNo": "70556188",
+    "time": "2025-07-01 16:59:21",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "ALBEIRO",
+    "lastName": "ANTONIO VILLA BETANCUR",
+    "personNo": "70548221",
+    "time": "2025-07-01 16:05:10",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "JOAQUIN",
+    "lastName": "EMILIO HERRERA ARANGO",
+    "personNo": "70568794",
+    "time": "2025-07-01 16:04:46",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "WILSON",
+    "lastName": "PEREZ URAN",
+    "personNo": "8357590",
+    "time": "2025-07-01 16:00:58",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "WALTER",
+    "lastName": "DE JESUS CORREA GALLEGO",
+    "personNo": "98542784",
+    "time": "2025-07-01 16:00:54",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "CARLOS",
+    "lastName": "ANDRES SALAZAR MEZA",
+    "personNo": "1102122648",
+    "time": "2025-07-01 16:00:50",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "RAMON",
+    "lastName": "DE JESUS JIMENEZ GONZALEZ",
+    "personNo": "70569286",
+    "time": "2025-07-01 16:00:46",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "JUAN",
+    "lastName": "GUILLERMO ARREDONDO RAMIREZ",
+    "personNo": "70566163",
+    "time": "2025-07-01 16:00:40",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "JAVIER",
+    "lastName": "ZAPATA ATEHORTUA",
+    "personNo": "71703212",
+    "time": "2025-07-01 16:00:35",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "RUBEN",
+    "lastName": "DARIO PATIÑO HERRERA",
+    "personNo": "70559682",
+    "time": "2025-07-01 16:00:27",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "JHON",
+    "lastName": "JAIRO CANO GAVIRIA",
+    "personNo": "70553890",
+    "time": "2025-07-01 16:00:21",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "JANCELLY",
+    "lastName": "GUTIERREZ SALAZAR",
+    "personNo": "43189917",
+    "time": "2025-07-01 15:54:35",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "JUAN",
+    "lastName": "ESTEBAN AGUDELO LOPEZ",
+    "personNo": "1037574131",
+    "time": "2025-07-01 15:52:58",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "JUAN",
+    "lastName": "DAVID HINCAPIE CASTAÑO",
+    "personNo": "70558387",
+    "time": "2025-07-01 15:08:00",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "ALEJANDRA",
+    "lastName": "MARIA PALACIO MUÑOZ",
+    "personNo": "43756597",
+    "time": "2025-07-01 14:09:34",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "JOHAN",
+    "lastName": "ESTEBAN TORRES",
+    "personNo": "8028937",
+    "time": "2025-07-01 14:09:20",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "ROBINSON",
+    "lastName": "ALBERTO GIL PARRA",
+    "personNo": "8105156",
+    "time": "2025-07-01 14:04:37",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "JOHN",
+    "lastName": "WALTER QUINTERO PALACIO",
+    "personNo": "98567379",
+    "time": "2025-07-01 14:04:21",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "ROBINSON",
+    "lastName": "ALBERTO GIL PARRA",
+    "personNo": "8105156",
+    "time": "2025-07-01 14:03:59",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "JHON",
+    "lastName": "ARLEY PALACIO BETANCUR",
+    "personNo": "1037573137",
+    "time": "2025-07-01 13:55:21",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check Out"
+  },
+  {
+    "firstName": "JOSE",
+    "lastName": "NELSON MONTOYA",
+    "personNo": "79679104",
+    "time": "2025-07-01 13:47:51",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "JOSE",
+    "lastName": "ALEJANDRO PEREZ",
+    "personNo": "1001366585",
+    "time": "2025-07-01 13:47:37",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "ASDRUBAL",
+    "lastName": "PALACIO SOTO",
+    "personNo": "98669881",
+    "time": "2025-07-01 13:33:47",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "JONATHAN",
+    "lastName": "CAMPUSANO",
+    "personNo": "8162404",
+    "time": "2025-07-01 13:25:55",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "ALEXANDER",
+    "lastName": "ANGARITA IGUARAN",
+    "personNo": "17990059",
+    "time": "2025-07-01 07:07:11",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "DANIEL",
+    "lastName": "OSSA JARAMILLO",
+    "personNo": "1037585260",
+    "time": "2025-07-01 06:59:34",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "MARIA",
+    "lastName": "BERNARDA PALACIO CALLE",
+    "personNo": "1037576200",
+    "time": "2025-07-01 06:55:51",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "ALEJANDRA",
+    "lastName": "MARIA PALACIO MUÑOZ",
+    "personNo": "43756597",
+    "time": "2025-07-01 06:55:26",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "TAPIAS",
+    "lastName": "LONDOÑO DIANA PATRICIA",
+    "personNo": "43733159",
+    "time": "2025-07-01 06:52:47",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "DORA",
+    "lastName": "MARIA LOPEZ MUNERA",
+    "personNo": "43725785",
+    "time": "2025-07-01 06:52:38",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "JAQUELINE",
+    "lastName": "TORRES RIOS",
+    "personNo": "32240606",
+    "time": "2025-07-01 06:52:30",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "JUAN",
+    "lastName": "CAMILO CORREA",
+    "personNo": "1037608566",
+    "time": "2025-07-01 06:51:12",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "JESSICA",
+    "lastName": "ROMAN ESTRADA",
+    "personNo": "1037604880",
+    "time": "2025-07-01 06:50:30",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "ANA",
+    "lastName": "MARIA ARANGO LOPEZ",
+    "personNo": "43737730",
+    "time": "2025-07-01 06:50:00",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "FREDDY",
+    "lastName": "OYOLA MEDINA OYOLA MEDINA",
+    "personNo": "70564371",
+    "time": "2025-07-01 06:48:31",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "JULIETH",
+    "lastName": "CATALINA ARANGO ESTRADA",
+    "personNo": "1037575847",
+    "time": "2025-07-01 06:48:17",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "MARIA",
+    "lastName": "LUCERO OSORIO MARTINEZ",
+    "personNo": "43752512",
+    "time": "2025-07-01 06:47:01",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "NUBIA",
+    "lastName": "DOLLY CASTELLO CARDONA",
+    "personNo": "43869905",
+    "time": "2025-07-01 06:46:03",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "EUGENIA",
+    "lastName": "MARIA DEL SOCORRO SALAZAR BONILLA",
+    "personNo": "65735019",
+    "time": "2025-07-01 06:45:23",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "LEIDY",
+    "lastName": "DIANA SALDARRIAGA VELEZ",
+    "personNo": "43876541",
+    "time": "2025-07-01 06:44:50",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "ROSA",
+    "lastName": "ELENA URIBE URIBE",
+    "personNo": "42899126",
+    "time": "2025-07-01 06:44:12",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "NATALIA",
+    "lastName": "MORENO LONDOÑO",
+    "personNo": "32243782",
+    "time": "2025-07-01 06:43:50",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "SANDRA",
+    "lastName": "MILENA CHARRY GONZALEZ",
+    "personNo": "43874155",
+    "time": "2025-07-01 06:43:40",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "VERONICA",
+    "lastName": "DUQUE AGUIRRE",
+    "personNo": "21424887",
+    "time": "2025-07-01 06:42:55",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "VANESSA",
+    "lastName": "ARANGO",
+    "personNo": "1037621167",
+    "time": "2025-07-01 06:42:38",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "ILDA",
+    "lastName": "DORIS GOMEZ FRANCO",
+    "personNo": "43459225",
+    "time": "2025-07-01 06:42:31",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "OSCAR",
+    "lastName": "ALONSO SIERRA CALLE",
+    "personNo": "98570071",
+    "time": "2025-07-01 06:42:10",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "OLGA",
+    "lastName": "LUCIA OSORIO GOMEZ",
+    "personNo": "43723171",
+    "time": "2025-07-01 06:41:30",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "SEBASTIAN",
+    "lastName": "AGUDELO MONTOYA",
+    "personNo": "1036448249",
+    "time": "2025-07-01 06:40:32",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "SANDRA",
+    "lastName": "DIDIANI BEDOYA BALLESTEROS",
+    "personNo": "43730486",
+    "time": "2025-07-01 06:35:39",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "MARTHA",
+    "lastName": "LUZ MONROY BOLIVAR",
+    "personNo": "42885958",
+    "time": "2025-07-01 06:34:58",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "GLORIA",
+    "lastName": "PATRICIA MONROY GARCIA",
+    "personNo": "43722000",
+    "time": "2025-07-01 06:34:52",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "JANCELLY",
+    "lastName": "GUTIERREZ SALAZAR",
+    "personNo": "43189917",
+    "time": "2025-07-01 06:34:43",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "ANA",
+    "lastName": "PATRICIA DURANGO LOPEZ",
+    "personNo": "43756596",
+    "time": "2025-07-01 06:34:15",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "JULIET",
+    "lastName": "VANEGAS ALVAREZ",
+    "personNo": "39387593",
+    "time": "2025-07-01 06:29:30",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "LILIANA",
+    "lastName": "MARIA LONDOÑO PATIÑO",
+    "personNo": "43734252",
+    "time": "2025-07-01 06:26:12",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "LILIANA",
+    "lastName": "MARIA PEREZ SERNA",
+    "personNo": "43746660",
+    "time": "2025-07-01 06:18:15",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "MARIA",
+    "lastName": "EMILIA VILLA BRAND",
+    "personNo": "42889153",
+    "time": "2025-07-01 06:16:41",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "JUAN",
+    "lastName": "ESTEBAN AGUDELO LOPEZ",
+    "personNo": "1037574131",
+    "time": "2025-07-01 06:13:40",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "MARI",
+    "lastName": "CIELO OCHOA RAMIREZ",
+    "personNo": "42893312",
+    "time": "2025-07-01 06:10:06",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "JUAN",
+    "lastName": "DAVID HINCAPIE CASTAÑO",
+    "personNo": "70558387",
+    "time": "2025-07-01 06:04:58",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "JUAN",
+    "lastName": "DAVID CORREA",
+    "personNo": "1037640023",
+    "time": "2025-07-01 06:03:57",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "ROBERTO",
+    "lastName": "CARLOS SALAS MEJIA",
+    "personNo": "98559765",
+    "time": "2025-07-01 06:03:03",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "VALENTINA",
+    "lastName": "ARCILA ARROYAVE",
+    "personNo": "1038867171",
+    "time": "2025-07-01 05:56:50",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "CARLOS",
+    "lastName": "ANDRES SALAZAR MEZA",
+    "personNo": "1102122648",
+    "time": "2025-07-01 05:56:43",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "JOAQUIN",
+    "lastName": "EMILIO HERRERA ARANGO",
+    "personNo": "70568794",
+    "time": "2025-07-01 05:55:50",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "WILSON",
+    "lastName": "PEREZ URAN",
+    "personNo": "8357590",
+    "time": "2025-07-01 05:52:05",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "LAURA",
+    "lastName": "MARCELA CRUZ",
+    "personNo": "39201168",
+    "time": "2025-07-01 05:51:05",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "JOHN",
+    "lastName": "WALTER QUINTERO PALACIO",
+    "personNo": "98567379",
+    "time": "2025-07-01 05:50:58",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "ROBINSON",
+    "lastName": "ALBERTO GIL PARRA",
+    "personNo": "8105156",
+    "time": "2025-07-01 05:50:50",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "LUIS",
+    "lastName": "GUILLERMO TAMAYO",
+    "personNo": "70556188",
+    "time": "2025-07-01 05:43:51",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "RAMON",
+    "lastName": "DE JESUS JIMENEZ GONZALEZ",
+    "personNo": "70569286",
+    "time": "2025-07-01 05:41:55",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "JAVIER",
+    "lastName": "ZAPATA ATEHORTUA",
+    "personNo": "71703212",
+    "time": "2025-07-01 05:38:55",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "JHON",
+    "lastName": "ARLEY PALACIO BETANCUR",
+    "personNo": "1037573137",
+    "time": "2025-07-01 05:31:21",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "WALTER",
+    "lastName": "DE JESUS CORREA GALLEGO",
+    "personNo": "98542784",
+    "time": "2025-07-01 05:31:14",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "RUBEN",
+    "lastName": "DARIO PATIÑO HERRERA",
+    "personNo": "70559682",
+    "time": "2025-07-01 05:27:21",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "JHON",
+    "lastName": "JAIRO CANO GAVIRIA",
+    "personNo": "70553890",
+    "time": "2025-07-01 05:20:24",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "JUAN",
+    "lastName": "GUILLERMO ARREDONDO RAMIREZ",
+    "personNo": "70566163",
+    "time": "2025-07-01 05:19:48",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "ALBEIRO",
+    "lastName": "ANTONIO VILLA BETANCUR",
+    "personNo": "70548221",
+    "time": "2025-07-01 05:18:16",
+    "accessPoint": "Door 01",
+    "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "ALBEIRO",
+    "lastName": "ANTONIO VILLA BETANCUR",
+    "personNo": "70548221",
+    "time": "2025-07-01 05:18:13",
+    "accessPoint": "Door 01",
+    "attendanceType": "Undefined"
+  },
+  {
     "firstName": "DANIEL",
     "lastName": "OSSA JARAMILLO",
     "personNo": "1037585260",
@@ -2096,6 +8936,14 @@
     "attendanceType": "Check-In"
   },
   {
+    "firstName": "ALBEIRO",
+    "lastName": "ANTONIO VILLA BETANCUR",
+    "personNo": "70548221",
+    "time": "2025-06-26 05:18:52",
+    "accessPoint": "Door 01",
+    "attendanceType": "Undefined"
+  },
+  {
     "firstName": "RUBEN",
     "lastName": "DARIO PATIÑO HERRERA",
     "personNo": "70559682",
@@ -3094,6 +9942,14 @@
     "time": "2025-06-25 05:19:39",
     "accessPoint": "Door 01",
     "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "ALBEIRO",
+    "lastName": "ANTONIO VILLA BETANCUR",
+    "personNo": "70548221",
+    "time": "2025-06-25 05:19:35",
+    "accessPoint": "Door 01",
+    "attendanceType": "Undefined"
   },
   {
     "firstName": "JHON",
@@ -5368,6 +12224,14 @@
     "attendanceType": "Check-In"
   },
   {
+    "firstName": "JAVIER",
+    "lastName": "ZAPATA ATEHORTUA",
+    "personNo": "71703212",
+    "time": "2025-06-20 05:37:30",
+    "accessPoint": "Door 01",
+    "attendanceType": "Undefined"
+  },
+  {
     "firstName": "RUBEN",
     "lastName": "DARIO PATIÑO HERRERA",
     "personNo": "70559682",
@@ -6446,6 +13310,14 @@
     "time": "2025-06-19 05:20:13",
     "accessPoint": "Door 01",
     "attendanceType": "Check-In"
+  },
+  {
+    "firstName": "ALBEIRO",
+    "lastName": "ANTONIO VILLA BETANCUR",
+    "personNo": "70548221",
+    "time": "2025-06-19 05:20:09",
+    "accessPoint": "Door 01",
+    "attendanceType": "Undefined"
   },
   {
     "firstName": "JUAN",

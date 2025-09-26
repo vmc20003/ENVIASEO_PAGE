@@ -30,7 +30,8 @@ app.use(
     credentials: true,
   })
 );
-app.use(express.json());
+app.use(express.json({ limit: '50mb' }));
+app.use(express.urlencoded({ extended: true, limit: '50mb' }));
 
 // Crear carpeta de uploads si no existe
 if (!fs.existsSync(config.UPLOAD_FOLDER)) {
@@ -145,6 +146,43 @@ app.get("/files", (req, res) => {
   } catch (error) {
     console.error("Error listing files:", error);
     res.status(500).json({ error: "No se pudieron listar los archivos." });
+  }
+});
+
+// Endpoint para obtener registros por archivo específico
+app.get("/records-by-file/:filename", (req, res) => {
+  try {
+    const filename = decodeURIComponent(req.params.filename);
+    const records = fileManager.getRecordsByFile(filename);
+    
+    res.json({
+      filename,
+      count: records.length,
+      records: records
+    });
+  } catch (error) {
+    console.error("Error getting records by file:", error);
+    res.status(500).json({ 
+      error: "No se pudieron obtener los registros del archivo.",
+      count: 0,
+      records: []
+    });
+  }
+});
+
+// Endpoint para obtener la ruta de la carpeta de archivos
+app.get("/files-path", (req, res) => {
+  try {
+    const uploadPath = fileManager.uploadFolder;
+    res.json({
+      path: uploadPath,
+      absolutePath: path.resolve(uploadPath)
+    });
+  } catch (error) {
+    console.error("Error getting files path:", error);
+    res.status(500).json({ 
+      error: "No se pudo obtener la ruta de archivos."
+    });
   }
 });
 
