@@ -101,12 +101,14 @@
   min-height: 100vh;
   background: linear-gradient(135deg, #f0f9ff 0%, #dbeafe 100%);
   font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  padding: 20px;
+  padding: 10px;
   margin: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
+  width: 100vw;
+  box-sizing: border-box;
 }
 
 /* Sin efectos de fondo complicados */
@@ -116,15 +118,16 @@
   background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(10px);
   border: 1px solid rgba(59, 130, 246, 0.2);
-  padding: 20px 0;
+  padding: 15px 20px;
   position: sticky;
   top: 0;
   z-index: 100;
   box-shadow: 0 4px 20px rgba(59, 130, 246, 0.15);
-  margin-bottom: 30px;
+  margin-bottom: 20px;
   width: 100%;
-  max-width: 1200px;
-  border-radius: 16px;
+  max-width: 100%;
+  border-radius: 12px;
+  box-sizing: border-box;
 }
 
 .header-content {
@@ -195,14 +198,15 @@
 
 /* Contenido principal profesional */
 .main-content {
-  max-width: 1400px;
+  max-width: 100%;
   width: 100%;
-  margin: 0 auto;
-  padding: 20px;
+  margin: 0;
+  padding: 10px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 30px;
+  gap: 20px;
+  box-sizing: border-box;
 }
 
 /* Layout de 3 columnas: sidebar izquierdo, tabla central, estadísticas derecha */
@@ -1008,9 +1012,9 @@
   margin-bottom: var(--space-8);
   position: relative;
   width: 100%;
-  max-width: 1000px;
-  margin-left: auto;
-  margin-right: auto;
+  max-width: 100%;
+  margin-left: 0;
+  margin-right: 0;
 }
 
 .table-container::before {

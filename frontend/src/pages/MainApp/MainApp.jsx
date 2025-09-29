@@ -57,55 +57,63 @@ function MainApp({ onBack }) {
 
   // Procesar resultados agrupados
   const procesarResultadosAgrupados = useCallback((resultados) => {
-    console.log("Procesando resultados:", resultados.slice(0, 3)); // Mostrar solo los primeros 3 registros
     const resumenDiario = [];
     const personas = {};
 
-    // Asegurar que resultados sea un array
     if (!Array.isArray(resultados)) {
-      console.warn("resultados no es un array:", resultados);
       return resumenDiario;
     }
 
+    // Procesar cada registro
     resultados.forEach((registro) => {
-      // Normalizar campos para aceptar ambos formatos
-      const fecha =
-        registro.fecha ||
-        (registro.time ? registro.time.split(" ")[0] || "" : "");
-      const hora =
-        registro.hora ||
-        (registro.time ? registro.time.split(" ")[1] || "" : "");
-      const cedula = registro.cedula || registro.personNo || registro.idPersona || "";
-      const nombre = registro.nombre || registro.firstName || "";
-      const apellido = registro.apellido || registro.lastName || "";
+      // Extraer datos correctamente del registro original
+      const fecha = registro.fecha || (registro.time ? registro.time.split(" ")[0] : "");
+      const hora = registro.hora || (registro.time ? registro.time.split(" ")[1] : "");
+      const cedula = registro.cedula || registro.personNo || "";
       
-      const tipo_asistencia =
-        registro.tipo_asistencia || 
-        registro.attendanceType || 
-        registro.puntoVerificacion || "";
+      // Manejar nombres y apellidos correctamente
+      let nombre = "";
+      let apellido = "";
+      
+      if (registro.nombre && registro.apellido) {
+        // Si ya están separados correctamente
+        nombre = registro.nombre;
+        apellido = registro.apellido;
+      } else if (registro.firstName && registro.lastName) {
+        // Si están en firstName/lastName
+        nombre = registro.firstName;
+        apellido = registro.lastName;
+      } else if (registro.nombre) {
+        // Si solo hay un campo nombre, intentar separarlo
+        const nombreCompleto = registro.nombre.trim().split(" ");
+        nombre = nombreCompleto[0] || "";
+        apellido = nombreCompleto.slice(1).join(" ") || "";
+      }
+      
+      const tipo_asistencia = registro.tipo_asistencia || registro.attendanceType || "";
 
-      if (!fecha) return;
+      // Validar que tengamos datos mínimos
+      if (!fecha || !cedula) return;
 
       const key = `${cedula}-${fecha}`;
       if (!personas[key]) {
         personas[key] = {
-          nombre,
-          apellido,
-          cedula,
-          fecha,
+          nombre: nombre,
+          apellido: apellido,
+          cedula: cedula,
+          fecha: fecha,
           registros: [],
         };
       }
       personas[key].registros.push({
-        ...registro,
-        fecha,
-        hora,
-        tipo_asistencia,
+        hora: hora,
+        tipo_asistencia: tipo_asistencia,
       });
     });
 
+    // Procesar cada persona
     Object.values(personas).forEach((persona) => {
-      // Separar check-ins y check-outs
+      // Separar entradas y salidas
       const checkIns = persona.registros
         .filter((r) => esEntrada(r.tipo_asistencia))
         .sort((a, b) => (a.hora > b.hora ? 1 : -1));
@@ -120,16 +128,17 @@ function MainApp({ onBack }) {
       let horasTrabajadas = null;
       let horasExtra = null;
 
+      // Calcular horas trabajadas
       if (primerCheckIn && ultimoCheckOut) {
-        const [h1, m1, s1] = primerCheckIn.split(":").map(Number);
-        const [h2, m2, s2] = ultimoCheckOut.split(":").map(Number);
-        let diff =
-          h2 + m2 / 60 + (s2 || 0) / 3600 - (h1 + m1 / 60 + (s1 || 0) / 3600);
-        if (diff < 0) diff += 24;
+        const [h1, m1] = primerCheckIn.split(":").map(Number);
+        const [h2, m2] = ultimoCheckOut.split(":").map(Number);
+        let diff = h2 + m2 / 60 - (h1 + m1 / 60);
+        if (diff < 0) diff += 24; // Manejar cambio de día
         horasTrabajadas = diff;
         horasExtra = Math.max(0, horasTrabajadas - JORNADA_LABORAL_HORAS);
       }
 
+      // Crear resumen con datos organizados
       const resumen = {
         nombre: persona.nombre,
         apellido: persona.apellido,
@@ -140,9 +149,6 @@ function MainApp({ onBack }) {
         horasTrabajadas,
         horasExtra,
       };
-      
-      // Debug: verificar el resumen generado
-      console.log("Resumen generado:", resumen);
       
       resumenDiario.push(resumen);
     });
@@ -646,18 +652,11 @@ function MainApp({ onBack }) {
   // Solo cargar datos una vez al montar el componente
   useEffect(() => {
     const loadInitialData = async () => {
-      setSearching(true);
+      // Mostrar mensaje inmediatamente sin esperar
       setMessage("Cargando datos...");
+      setSearching(true);
+      
       try {
-        if (isDemoMode()) {
-          console.log("Modo demo activado - cargando datos de demostración");
-          const data = await demoAlumbradoService.getAllRecords();
-          console.log("Datos de demo cargados:", data.slice(0, 3)); // Mostrar solo los primeros 3 registros
-          setResultados(data);
-          setMessage(`Cargados ${data.length} registros de demostración`);
-          return;
-        }
-        
         console.log("Cargando datos desde:", `${API_CONFIG.ALUMBRADO.BASE_URL}/all-records`);
         const res = await fetch(`${API_CONFIG.ALUMBRADO.BASE_URL}/all-records`);
         const data = await res.json();
@@ -666,12 +665,13 @@ function MainApp({ onBack }) {
         // El backend puede devolver { resultados: [...] } o directamente un array
         const resultadosArray = data.resultados || data;
         console.log("Resultados procesados:", resultadosArray.length, "registros");
+        console.log("Primer registro:", resultadosArray[0]);
         
         setResultados(resultadosArray);
         setMessage(`Cargados ${resultadosArray.length} registros. Use los filtros para buscar.`);
       } catch (error) {
         console.error("Error cargando datos:", error);
-        setMessage(`Error cargando datos: ${error.message}`);
+        setMessage("Error cargando datos. Intente recargar la página.");
         setResultados([]);
       } finally {
         setSearching(false);

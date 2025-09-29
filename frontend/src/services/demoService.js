@@ -26,63 +26,109 @@ const generateMoreData = (baseData, count = 50) => {
     "Control de Acceso", "Recepción", "Oficina Principal", "Almacén"
   ];
 
-  for (let i = 0; i < count; i++) {
-    const randomName = names[Math.floor(Math.random() * names.length)];
-    const randomLastName = lastNames[Math.floor(Math.random() * lastNames.length)];
-    const randomDept = departments[Math.floor(Math.random() * departments.length)];
-    const randomAccess = accessPoints[Math.floor(Math.random() * accessPoints.length)];
+  if (baseData === DEMO_DATA.ALUMBRADO) {
+    // Para Alumbrado Público, generar pares de Check In/Check Out para cada persona
+    const numPersons = Math.floor(count / 2); // Cada persona necesita Check In y Check Out
     
-    // Generar fecha aleatoria en los últimos 30 días
-    const randomDate = new Date();
-    randomDate.setDate(randomDate.getDate() - Math.floor(Math.random() * 30));
-    
-    // Generar hora aleatoria entre 6 AM y 6 PM
-    const randomHour = 6 + Math.floor(Math.random() * 12);
-    const randomMinute = Math.floor(Math.random() * 60);
-    const timeString = `${randomHour.toString().padStart(2, '0')}:${randomMinute.toString().padStart(2, '0')}`;
-    
-    const dateString = randomDate.toISOString().split('T')[0];
-    const fullDateTime = `${dateString} ${timeString}:00`;
-
-    if (baseData === DEMO_DATA.ALUMBRADO) {
+    for (let i = 0; i < numPersons; i++) {
+      const randomName = names[Math.floor(Math.random() * names.length)];
+      const randomLastName = lastNames[Math.floor(Math.random() * lastNames.length)];
+      const randomAccess = accessPoints[Math.floor(Math.random() * accessPoints.length)];
+      
+      // Generar fecha aleatoria en los últimos 30 días
+      const randomDate = new Date();
+      randomDate.setDate(randomDate.getDate() - Math.floor(Math.random() * 30));
+      const dateString = randomDate.toISOString().split('T')[0];
+      
+      // Generar hora de entrada entre 6 AM y 9 AM
+      const checkInHour = 6 + Math.floor(Math.random() * 3);
+      const checkInMinute = Math.floor(Math.random() * 60);
+      const checkInTime = `${checkInHour.toString().padStart(2, '0')}:${checkInMinute.toString().padStart(2, '0')}`;
+      
+      // Generar hora de salida entre 4 PM y 7 PM (8+ horas después)
+      const checkOutHour = 16 + Math.floor(Math.random() * 3);
+      const checkOutMinute = Math.floor(Math.random() * 60);
+      const checkOutTime = `${checkOutHour.toString().padStart(2, '0')}:${checkOutMinute.toString().padStart(2, '0')}`;
+      
+      const cedula = (1000000 + Math.floor(Math.random() * 9000000)).toString();
+      
+      // Registro de Check In
       newData.push({
         firstName: randomName,
         lastName: randomLastName,
         nombre: randomName,
         apellido: randomLastName,
-        personNo: (1000000 + Math.floor(Math.random() * 9000000)).toString(),
-        cedula: (1000000 + Math.floor(Math.random() * 9000000)).toString(),
-        time: fullDateTime,
+        personNo: cedula,
+        cedula: cedula,
+        time: `${dateString} ${checkInTime}:00`,
         fecha: dateString,
-        hora: timeString,
+        hora: checkInTime,
         accessPoint: randomAccess,
-        attendanceType: Math.random() > 0.5 ? "Check In" : "Check Out",
-        tipo_asistencia: Math.random() > 0.5 ? "Check In" : "Check Out"
+        attendanceType: "Check In",
+        tipo_asistencia: "Check In"
       });
-    } else if (baseData === DEMO_DATA.ALCALDIA) {
+      
+      // Registro de Check Out
       newData.push({
-        idPersona: (1000 + i).toString(),
-        nombre: `${randomName} ${randomLastName}`,
-        departamento: randomDept,
-        hora: timeString,
-        puntoVerificacion: `${randomDept}_${randomAccess.replace(/\s+/g, '')}`
+        firstName: randomName,
+        lastName: randomLastName,
+        nombre: randomName,
+        apellido: randomLastName,
+        personNo: cedula,
+        cedula: cedula,
+        time: `${dateString} ${checkOutTime}:00`,
+        fecha: dateString,
+        hora: checkOutTime,
+        accessPoint: randomAccess,
+        attendanceType: "Check Out",
+        tipo_asistencia: "Check Out"
       });
-    } else if (baseData === DEMO_DATA.ENVIASEO) {
-      newData.push({
-        nombreArchivo: `control_acceso_${dateString}.xlsx`,
-        id: `EMP${(1000 + i).toString().padStart(4, '0')}`,
-        temperatura: `${(35.5 + Math.random() * 2).toFixed(1)}°C`,
-        estadoTemperatura: Math.random() > 0.1 ? "Normal" : "Elevada",
-        usandoMascara: Math.random() > 0.2 ? "Sí" : "No",
-        numeroTarjeta: (10000 + Math.floor(Math.random() * 90000)).toString(),
-        grupoPersonas: randomDept,
-        tiempo: fullDateTime,
-        puntoAcceso: randomAccess,
-        lectorTarjetas: `Lector ${Math.floor(Math.random() * 5) + 1}`,
-        resultadoAutenticacion: Math.random() > 0.05 ? "Exitoso" : "Fallido",
-        tipoAutenticacion: Math.random() > 0.3 ? "Tarjeta" : "Huella",
-        tipoAsistencia: Math.random() > 0.5 ? "Entrada" : "Salida"
-      });
+    }
+  } else {
+    // Para otros módulos, mantener la lógica original
+    for (let i = 0; i < count; i++) {
+      const randomName = names[Math.floor(Math.random() * names.length)];
+      const randomLastName = lastNames[Math.floor(Math.random() * lastNames.length)];
+      const randomDept = departments[Math.floor(Math.random() * departments.length)];
+      const randomAccess = accessPoints[Math.floor(Math.random() * accessPoints.length)];
+      
+      // Generar fecha aleatoria en los últimos 30 días
+      const randomDate = new Date();
+      randomDate.setDate(randomDate.getDate() - Math.floor(Math.random() * 30));
+      
+      // Generar hora aleatoria entre 6 AM y 6 PM
+      const randomHour = 6 + Math.floor(Math.random() * 12);
+      const randomMinute = Math.floor(Math.random() * 60);
+      const timeString = `${randomHour.toString().padStart(2, '0')}:${randomMinute.toString().padStart(2, '0')}`;
+      
+      const dateString = randomDate.toISOString().split('T')[0];
+      const fullDateTime = `${dateString} ${timeString}:00`;
+
+      if (baseData === DEMO_DATA.ALCALDIA) {
+        newData.push({
+          idPersona: (1000 + i).toString(),
+          nombre: `${randomName} ${randomLastName}`,
+          departamento: randomDept,
+          hora: timeString,
+          puntoVerificacion: `${randomDept}_${randomAccess.replace(/\s+/g, '')}`
+        });
+      } else if (baseData === DEMO_DATA.ENVIASEO) {
+        newData.push({
+          nombreArchivo: `control_acceso_${dateString}.xlsx`,
+          id: `EMP${(1000 + i).toString().padStart(4, '0')}`,
+          temperatura: `${(35.5 + Math.random() * 2).toFixed(1)}°C`,
+          estadoTemperatura: Math.random() > 0.1 ? "Normal" : "Elevada",
+          usandoMascara: Math.random() > 0.2 ? "Sí" : "No",
+          numeroTarjeta: (10000 + Math.floor(Math.random() * 90000)).toString(),
+          grupoPersonas: randomDept,
+          tiempo: fullDateTime,
+          puntoAcceso: randomAccess,
+          lectorTarjetas: `Lector ${Math.floor(Math.random() * 5) + 1}`,
+          resultadoAutenticacion: Math.random() > 0.05 ? "Exitoso" : "Fallido",
+          tipoAutenticacion: Math.random() > 0.3 ? "Tarjeta" : "Huella",
+          tipoAsistencia: Math.random() > 0.5 ? "Entrada" : "Salida"
+        });
+      }
     }
   }
   
@@ -106,7 +152,52 @@ export const demoAlumbradoService = {
 
   async getAllRecords() {
     await delay(500);
-    return generateMoreData(DEMO_DATA.ALUMBRADO, 100);
+    // Generar datos más simples para debug
+    const simpleData = [];
+    const names = ["JUAN", "MARÍA", "CARLOS", "ANA", "LUIS"];
+    const lastNames = ["PÉREZ", "GARCÍA", "LÓPEZ", "MARTÍNEZ", "RODRÍGUEZ"];
+    
+    for (let i = 0; i < 10; i++) {
+      const name = names[i % names.length];
+      const lastName = lastNames[i % lastNames.length];
+      const cedula = (1000000 + i).toString();
+      const fecha = "2024-01-15";
+      
+      // Check In
+      simpleData.push({
+        firstName: name,
+        lastName: lastName,
+        nombre: name,
+        apellido: lastName,
+        personNo: cedula,
+        cedula: cedula,
+        time: `${fecha} 08:00:00`,
+        fecha: fecha,
+        hora: "08:00",
+        accessPoint: "Entrada Principal",
+        attendanceType: "Check In",
+        tipo_asistencia: "Check In"
+      });
+      
+      // Check Out
+      simpleData.push({
+        firstName: name,
+        lastName: lastName,
+        nombre: name,
+        apellido: lastName,
+        personNo: cedula,
+        cedula: cedula,
+        time: `${fecha} 17:00:00`,
+        fecha: fecha,
+        hora: "17:00",
+        accessPoint: "Salida Principal",
+        attendanceType: "Check Out",
+        tipo_asistencia: "Check Out"
+      });
+    }
+    
+    console.log("Datos demo generados:", simpleData.slice(0, 4));
+    return simpleData;
   },
 
   async getFiles() {

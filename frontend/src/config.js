@@ -85,7 +85,35 @@ export const DEMO_DATA = {
       cedula: "12345678",
       time: "2024-01-15 08:00:00",
       fecha: "2024-01-15",
-      hora: "08:00:00",
+      hora: "08:00",
+      accessPoint: "Entrada Principal",
+      attendanceType: "Check In",
+      tipo_asistencia: "Check In"
+    },
+    {
+      firstName: "JUAN",
+      lastName: "PÉREZ GARCÍA",
+      nombre: "JUAN",
+      apellido: "PÉREZ GARCÍA",
+      personNo: "12345678",
+      cedula: "12345678",
+      time: "2024-01-15 17:00:00",
+      fecha: "2024-01-15",
+      hora: "17:00",
+      accessPoint: "Salida Principal",
+      attendanceType: "Check Out",
+      tipo_asistencia: "Check Out"
+    },
+    {
+      firstName: "MARÍA",
+      lastName: "LÓPEZ RODRÍGUEZ",
+      nombre: "MARÍA",
+      apellido: "LÓPEZ RODRÍGUEZ",
+      personNo: "87654321",
+      cedula: "87654321",
+      time: "2024-01-15 08:15:00",
+      fecha: "2024-01-15",
+      hora: "08:15",
       accessPoint: "Entrada Principal",
       attendanceType: "Check In",
       tipo_asistencia: "Check In"
@@ -97,9 +125,23 @@ export const DEMO_DATA = {
       apellido: "LÓPEZ RODRÍGUEZ",
       personNo: "87654321",
       cedula: "87654321",
-      time: "2024-01-15 08:15:00",
+      time: "2024-01-15 16:45:00",
       fecha: "2024-01-15",
-      hora: "08:15:00",
+      hora: "16:45",
+      accessPoint: "Salida Principal",
+      attendanceType: "Check Out",
+      tipo_asistencia: "Check Out"
+    },
+    {
+      firstName: "CARLOS",
+      lastName: "MARTÍNEZ SILVA",
+      nombre: "CARLOS",
+      apellido: "MARTÍNEZ SILVA",
+      personNo: "11223344",
+      cedula: "11223344",
+      time: "2024-01-15 07:30:00",
+      fecha: "2024-01-15",
+      hora: "07:30",
       accessPoint: "Entrada Principal",
       attendanceType: "Check In",
       tipo_asistencia: "Check In"
@@ -113,7 +155,7 @@ export const DEMO_DATA = {
       cedula: "11223344",
       time: "2024-01-15 17:30:00",
       fecha: "2024-01-15",
-      hora: "17:30:00",
+      hora: "17:30",
       accessPoint: "Salida Principal",
       attendanceType: "Check Out",
       tipo_asistencia: "Check Out"
@@ -156,6 +198,5 @@ export const DEMO_DATA = {
 
 // Función para detectar si estamos en modo demo
 export const isDemoMode = () => {
-  return process.env.REACT_APP_DEMO_MODE === 'true' || 
-         window.location.search.includes('demo=true');
+  return false; // DESHABILITADO - siempre false
 };
