@@ -1,276 +1,275 @@
 @echo off
 chcp 65001 >nul
-setlocal enabledelayedexpansion
-
-title Diagnóstico del Sistema - Enviaseo v1.3.0
+title Diagnóstico del Sistema - Sistema de Gestión de Asistencia
+color 0E
 
 echo.
-echo ================================================================
-echo              DIAGNÓSTICO DEL SISTEMA ENVIASEO v1.3.0
-echo ================================================================
+echo ╔══════════════════════════════════════════════════════════════════════════════╗
+echo ║                    🔍 DIAGNÓSTICO DEL SISTEMA 🔍                             ║
+echo ║                    Sistema de Gestión de Asistencia v1.3.0                  ║
+echo ╚══════════════════════════════════════════════════════════════════════════════╝
 echo.
-echo Este script verifica el estado del sistema y detecta problemas.
+echo 📋 Este diagnóstico verificará el estado del sistema y detectará problemas
+echo.
+
+:: Información del sistema
+echo ═══════════════════════════════════════════════════════════════════════════════
+echo 📊 INFORMACIÓN DEL SISTEMA
+echo ═══════════════════════════════════════════════════════════════════════════════
+echo 🖥️  Sistema Operativo: %OS%
+echo 👤 Usuario: %USERNAME%
+echo 📁 Directorio: %CD%
+echo 📅 Fecha: %DATE%
+echo 🕐 Hora: %TIME%
 echo.
 
 :: Verificar Node.js
-echo [VERIFICACIÓN] Node.js...
-where node >nul 2>&1
-if %errorlevel% neq 0 (
-    echo ❌ Node.js NO está instalado
-    set "node_ok=false"
-) else (
+echo ═══════════════════════════════════════════════════════════════════════════════
+echo 🔍 VERIFICACIÓN DE NODE.JS
+echo ═══════════════════════════════════════════════════════════════════════════════
+node --version >nul 2>&1
+if %errorlevel% equ 0 (
     for /f "tokens=*" %%i in ('node --version') do set NODE_VERSION=%%i
     echo ✅ Node.js instalado: %NODE_VERSION%
-    set "node_ok=true"
-)
-
-:: Verificar NPM
-echo [VERIFICACIÓN] NPM...
-where npm >nul 2>&1
-if %errorlevel% neq 0 (
-    echo ❌ NPM NO está disponible
-    set "npm_ok=false"
 ) else (
+    echo ❌ Node.js NO está instalado
+    echo    Solución: Descarga Node.js desde https://nodejs.org/
+)
+echo.
+
+:: Verificar npm
+echo ═══════════════════════════════════════════════════════════════════════════════
+echo 🔍 VERIFICACIÓN DE NPM
+echo ═══════════════════════════════════════════════════════════════════════════════
+npm --version >nul 2>&1
+if %errorlevel% equ 0 (
     for /f "tokens=*" %%i in ('npm --version') do set NPM_VERSION=%%i
-    echo ✅ NPM instalado: %NPM_VERSION%
-    set "npm_ok=true"
-)
-
-:: Verificar puertos
-echo.
-echo [VERIFICACIÓN] Puertos del sistema...
-set "ports_available=true"
-for %%p in (3000 5000 5001 5002) do (
-    netstat -an | findstr ":%%p" >nul 2>&1
-    if !errorlevel! equ 0 (
-        echo ⚠️ Puerto %%p está en uso
-        set "ports_available=false"
-    ) else (
-        echo ✅ Puerto %%p disponible
-    )
-)
-
-:: Verificar archivos del proyecto
-echo.
-echo [VERIFICACIÓN] Archivos del proyecto...
-if exist "package.json" (
-    echo ✅ package.json encontrado
+    echo ✅ npm disponible: %NPM_VERSION%
 ) else (
-    echo ❌ package.json NO encontrado
-    set "project_ok=false"
+    echo ❌ npm NO está disponible
+    echo    Solución: Reinstala Node.js
+)
+echo.
+
+:: Verificar estructura de carpetas
+echo ═══════════════════════════════════════════════════════════════════════════════
+echo 📁 VERIFICACIÓN DE ESTRUCTURA DE CARPETAS
+echo ═══════════════════════════════════════════════════════════════════════════════
+if exist "frontend" (
+    echo ✅ Carpeta frontend existe
+) else (
+    echo ❌ Carpeta frontend NO existe
+)
+
+if exist "backend" (
+    echo ✅ Carpeta backend existe
+) else (
+    echo ❌ Carpeta backend NO existe
+)
+
+if exist "backend-alcaldia" (
+    echo ✅ Carpeta backend-alcaldia existe
+) else (
+    echo ❌ Carpeta backend-alcaldia NO existe
+)
+
+if exist "backend-enviaseo-control-acceso" (
+    echo ✅ Carpeta backend-enviaseo-control-acceso existe
+) else (
+    echo ❌ Carpeta backend-enviaseo-control-acceso NO existe
+)
+echo.
+
+:: Verificar archivos package.json
+echo ═══════════════════════════════════════════════════════════════════════════════
+echo 📦 VERIFICACIÓN DE ARCHIVOS PACKAGE.JSON
+echo ═══════════════════════════════════════════════════════════════════════════════
+if exist "package.json" (
+    echo ✅ package.json principal existe
+) else (
+    echo ❌ package.json principal NO existe
 )
 
 if exist "frontend\package.json" (
-    echo ✅ Frontend encontrado
+    echo ✅ package.json frontend existe
 ) else (
-    echo ❌ Frontend NO encontrado
-    set "project_ok=false"
+    echo ❌ package.json frontend NO existe
 )
 
 if exist "backend\package.json" (
-    echo ✅ Backend Alumbrado encontrado
+    echo ✅ package.json backend existe
 ) else (
-    echo ❌ Backend Alumbrado NO encontrado
-    set "project_ok=false"
+    echo ❌ package.json backend NO existe
 )
 
 if exist "backend-alcaldia\package.json" (
-    echo ✅ Backend Alcaldía encontrado
+    echo ✅ package.json backend-alcaldia existe
 ) else (
-    echo ❌ Backend Alcaldía NO encontrado
-    set "project_ok=false"
+    echo ❌ package.json backend-alcaldia NO existe
 )
 
 if exist "backend-enviaseo-control-acceso\package.json" (
-    echo ✅ Backend Enviaseo encontrado
+    echo ✅ package.json backend-enviaseo existe
 ) else (
-    echo ❌ Backend Enviaseo NO encontrado
-    set "project_ok=false"
+    echo ❌ package.json backend-enviaseo NO existe
 )
-
-:: Verificar dependencias instaladas
 echo.
-echo [VERIFICACIÓN] Dependencias instaladas...
+
+:: Verificar node_modules
+echo ═══════════════════════════════════════════════════════════════════════════════
+echo 📦 VERIFICACIÓN DE NODE_MODULES
+echo ═══════════════════════════════════════════════════════════════════════════════
 if exist "node_modules" (
-    echo ✅ Dependencias principales instaladas
+    echo ✅ node_modules principal instalado
 ) else (
-    echo ❌ Dependencias principales NO instaladas
-    set "deps_ok=false"
+    echo ⚠️  node_modules principal NO instalado
 )
 
 if exist "frontend\node_modules" (
-    echo ✅ Dependencias del frontend instaladas
+    echo ✅ node_modules frontend instalado
 ) else (
-    echo ❌ Dependencias del frontend NO instaladas
-    set "deps_ok=false"
+    echo ⚠️  node_modules frontend NO instalado
 )
 
 if exist "backend\node_modules" (
-    echo ✅ Dependencias del backend Alumbrado instaladas
+    echo ✅ node_modules backend instalado
 ) else (
-    echo ❌ Dependencias del backend Alumbrado NO instaladas
-    set "deps_ok=false"
+    echo ⚠️  node_modules backend NO instalado
 )
 
 if exist "backend-alcaldia\node_modules" (
-    echo ✅ Dependencias del backend Alcaldía instaladas
+    echo ✅ node_modules backend-alcaldia instalado
 ) else (
-    echo ❌ Dependencias del backend Alcaldía NO instaladas
-    set "deps_ok=false"
+    echo ⚠️  node_modules backend-alcaldia NO instalado
 )
 
 if exist "backend-enviaseo-control-acceso\node_modules" (
-    echo ✅ Dependencias del backend Enviaseo instaladas
+    echo ✅ node_modules backend-enviaseo instalado
 ) else (
-    echo ❌ Dependencias del backend Enviaseo NO instaladas
-    set "deps_ok=false"
+    echo ⚠️  node_modules backend-enviaseo NO instalado
 )
-
-:: Verificar scripts de inicio
 echo.
-echo [VERIFICACIÓN] Scripts de inicio...
-if exist "INICIAR_ENVIASEO_COMPLETO.bat" (
-    echo ✅ Script de inicio completo encontrado
-) else (
-    echo ❌ Script de inicio completo NO encontrado
-)
 
-if exist "INICIAR_ENVIASEO_RAPIDO.bat" (
-    echo ✅ Script de inicio rápido encontrado
-) else (
-    echo ❌ Script de inicio rápido NO encontrado
-)
-
-if exist "DETENER_ENVIASEO.bat" (
-    echo ✅ Script de parada encontrado
-) else (
-    echo ❌ Script de parada NO encontrado
-)
-
-if exist "REINICIAR_ENVIASEO.bat" (
-    echo ✅ Script de reinicio encontrado
-) else (
-    echo ❌ Script de reinicio NO encontrado
-)
-
-:: Verificar procesos Node.js en ejecución
-echo.
-echo [VERIFICACIÓN] Procesos Node.js en ejecución...
-tasklist /FI "IMAGENAME eq node.exe" 2>NUL | find /I /N "node.exe" >NUL
+:: Verificar puertos
+echo ═══════════════════════════════════════════════════════════════════════════════
+echo 🌐 VERIFICACIÓN DE PUERTOS
+echo ═══════════════════════════════════════════════════════════════════════════════
+netstat -an | findstr ":3000" >nul
 if %errorlevel% equ 0 (
-    echo ⚠️ Hay procesos de Node.js ejecutándose:
-    tasklist /FI "IMAGENAME eq node.exe" /FO TABLE
+    echo ⚠️  Puerto 3000 está en uso (Frontend)
 ) else (
-    echo ✅ No hay procesos de Node.js ejecutándose
+    echo ✅ Puerto 3000 disponible (Frontend)
 )
 
-:: Resumen del diagnóstico
-echo.
-echo ================================================================
-echo                    RESUMEN DEL DIAGNÓSTICO
-echo ================================================================
-echo.
-
-if "%node_ok%"=="true" (
-    echo ✅ Node.js: OK
+netstat -an | findstr ":5000" >nul
+if %errorlevel% equ 0 (
+    echo ⚠️  Puerto 5000 está en uso (Backend Alumbrado)
 ) else (
-    echo ❌ Node.js: PROBLEMA - Instalar desde https://nodejs.org/
+    echo ✅ Puerto 5000 disponible (Backend Alumbrado)
 )
 
-if "%npm_ok%"=="true" (
-    echo ✅ NPM: OK
+netstat -an | findstr ":5001" >nul
+if %errorlevel% equ 0 (
+    echo ⚠️  Puerto 5001 está en uso (Backend Enviaseo)
 ) else (
-    echo ❌ NPM: PROBLEMA - Reinstalar Node.js
+    echo ✅ Puerto 5001 disponible (Backend Enviaseo)
 )
 
-if "%ports_available%"=="true" (
-    echo ✅ Puertos: OK
+netstat -an | findstr ":5002" >nul
+if %errorlevel% equ 0 (
+    echo ⚠️  Puerto 5002 está en uso (Backend Alcaldía)
 ) else (
-    echo ⚠️ Puertos: ALGUNOS EN USO - El sistema puede funcionar
+    echo ✅ Puerto 5002 disponible (Backend Alcaldía)
 )
-
-if exist "package.json" (
-    echo ✅ Proyecto: OK
-) else (
-    echo ❌ Proyecto: PROBLEMA - Archivos del proyecto faltantes
-)
-
-if exist "node_modules" (
-    echo ✅ Dependencias: OK
-) else (
-    echo ❌ Dependencias: PROBLEMA - Ejecutar instalador
-)
-
-echo.
-echo ================================================================
-echo                    RECOMENDACIONES
-echo ================================================================
 echo.
 
-if "%node_ok%"=="false" (
-    echo 🔧 INSTALAR NODE.JS:
-    echo    1. Vaya a https://nodejs.org/
-    echo    2. Descargue la versión LTS
-    echo    3. Ejecute el instalador
-    echo    4. Reinicie el sistema
-    echo.
+:: Verificar procesos Node.js
+echo ═══════════════════════════════════════════════════════════════════════════════
+echo 🔄 VERIFICACIÓN DE PROCESOS NODE.JS
+echo ═══════════════════════════════════════════════════════════════════════════════
+tasklist | findstr "node.exe" >nul
+if %errorlevel% equ 0 (
+    echo ⚠️  Hay procesos Node.js ejecutándose:
+    tasklist | findstr "node.exe"
+) else (
+    echo ✅ No hay procesos Node.js ejecutándose
 )
-
-if not exist "node_modules" (
-    echo 🔧 INSTALAR DEPENDENCIAS:
-    echo    1. Ejecute INSTALADOR_MEJORADO.bat
-    echo    2. O ejecute INSTALADOR_RAPIDO.bat
-    echo    3. O ejecute npm install manualmente
-    echo.
-)
-
-if not exist "INICIAR_ENVIASEO_COMPLETO.bat" (
-    echo 🔧 CREAR SCRIPTS DE INICIO:
-    echo    1. Ejecute el instalador
-    echo    2. O copie los scripts desde la distribución
-    echo.
-)
-
-echo 🔧 SOLUCIÓN RÁPIDA:
-echo    Si todo está OK, ejecute: INICIAR_ENVIASEO_COMPLETO.bat
-echo    Si hay problemas, ejecute: INSTALADOR_MEJORADO.bat
 echo.
 
-echo ¿Desea ejecutar alguna acción automática? (S/N)
-set /p auto_fix=
-if /i "%auto_fix%"=="S" (
+:: Verificar carpetas de uploads
+echo ═══════════════════════════════════════════════════════════════════════════════
+echo 📁 VERIFICACIÓN DE CARPETAS DE UPLOADS
+echo ═══════════════════════════════════════════════════════════════════════════════
+if exist "backend\uploads_excel" (
+    echo ✅ Carpeta uploads backend existe
+) else (
+    echo ⚠️  Carpeta uploads backend NO existe
+)
+
+if exist "backend-alcaldia\uploads_excel" (
+    echo ✅ Carpeta uploads backend-alcaldia existe
+) else (
+    echo ⚠️  Carpeta uploads backend-alcaldia NO existe
+)
+
+if exist "backend-enviaseo-control-acceso\uploads_excel" (
+    echo ✅ Carpeta uploads backend-enviaseo existe
+) else (
+    echo ⚠️  Carpeta uploads backend-enviaseo NO existe
+)
+echo.
+
+:: Resumen y recomendaciones
+echo ═══════════════════════════════════════════════════════════════════════════════
+echo 📋 RESUMEN Y RECOMENDACIONES
+echo ═══════════════════════════════════════════════════════════════════════════════
+echo.
+
+:: Contar problemas
+set PROBLEMAS=0
+node --version >nul 2>&1 || set /a PROBLEMAS+=1
+npm --version >nul 2>&1 || set /a PROBLEMAS+=1
+if not exist "frontend" set /a PROBLEMAS+=1
+if not exist "backend" set /a PROBLEMAS+=1
+if not exist "backend-alcaldia" set /a PROBLEMAS+=1
+if not exist "backend-enviaseo-control-acceso" set /a PROBLEMAS+=1
+
+if %PROBLEMAS% equ 0 (
+    echo ✅ Sistema en buen estado
     echo.
-    echo [1] Ejecutar instalador mejorado
-    echo [2] Ejecutar instalador rápido
-    echo [3] Solo instalar dependencias
-    echo [4] Detener procesos Node.js
+    echo 🚀 Recomendaciones:
+    echo    - Ejecuta INSTALADOR_RAPIDO.bat para instalación rápida
+    echo    - O ejecuta INSTALADOR_COMPLETO.bat para instalación completa
+    echo    - Usa INICIAR_SISTEMA.bat para iniciar el sistema
+) else (
+    echo ⚠️  Se detectaron %PROBLEMAS% problemas
     echo.
-    set /p action=Seleccione (1-4): 
-    
-    if "%action%"=="1" (
-        echo Ejecutando instalador mejorado...
-        start INSTALADOR_MEJORADO.bat
-    ) else if "%action%"=="2" (
-        echo Ejecutando instalador rápido...
-        start INSTALADOR_RAPIDO.bat
-    ) else if "%action%"=="3" (
-        echo Instalando dependencias...
-        call npm install
-        call npm --prefix frontend install
-        call npm --prefix backend install
-        call npm --prefix backend-alcaldia install
-        call npm --prefix backend-enviaseo-control-acceso install
-        echo ✅ Dependencias instaladas
-    ) else if "%action%"=="4" (
-        echo Deteniendo procesos Node.js...
-        taskkill /f /im node.exe 2>nul
-        echo ✅ Procesos detenidos
+    echo 🔧 Soluciones recomendadas:
+    echo    - Ejecuta INSTALADOR_COMPLETO.bat para instalación completa
+    echo    - Verifica que Node.js esté instalado correctamente
+    echo    - Asegúrate de estar en el directorio correcto del proyecto
+)
+
+echo.
+echo ╔══════════════════════════════════════════════════════════════════════════════╗
+echo ║                        🔍 DIAGNÓSTICO COMPLETADO 🔍                          ║
+echo ╚══════════════════════════════════════════════════════════════════════════════╝
+echo.
+
+set /p choice="¿Deseas ejecutar una instalación automática? (s/n): "
+if /i "%choice%"=="s" (
+    echo.
+    echo 🔧 Ejecutando instalación automática...
+    if exist "INSTALADOR_COMPLETO.bat" (
+        start INSTALADOR_COMPLETO.bat
     ) else (
-        echo Opción inválida
+        echo ❌ INSTALADOR_COMPLETO.bat no encontrado
+        echo    Ejecuta manualmente: npm install
     )
+) else (
+    echo.
+    echo 👋 Diagnóstico completado. Revisa las recomendaciones arriba.
 )
 
 echo.
-echo Diagnóstico completado.
 pause
-exit /b 0

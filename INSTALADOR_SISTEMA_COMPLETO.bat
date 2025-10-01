@@ -51,47 +51,21 @@ echo 📁 Creando directorio de instalación...
 mkdir "%INSTALL_PATH%"
 
 echo 📋 Copiando archivos del sistema...
-if exist "index.html" (
-    copy "index.html" "%INSTALL_PATH%\"
-    echo ✅ Archivo principal copiado
-) else (
-    echo ❌ Error: No se encontró index.html
-    pause
-    exit /b 1
-)
+copy "Sistema_Completo_Sin_Dependencias.html" "%INSTALL_PATH%\index.html"
+copy "INICIAR_SISTEMA.bat" "%INSTALL_PATH%\"
+copy "README_SISTEMA_COMPLETO.txt" "%INSTALL_PATH%\"
 
-if exist "INICIAR_SISTEMA_COMPLETO.bat" (
-    copy "INICIAR_SISTEMA_COMPLETO.bat" "%INSTALL_PATH%\"
-    echo ✅ Script de inicio copiado
-)
-
-if exist "README_SISTEMA_COMPLETO.txt" (
-    copy "README_SISTEMA_COMPLETO.txt" "%INSTALL_PATH%\"
-    echo ✅ Documentación copiada
-)
-
-echo.
 echo 📝 Creando acceso directo en el escritorio...
 echo [InternetShortcut] > "%USERPROFILE%\Desktop\Sistema Gestion Asistencia.url"
-echo URL=file:///%INSTALL_PATH:\=/%/index.html >> "%USERPROFILE%\Desktop\Sistema Gestion Asistencia.url"
+echo URL=file:///%INSTALL_PATH%/index.html >> "%USERPROFILE%\Desktop\Sistema Gestion Asistencia.url"
 echo IconFile=%INSTALL_PATH%\index.html >> "%USERPROFILE%\Desktop\Sistema Gestion Asistencia.url"
 echo IconIndex=0 >> "%USERPROFILE%\Desktop\Sistema Gestion Asistencia.url"
-echo ✅ Acceso directo creado en el escritorio
 
-echo.
 echo 📝 Creando acceso directo en el menú inicio...
 echo [InternetShortcut] > "%APPDATA%\Microsoft\Windows\Start Menu\Programs\Sistema Gestion Asistencia.url"
-echo URL=file:///%INSTALL_PATH:\=/%/index.html >> "%APPDATA%\Microsoft\Windows\Start Menu\Programs\Sistema Gestion Asistencia.url"
+echo URL=file:///%INSTALL_PATH%/index.html >> "%APPDATA%\Microsoft\Windows\Start Menu\Programs\Sistema Gestion Asistencia.url"
 echo IconFile=%INSTALL_PATH%\index.html >> "%APPDATA%\Microsoft\Windows\Start Menu\Programs\Sistema Gestion Asistencia.url"
 echo IconIndex=0 >> "%APPDATA%\Microsoft\Windows\Start Menu\Programs\Sistema Gestion Asistencia.url"
-echo ✅ Acceso directo creado en el menú inicio
-
-echo.
-echo 📝 Creando script de inicio silencioso...
-echo @echo off > "%INSTALL_PATH%\INICIAR_APLICACION.bat"
-echo start "" "%%~dp0index.html" >> "%INSTALL_PATH%\INICIAR_APLICACION.bat"
-echo exit >> "%INSTALL_PATH%\INICIAR_APLICACION.bat"
-echo ✅ Script de inicio silencioso creado
 
 echo.
 echo ╔══════════════════════════════════════════════════════════════════════════════╗
@@ -105,10 +79,9 @@ echo 🌐 Acceso directo creado en el escritorio
 echo 🌐 Acceso directo creado en el menú inicio
 echo.
 echo 🚀 Para iniciar el sistema:
-echo    1. Hacer clic en el acceso directo del escritorio
-echo    2. O hacer clic en el acceso directo del menú inicio
-echo    3. O ejecutar INICIAR_APLICACION.bat desde %INSTALL_PATH%
-echo    4. O abrir %INSTALL_PATH%\index.html directamente
+echo    1. Ejecutar INICIAR_SISTEMA.bat desde %INSTALL_PATH%
+echo    2. O hacer clic en el acceso directo del escritorio
+echo    3. O abrir %INSTALL_PATH%\index.html directamente
 echo.
 echo 📋 Módulos disponibles:
 echo    🏢 Alumbrado Público - Control de asistencia
@@ -130,7 +103,7 @@ if /i "%choice%"=="s" (
     start "" "%INSTALL_PATH%\index.html"
 ) else (
     echo.
-    echo 👋 Instalación completada. Haz clic en el acceso directo del escritorio para iniciar.
+    echo 👋 Instalación completada. Ejecuta INICIAR_SISTEMA.bat cuando estés listo.
 )
 
 echo.

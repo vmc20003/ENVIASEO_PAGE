@@ -1,236 +1,196 @@
-# Guía de Instaladores - Sistema Enviaseo v1.3.0
+# 🚀 Guía de Instaladores - Sistema de Gestión de Asistencia v1.3.0
 
-## 📦 Instaladores Disponibles
+## 📋 Instaladores Disponibles
 
-### 1. **INSTALADOR_MEJORADO.bat** (Recomendado)
-**Para usuarios que quieren opciones avanzadas**
+### 1. 🎯 **INSTALADOR_COMPLETO.bat** - Recomendado para nuevos usuarios
+**Descripción:** Instalación completa y detallada con verificaciones exhaustivas.
 
-#### Características:
-- ✅ **4 opciones de instalación**
-- ✅ **Verificación completa del sistema**
-- ✅ **Instalación personalizada**
-- ✅ **Diagnóstico integrado**
-- ✅ **Scripts de inicio automáticos**
+**Características:**
+- ✅ Verificación completa de Node.js y npm
+- ✅ Instalación de todas las dependencias
+- ✅ Creación de carpetas necesarias
+- ✅ Verificación de puertos
+- ✅ Creación de scripts de inicio
+- ✅ Información detallada del sistema
+- ✅ Opción de inicio automático
 
-#### Opciones disponibles:
-1. **Instalación Completa** - Todos los módulos y dependencias
-2. **Instalación Rápida** - Solo frontend en modo demo
-3. **Instalación Personalizada** - Selecciona qué instalar
-4. **Solo Verificar Sistema** - Diagnóstico sin instalar
-
-#### Uso:
-```bash
-# Ejecutar instalador mejorado
-.\INSTALADOR_MEJORADO.bat
-```
+**Uso:** Doble clic en `INSTALADOR_COMPLETO.bat`
 
 ---
 
-### 2. **INSTALADOR_RAPIDO.bat**
-**Para usuarios experimentados o reinstalaciones**
+### 2. ⚡ **INSTALADOR_RAPIDO.bat** - Para usuarios experimentados
+**Descripción:** Instalación rápida para usuarios que ya tienen Node.js instalado.
 
-#### Características:
-- ⚡ **Instalación automática**
-- ⚡ **Sin confirmaciones innecesarias**
-- ⚡ **Modo silencioso disponible**
-- ⚡ **Ideal para scripts automatizados**
+**Características:**
+- ⚡ Instalación rápida y silenciosa
+- ✅ Verificación básica de Node.js
+- ✅ Instalación en paralelo
+- ✅ Creación de script de inicio rápido
+- ✅ Interfaz minimalista
 
-#### Opciones disponibles:
-1. **Instalación Completa** - Todos los módulos
-2. **Solo Frontend** - Modo demo únicamente
-3. **Instalación Silenciosa** - Sin output visible
-
-#### Uso:
-```bash
-# Ejecutar instalador rápido
-.\INSTALADOR_RAPIDO.bat
-```
+**Uso:** Doble clic en `INSTALADOR_RAPIDO.bat`
 
 ---
 
-### 3. **INSTALAR_SISTEMA.bat** (Básico)
-**Instalador tradicional y simple**
+### 3. 🔍 **DIAGNOSTICO_SISTEMA.bat** - Para resolución de problemas
+**Descripción:** Diagnóstico completo del sistema para detectar y resolver problemas.
 
-#### Características:
-- 🔧 **Instalación básica**
-- 🔧 **Verificación de Node.js**
-- 🔧 **Instalación completa por defecto**
-- 🔧 **Scripts de inicio simples**
+**Características:**
+- 🔍 Verificación exhaustiva del sistema
+- 📊 Información detallada del entorno
+- 🌐 Verificación de puertos
+- 📁 Verificación de estructura de carpetas
+- 🔄 Verificación de procesos Node.js
+- 📋 Resumen y recomendaciones
+- 🔧 Opción de instalación automática
 
-#### Uso:
-```bash
-# Ejecutar instalador básico
-.\INSTALAR_SISTEMA.bat
-```
-
----
-
-### 4. **DIAGNOSTICO_SISTEMA.bat**
-**Para verificar el estado del sistema**
-
-#### Características:
-- 🔍 **Verificación completa**
-- 🔍 **Detección de problemas**
-- 🔍 **Recomendaciones automáticas**
-- 🔍 **Acciones de corrección**
-
-#### Verificaciones:
-- ✅ Node.js y NPM instalados
-- ✅ Puertos disponibles (3000, 5000, 5001, 5002)
-- ✅ Archivos del proyecto presentes
-- ✅ Dependencias instaladas
-- ✅ Scripts de inicio creados
-- ✅ Procesos Node.js en ejecución
-
-#### Uso:
-```bash
-# Ejecutar diagnóstico
-.\DIAGNOSTICO_SISTEMA.bat
-```
+**Uso:** Doble clic en `DIAGNOSTICO_SISTEMA.bat`
 
 ---
 
-## 🚀 Scripts de Inicio Creados
+## 🎯 Cuál Instalador Usar
 
-### **INICIAR_ENVIASEO_COMPLETO.bat**
-- Inicia todos los módulos del sistema
-- Frontend: http://localhost:3000
-- Backends: 5000, 5001, 5002
-- Modo completo con todas las funcionalidades
+### 👤 **Nuevo Usuario**
+```
+INSTALADOR_COMPLETO.bat
+```
+- Primera instalación
+- No estás seguro de tener Node.js
+- Quieres información detallada
 
-### **INICIAR_ENVIASEO_RAPIDO.bat**
-- Solo frontend en modo demo
-- Frontend: http://localhost:3000
-- Sin dependencia de backends
-- Carga inmediata
+### ⚡ **Usuario Experimentado**
+```
+INSTALADOR_RAPIDO.bat
+```
+- Ya tienes Node.js instalado
+- Quieres instalación rápida
+- Conoces el sistema
 
-### **DETENER_ENVIASEO.bat**
-- Detiene todos los procesos Node.js
-- Cierre limpio del sistema
-- Libera puertos
-
-### **REINICIAR_ENVIASEO.bat**
-- Detiene procesos anteriores
-- Limpia archivos temporales
-- Reinicia el sistema
-- Opción de modo completo o rápido
+### 🔧 **Resolución de Problemas**
+```
+DIAGNOSTICO_SISTEMA.bat
+```
+- El sistema no funciona
+- Errores de puertos
+- Problemas de dependencias
 
 ---
 
-## 📋 Comparación de Instaladores
+## 📦 Scripts Generados por los Instaladores
 
-| Característica | Mejorado | Rápido | Básico | Diagnóstico |
-|----------------|----------|--------|--------|-------------|
-| **Opciones múltiples** | ✅ | ✅ | ❌ | ❌ |
-| **Verificación completa** | ✅ | ❌ | ✅ | ✅ |
-| **Instalación personalizada** | ✅ | ❌ | ❌ | ❌ |
-| **Modo silencioso** | ❌ | ✅ | ❌ | ❌ |
-| **Diagnóstico integrado** | ✅ | ❌ | ❌ | ✅ |
-| **Acciones automáticas** | ✅ | ✅ | ❌ | ✅ |
-| **Ideal para principiantes** | ✅ | ❌ | ✅ | ❌ |
-| **Ideal para expertos** | ✅ | ✅ | ❌ | ✅ |
+### 🚀 **INICIAR_SISTEMA.bat**
+Inicia todo el sistema completo (frontend + todos los backends)
 
----
+### 🎭 **INICIAR_SOLO_FRONTEND.bat**
+Inicia solo el frontend en modo demo
 
-## 🎯 Recomendaciones de Uso
+### 🔄 **REINICIAR_SISTEMA.bat**
+Detiene procesos Node.js y reinicia el sistema
 
-### **Para Usuarios Nuevos:**
-```bash
-# Usar instalador mejorado
-.\INSTALADOR_MEJORADO.bat
-# Seleccionar opción 1 (Instalación Completa)
-```
-
-### **Para Usuarios Experimentados:**
-```bash
-# Usar instalador rápido
-.\INSTALADOR_RAPIDO.bat
-# Seleccionar opción 1 (Instalación Completa)
-```
-
-### **Para Demostraciones Rápidas:**
-```bash
-# Usar instalador rápido
-.\INSTALADOR_RAPIDO.bat
-# Seleccionar opción 2 (Solo Frontend)
-```
-
-### **Para Solución de Problemas:**
-```bash
-# Primero ejecutar diagnóstico
-.\DIAGNOSTICO_SISTEMA.bat
-# Luego usar instalador apropiado según recomendaciones
-```
-
-### **Para Reinstalaciones:**
-```bash
-# Usar instalador rápido con modo silencioso
-.\INSTALADOR_RAPIDO.bat
-# Seleccionar opción 3 (Instalación Silenciosa)
-```
+### ⚡ **INICIAR_RAPIDO.bat** (solo Instalador Rápido)
+Inicio rápido del sistema
 
 ---
 
-## 🔧 Solución de Problemas Comunes
+## 🌐 Puertos del Sistema
 
-### **Error: "Node.js no está instalado"**
-```bash
-# Solución:
-1. Ir a https://nodejs.org/
-2. Descargar versión LTS
-3. Ejecutar instalador
-4. Reiniciar sistema
-5. Ejecutar instalador nuevamente
+| Servicio | Puerto | URL |
+|----------|--------|-----|
+| Frontend | 3000 | http://localhost:3000 |
+| Backend Alumbrado | 5000 | http://localhost:5000 |
+| Backend Alcaldía | 5002 | http://localhost:5002 |
+| Backend Enviaseo | 5001 | http://localhost:5001 |
+
+---
+
+## 🔧 Requisitos del Sistema
+
+### ✅ **Requisitos Mínimos**
+- Windows 10 o superior
+- Node.js 16.x o superior
+- npm 8.x o superior
+- 4GB RAM mínimo
+- 2GB espacio libre en disco
+
+### 📥 **Descarga de Node.js**
+- **Sitio oficial:** https://nodejs.org/
+- **Versión recomendada:** LTS (Long Term Support)
+- **Incluye:** Node.js + npm
+
+---
+
+## 🚨 Solución de Problemas Comunes
+
+### ❌ **Error: Node.js no encontrado**
+```
+Solución: Instala Node.js desde https://nodejs.org/
 ```
 
-### **Error: "Puertos en uso"**
-```bash
-# Solución:
-1. Ejecutar DIAGNOSTICO_SISTEMA.bat
-2. Seleccionar "Detener procesos Node.js"
-3. O reiniciar el sistema
-4. Ejecutar instalador nuevamente
+### ❌ **Error: Puerto en uso**
+```
+Solución: Ejecuta REINICIAR_SISTEMA.bat
 ```
 
-### **Error: "Dependencias no instaladas"**
-```bash
-# Solución:
-1. Ejecutar DIAGNOSTICO_SISTEMA.bat
-2. Seleccionar "Solo instalar dependencias"
-3. O ejecutar instalador completo
+### ❌ **Error: Dependencias no instaladas**
+```
+Solución: Ejecuta INSTALADOR_COMPLETO.bat
 ```
 
-### **Error: "Scripts no encontrados"**
-```bash
-# Solución:
-1. Ejecutar cualquier instalador
-2. Los scripts se crean automáticamente
-3. O copiar desde distribución
+### ❌ **Error: Carpeta no encontrada**
+```
+Solución: Ejecuta DIAGNOSTICO_SISTEMA.bat
 ```
 
 ---
 
 ## 📞 Soporte
 
-### **Archivos de Ayuda:**
-- `README.md` - Documentación principal
-- `GUIA_INSTALACION.md` - Guía de instalación detallada
-- `CHANGELOG.md` - Historial de cambios
-- `manual-usuario.md` - Manual de usuario
+### 🔍 **Autodiagnóstico**
+1. Ejecuta `DIAGNOSTICO_SISTEMA.bat`
+2. Revisa el resumen y recomendaciones
+3. Sigue las soluciones sugeridas
 
-### **Scripts de Emergencia:**
-```bash
-# Si nada funciona, usar estos comandos manuales:
-npm install
-npm --prefix frontend install
-npm --prefix backend install
-npm --prefix backend-alcaldia install
-npm --prefix backend-enviaseo-control-acceso install
-npm start
-```
+### 🔄 **Reinstalación Completa**
+1. Ejecuta `DIAGNOSTICO_SISTEMA.bat`
+2. Si hay problemas, ejecuta `INSTALADOR_COMPLETO.bat`
+3. Reinicia el sistema
+
+### ⚡ **Reinstalación Rápida**
+1. Ejecuta `INSTALADOR_RAPIDO.bat`
+2. Usa `INICIAR_RAPIDO.bat` para iniciar
 
 ---
 
-**Desarrollado por:** Enviaseo E.S.P.  
-**Versión:** 1.3.0  
-**Última actualización:** Enero 2025
+## 📋 Checklist de Instalación
+
+### ✅ **Antes de Instalar**
+- [ ] Windows 10 o superior
+- [ ] Node.js instalado (verificar con `node --version`)
+- [ ] npm disponible (verificar con `npm --version`)
+- [ ] Espacio libre suficiente (2GB mínimo)
+
+### ✅ **Después de Instalar**
+- [ ] Todos los node_modules instalados
+- [ ] Carpetas de uploads creadas
+- [ ] Scripts de inicio generados
+- [ ] Puertos disponibles
+- [ ] Sistema iniciado correctamente
+
+### ✅ **Verificación Final**
+- [ ] Frontend accesible en http://localhost:3000
+- [ ] Todos los módulos cargan correctamente
+- [ ] Sin errores en la consola
+- [ ] Sistema funcionando sin problemas
+
+---
+
+## 🎉 ¡Listo para Usar!
+
+Una vez completada la instalación, puedes:
+
+1. **Acceder al sistema:** http://localhost:3000
+2. **Seleccionar módulo:** Alumbrado, Alcaldía o Enviaseo
+3. **Cargar archivos Excel:** Para procesar datos de asistencia
+4. **Ver estadísticas:** Horas trabajadas, horas extra, etc.
+
+**¡El sistema está listo para gestionar la asistencia de tu organización!** 🚀

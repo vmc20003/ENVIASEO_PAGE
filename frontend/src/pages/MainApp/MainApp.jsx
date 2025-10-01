@@ -66,31 +66,30 @@ function MainApp({ onBack }) {
 
     // Procesar cada registro
     resultados.forEach((registro) => {
-      // Extraer datos correctamente del registro original
-      const fecha = registro.fecha || (registro.time ? registro.time.split(" ")[0] : "");
-      const hora = registro.hora || (registro.time ? registro.time.split(" ")[1] : "");
-      const cedula = registro.cedula || registro.personNo || "";
-      
-      // Manejar nombres y apellidos correctamente
+      // Mapear correctamente los datos del backend
+      let fecha = "";
+      let hora = "";
+      let cedula = "";
       let nombre = "";
       let apellido = "";
-      
-      if (registro.nombre && registro.apellido) {
-        // Si ya están separados correctamente
-        nombre = registro.nombre;
-        apellido = registro.apellido;
-      } else if (registro.firstName && registro.lastName) {
-        // Si están en firstName/lastName
-        nombre = registro.firstName;
-        apellido = registro.lastName;
-      } else if (registro.nombre) {
-        // Si solo hay un campo nombre, intentar separarlo
-        const nombreCompleto = registro.nombre.trim().split(" ");
-        nombre = nombreCompleto[0] || "";
-        apellido = nombreCompleto.slice(1).join(" ") || "";
+      let tipo_asistencia = "";
+
+      // Extraer fecha y hora del campo 'time'
+      if (registro.time) {
+        const timeParts = registro.time.split(" ");
+        fecha = timeParts[0] || "";
+        hora = timeParts[1] || "";
       }
-      
-      const tipo_asistencia = registro.tipo_asistencia || registro.attendanceType || "";
+
+      // Mapear cédula desde personNo
+      cedula = registro.personNo || "";
+
+      // Mapear nombres desde firstName y lastName
+      nombre = registro.firstName || "";
+      apellido = registro.lastName || "";
+
+      // Mapear tipo de asistencia
+      tipo_asistencia = registro.attendanceType || "";
 
       // Validar que tengamos datos mínimos
       if (!fecha || !cedula) return;
@@ -473,19 +472,19 @@ function MainApp({ onBack }) {
       "Esta acción eliminará <strong>TODOS</strong> los registros de la base de datos de forma permanente.<br><br>⚠️ <strong>Esta acción no se puede deshacer.</strong>",
       async () => {
         // Función que se ejecuta al confirmar
-        try {
-          const response = await fetch(`${API_CONFIG.ALUMBRADO.BASE_URL}/clear-all`, {
-            method: "DELETE",
-          });
+    try {
+      const response = await fetch(`${API_CONFIG.ALUMBRADO.BASE_URL}/clear-all`, {
+        method: "DELETE",
+      });
 
-          if (response.ok) {
+      if (response.ok) {
             setMessage("✅ Base de datos limpiada correctamente");
-            setResultados([]);
+        setResultados([]);
             setFiles([]);
-          } else {
+      } else {
             setMessage("❌ Error al limpiar la base de datos");
-          }
-        } catch (error) {
+      }
+    } catch (error) {
           console.error("Error:", error);
           setMessage("❌ Error de conexión al limpiar la base de datos");
         }
@@ -1374,7 +1373,7 @@ function MainApp({ onBack }) {
                       </tbody>
                     </table>
                   </div>
-                  
+
                   {/* Controles de paginación */}
                   {renderPagination(page, totalPages, setPage)}
                   
