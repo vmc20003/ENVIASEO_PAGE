@@ -38,35 +38,41 @@ export function findHeaderKey(keys, searchTerms) {
 
 // NUEVO: Buscar la fila de encabezados real ignorando filas con celdas gigantes
 function findHeaderRowAndHeaders(sheet) {
-  const range = xlsx.utils.decode_range(sheet["!ref"]);
-  console.log(`🔍 Buscando encabezados en rango: ${range.s.r}-${range.e.r}, columnas: ${range.s.c}-${range.e.c}`);
-  
-  for (let R = range.s.r; R <= Math.min(range.e.r, range.s.r + 20); ++R) { // Limitar a primeras 20 filas
-    let rowValues = [];
-    for (let C = range.s.c; C <= range.e.c; ++C) {
-      const cell = sheet[xlsx.utils.encode_cell({ r: R, c: C })];
-      rowValues.push(cell ? String(cell.v) : "");
+  try {
+    if (!sheet || !sheet["!ref"]) {
+      console.log("⚠️ Hoja de cálculo vacía o sin referencia");
+      return { headerRow: 0, headers: [] };
     }
+
+    const range = xlsx.utils.decode_range(sheet["!ref"]);
+    console.log(`🔍 Buscando encabezados en rango: ${range.s.r}-${range.e.r}, columnas: ${range.s.c}-${range.e.c}`);
     
-    console.log(`🔍 Fila ${R}:`, rowValues.slice(0, 5)); // Mostrar primeras 5 columnas
-    
-    // Ignorar filas donde la primera celda tenga muchas comas (celdas gigantes tipo CSV)
-    if (
-      rowValues[0] &&
-      rowValues[0].split(",").length > 5 &&
-      rowValues.filter((x) => x).length === 1
-    ) {
-      console.log(`⚠️ Fila ${R} ignorada: celda gigante con ${rowValues[0].split(",").length} comas`);
-      continue;
-    }
-    
-    const normalizedRow = rowValues.map((v) => normalize(v));
-    console.log(`🔍 Fila ${R} normalizada:`, normalizedRow.slice(0, 5));
-    
-    // Buscar patrones de encabezados más flexibles
-    const hasFirstName = normalizedRow.some((v) => 
-      v.includes("firstname") || v.includes("nombre") || v.includes("name")
-    );
+    for (let R = range.s.r; R <= Math.min(range.e.r, range.s.r + 20); ++R) { // Limitar a primeras 20 filas
+      let rowValues = [];
+      for (let C = range.s.c; C <= range.e.c; ++C) {
+        const cell = sheet[xlsx.utils.encode_cell({ r: R, c: C })];
+        rowValues.push(cell ? String(cell.v) : "");
+      }
+      
+      console.log(`🔍 Fila ${R}:`, rowValues.slice(0, 5)); // Mostrar primeras 5 columnas
+      
+      // Ignorar filas donde la primera celda tenga muchas comas (celdas gigantes tipo CSV)
+      if (
+        rowValues[0] &&
+        rowValues[0].split(",").length > 5 &&
+        rowValues.filter((x) => x).length === 1
+      ) {
+        console.log(`⚠️ Fila ${R} ignorada: celda gigante con ${rowValues[0].split(",").length} comas`);
+        continue;
+      }
+      
+      const normalizedRow = rowValues.map((v) => normalize(v));
+      console.log(`🔍 Fila ${R} normalizada:`, normalizedRow.slice(0, 5));
+      
+      // Buscar patrones de encabezados más flexibles
+      const hasFirstName = normalizedRow.some((v) => 
+        v.includes("firstname") || v.includes("nombre") || v.includes("name")
+      );
     const hasLastName = normalizedRow.some((v) => 
       v.includes("lastname") || v.includes("apellido") || v.includes("surname")
     );
@@ -88,6 +94,11 @@ function findHeaderRowAndHeaders(sheet) {
   
   console.log("❌ No se encontraron encabezados válidos");
   return { headerRow: 0, headers: [] };
+  
+  } catch (error) {
+    console.error("❌ Error en findHeaderRowAndHeaders:", error);
+    return { headerRow: 0, headers: [] };
+  }
 }
 
 // NUEVO: Mejorar el parser para CSV embebido en Excel
@@ -244,55 +255,60 @@ function processCsvData(csvData) {
 }
 
 export function processExcelData(sheet) {
-  console.log("🔄 Iniciando procesamiento de archivo Excel...");
-  
-  // Buscar la fila de encabezados real ignorando filas basura
-  let { headerRow, headers } = findHeaderRowAndHeaders(sheet);
-  
-  if (!headers.length) {
-    console.log("⚠️ No se encontraron encabezados válidos, intentando procesamiento alternativo...");
+  try {
+    console.log("🔄 Iniciando procesamiento de archivo Excel...");
     
-    // Intentar procesar como CSV embebido
-    const csvData = parseCsvLikeExcel(sheet);
-    if (csvData && csvData.length > 0) {
-      console.log("✅ Procesado como CSV embebido, registros:", csvData.length);
-      return processCsvData(csvData);
+    if (!sheet) {
+      throw new Error("Hoja de cálculo no válida o vacía");
     }
     
-    // Si no funciona, usar la primera fila como encabezados
-    const range = xlsx.utils.decode_range(sheet["!ref"]);
-    let firstRowValues = [];
-    for (let C = range.s.c; C <= range.e.c; ++C) {
-      const cell = sheet[xlsx.utils.encode_cell({ r: range.s.r, c: C })];
-      firstRowValues.push(cell ? String(cell.v) : "");
+    // Buscar la fila de encabezados real ignorando filas basura
+    let { headerRow, headers } = findHeaderRowAndHeaders(sheet);
+    
+    if (!headers.length) {
+      console.log("⚠️ No se encontraron encabezados válidos, intentando procesamiento alternativo...");
+      
+      // Intentar procesar como CSV embebido
+      const csvData = parseCsvLikeExcel(sheet);
+      if (csvData && csvData.length > 0) {
+        console.log("✅ Procesado como CSV embebido, registros:", csvData.length);
+        return processCsvData(csvData);
+      }
+      
+      // Si no funciona, usar la primera fila como encabezados
+      const range = xlsx.utils.decode_range(sheet["!ref"]);
+      let firstRowValues = [];
+      for (let C = range.s.c; C <= range.e.c; ++C) {
+        const cell = sheet[xlsx.utils.encode_cell({ r: range.s.r, c: C })];
+        firstRowValues.push(cell ? String(cell.v) : "");
+      }
+      
+      if (firstRowValues.length > 0) {
+        console.log("⚠️ Usando primera fila como encabezados:", firstRowValues);
+        headers = firstRowValues;
+        headerRow = range.s.r;
+      } else {
+        throw new Error("No se encontraron encabezados válidos en el archivo.");
+      }
     }
     
-    if (firstRowValues.length > 0) {
-      console.log("⚠️ Usando primera fila como encabezados:", firstRowValues);
-      headers = firstRowValues;
-      headerRow = range.s.r;
-    } else {
-      throw new Error("No se encontraron encabezados válidos en el archivo.");
+    console.log(`📋 Procesando desde fila ${headerRow + 1} con encabezados:`, headers);
+    
+    // Procesar solo las filas debajo del encabezado
+    let data = xlsx.utils.sheet_to_json(sheet, {
+      defval: "",
+      header: headers,
+      range: headerRow + 1,
+    });
+
+    console.log(`📊 Total de filas encontradas: ${data.length}`);
+
+    if (data.length > 0) {
+      const keys = Object.keys(data[0]);
+      console.log("🔑 Encabezados detectados:", keys);
     }
-  }
-  
-  console.log(`📋 Procesando desde fila ${headerRow + 1} con encabezados:`, headers);
-  
-  // Procesar solo las filas debajo del encabezado
-  let data = xlsx.utils.sheet_to_json(sheet, {
-    defval: "",
-    header: headers,
-    range: headerRow + 1,
-  });
 
-  console.log(`📊 Total de filas encontradas: ${data.length}`);
-
-  if (data.length > 0) {
-    const keys = Object.keys(data[0]);
-    console.log("🔑 Encabezados detectados:", keys);
-  }
-
-  const processed = data
+    const processed = data
     .map((row, idx) => {
       const keys = Object.keys(row);
       const firstNameKey = findHeaderKey(
@@ -349,4 +365,9 @@ export function processExcelData(sheet) {
 
   console.log("Datos procesados:", processed.slice(0, 5));
   return processed;
+  
+  } catch (error) {
+    console.error("❌ Error en processExcelData:", error);
+    throw new Error(`Error procesando archivo Excel: ${error.message}`);
+  }
 }

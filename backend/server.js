@@ -1,7 +1,7 @@
 import express from "express";
 import cors from "cors";
 import multer from "multer";
-import xlsx from "xlsx";
+import XLSX from "xlsx";
 import path from "path";
 import fs from "fs";
 import { config } from "./config.js";
@@ -130,7 +130,30 @@ app.post("/upload", upload.single("file"), async (req, res) => {
     });
   } catch (error) {
     console.error("Error processing upload:", error);
-    res.status(500).json({ error: "Error procesando el archivo" });
+    console.error("Error stack:", error.stack);
+    res.status(500).json({ 
+      error: `Error procesando el archivo: ${error.message}`,
+      details: error.stack
+    });
+  }
+});
+
+// Endpoint para limpiar base de datos
+app.post("/clear-database", (req, res) => {
+  try {
+    console.log("🧹 Limpiando base de datos...");
+    clearDatabase();
+    
+    res.json({ 
+      message: "Base de datos limpiada correctamente",
+      success: true
+    });
+  } catch (error) {
+    console.error("Error clearing database:", error);
+    res.status(500).json({ 
+      error: "Error al limpiar la base de datos",
+      success: false
+    });
   }
 });
 
@@ -149,21 +172,85 @@ app.get("/files", (req, res) => {
   }
 });
 
-// Endpoint para obtener registros por archivo específico
-app.get("/records-by-file/:filename", (req, res) => {
+// Endpoint para procesar archivo específico
+app.get("/records-by-file/:filename", async (req, res) => {
   try {
     const filename = decodeURIComponent(req.params.filename);
-    const records = fileManager.getRecordsByFile(filename);
+    console.log(`🔄 Procesando archivo: ${filename}`);
+    
+    // Buscar el archivo físico
+    const files = fileManager.getAllFiles();
+    console.log(`📁 Archivos disponibles:`, files.map(f => ({
+      originalName: f.originalName,
+      filename: f.filename,
+      id: f.id
+    })));
+    
+    const fileInfo = files.find(f => 
+      f.originalName === filename || 
+      f.filename === filename
+    );
+    
+    console.log(`🔍 Archivo encontrado:`, fileInfo ? 'SÍ' : 'NO');
+    
+    if (!fileInfo) {
+      console.log(`❌ Archivo NO encontrado. Buscado: "${filename}"`);
+      return res.status(404).json({ 
+        error: "Archivo no encontrado",
+        count: 0,
+        records: []
+      });
+    }
+    
+    console.log(`✅ Archivo encontrado:`, fileInfo);
+    
+    // Procesar el archivo Excel
+    const filePath = path.join(fileInfo.path);
+    console.log(`📂 Ruta del archivo: ${filePath}`);
+    console.log(`📂 ¿Existe el archivo?: ${fs.existsSync(filePath)}`);
+    
+    if (!fs.existsSync(filePath)) {
+      return res.status(404).json({ 
+        error: "Archivo físico no encontrado",
+        count: 0,
+        records: []
+      });
+    }
+    
+    // Leer y procesar el archivo
+    const workbook = XLSX.readFile(filePath);
+    const sheetName = workbook.SheetNames[0];
+    const sheet = workbook.Sheets[sheetName];
+    
+    const processedData = processExcelData(sheet);
+    console.log(`📊 Archivo ${filename} procesado: ${processedData.length} registros`);
+    
+    // Agregar información del archivo fuente a cada registro
+    const recordsWithSource = processedData.map(record => ({
+      ...record,
+      sourceFile: filename,
+      archivo: filename,
+      fileName: filename
+    }));
+    
+    // Guardar en la base de datos
+    const existingData = loadDB();
+    const updatedData = [...existingData, ...recordsWithSource];
+    saveDB(updatedData);
+    
+    console.log(`💾 Base de datos actualizada con ${recordsWithSource.length} nuevos registros`);
     
     res.json({
       filename,
-      count: records.length,
-      records: records
+      count: recordsWithSource.length,
+      records: recordsWithSource,
+      message: `Archivo ${filename} procesado correctamente`
     });
+    
   } catch (error) {
-    console.error("Error getting records by file:", error);
+    console.error("Error procesando archivo:", error);
     res.status(500).json({ 
-      error: "No se pudieron obtener los registros del archivo.",
+      error: `Error procesando archivo: ${error.message}`,
       count: 0,
       records: []
     });
@@ -400,7 +487,7 @@ app.get("/", (req, res) => {
 });
 
 // Iniciar servidor
-const PORT = process.env.PORT || config.PORT;
+const PORT = 5000; // Forzar puerto 5000
 app.listen(PORT, '0.0.0.0', () => {
   console.log(`🚀 Servidor ejecutándose en puerto ${PORT}`);
   console.log(`📁 Carpeta de uploads: ${config.UPLOAD_FOLDER}`);

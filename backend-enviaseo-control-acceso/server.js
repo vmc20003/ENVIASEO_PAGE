@@ -152,6 +152,26 @@ app.post('/api/upload', upload.single('file'), async (req, res) => {
   }
 });
 
+// Endpoint para limpiar base de datos
+app.post("/clear-database", (req, res) => {
+  try {
+    console.log("🧹 [Enviaseo] Limpiando base de datos...");
+    // Limpiar la base de datos en memoria
+    global.enviaseoRecords = [];
+    
+    res.json({ 
+      message: "Base de datos limpiada correctamente",
+      success: true
+    });
+  } catch (error) {
+    console.error("Error clearing database:", error);
+    res.status(500).json({ 
+      error: "Error al limpiar la base de datos",
+      success: false
+    });
+  }
+});
+
 // Obtener datos procesados
 app.get('/api/data', async (req, res) => {
   try {
@@ -224,29 +244,69 @@ app.get('/api/files', (req, res) => {
 });
 
 // Obtener registros por archivo específico
-app.get('/records-by-file/:filename', (req, res) => {
+// Endpoint para procesar archivo específico
+app.get('/records-by-file/:filename', async (req, res) => {
   try {
     const filename = decodeURIComponent(req.params.filename);
+    console.log(`🔄 [Enviaseo] Procesando archivo: ${filename}`);
     
-    // Buscar registros por archivo en la base de datos
-    const data = getDataFromDatabase('enviaseo-control-acceso');
-    const allRecords = data || [];
-    
-    const fileRecords = allRecords.filter(record => 
-      record.archivo === filename || 
-      record.sourceFile === filename ||
-      record.fileName === filename
+    // Buscar el archivo físico
+    const files = fileManager.getAllFiles();
+    const fileInfo = files.find(f => 
+      f.originalName === filename || 
+      f.filename === filename
     );
+    
+    if (!fileInfo) {
+      return res.status(404).json({ 
+        error: "Archivo no encontrado",
+        count: 0,
+        records: []
+      });
+    }
+    
+    // Procesar el archivo Excel
+    const filePath = path.join(fileInfo.path);
+    if (!fs.existsSync(filePath)) {
+      return res.status(404).json({ 
+        error: "Archivo físico no encontrado",
+        count: 0,
+        records: []
+      });
+    }
+    
+    // Leer y procesar el archivo
+    const workbook = XLSX.readFile(filePath);
+    const sheetName = workbook.SheetNames[0];
+    const sheet = workbook.Sheets[sheetName];
+    
+    const processedData = processExcelData(sheet);
+    console.log(`📊 [Enviaseo] Archivo ${filename} procesado: ${processedData.length} registros`);
+    
+    // Agregar información del archivo fuente a cada registro
+    const recordsWithSource = processedData.map(record => ({
+      ...record,
+      sourceFile: filename,
+      archivo: filename,
+      fileName: filename
+    }));
+    
+    // Guardar en la base de datos en memoria
+    global.enviaseoRecords = [...(global.enviaseoRecords || []), ...recordsWithSource];
+    
+    console.log(`💾 [Enviaseo] Base de datos actualizada con ${recordsWithSource.length} nuevos registros`);
     
     res.json({
       filename,
-      count: fileRecords.length,
-      records: fileRecords
+      count: recordsWithSource.length,
+      records: recordsWithSource,
+      message: `Archivo ${filename} procesado correctamente`
     });
+    
   } catch (error) {
-    console.error("Error getting records by file:", error);
+    console.error("Error procesando archivo:", error);
     res.status(500).json({ 
-      error: "No se pudieron obtener los registros del archivo.",
+      error: `Error procesando archivo: ${error.message}`,
       count: 0,
       records: []
     });
@@ -324,7 +384,7 @@ app.use((error, req, res, next) => {
 });
 
 // Iniciar servidor
-const PORT = config.PORT;
+const PORT = 5001; // Forzar puerto 5001
 app.listen(PORT, '0.0.0.0', () => {
   console.log(`🚀 Servidor Enviaseo Control de Acceso ejecutándose en puerto ${PORT}`);
   console.log(`📁 Carpeta de uploads: ${path.join(__dirname, config.UPLOAD_FOLDER)}`);
