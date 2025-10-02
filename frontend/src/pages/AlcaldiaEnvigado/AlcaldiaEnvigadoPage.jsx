@@ -23,7 +23,8 @@ function AlcaldiaEnvigadoPage({ onBack }) {
       const result = await response.json();
 
       if (response.ok) {
-        const records = result.data || result.resultados || result;
+        // El backend de Alcaldía devuelve directamente un array
+        const records = Array.isArray(result) ? result : (result.data || result.resultados || []);
         setData(records);
 
         if (searchTerm.trim()) {

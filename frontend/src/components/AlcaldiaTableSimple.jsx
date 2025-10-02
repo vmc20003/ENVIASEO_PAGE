@@ -76,89 +76,104 @@ const AlcaldiaTableSimple = ({
     }
   }, [onRefresh]);
 
-  // Procesar datos de alcaldía
+  // Procesar datos de alcaldía - agrupar por fecha y calcular horas
   const processAlcaldiaData = useCallback((rawData) => {
-    if (!Array.isArray(rawData)) return [];
+    if (!Array.isArray(rawData) || rawData.length === 0) return [];
 
+    console.log('🔍 Procesando datos de Alcaldía:', rawData.length, 'registros');
+    
     const finalData = [];
     const groupedByPersonAndDate = new Map();
 
-    // Primera pasada: Agrupar registros por persona y fecha para calcular check-in/out
+    // Primera pasada: Agrupar registros por persona y fecha
     rawData.forEach(record => {
-      const cedula = record.personNo || record.cedula || '';
-      const fecha = record.time ? record.time.split(' ')[0] : '';
-      const key = `${cedula}-${fecha}`;
+      // Extraer información del registro
+      const nombreCompleto = record.nombre || '';
+      const cedula = record.idPersona || '';
+      
+      // Solo procesar registros con nombres reales (no fechas/horas)
+      if (nombreCompleto && !nombreCompleto.match(/^\d{2}-\d{2}/) && cedula) {
+        // Separar nombre y apellido del nombre completo
+        const partesNombre = nombreCompleto.split(' ');
+        const nombre = partesNombre[0] || '';
+        const apellido = partesNombre.slice(1).join(' ') || '';
+        
+        // Extraer fecha y hora
+        const fechaCompleta = record.hora || '';
+        const fecha = fechaCompleta.split(' ')[0] || '';
+        const hora = fechaCompleta.split(' ')[1] || '';
+        
+        // Crear clave única por persona y fecha
+        const key = `${cedula}-${fecha}`;
 
-      if (!groupedByPersonAndDate.has(key)) {
-        groupedByPersonAndDate.set(key, {
-          nombre: record.firstName || record.nombre || '',
-          apellido: record.lastName || record.apellido || '',
-          cedula: cedula,
-          fecha: fecha,
-          registros: []
-        });
+        if (!groupedByPersonAndDate.has(key)) {
+          groupedByPersonAndDate.set(key, {
+            nombre: nombre,
+            apellido: apellido,
+            cedula: cedula,
+            fecha: fecha,
+            horas: []
+          });
+        }
+        
+        // Agregar hora a la lista
+        groupedByPersonAndDate.get(key).horas.push(hora);
       }
-      groupedByPersonAndDate.get(key).registros.push({
-        hora: record.time ? record.time.split(' ')[1] : '',
-        tipo: record.attendanceType || record.tipo_asistencia || '',
-        horaOriginal: record.time // Guardar la hora original para ordenamiento
-      });
     });
 
-    // Segunda pasada: Procesar cada grupo para determinar check-in/out y calcular horas
+    // Segunda pasada: Calcular entrada, salida y horas trabajadas
     groupedByPersonAndDate.forEach(personGroup => {
-      // Ordenar registros por hora
-      personGroup.registros.sort((a, b) => {
-        const timeA = a.hora.split(':').map(Number);
-        const timeB = b.hora.split(':').map(Number);
-        return timeA[0] * 60 + timeA[1] - (timeB[0] * 60 + timeB[1]);
-      });
-
-      let checkInTime = 'N/A';
-      let checkOutTime = 'N/A';
-      let hasExtraHours = false;
+      // Ordenar horas de menor a mayor
+      personGroup.horas.sort();
+      
+      const entrada = personGroup.horas[0] || 'N/A'; // Hora más temprana
+      const salida = personGroup.horas[personGroup.horas.length - 1] || 'N/A'; // Hora más tarde
+      
       let horasTrabajadas = 'N/A';
       let horasExtra = '0.0';
-
-      // Encontrar el primer Check In y el último Check Out
-      const firstCheckIn = personGroup.registros.find(r => r.tipo.toLowerCase().includes('in'));
-      const lastCheckOut = personGroup.registros.slice().reverse().find(r => r.tipo.toLowerCase().includes('out'));
-
-      if (firstCheckIn) checkInTime = firstCheckIn.hora;
-      if (lastCheckOut) checkOutTime = lastCheckOut.hora;
-
-      // Si hay un par completo (Check In y Check Out), calcular horas
-      if (checkInTime !== 'N/A' && checkOutTime !== 'N/A') {
-        const [h1, m1] = checkInTime.split(':').map(Number);
-        const [h2, m2] = checkOutTime.split(':').map(Number);
-        let diff = h2 + m2 / 60 - (h1 + m1 / 60);
-        if (diff < 0) diff += 24; // Manejar casos donde el checkout es al día siguiente
-        horasTrabajadas = diff.toFixed(1);
-        horasExtra = Math.max(0, diff - 8).toFixed(1);
-        hasExtraHours = parseFloat(horasExtra) > 0;
+      
+      // Calcular horas trabajadas si hay entrada y salida
+      if (entrada !== 'N/A' && salida !== 'N/A') {
+        const [h1, m1] = entrada.split(':').map(Number);
+        const [h2, m2] = salida.split(':').map(Number);
+        
+        const minutosInicio = h1 * 60 + m1;
+        const minutosFin = h2 * 60 + m2;
+        const minutosTrabajados = minutosFin - minutosInicio;
+        
+        if (minutosTrabajados > 0) {
+          const horasDecimales = minutosTrabajados / 60;
+          horasTrabajadas = horasDecimales.toFixed(1);
+          
+          // Calcular horas extra (más de 8 horas)
+          if (horasDecimales > 8) {
+            horasExtra = (horasDecimales - 8).toFixed(1);
+          }
+        }
       }
 
-      // Agregar UNA SOLA FILA por persona y fecha
+      // Agregar registro procesado
       finalData.push({
         nombre: personGroup.nombre,
         apellido: personGroup.apellido,
         cedula: personGroup.cedula,
         fecha: personGroup.fecha,
-        horaCheckIn: checkInTime,
-        horaCheckOut: checkOutTime,
+        horaCheckIn: entrada,
+        horaCheckOut: salida,
         horasTrabajadas: horasTrabajadas,
         horasExtra: horasExtra,
-        hasExtraHours: hasExtraHours
+        hasExtraHours: parseFloat(horasExtra) > 0
       });
     });
 
-    // Ordenar todos los registros finales por fecha y luego por hora de check-in
+    // Ordenar por fecha y luego por hora de entrada
     finalData.sort((a, b) => {
       const dateA = new Date(`${a.fecha}T${a.horaCheckIn}`);
       const dateB = new Date(`${b.fecha}T${b.horaCheckIn}`);
       return dateA.getTime() - dateB.getTime();
     });
 
+    console.log('✅ Datos procesados:', finalData.length, 'registros finales');
     return finalData;
   }, []);
 
@@ -244,7 +259,8 @@ const AlcaldiaTableSimple = ({
       const response = await fetch('http://localhost:5002/files');
       if (response.ok) {
         const result = await response.json();
-        setFiles(result.files || []);
+        // El servidor devuelve directamente un array de archivos
+        setFiles(Array.isArray(result) ? result : (result.files || []));
       } else {
         throw new Error('Error al cargar archivos');
       }
@@ -376,12 +392,12 @@ const AlcaldiaTableSimple = ({
 
   // Columnas de la tabla
   const columns = [
+    { key: 'cedula', label: 'ID', sortable: true },
     { key: 'nombre', label: 'Nombre', sortable: true },
     { key: 'apellido', label: 'Apellido', sortable: true },
-    { key: 'cedula', label: 'Cédula', sortable: true },
     { key: 'fecha', label: 'Fecha', sortable: true },
-    { key: 'horaCheckIn', label: 'Check In', sortable: true },
-    { key: 'horaCheckOut', label: 'Check Out', sortable: true },
+    { key: 'horaCheckIn', label: 'Entrada', sortable: true },
+    { key: 'horaCheckOut', label: 'Salida', sortable: true },
     { key: 'horasTrabajadas', label: 'Horas Trabajadas', sortable: true },
     { key: 'horasExtra', label: 'Horas Extra', sortable: true }
   ];
@@ -488,14 +504,14 @@ const AlcaldiaTableSimple = ({
           <div className="search-controls">
             <div className="search-input-group">
               <i className="bi bi-search search-icon"></i>
-              <input
-                type="text"
-                placeholder="Buscar por nombre, apellido o cédula..."
-                value={searchTerm}
-                onChange={handleSearchChange}
-                className="search-input"
-                disabled={loading || externalLoading}
-              />
+                <input
+                  type="text"
+                  placeholder="Buscar por ID, nombre o apellido..."
+                  value={searchTerm}
+                  onChange={handleSearchChange}
+                  className="search-input"
+                  disabled={loading || externalLoading}
+                />
             </div>
             
             <div className="filter-controls">
